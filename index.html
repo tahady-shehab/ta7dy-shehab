@@ -6,205 +6,301 @@
 <title>تحدي شهاب</title>
 
 <style>
+*{box-sizing:border-box}
+
 body{
 margin:0;
+font-family:Arial,Tahoma,sans-serif;
 background:#080b14;
-color:white;
-font-family:Arial;
-padding:20px;
+color:#fff;
+min-height:100vh;
 }
 
-.box{
-max-width:600px;
-margin:30px auto;
+.container{
+max-width:680px;
+margin:auto;
+padding:25px 16px;
+}
+
+.card{
 background:#111625;
-padding:30px;
+border:1px solid #293248;
 border-radius:25px;
-text-align:center;
+padding:28px 22px;
+box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.center{text-align:center}
+
+.logo{
+font-size:40px;
+font-weight:bold;
+margin:10px 0 20px;
+}
+
+.text{
+color:#aeb6c8;
+line-height:1.9;
+font-size:17px;
+}
+
+.badge{
+display:inline-block;
+background:#222a3d;
+padding:9px 15px;
+border-radius:30px;
+margin:15px 0;
+font-size:14px;
 }
 
 button{
 width:100%;
-padding:16px;
-margin-top:15px;
 border:0;
-border-radius:15px;
+border-radius:16px;
+padding:16px;
 font-size:18px;
 font-weight:bold;
+cursor:pointer;
+margin-top:14px;
 }
 
 .primary{
-background:white;
+background:#fff;
 color:#080b14;
 }
 
-.dark{
+.secondary{
 background:#252d42;
-color:white;
+color:#fff;
 }
 
-.hidden{
-display:none;
+.hidden{display:none}
+
+.rules{
+text-align:right;
+line-height:2;
+color:#dce2ee;
 }
 
-.timer{
-font-size:42px;
-margin:20px;
+input,textarea{
+width:100%;
+background:#080c16;
+color:#fff;
+border:1px solid #30394f;
+border-radius:16px;
+padding:15px;
+font-size:17px;
+outline:none;
+margin-top:10px;
 }
 
 textarea{
-width:100%;
-height:130px;
-box-sizing:border-box;
-background:#080b14;
-color:white;
-padding:15px;
-border-radius:15px;
-font-size:17px;
+height:150px;
+resize:none;
+line-height:1.7;
+}
+
+.progress{
+color:#aeb6c8;
+font-size:14px;
+margin-bottom:15px;
+}
+
+.shehab{
+background:#191f31;
+border-radius:18px;
+padding:18px;
+text-align:center;
+margin-bottom:20px;
+}
+
+.shehab small{
+display:block;
+color:#aeb6c8;
+margin-bottom:7px;
+}
+
+.shehabTime{
+font-size:38px;
+font-weight:bold;
+direction:ltr;
+}
+
+.playerTime{
+text-align:center;
+color:#8f99ad;
+font-size:13px;
+margin-top:12px;
+}
+
+.question{
+font-size:23px;
+font-weight:bold;
+line-height:1.8;
+margin-bottom:18px;
+}
+
+.resultScore{
+font-size:70px;
+font-weight:bold;
+margin:10px 0;
+}
+
+.resultBox{
+background:#191f31;
+border-radius:18px;
+padding:20px;
+margin-top:18px;
+text-align:right;
+line-height:1.9;
+}
+
+.small{
+font-size:13px;
+color:#8f99ad;
+line-height:1.7;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box" id="home">
+<div class="container">
 
-<h1>🧠 تحدي شهاب</h1>
+<!-- HOME -->
+<section id="home" class="card center">
 
-<p>مش مجرد اختبار...</p>
+<div class="logo">🧠 تحدي شهاب</div>
 
-<p>دي مواجهة مع طريقة تفكيرك.</p>
+<p class="text">
+مش مجرد اختبار...<br>
+دي مواجهة مع طريقة تفكيرك.
+</p>
 
-<h2>🔥 أعلى نتيجة: 9.4 / 10</h2>
+<div class="badge">
+🔥 أعلى نتيجة حاليًا: 9.4 / 10
+</div>
 
-<button class="primary" onclick="rules()">
+<h2>فاكر نفسك بتعرف تفكر؟</h2>
+
+<p class="text">
+شهاب دخل التحدي.<br>
+دلوقتي دورك تشوف هل تقدر تكسر نتيجته.
+</p>
+
+<button class="primary" onclick="showRules()">
 ابدأ التحدي 🧠
 </button>
 
-</div>
+</section>
 
 
-<div class="box hidden" id="rules">
+<!-- RULES -->
+<section id="rules" class="card hidden">
 
 <h2>قبل ما تبدأ 👀</h2>
 
-<p>🧠 10 أسئلة مختلفة.</p>
-<p>⏱️ لكل سؤال وقت مختلف.</p>
-<p>🔥 الوقت الظاهر هو الوقت الذي احتاجه شهاب.</p>
-<p>⚡ مش لازم تستنى العداد.</p>
+<ul class="rules">
+<li>🧠 10 أسئلة مختلفة.</li>
+<li>⏱️ لكل سؤال وقت مختلف.</li>
+<li>🔥 الوقت الظاهر هو الوقت الذي احتاجه شهاب.</li>
+<li>⚡ مش لازم تستنى العداد.</li>
+<li>➡️ خلص إجابتك؟ دوس التالي.</li>
+<li>🏆 هدفك تكسر 9.4 / 10.</li>
+</ul>
 
-<button class="primary" onclick="start()">
+<button class="primary" onclick="showName()">
 أنا جاهز 🔥
 </button>
 
-<button class="dark" onclick="home()">
+<button class="secondary" onclick="goHome()">
 رجوع
 </button>
 
-</div>
+</section>
 
 
-<div class="box hidden" id="quiz">
+<!-- NAME -->
+<section id="nameScreen" class="card">
 
-<p>السؤال 1 من 10</p>
+<h2>قبل المواجهة 👀</h2>
 
-<p>⏱️ شهاب احتاج لهذا السؤال:</p>
+<p class="text">
+اكتب اسمك علشان نشوف النتيجة في النهاية.
+</p>
 
-<div class="timer" id="timer">
+<input id="playerName" placeholder="اكتب اسمك هنا">
+
+<button class="primary" onclick="begin()">
+ابدأ المواجهة 🚀
+</button>
+
+<button class="secondary" onclick="showRules()">
+رجوع
+</button>
+
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz" class="card hidden">
+
+<div class="progress" id="progress"></div>
+
+<div class="shehab">
+
+<small>🔥 شهاب احتاج لهذا السؤال</small>
+
+<div class="shehabTime" id="shehabTime">
 04:00
 </div>
 
-<h2>
-لو كان أمامك قرار مهم، وعندك معلومات كافية لكن مش كاملة، هل تنتظر معلومات إضافية أم تتخذ القرار الآن؟ ولماذا؟
-</h2>
+</div>
+
+<div class="question" id="question"></div>
 
 <textarea id="answer"
-placeholder="اكتب إجابتك هنا..."></textarea>
+placeholder="اكتب إجابتك بطريقتك الطبيعية..."></textarea>
 
-<button class="primary" onclick="next()">
+<div class="playerTime">
+⏱️ وقتك في السؤال:
+<span id="playerTime">00:00</span>
+</div>
+
+<button class="primary" onclick="nextQuestion()">
 التالي →
 </button>
 
+<p class="small">
+مش لازم تستنى عداد شهاب. خلص إجابتك واضغط التالي.
+</p>
+
+</section>
+
+
+<!-- RESULT -->
+<section id="result" class="card center hidden">
+
+<div class="logo">🏆</div>
+
+<h2 id="resultTitle"></h2>
+
+<div class="resultScore" id="score"></div>
+
+<p class="text" id="resultMessage"></p>
+
+<div class="resultBox">
+<strong>🧠 إيه اللي ظهر في طريقة تفكيرك؟</strong>
+
+<p id="analysis"></p>
 </div>
 
+<div class="resultBox">
+<strong>🔥 مقارنة بشهاب</strong>
 
-<div class="box hidden" id="result">
-
-<h1>🔥 ممتاز!</h1>
-
-<p>خلصت السؤال الأول.</p>
-
-<p>كده النظام شغال، ونقدر نبني باقي التحدي.</p>
-
+<p id="comparison"></p>
 </div>
 
-
-<script>
-
-function hide(){
-document.getElementById("home").classList.add("hidden");
-document.getElementById("rules").classList.add("hidden");
-document.getElementById("quiz").classList.add("hidden");
-document.getElementById("result").classList.add("hidden");
-}
-
-function home(){
-hide();
-document.getElementById("home").classList.remove("hidden");
-}
-
-function rules(){
-hide();
-document.getElementById("rules").classList.remove("hidden");
-}
-
-function start(){
-hide();
-document.getElementById("quiz").classList.remove("hidden");
-timer();
-}
-
-function timer(){
-
-let time=240;
-
-let box=document.getElementById("timer");
-
-let x=setInterval(function(){
-
-time--;
-
-let m=Math.floor(time/60);
-let s=time%60;
-
-box.innerText=
-String(m).padStart(2,"0")+":"+
-String(s).padStart(2,"0");
-
-if(time<=0){
-clearInterval(x);
-}
-
-},1000);
-
-}
-
-function next(){
-
-let answer=document.getElementById("answer").value;
-
-if(answer.trim()==""){
-alert("اكتب إجابتك الأول 😏");
-return;
-}
-
-hide();
-
-document.getElementById("result").classList.remove("hidden");
-
-}
-
-</script>
-
-</body>
-</html>
+<button class="primary" onclick="location.reload()">
+تحدي شهاب مرة تانية 🔥
+</
