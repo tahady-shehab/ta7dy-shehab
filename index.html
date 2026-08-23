@@ -6,316 +6,199 @@
 <title>تحدي شهاب</title>
 
 <style>
-*{box-sizing:border-box}
-
 body{
 margin:0;
-font-family:Arial,Tahoma,sans-serif;
 background:#080b14;
-color:#fff;
-min-height:100vh
+color:white;
+font-family:Arial;
+padding:20px;
 }
 
-.container{
-max-width:650px;
-margin:auto;
-padding:30px 18px
-}
-
-.card{
+.box{
+max-width:600px;
+margin:30px auto;
 background:#111625;
-border:1px solid #293248;
+padding:30px;
 border-radius:25px;
-padding:28px 22px;
-box-shadow:0 20px 50px rgba(0,0,0,.4)
-}
-
-.center{text-align:center}
-
-.logo{
-font-size:42px;
-font-weight:bold;
 text-align:center;
-margin:15px 0
-}
-
-.text{
-color:#aeb6c8;
-line-height:1.8;
-font-size:17px
-}
-
-.badge{
-display:inline-block;
-background:#222a3d;
-padding:9px 15px;
-border-radius:30px;
-margin:18px 0;
-font-size:14px
 }
 
 button{
 width:100%;
+padding:16px;
+margin-top:15px;
 border:0;
-border-radius:16px;
-padding:17px;
+border-radius:15px;
 font-size:18px;
 font-weight:bold;
-cursor:pointer;
-margin-top:15px
 }
 
 .primary{
-background:#fff;
-color:#080b14
+background:white;
+color:#080b14;
 }
 
-.secondary{
+.dark{
 background:#252d42;
-color:#fff
+color:white;
 }
 
-.hidden{display:none}
-
-.rules{
-line-height:2;
-color:#dce2ee;
-padding-right:20px
-}
-
-.progress{
-color:#aeb6c8;
-font-size:14px;
-margin-bottom:15px
-}
-
-.timerBox{
-background:#191f31;
-border-radius:18px;
-padding:18px;
-text-align:center;
-margin-bottom:22px
-}
-
-.timerTitle{
-color:#aeb6c8;
-font-size:14px;
-margin-bottom:7px
+.hidden{
+display:none;
 }
 
 .timer{
 font-size:42px;
-font-weight:bold;
-direction:ltr
-}
-
-.question{
-font-size:24px;
-line-height:1.7;
-margin-bottom:20px
+margin:20px;
 }
 
 textarea{
 width:100%;
-height:150px;
-background:#090d17;
-color:#fff;
-border:1px solid #30394f;
-border-radius:16px;
+height:130px;
+box-sizing:border-box;
+background:#080b14;
+color:white;
 padding:15px;
+border-radius:15px;
 font-size:17px;
-resize:none;
-outline:none
-}
-
-.note{
-font-size:13px;
-color:#8f99ad;
-margin-top:12px;
-text-align:center
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="box" id="home">
 
-<!-- الصفحة الرئيسية -->
-<section id="home" class="card center">
+<h1>🧠 تحدي شهاب</h1>
 
-<div class="logo">🧠 تحدي شهاب</div>
+<p>مش مجرد اختبار...</p>
 
-<p class="text">
-مش مجرد اختبار...<br>
-دي مواجهة مع طريقة تفكيرك.
-</p>
+<p>دي مواجهة مع طريقة تفكيرك.</p>
 
-<div class="badge">
-🔥 أعلى نتيجة حاليًا: 9.4 / 10
-</div>
+<h2>🔥 أعلى نتيجة: 9.4 / 10</h2>
 
-<h2>فاكر نفسك بتعرف تفكر؟</h2>
-
-<p class="text">
-شهاب دخل التحدي.<br>
-دلوقتي دورك تشوف هل تقدر تكسر نتيجته.
-</p>
-
-<button class="primary" onclick="showRules()">
+<button class="primary" onclick="rules()">
 ابدأ التحدي 🧠
 </button>
 
-</section>
+</div>
 
 
-<!-- التعليمات -->
-<section id="rules" class="card hidden">
+<div class="box hidden" id="rules">
 
 <h2>قبل ما تبدأ 👀</h2>
 
-<ul class="rules">
-<li>🧠 10 أسئلة مختلفة.</li>
-<li>⏱️ لكل سؤال وقت مختلف.</li>
-<li>🔥 الوقت الظاهر هو الوقت الذي احتاجه شهاب.</li>
-<li>⚡ مش لازم تستنى العداد.</li>
-<li>➡️ خلص إجابتك؟ دوس التالي.</li>
-<li>🏆 هدفك تكسر 9.4 / 10.</li>
-</ul>
+<p>🧠 10 أسئلة مختلفة.</p>
+<p>⏱️ لكل سؤال وقت مختلف.</p>
+<p>🔥 الوقت الظاهر هو الوقت الذي احتاجه شهاب.</p>
+<p>⚡ مش لازم تستنى العداد.</p>
 
-<button class="primary" onclick="startChallenge()">
+<button class="primary" onclick="start()">
 أنا جاهز 🔥
 </button>
 
-<button class="secondary" onclick="backHome()">
+<button class="dark" onclick="home()">
 رجوع
 </button>
 
-</section>
-
-
-<!-- السؤال -->
-<section id="quiz" class="card hidden">
-
-<div class="progress">
-السؤال 1 من 10
 </div>
 
-<div class="timerBox">
 
-<div class="timerTitle">
-⏱️ شهاب احتاج لهذا السؤال
-</div>
+<div class="box hidden" id="quiz">
+
+<p>السؤال 1 من 10</p>
+
+<p>⏱️ شهاب احتاج لهذا السؤال:</p>
 
 <div class="timer" id="timer">
 04:00
 </div>
 
-</div>
+<h2>
+لو كان أمامك قرار مهم، وعندك معلومات كافية لكن مش كاملة، هل تنتظر معلومات إضافية أم تتخذ القرار الآن؟ ولماذا؟
+</h2>
 
-<div class="question">
-أمامك قرار مهم، ولديك معلومات كافية لاتخاذه، لكن هناك احتمال أن تظهر معلومة جديدة بعد فترة قصيرة. ماذا تفعل؟ ولماذا؟
-</div>
+<textarea id="answer"
+placeholder="اكتب إجابتك هنا..."></textarea>
 
-<textarea
-id="answer"
-placeholder="اكتب إجابتك بطريقتك الطبيعية..."
-></textarea>
-
-<button class="primary" onclick="nextQuestion()">
+<button class="primary" onclick="next()">
 التالي →
 </button>
 
-<div class="note">
-مش لازم تستنى العداد يخلص.
 </div>
 
-</section>
 
+<div class="box hidden" id="result">
 
-<!-- نتيجة مؤقتة -->
-<section id="result" class="card center hidden">
+<h1>🔥 ممتاز!</h1>
 
-<div class="logo">🏆</div>
+<p>خلصت السؤال الأول.</p>
 
-<h2>خلصت السؤال الأول!</h2>
-
-<p class="text">
-ممتاز 🔥<br>
-الخطوة التالية هنضيف باقي الأسئلة ونظام التقييم الكامل.
-</p>
-
-<button class="primary" onclick="location.reload()">
-تجربة التحدي مرة أخرى
-</button>
-
-</section>
+<p>كده النظام شغال، ونقدر نبني باقي التحدي.</p>
 
 </div>
 
 
 <script>
 
-function hideAll(){
+function hide(){
 document.getElementById("home").classList.add("hidden");
 document.getElementById("rules").classList.add("hidden");
 document.getElementById("quiz").classList.add("hidden");
 document.getElementById("result").classList.add("hidden");
 }
 
-function showRules(){
-hideAll();
-document.getElementById("rules").classList.remove("hidden");
-}
-
-function backHome(){
-hideAll();
+function home(){
+hide();
 document.getElementById("home").classList.remove("hidden");
 }
 
-function startChallenge(){
-hideAll();
-document.getElementById("quiz").classList.remove("hidden");
-startTimer();
+function rules(){
+hide();
+document.getElementById("rules").classList.remove("hidden");
 }
 
-function startTimer(){
+function start(){
+hide();
+document.getElementById("quiz").classList.remove("hidden");
+timer();
+}
 
-let seconds=240;
+function timer(){
 
-let timer=document.getElementById("timer");
+let time=240;
 
-timer.textContent="04:00";
+let box=document.getElementById("timer");
 
-let interval=setInterval(function(){
+let x=setInterval(function(){
 
-seconds--;
+time--;
 
-let minutes=Math.floor(seconds/60);
-let secs=seconds%60;
+let m=Math.floor(time/60);
+let s=time%60;
 
-timer.textContent=
-String(minutes).padStart(2,"0")+":"+
-String(secs).padStart(2,"0");
+box.innerText=
+String(m).padStart(2,"0")+":"+
+String(s).padStart(2,"0");
 
-if(seconds<=0){
-clearInterval(interval);
+if(time<=0){
+clearInterval(x);
 }
 
 },1000);
 
 }
 
-function nextQuestion(){
+function next(){
 
-let answer=document.getElementById("answer").value.trim();
+let answer=document.getElementById("answer").value;
 
-if(answer===""){
-alert("اكتب إجابتك الأول يا بطل 😏");
+if(answer.trim()==""){
+alert("اكتب إجابتك الأول 😏");
 return;
 }
 
-hideAll();
+hide();
 
 document.getElementById("result").classList.remove("hidden");
 
