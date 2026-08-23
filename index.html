@@ -2,49 +2,47 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>تحدي شهاب</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
 margin:0;
 font-family:Arial,Tahoma,sans-serif;
 background:#080b14;
-color:white;
-min-height:100vh;
+color:#fff;
+min-height:100vh
 }
 
 .container{
 max-width:650px;
 margin:auto;
-padding:30px 18px;
+padding:30px 18px
 }
 
 .card{
 background:#111625;
 border:1px solid #293248;
 border-radius:25px;
-padding:30px 22px;
-box-shadow:0 20px 50px rgba(0,0,0,.4);
-text-align:center;
+padding:28px 22px;
+box-shadow:0 20px 50px rgba(0,0,0,.4)
 }
+
+.center{text-align:center}
 
 .logo{
 font-size:42px;
 font-weight:bold;
-margin:15px 0;
+text-align:center;
+margin:15px 0
 }
 
-.tagline{
+.text{
 color:#aeb6c8;
-font-size:17px;
 line-height:1.8;
+font-size:17px
 }
 
 .badge{
@@ -52,13 +50,8 @@ display:inline-block;
 background:#222a3d;
 padding:9px 15px;
 border-radius:30px;
-font-size:14px;
-margin:20px 0;
-}
-
-h2{
-font-size:28px;
-margin:10px 0;
+margin:18px 0;
+font-size:14px
 }
 
 button{
@@ -69,90 +62,128 @@ padding:17px;
 font-size:18px;
 font-weight:bold;
 cursor:pointer;
-margin-top:15px;
+margin-top:15px
 }
 
-.start{
-background:white;
-color:#080b14;
+.primary{
+background:#fff;
+color:#080b14
 }
 
 .secondary{
 background:#252d42;
-color:white;
+color:#fff
 }
 
-.hidden{
-display:none;
-}
+.hidden{display:none}
 
 .rules{
-text-align:right;
 line-height:2;
-padding:0 15px;
 color:#dce2ee;
+padding-right:20px
 }
 
-</style>
+.progress{
+color:#aeb6c8;
+font-size:14px;
+margin-bottom:15px
+}
 
+.timerBox{
+background:#191f31;
+border-radius:18px;
+padding:18px;
+text-align:center;
+margin-bottom:22px
+}
+
+.timerTitle{
+color:#aeb6c8;
+font-size:14px;
+margin-bottom:7px
+}
+
+.timer{
+font-size:42px;
+font-weight:bold;
+direction:ltr
+}
+
+.question{
+font-size:24px;
+line-height:1.7;
+margin-bottom:20px
+}
+
+textarea{
+width:100%;
+height:150px;
+background:#090d17;
+color:#fff;
+border:1px solid #30394f;
+border-radius:16px;
+padding:15px;
+font-size:17px;
+resize:none;
+outline:none
+}
+
+.note{
+font-size:13px;
+color:#8f99ad;
+margin-top:12px;
+text-align:center
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-<div id="home" class="card">
+<!-- الصفحة الرئيسية -->
+<section id="home" class="card center">
 
-<div class="logo">
-🧠 تحدي شهاب
-</div>
+<div class="logo">🧠 تحدي شهاب</div>
 
-<div class="tagline">
+<p class="text">
 مش مجرد اختبار...<br>
 دي مواجهة مع طريقة تفكيرك.
-</div>
+</p>
 
 <div class="badge">
 🔥 أعلى نتيجة حاليًا: 9.4 / 10
 </div>
 
-<h2>
-فاكر نفسك بتعرف تفكر؟
-</h2>
+<h2>فاكر نفسك بتعرف تفكر؟</h2>
 
-<p class="tagline">
+<p class="text">
 شهاب دخل التحدي.<br>
 دلوقتي دورك تشوف هل تقدر تكسر نتيجته.
 </p>
 
-<button class="start" onclick="showRules()">
+<button class="primary" onclick="showRules()">
 ابدأ التحدي 🧠
 </button>
 
-</div>
+</section>
 
 
-<div id="rules" class="card hidden">
+<!-- التعليمات -->
+<section id="rules" class="card hidden">
 
 <h2>قبل ما تبدأ 👀</h2>
 
 <ul class="rules">
-
 <li>🧠 10 أسئلة مختلفة.</li>
-
 <li>⏱️ لكل سؤال وقت مختلف.</li>
-
 <li>🔥 الوقت الظاهر هو الوقت الذي احتاجه شهاب.</li>
-
 <li>⚡ مش لازم تستنى العداد.</li>
-
 <li>➡️ خلص إجابتك؟ دوس التالي.</li>
-
 <li>🏆 هدفك تكسر 9.4 / 10.</li>
-
 </ul>
 
-<button class="start" onclick="testStart()">
+<button class="primary" onclick="startChallenge()">
 أنا جاهز 🔥
 </button>
 
@@ -160,36 +191,137 @@ color:#dce2ee;
 رجوع
 </button>
 
+</section>
+
+
+<!-- السؤال -->
+<section id="quiz" class="card hidden">
+
+<div class="progress">
+السؤال 1 من 10
 </div>
+
+<div class="timerBox">
+
+<div class="timerTitle">
+⏱️ شهاب احتاج لهذا السؤال
+</div>
+
+<div class="timer" id="timer">
+04:00
+</div>
+
+</div>
+
+<div class="question">
+أمامك قرار مهم، ولديك معلومات كافية لاتخاذه، لكن هناك احتمال أن تظهر معلومة جديدة بعد فترة قصيرة. ماذا تفعل؟ ولماذا؟
+</div>
+
+<textarea
+id="answer"
+placeholder="اكتب إجابتك بطريقتك الطبيعية..."
+></textarea>
+
+<button class="primary" onclick="nextQuestion()">
+التالي →
+</button>
+
+<div class="note">
+مش لازم تستنى العداد يخلص.
+</div>
+
+</section>
+
+
+<!-- نتيجة مؤقتة -->
+<section id="result" class="card center hidden">
+
+<div class="logo">🏆</div>
+
+<h2>خلصت السؤال الأول!</h2>
+
+<p class="text">
+ممتاز 🔥<br>
+الخطوة التالية هنضيف باقي الأسئلة ونظام التقييم الكامل.
+</p>
+
+<button class="primary" onclick="location.reload()">
+تجربة التحدي مرة أخرى
+</button>
+
+</section>
 
 </div>
 
 
 <script>
 
-function showRules(){
-
+function hideAll(){
 document.getElementById("home").classList.add("hidden");
+document.getElementById("rules").classList.add("hidden");
+document.getElementById("quiz").classList.add("hidden");
+document.getElementById("result").classList.add("hidden");
+}
 
+function showRules(){
+hideAll();
 document.getElementById("rules").classList.remove("hidden");
-
 }
 
 function backHome(){
-
-document.getElementById("rules").classList.add("hidden");
-
+hideAll();
 document.getElementById("home").classList.remove("hidden");
+}
+
+function startChallenge(){
+hideAll();
+document.getElementById("quiz").classList.remove("hidden");
+startTimer();
+}
+
+function startTimer(){
+
+let seconds=240;
+
+let timer=document.getElementById("timer");
+
+timer.textContent="04:00";
+
+let interval=setInterval(function(){
+
+seconds--;
+
+let minutes=Math.floor(seconds/60);
+let secs=seconds%60;
+
+timer.textContent=
+String(minutes).padStart(2,"0")+":"+
+String(secs).padStart(2,"0");
+
+if(seconds<=0){
+clearInterval(interval);
+}
+
+},1000);
 
 }
 
-function testStart(){
+function nextQuestion(){
 
-alert("🔥 ممتاز! دلوقتي هنبدأ التحدي الحقيقي.");
+let answer=document.getElementById("answer").value.trim();
+
+if(answer===""){
+alert("اكتب إجابتك الأول يا بطل 😏");
+return;
+}
+
+hideAll();
+
+document.getElementById("result").classList.remove("hidden");
 
 }
 
 </script>
 
 </body>
-  </html>
+</html>
