@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تحدي شهاب</title>
 
 <style>
@@ -12,12 +12,12 @@ body{
 margin:0;
 font-family:Arial,Tahoma,sans-serif;
 background:#080b14;
-color:#fff;
+color:white;
 min-height:100vh;
 }
 
 .container{
-max-width:680px;
+max-width:650px;
 margin:auto;
 padding:25px 16px;
 }
@@ -28,20 +28,23 @@ border:1px solid #293248;
 border-radius:25px;
 padding:28px 22px;
 box-shadow:0 20px 50px rgba(0,0,0,.4);
+text-align:center;
 }
 
-.center{text-align:center}
+.hidden{
+display:none !important;
+}
 
 .logo{
 font-size:40px;
 font-weight:bold;
-margin:10px 0 20px;
+margin-bottom:20px;
 }
 
 .text{
 color:#aeb6c8;
-line-height:1.9;
 font-size:17px;
+line-height:1.8;
 }
 
 .badge{
@@ -50,14 +53,13 @@ background:#222a3d;
 padding:9px 15px;
 border-radius:30px;
 margin:15px 0;
-font-size:14px;
 }
 
 button{
 width:100%;
 border:0;
 border-radius:16px;
-padding:16px;
+padding:17px;
 font-size:18px;
 font-weight:bold;
 cursor:pointer;
@@ -65,100 +67,60 @@ margin-top:14px;
 }
 
 .primary{
-background:#fff;
+background:white;
 color:#080b14;
 }
 
 .secondary{
 background:#252d42;
-color:#fff;
-}
-
-.hidden{display:none}
-
-.rules{
-text-align:right;
-line-height:2;
-color:#dce2ee;
+color:white;
 }
 
 input,textarea{
 width:100%;
-background:#080c16;
-color:#fff;
+background:#080b14;
 border:1px solid #30394f;
 border-radius:16px;
+color:white;
 padding:15px;
 font-size:17px;
 outline:none;
-margin-top:10px;
 }
 
 textarea{
 height:150px;
+margin-top:15px;
 resize:none;
-line-height:1.7;
+}
+
+.timerBox{
+background:#191f31;
+border-radius:18px;
+padding:18px;
+margin:20px 0;
+}
+
+.timer{
+font-size:40px;
+font-weight:bold;
+direction:ltr;
+margin-top:8px;
+}
+
+.question{
+font-size:23px;
+line-height:1.8;
+font-weight:bold;
 }
 
 .progress{
 color:#aeb6c8;
 font-size:14px;
-margin-bottom:15px;
-}
-
-.shehab{
-background:#191f31;
-border-radius:18px;
-padding:18px;
-text-align:center;
-margin-bottom:20px;
-}
-
-.shehab small{
-display:block;
-color:#aeb6c8;
-margin-bottom:7px;
-}
-
-.shehabTime{
-font-size:38px;
-font-weight:bold;
-direction:ltr;
-}
-
-.playerTime{
-text-align:center;
-color:#8f99ad;
-font-size:13px;
-margin-top:12px;
-}
-
-.question{
-font-size:23px;
-font-weight:bold;
-line-height:1.8;
-margin-bottom:18px;
 }
 
 .resultScore{
-font-size:70px;
+font-size:60px;
 font-weight:bold;
-margin:10px 0;
-}
-
-.resultBox{
-background:#191f31;
-border-radius:18px;
-padding:20px;
-margin-top:18px;
-text-align:right;
-line-height:1.9;
-}
-
-.small{
-font-size:13px;
-color:#8f99ad;
-line-height:1.7;
 }
 </style>
 </head>
@@ -167,8 +129,9 @@ line-height:1.7;
 
 <div class="container">
 
-<!-- HOME -->
-<section id="home" class="card center">
+<!-- الرئيسية -->
+
+<div id="pageHome" class="card">
 
 <div class="logo">🧠 تحدي شهاب</div>
 
@@ -188,40 +151,40 @@ line-height:1.7;
 دلوقتي دورك تشوف هل تقدر تكسر نتيجته.
 </p>
 
-<button class="primary" onclick="showRules()">
+<button class="primary" id="buttonStart">
 ابدأ التحدي 🧠
 </button>
 
-</section>
+</div>
 
 
-<!-- RULES -->
-<section id="rules" class="card hidden">
+<!-- التعليمات -->
+
+<div id="pageRules" class="card hidden">
 
 <h2>قبل ما تبدأ 👀</h2>
 
-<ul class="rules">
-<li>🧠 10 أسئلة مختلفة.</li>
-<li>⏱️ لكل سؤال وقت مختلف.</li>
-<li>🔥 الوقت الظاهر هو الوقت الذي احتاجه شهاب.</li>
-<li>⚡ مش لازم تستنى العداد.</li>
-<li>➡️ خلص إجابتك؟ دوس التالي.</li>
-<li>🏆 هدفك تكسر 9.4 / 10.</li>
-</ul>
+<p class="text">🧠 10 أسئلة مختلفة.</p>
+<p class="text">⏱️ لكل سؤال وقت مختلف.</p>
+<p class="text">🔥 الوقت الظاهر هو الوقت الذي احتاجه شهاب.</p>
+<p class="text">⚡ مش لازم تستنى العداد.</p>
+<p class="text">➡️ خلص إجابتك؟ دوس التالي.</p>
+<p class="text">🏆 هدفك تكسر 9.4 / 10.</p>
 
-<button class="primary" onclick="showName()">
+<button class="primary" id="buttonReady">
 أنا جاهز 🔥
 </button>
 
-<button class="secondary" onclick="goHome()">
+<button class="secondary" id="buttonBack">
 رجوع
 </button>
 
-</section>
+</div>
 
 
-<!-- NAME -->
-<section id="nameScreen" class="card">
+<!-- الاسم -->
+
+<div id="pageName" class="card hidden">
 
 <h2>قبل المواجهة 👀</h2>
 
@@ -229,78 +192,298 @@ line-height:1.7;
 اكتب اسمك علشان نشوف النتيجة في النهاية.
 </p>
 
-<input id="playerName" placeholder="اكتب اسمك هنا">
+<input id="nameInput" placeholder="اكتب اسمك هنا">
 
-<button class="primary" onclick="begin()">
+<button class="primary" id="buttonBegin">
 ابدأ المواجهة 🚀
 </button>
 
-<button class="secondary" onclick="showRules()">
+<button class="secondary" id="buttonNameBack">
 رجوع
 </button>
 
-</section>
+</div>
 
 
-<!-- QUIZ -->
-<section id="quiz" class="card hidden">
+<!-- الأسئلة -->
 
-<div class="progress" id="progress"></div>
+<div id="pageQuiz" class="card hidden">
 
-<div class="shehab">
+<div class="progress" id="questionNumber">
+السؤال 1 من 10
+</div>
 
-<small>🔥 شهاب احتاج لهذا السؤال</small>
+<div class="timerBox">
 
-<div class="shehabTime" id="shehabTime">
+<div class="text">
+⏱️ شهاب احتاج لهذا السؤال
+</div>
+
+<div class="timer" id="shehabTimer">
 04:00
 </div>
 
 </div>
 
-<div class="question" id="question"></div>
+<div class="question" id="questionText"></div>
 
-<textarea id="answer"
+<textarea id="answerInput"
 placeholder="اكتب إجابتك بطريقتك الطبيعية..."></textarea>
 
-<div class="playerTime">
-⏱️ وقتك في السؤال:
-<span id="playerTime">00:00</span>
-</div>
-
-<button class="primary" onclick="nextQuestion()">
+<button class="primary" id="buttonNext">
 التالي →
 </button>
 
-<p class="small">
-مش لازم تستنى عداد شهاب. خلص إجابتك واضغط التالي.
-</p>
-
-</section>
+</div>
 
 
-<!-- RESULT -->
-<section id="result" class="card center hidden">
+<!-- النتيجة -->
+
+<div id="pageResult" class="card hidden">
 
 <div class="logo">🏆</div>
 
 <h2 id="resultTitle"></h2>
 
-<div class="resultScore" id="score"></div>
+<div class="resultScore" id="resultScore"></div>
 
 <p class="text" id="resultMessage"></p>
 
-<div class="resultBox">
-<strong>🧠 إيه اللي ظهر في طريقة تفكيرك؟</strong>
+<button class="primary" id="buttonAgain">
+تحدي شهاب مرة أخرى 🔥
+</button>
 
-<p id="analysis"></p>
 </div>
 
-<div class="resultBox">
-<strong>🔥 مقارنة بشهاب</strong>
-
-<p id="comparison"></p>
 </div>
 
-<button class="primary" onclick="location.reload()">
-تحدي شهاب مرة تانية 🔥
-</
+
+<script>
+
+var questions = [
+
+{
+text:"أمامك قرار مهم، ولديك معلومات كافية لاتخاذه، لكن هناك احتمال أن تظهر معلومة جديدة بعد فترة قصيرة. ماذا تفعل؟ ولماذا؟",
+time:240
+},
+
+{
+text:"معك مبلغ محدود، وظهرت أمامك فرصة قد تحقق ربحًا كبيرًا لكنها تحمل احتمال خسارة جزء من رأس المال. كيف تقرر؟",
+time:534
+},
+
+{
+text:"بدأت مشروعًا صغيرًا، وبعد فترة اكتشفت أن الخطة التي وضعتها لا تعمل كما توقعت. ماذا تفعل أولًا؟",
+time:150
+},
+
+{
+text:"شخص انتقد فكرتك بقوة وقال لك إنك لن تنجح. كيف تعرف هل كلامه يستحق أن تسمعه أم تتجاهله؟",
+time:660
+},
+
+{
+text:"لو كان معك 10,000 جنيه فقط، وهدفك أن تبدأ شيئًا يمكن أن يكبر مع الوقت، كيف ستستخدم المبلغ؟",
+time:420
+},
+
+{
+text:"لو فشلت في شيء بعد أن بذلت فيه وقتًا ومجهودًا كبيرين، كيف تقرر بين المحاولة مرة أخرى أو تغيير الطريق؟",
+time:95
+},
+
+{
+text:"شخص تثق به أخطأ في قرار مهم أثّر عليك. كيف تتعامل مع الموقف؟",
+time:510
+},
+
+{
+text:"أمامك مشروع صغير يحقق مالًا بسرعة، وفكرة أكبر تحتاج وقتًا طويلًا. كيف تختار؟",
+time:275
+},
+
+{
+text:"أنت في موقف يحتاج قرارًا سريعًا، لكن القرار الخطأ قد يكلفك شيئًا مهمًا. كيف توازن بين السرعة والتفكير؟",
+time:390
+},
+
+{
+text:"لو عرفت أن أمامك فرصة واحدة فقط لتغيير مستقبلك، ما أول شيء ستفعله؟ ولماذا؟",
+time:720
+}
+
+];
+
+var currentQuestion=0;
+var playerName="";
+var answers=[];
+var questionStartedAt=0;
+var timerInterval=null;
+
+
+function showOnly(id){
+
+document.getElementById("pageHome").classList.add("hidden");
+document.getElementById("pageRules").classList.add("hidden");
+document.getElementById("pageName").classList.add("hidden");
+document.getElementById("pageQuiz").classList.add("hidden");
+document.getElementById("pageResult").classList.add("hidden");
+
+document.getElementById(id).classList.remove("hidden");
+
+}
+
+
+function formatSeconds(seconds){
+
+var minutes=Math.floor(seconds/60);
+var secs=seconds%60;
+
+return String(minutes).padStart(2,"0")+":"+
+String(secs).padStart(2,"0");
+
+}
+
+
+function openRules(){
+
+showOnly("pageRules");
+
+}
+
+
+function openName(){
+
+showOnly("pageName");
+
+}
+
+
+function goHome(){
+
+showOnly("pageHome");
+
+}
+
+
+function startGame(){
+
+playerName=document.getElementById("nameInput").value.trim();
+
+if(playerName===""){
+
+alert("اكتب اسمك الأول يا بطل 😏");
+return;
+
+}
+
+currentQuestion=0;
+answers=[];
+
+showQuestion();
+
+}
+
+
+function showQuestion(){
+
+showOnly("pageQuiz");
+
+var q=questions[currentQuestion];
+
+document.getElementById("questionNumber").textContent=
+"السؤال "+(currentQuestion+1)+" من "+questions.length;
+
+document.getElementById("questionText").textContent=q.text;
+
+document.getElementById("shehabTimer").textContent=
+formatSeconds(q.time);
+
+document.getElementById("answerInput").value="";
+
+questionStartedAt=Date.now();
+
+}
+
+
+function nextQuestion(){
+
+var answer=document.getElementById("answerInput").value.trim();
+
+if(answer===""){
+
+alert("اكتب إجابتك الأول يا بطل 😏");
+return;
+
+}
+
+var seconds=Math.floor(
+(Date.now()-questionStartedAt)/1000
+);
+
+answers.push({
+answer:answer,
+time:seconds
+});
+
+currentQuestion++;
+
+if(currentQuestion<questions.length){
+
+showQuestion();
+
+}else{
+
+finishGame();
+
+}
+
+}
+
+
+function finishGame(){
+
+showOnly("pageResult");
+
+var score=7.8;
+
+if(answers.length===10){
+
+score=8.6;
+
+}
+
+document.getElementById("resultTitle").textContent=
+"🔥 ممتاز يا "+playerName;
+
+document.getElementById("resultScore").textContent=
+score.toFixed(1)+" / 10";
+
+document.getElementById("resultMessage").textContent=
+"دي نتيجة أولية داخل تحدي شهاب. أنت ممكن تكون تفوقت على شهاب في بعض الجوانب حتى لو النتيجة النهائية أقل.";
+
+}
+
+
+document.getElementById("buttonStart").onclick=openRules;
+
+document.getElementById("buttonReady").onclick=openName;
+
+document.getElementById("buttonBack").onclick=goHome;
+
+document.getElementById("buttonBegin").onclick=startGame;
+
+document.getElementById("buttonNameBack").onclick=openRules;
+
+document.getElementById("buttonNext").onclick=nextQuestion;
+
+document.getElementById("buttonAgain").onclick=function(){
+
+location.reload();
+
+};
+
+</script>
+
+</body>
+</html>
