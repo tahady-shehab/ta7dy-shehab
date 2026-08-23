@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تحدي شهاب</title>
 
 <style>
@@ -19,7 +19,7 @@ min-height:100vh;
 .container{
 max-width:680px;
 margin:auto;
-padding:24px 16px;
+padding:25px 16px;
 }
 
 .card{
@@ -36,7 +36,7 @@ box-shadow:0 20px 50px rgba(0,0,0,.4);
 .logo{
 font-size:40px;
 font-weight:bold;
-margin-bottom:18px;
+margin:10px 0 18px;
 }
 
 .text{
@@ -66,13 +66,13 @@ margin-top:14px;
 }
 
 .primary{
-background:white;
+background:#fff;
 color:#080b14;
 }
 
 .secondary{
 background:#252d42;
-color:white;
+color:#fff;
 }
 
 input,textarea{
@@ -80,7 +80,7 @@ width:100%;
 background:#080b14;
 border:1px solid #30394f;
 border-radius:16px;
-color:white;
+color:#fff;
 padding:15px;
 font-size:17px;
 outline:none;
@@ -99,7 +99,7 @@ font-size:14px;
 margin-bottom:15px;
 }
 
-.timerBox{
+.timer{
 background:#191f31;
 border-radius:18px;
 padding:18px;
@@ -107,14 +107,14 @@ text-align:center;
 margin-bottom:20px;
 }
 
-.timerBox small{
+.timer small{
 display:block;
 color:#aeb6c8;
-margin-bottom:8px;
+margin-bottom:7px;
 }
 
-.shehabTimer{
-font-size:42px;
+.shehab-time{
+font-size:40px;
 font-weight:bold;
 direction:ltr;
 }
@@ -126,32 +126,34 @@ line-height:1.8;
 margin-bottom:15px;
 }
 
-.playerTime{
+.player-time{
 text-align:center;
-font-size:13px;
 color:#8f99ad;
+font-size:13px;
 margin-top:10px;
 }
 
-.result{text-align:center}
+.result{
+text-align:center;
+}
 
-.resultScore{
-font-size:70px;
+.score{
+font-size:68px;
 font-weight:bold;
 margin:10px 0;
 }
 
-.resultBox{
+.result-box{
 background:#191f31;
 border-radius:18px;
-padding:20px;
-margin-top:16px;
-line-height:1.9;
+padding:18px;
+margin-top:15px;
 text-align:right;
+line-height:1.9;
 }
 
-.good{color:#8ee7a1}
-.need{color:#ffcf70}
+.green{color:#8ee7a1}
+.yellow{color:#ffcf70}
 
 .small{
 font-size:13px;
@@ -164,6 +166,8 @@ line-height:1.7;
 <body>
 
 <div class="container">
+
+<!-- الصفحة الرئيسية -->
 
 <section id="home" class="card center">
 
@@ -192,7 +196,9 @@ line-height:1.7;
 </section>
 
 
-<section id="namePage" class="card hidden center">
+<!-- صفحة الاسم -->
+
+<section id="namePage" class="card center hidden">
 
 <h2>قبل المواجهة 👀</h2>
 
@@ -202,7 +208,7 @@ line-height:1.7;
 
 <input id="nameInput" placeholder="اكتب اسمك هنا">
 
-<button class="primary" onclick="beginGame()">
+<button class="primary" onclick="startGame()">
 ابدأ المواجهة 🚀
 </button>
 
@@ -213,13 +219,20 @@ line-height:1.7;
 </section>
 
 
+<!-- صفحة الأسئلة -->
+
 <section id="quizPage" class="card hidden">
 
 <div class="progress" id="progress"></div>
 
-<div class="timerBox">
-<small>🔥 شهاب احتاج لهذا السؤال</small>
-<div class="shehabTimer" id="shehabTimer">00:00</div>
+<div class="timer">
+
+<small>⏱️ شهاب احتاج لهذا السؤال</small>
+
+<div class="shehab-time" id="shehabTime">
+00:00
+</div>
+
 </div>
 
 <div class="question" id="question"></div>
@@ -227,8 +240,9 @@ line-height:1.7;
 <textarea id="answer"
 placeholder="اكتب إجابتك بطريقتك الطبيعية..."></textarea>
 
-<div class="playerTime">
-⏱️ وقت تفكيرك: <span id="playerTimer">00:00</span>
+<div class="player-time">
+⏱️ وقت تفكيرك:
+<span id="playerTime">00:00</span>
 </div>
 
 <button class="primary" onclick="nextQuestion()">
@@ -242,35 +256,53 @@ placeholder="اكتب إجابتك بطريقتك الطبيعية..."></textare
 </section>
 
 
+<!-- النتيجة -->
+
 <section id="resultPage" class="card result hidden">
 
 <div class="logo">🏆</div>
 
 <h2 id="resultTitle"></h2>
 
-<div class="resultScore" id="score"></div>
+<div class="score" id="score"></div>
 
-<p class="text" id="resultIntro"></p>
+<p class="text" id="intro"></p>
 
-<div class="resultBox">
+<div class="result-box">
+
 <h3>🧠 نقاط تميزك</h3>
-<p class="good" id="strengths"></p>
+
+<div class="green" id="strengths"></div>
+
 </div>
 
-<div class="resultBox">
+
+<div class="result-box">
+
 <h3>🎯 حاجات ممكن تطورها</h3>
-<p class="need" id="weaknesses"></p>
+
+<div class="yellow" id="weaknesses"></div>
+
 </div>
 
-<div class="resultBox">
+
+<div class="result-box">
+
 <h3>🔥 مقارنة بشهاب</h3>
-<p id="comparison"></p>
+
+<div id="comparison"></div>
+
 </div>
 
-<div class="resultBox">
+
+<div class="result-box">
+
 <h3>💬 رسالة ليك</h3>
-<p id="message"></p>
+
+<div id="message"></div>
+
 </div>
+
 
 <button class="primary" onclick="location.reload()">
 تحدي شهاب مرة أخرى 🔥
@@ -283,87 +315,93 @@ placeholder="اكتب إجابتك بطريقتك الطبيعية..."></textare
 
 <script>
 
-const questions=[
+const questions = [
 
 {
 q:"أمامك قرار مهم، ولديك معلومات كافية لاتخاذه، لكن هناك احتمال أن تظهر معلومة جديدة بعد فترة قصيرة. ماذا تفعل؟ ولماذا؟",
-t:233
+time:233
 },
 
 {
 q:"معك مبلغ محدود، وظهرت أمامك فرصة قد تحقق ربحًا كبيرًا لكنها تحمل احتمال خسارة جزء من رأس المال. كيف تقرر؟",
-t:534
+time:534
 },
 
 {
 q:"بدأت مشروعًا صغيرًا، وبعد فترة اكتشفت أن الخطة التي وضعتها لا تعمل كما توقعت. هل تعدّل الخطة أم تتوقف؟ وما أول شيء تفعله؟",
-t:150
+time:150
 },
 
 {
 q:"شخص انتقد فكرتك بقوة وقال لك إنك لن تنجح. كيف تعرف هل كلامه يستحق أن تسمعه أم تتجاهله؟",
-t:660
+time:660
 },
 
 {
 q:"لو كان معك 10,000 جنيه فقط، وهدفك أن تبدأ شيئًا يمكن أن يكبر مع الوقت، كيف ستفكر في استخدام المبلغ؟",
-t:420
+time:420
 },
 
 {
 q:"لو فشلت في شيء بعد أن بذلت فيه وقتًا ومجهودًا كبيرين، ما الذي يجعلك تقرر بين المحاولة مرة أخرى أو تغيير الطريق؟",
-t:95
+time:95
 },
 
 {
 q:"شخص تثق به أخطأ في قرار مهم أثّر عليك. كيف تتعامل مع الموقف؟",
-t:510
+time:510
 },
 
 {
 q:"أمامك خياران: مشروع صغير يحقق مالًا بسرعة، أو فكرة أكبر تحتاج وقتًا طويلًا قبل أن تحقق نتيجة. كيف تختار؟",
-t:275
+time:275
 },
 
 {
 q:"أنت في موقف يحتاج قرارًا سريعًا، لكن القرار الخطأ قد يكلفك شيئًا مهمًا. كيف توازن بين السرعة والتفكير؟",
-t:390
+time:390
 },
 
 {
 q:"لو عرفت أن أمامك فرصة واحدة فقط لتغيير مستقبلك، ما أول شيء ستفعله؟ ولماذا اخترت هذا الشيء تحديدًا؟",
-t:720
+time:720
 }
 
 ];
 
-let index=0;
-let name="";
+
+let current=0;
+let playerName="";
 let answers=[];
-let startedAt=0;
-let timer;
+let timerInterval;
+let questionStart;
 
 
-/* الصفحات */
+/* التنقل */
 
 function hideAll(){
 
-["home","namePage","quizPage","resultPage"].forEach(id=>{
-document.getElementById(id).classList.add("hidden");
-});
+document.getElementById("home").classList.add("hidden");
+document.getElementById("namePage").classList.add("hidden");
+document.getElementById("quizPage").classList.add("hidden");
+document.getElementById("resultPage").classList.add("hidden");
 
 }
+
 
 function showName(){
 
 hideAll();
+
 document.getElementById("namePage").classList.remove("hidden");
 
 }
 
+
 function goHome(){
 
 hideAll();
+
 document.getElementById("home").classList.remove("hidden");
 
 }
@@ -371,18 +409,18 @@ document.getElementById("home").classList.remove("hidden");
 
 /* بداية الاختبار */
 
-function beginGame(){
+function startGame(){
 
-name=document.getElementById("nameInput").value.trim();
+playerName=document.getElementById("nameInput").value.trim();
 
-if(!name){
+if(playerName===""){
 
 alert("اكتب اسمك الأول يا بطل 😏");
 return;
 
 }
 
-index=0;
+current=0;
 answers=[];
 
 showQuestion();
@@ -398,32 +436,32 @@ hideAll();
 
 document.getElementById("quizPage").classList.remove("hidden");
 
-let q=questions[index];
+let q=questions[current];
 
 document.getElementById("progress").textContent=
-"السؤال "+(index+1)+" من 10";
+"السؤال "+(current+1)+" من 10";
 
 document.getElementById("question").textContent=q.q;
 
-document.getElementById("shehabTimer").textContent=
-format(q.t);
+document.getElementById("shehabTime").textContent=
+formatTime(q.time);
 
 document.getElementById("answer").value="";
 
-startedAt=Date.now();
+questionStart=Date.now();
 
-let elapsed=0;
+let seconds=0;
 
-clearInterval(timer);
+clearInterval(timerInterval);
 
-document.getElementById("playerTimer").textContent="00:00";
+document.getElementById("playerTime").textContent="00:00";
 
-timer=setInterval(()=>{
+timerInterval=setInterval(function(){
 
-elapsed++;
+seconds++;
 
-document.getElementById("playerTimer").textContent=
-format(elapsed);
+document.getElementById("playerTime").textContent=
+formatTime(seconds);
 
 },1000);
 
@@ -432,225 +470,203 @@ format(elapsed);
 
 /* الوقت */
 
-function format(seconds){
+function formatTime(seconds){
 
-let m=Math.floor(seconds/60);
-let s=seconds%60;
+let minutes=Math.floor(seconds/60);
 
-return String(m).padStart(2,"0")+":"+
-String(s).padStart(2,"0");
+let sec=seconds%60;
+
+return String(minutes).padStart(2,"0")+":"+
+String(sec).padStart(2,"0");
 
 }
 
 
-/* التالي */
+/* السؤال التالي */
 
 function nextQuestion(){
 
-let text=document.getElementById("answer").value.trim();
+let answer=document.getElementById("answer").value.trim();
 
-if(!text){
+if(answer===""){
 
 alert("اكتب إجابتك الأول يا بطل 😏");
 return;
 
 }
 
-clearInterval(timer);
+clearInterval(timerInterval);
 
-let time=Math.floor((Date.now()-startedAt)/1000);
+answers.push(answer);
 
-answers.push({
-text:text,
-time:time
-});
+current++;
 
-index++;
-
-if(index<questions.length){
+if(current<questions.length){
 
 showQuestion();
 
 }else{
 
-calculate();
+showResult();
 
 }
 
 }
 
 
-/*
-====================================
-نظام التقييم الجديد
-====================================
+/* التقييم */
 
-بدل البحث عن كلمات معينة،
-نقيّم 5 أبعاد:
+function evaluate(answer){
 
-1- وضوح الفكرة
-2- وجود سبب
-3- التفكير في النتائج
-4- رؤية أكثر من جانب
-5- عمق الإجابة
+let words=answer.split(/\s+/).filter(Boolean).length;
 
-وده يسمح بإجابات طبيعية مختلفة.
-*/
-
-function evaluate(text){
-
-let words=text.split(/\s+/).filter(Boolean).length;
-
-let score=4.8;
+let score=5.0;
 
 let strengths=[];
 let weaknesses=[];
 
 
-/* طول مناسب */
+/* طول الإجابة */
 
-if(words>=8) score+=0.35;
-if(words>=15) score+=0.35;
-if(words>=25) score+=0.35;
-if(words>=40) score+=0.25;
+if(words>=10) score+=0.5;
 
+if(words>=20) score+=0.5;
 
-/* وجود تفسير منطقي */
+if(words>=35) score+=0.4;
 
-if(
-text.includes("لأن") ||
-text.includes("عشان") ||
-text.includes("علشان") ||
-text.includes("بالتالي") ||
-text.includes("عشان كده") ||
-text.includes("وبالتالي")
-){
+if(words<6) score-=1.2;
 
-score+=0.65;
-
-strengths.push("بتشرح سبب قرارك ومش بتكتفي بالنتيجة.");
-
-}
+else if(words<10) score-=0.5;
 
 
-/* المقارنة والموازنة */
+/* السبب */
 
 if(
-text.includes("لكن") ||
-text.includes("ولو") ||
-text.includes("في نفس الوقت") ||
-text.includes("من ناحية") ||
-text.includes("في المقابل") ||
-text.includes("أما")
+answer.includes("لأن") ||
+answer.includes("عشان") ||
+answer.includes("علشان") ||
+answer.includes("بسبب") ||
+answer.includes("عشان كده")
 ){
 
-score+=0.75;
+score+=0.7;
 
-strengths.push("بتقدر تشوف أكتر من جانب في نفس الموقف.");
+strengths.push("بتوضح سبب قرارك بدل ما تكتفي بالقرار نفسه.");
 
 }
 
 
-/* المستقبل والنتائج */
+/* الموازنة */
 
 if(
-text.includes("بعد") ||
-text.includes("النتيجة") ||
-text.includes("المستقبل") ||
-text.includes("هيحصل") ||
-text.includes("ممكن") ||
-text.includes("لو")
+answer.includes("لكن") ||
+answer.includes("ولو") ||
+answer.includes("في نفس الوقت") ||
+answer.includes("من ناحية") ||
+answer.includes("في المقابل")
 ){
 
-score+=0.65;
+score+=0.7;
 
-strengths.push("بتفكر في النتائج والاحتمالات قبل القرار.");
+strengths.push("بتشوف الموضوع من أكثر من زاوية.");
 
 }
 
 
-/* التعلم والمرونة */
+/* الاحتمالات */
 
 if(
-text.includes("أغير") ||
-text.includes("أعدل") ||
-text.includes("أجرب") ||
-text.includes("أتعلم") ||
-text.includes("أراجع") ||
-text.includes("أعيد")
+answer.includes("ممكن") ||
+answer.includes("احتمال") ||
+answer.includes("لو") ||
+answer.includes("قد")
 ){
 
-score+=0.55;
+score+=0.6;
 
-strengths.push("عندك مرونة في تغيير رأيك أو خطتك.");
+strengths.push("بتفكر في الاحتمالات قبل اتخاذ القرار.");
 
 }
 
 
-/* القرار العملي */
+/* التعلم والتعديل */
 
 if(
-text.includes("أبدأ") ||
-text.includes("أعمل") ||
-text.includes("أقسم") ||
-text.includes("أحسب") ||
-text.includes("أحدد") ||
-text.includes("أختار")
+answer.includes("أغير") ||
+answer.includes("أعدل") ||
+answer.includes("أجرب") ||
+answer.includes("أتعلم") ||
+answer.includes("أراجع")
 ){
 
-score+=0.45;
+score+=0.5;
 
-strengths.push("إجابتك فيها توجه عملي مش مجرد كلام نظري.");
-
-}
-
-
-/* إجابة قصيرة جدًا */
-
-if(words<6){
-
-score-=1.2;
-
-weaknesses.push("الإجابة قصيرة جدًا ومحتاجة تفاصيل أكتر.");
-
-}else if(words<12){
-
-score-=0.4;
-
-weaknesses.push("ممكن توسّع شرحك شوية.");
+strengths.push("عندك استعداد تراجع قرارك وتتعلم من التجربة.");
 
 }
 
 
-/* إجابة طويلة بدون مضمون */
-
-if(words>80){
-
-score-=0.25;
-
-weaknesses.push("حاول تختصر الكلام وتحافظ على الفكرة الأساسية.");
-
-}
-
-
-/* إجابة منطقية جدًا */
+/* تفكير عملي */
 
 if(
-(text.includes("لو") && text.includes("لكن")) ||
-(text.includes("سبب") && text.includes("نتيجة")) ||
-(text.includes("خسارة") && text.includes("مكسب"))
+answer.includes("أحسب") ||
+answer.includes("أبدأ") ||
+answer.includes("أحدد") ||
+answer.includes("أختار") ||
+answer.includes("أقسم")
 ){
 
-score+=0.55;
+score+=0.4;
+
+strengths.push("تفكيرك فيه جانب عملي واضح.");
 
 }
 
 
-/* اختلاف بسيط طبيعي بين الأسئلة */
+/* تنويع طبيعي */
 
-score=Math.max(2.5,Math.min(9.8,score));
+if(answer.length>180){
 
-return{
+score+=0.2;
+
+}
+
+
+/* حدود النتيجة */
+
+if(score>9.7) score=9.7;
+
+if(score<2.5) score=2.5;
+
+
+/* نقاط التطوير */
+
+if(words<15){
+
+weaknesses.push("حاول توضح الفكرة بتفاصيل أكثر.");
+
+}
+
+if(!answer.includes("لأن") &&
+!answer.includes("عشان") &&
+!answer.includes("بسبب")){
+
+weaknesses.push("وضح سبب اختيارك بشكل أكبر.");
+
+}
+
+if(
+!answer.includes("لكن") &&
+!answer.includes("ولو") &&
+!answer.includes("ممكن")
+){
+
+weaknesses.push("حاول تفكر في أكثر من احتمال قبل القرار.");
+
+}
+
+
+return {
 score:score,
 strengths:strengths,
 weaknesses:weaknesses
@@ -659,136 +675,134 @@ weaknesses:weaknesses
 }
 
 
-/* النتيجة */
+/* النتيجة النهائية */
 
-function calculate(){
+function showResult(){
 
 let total=0;
-let strengths=[];
-let weaknesses=[];
 
-answers.forEach(a=>{
+let allStrengths=[];
+let allWeaknesses=[];
 
-let result=evaluate(a.text);
+for(let i=0;i<answers.length;i++){
+
+let result=evaluate(answers[i]);
 
 total+=result.score;
 
-strengths.push(...result.strengths);
-weaknesses.push(...result.weaknesses);
+allStrengths.push(...result.strengths);
 
-});
-
-
-let finalScore=total/answers.length;
-
-
-/*
-تعديل بسيط حتى تكون النتائج
-متوزعة بشكل طبيعي.
-*/
-
-finalScore=Math.round(finalScore*10)/10;
-
-showResult(finalScore,strengths,weaknesses);
+allWeaknesses.push(...result.weaknesses);
 
 }
 
 
-/* عرض النتيجة */
+let finalScore=total/answers.length;
 
-function showResult(score,strengths,weaknesses){
+finalScore=Math.round(finalScore*10)/10;
+
+
+/* عرض النتيجة */
 
 hideAll();
 
 document.getElementById("resultPage").classList.remove("hidden");
 
 document.getElementById("resultTitle").textContent=
-"🔥 ممتاز يا "+name;
+"🔥 ممتاز يا "+playerName;
 
 document.getElementById("score").textContent=
-score.toFixed(1)+" / 10";
+finalScore.toFixed(1)+" / 10";
 
 
-if(score>=9.4){
+if(finalScore>=9.4){
 
-document.getElementById("resultIntro").textContent=
-"🔥 أنت كسرت نتيجة شهاب! المرة دي الرقم كان في صفك.";
+document.getElementById("intro").textContent=
+"🔥 كسرت نتيجة شهاب! واضح إن المواجهة دي كانت لصالحك.";
 
-}else if(score>=8){
+}else if(finalScore>=8){
 
-document.getElementById("resultIntro").textContent=
-"نتيجة قوية جدًا. أنت قريب من كسر نتيجة شهاب.";
+document.getElementById("intro").textContent=
+"نتيجة قوية جدًا. أنت قريب جدًا من كسر نتيجة شهاب.";
 
-}else if(score>=6){
+}else if(finalScore>=6){
 
-document.getElementById("resultIntro").textContent=
-"نتيجة كويسة، لكن لسه عندك مساحة كبيرة تطور طريقة تفكيرك.";
+document.getElementById("intro").textContent=
+"نتيجة كويسة، ولسه عندك فرصة تطور مستواك وتكسر شهاب.";
 
 }else{
 
-document.getElementById("resultIntro").textContent=
-"النتيجة مش حكم على ذكائك. الاختبار كشف لك جوانب محتاجة تدريب أكتر.";
+document.getElementById("intro").textContent=
+"الرقم مش حكم على ذكائك. الاختبار بيقيس طريقة إجابتك في المواقف دي فقط.";
 
 }
 
 
-/* تنظيف التكرار */
+/* إزالة التكرار */
 
-strengths=[...new Set(strengths)];
-weaknesses=[...new Set(weaknesses)];
+allStrengths=[...new Set(allStrengths)];
+
+allWeaknesses=[...new Set(allWeaknesses)];
 
 
-if(strengths.length===0){
+if(allStrengths.length===0){
 
-strengths.push("عندك استعداد تفكر وتحاول، وده أساس مهم.");
+allStrengths.push(
+"بتحاول توصل لقرار بدل ما تتهرب من الموقف."
+);
 
 }
 
-if(weaknesses.length===0){
 
-weaknesses.push("حاول دائمًا تعمّق في أسباب قراراتك.");
+if(allWeaknesses.length===0){
+
+allWeaknesses.push(
+"حاول دائمًا تعمّق في شرح أسباب قراراتك."
+);
 
 }
 
 
 document.getElementById("strengths").innerHTML=
-strengths.slice(0,4).map(x=>"• "+x).join("<br>");
+allStrengths.slice(0,4)
+.map(x=>"• "+x)
+.join("<br>");
 
 
 document.getElementById("weaknesses").innerHTML=
-weaknesses.slice(0,3).map(x=>"• "+x).join("<br>");
+allWeaknesses.slice(0,3)
+.map(x=>"• "+x)
+.join("<br>");
 
 
-let difference=Math.abs(score-9.4).toFixed(1);
+let difference=Math.abs(finalScore-9.4).toFixed(1);
 
 
-if(score>9.4){
-
-document.getElementById("comparison").textContent=
-"أنت تفوقت على شهاب بـ "+difference+
-" نقطة. 🔥 المرة دي شهاب هو اللي محتاج يعيد الاختبار.";
-
-}else if(score===9.4){
+if(finalScore>9.4){
 
 document.getElementById("comparison").textContent=
-"تعادل كامل! 9.4 / 10. واضح إن المواجهة كانت على الحافة.";
+"نتيجتك أعلى من شهاب بـ "+difference+" نقطة. 🔥";
+
+}else if(finalScore===9.4){
+
+document.getElementById("comparison").textContent=
+"تعادل! 9.4 / 10. 🔥";
 
 }else{
 
 document.getElementById("comparison").textContent=
-"شهاب متفوق حاليًا بـ "+difference+
-" نقطة. لكن الفرق مش معناه إن طريقة تفكيرك أضعف في كل شيء.";
-
+"نتيجة شهاب أعلى منك بـ "+difference+
+" نقطة حاليًا. ولسه تقدر تحاول تكسر الرقم.";
 
 }
 
 
 document.getElementById("message").textContent=
-"كل شخص عنده حاجة بتميزه. ممكن تخسر النتيجة النهائية وتكون أقوى من شهاب في بعض الجوانب. ركّز على اللي بتميزك، وطوّر اللي ناقصك... وارجع حاول تكسر الرقم. 🧠🔥";
+"ممكن الرقم ما يكونش في صالحك النهارده، لكن كل إجابة بتكشف حاجة عن طريقة تفكيرك. ركز على أقوى نقطة عندك وطوّر أضعف نقطة، وبعدها ارجع حاول تكسر شهاب. 🧠🔥";
 
 }
 
 </script>
 
 </body>
-</html>
+  </html>
