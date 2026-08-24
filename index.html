@@ -7,114 +7,454 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#080b14;color:#fff;min-height:100vh}
-.container{max-width:700px;margin:auto;padding:24px 16px}
-.card{background:#111625;border:1px solid #293248;border-radius:25px;padding:28px 22px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.center{text-align:center}.hidden{display:none!important}
-.logo{font-size:40px;font-weight:bold;margin-bottom:18px}
-.text{color:#aeb6c8;font-size:17px;line-height:1.9}
-.badge{display:inline-block;background:#222a3d;padding:9px 15px;border-radius:30px;margin:15px 0}
-button{width:100%;border:0;border-radius:16px;padding:16px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:14px}
-.primary{background:#fff;color:#080b14}.secondary{background:#252d42;color:#fff}.whatsapp{background:#25D366;color:#fff}
-button:disabled{opacity:.5;cursor:not-allowed}
-input,textarea{width:100%;background:#080b14;border:1px solid #30394f;border-radius:16px;color:#fff;padding:15px;font-size:17px;outline:none;margin-top:10px}
-textarea{height:120px;resize:none;line-height:1.8}
-.progress{display:flex;justify-content:space-between;align-items:center;color:#aeb6c8;margin-bottom:14px}
-.remaining{background:#191f31;padding:8px 13px;border-radius:20px;font-weight:bold;direction:ltr}
-.timer-danger{color:#ff7b7b!important}
-.shehab-box{background:#191f31;border-radius:18px;padding:14px;text-align:center;margin-bottom:20px}
-.shehab-box small{display:block;color:#aeb6c8;margin-bottom:5px}
-.shehab-time{font-size:30px;font-weight:bold;direction:ltr}
-.question{font-size:22px;font-weight:bold;line-height:1.8;margin-bottom:18px}
-.choice{background:#191f31;border:2px solid #30394f;color:#fff;text-align:right;line-height:1.65}
-.choice.selected{background:#252d42;border-color:#fff}
-.reason-title{margin-top:22px;font-size:18px;font-weight:bold}
-.reason-info{font-size:14px;color:#8f99ad;line-height:1.8;margin-top:8px;background:#191f31;padding:12px;border-radius:14px}
-.warning{font-size:13px;color:#8f99ad;margin-top:12px;line-height:1.7}
-.over-time{display:none;background:#3a2025;border:1px solid #7b3d46;color:#ffb4bb;border-radius:14px;padding:13px;margin-top:15px;line-height:1.7;font-size:14px;font-weight:bold}
-.over-time.show{display:block}
-.score{font-size:68px;font-weight:bold;margin:12px 0}
-.result-box{background:#191f31;border-radius:18px;padding:18px;margin-top:16px;line-height:1.9;text-align:right}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.stat{background:#080b14;border:1px solid #30394f;border-radius:16px;padding:15px;text-align:center}
-.stat strong{display:block;font-size:24px;margin-bottom:5px}.stat span{font-size:13px;color:#8f99ad}
-.green{color:#8ee7a1}.save-status{font-size:13px;color:#8f99ad;margin-top:10px}
-.error-box{display:none;background:#3a2025;border:1px solid #7b3d46;color:#ffb4bb;padding:12px;border-radius:14px;margin-top:12px;line-height:1.7;font-size:14px}
-@media(max-width:450px){.logo{font-size:32px}.question{font-size:19px}.stat-grid{grid-template-columns:1fr 1fr}}
+
+body{
+margin:0;
+font-family:Arial,Tahoma,sans-serif;
+background:#080b14;
+color:#fff;
+min-height:100vh
+}
+
+.container{
+max-width:700px;
+margin:auto;
+padding:24px 16px
+}
+
+.card{
+background:#111625;
+border:1px solid #293248;
+border-radius:25px;
+padding:28px 22px;
+box-shadow:0 20px 50px rgba(0,0,0,.4)
+}
+
+.center{text-align:center}
+.hidden{display:none!important}
+
+.logo{
+font-size:40px;
+font-weight:bold;
+margin-bottom:18px
+}
+
+.text{
+color:#aeb6c8;
+font-size:17px;
+line-height:1.9
+}
+
+.badge{
+display:inline-block;
+background:#222a3d;
+padding:9px 15px;
+border-radius:30px;
+margin:15px 0
+}
+
+button{
+width:100%;
+border:0;
+border-radius:16px;
+padding:16px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+margin-top:14px
+}
+
+.primary{
+background:#fff;
+color:#080b14
+}
+
+.secondary{
+background:#252d42;
+color:#fff
+}
+
+.whatsapp{
+background:#25D366;
+color:#fff
+}
+
+button:disabled{
+opacity:.5;
+cursor:not-allowed
+}
+
+input,textarea{
+width:100%;
+background:#080b14;
+border:1px solid #30394f;
+border-radius:16px;
+color:#fff;
+padding:15px;
+font-size:17px;
+outline:none;
+margin-top:10px
+}
+
+textarea{
+height:120px;
+resize:none;
+line-height:1.8
+}
+
+.progress{
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:#aeb6c8;
+margin-bottom:14px
+}
+
+.remaining{
+background:#191f31;
+padding:8px 13px;
+border-radius:20px;
+font-weight:bold;
+direction:ltr
+}
+
+.timer-danger{
+color:#ff7b7b!important
+}
+
+.shehab-box{
+background:#191f31;
+border-radius:18px;
+padding:14px;
+text-align:center;
+margin-bottom:20px
+}
+
+.shehab-box small{
+display:block;
+color:#aeb6c8;
+margin-bottom:5px
+}
+
+.shehab-time{
+font-size:30px;
+font-weight:bold;
+direction:ltr
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+line-height:1.8;
+margin-bottom:18px
+}
+
+.choice{
+background:#191f31;
+border:2px solid #30394f;
+color:#fff;
+text-align:right;
+line-height:1.65
+}
+
+.choice.selected{
+background:#252d42;
+border-color:#fff
+}
+
+.reason-title{
+margin-top:22px;
+font-size:18px;
+font-weight:bold
+}
+
+.reason-info{
+font-size:14px;
+color:#8f99ad;
+line-height:1.8;
+margin-top:8px;
+background:#191f31;
+padding:12px;
+border-radius:14px
+}
+
+.warning{
+font-size:13px;
+color:#8f99ad;
+margin-top:12px;
+line-height:1.7
+}
+
+.over-time{
+display:none;
+background:#3a2025;
+border:1px solid #7b3d46;
+color:#ffb4bb;
+border-radius:14px;
+padding:13px;
+margin-top:15px;
+line-height:1.7;
+font-size:14px;
+font-weight:bold
+}
+
+.over-time.show{
+display:block
+}
+
+.score{
+font-size:68px;
+font-weight:bold;
+margin:12px 0
+}
+
+.result-box{
+background:#191f31;
+border-radius:18px;
+padding:18px;
+margin-top:16px;
+line-height:1.9;
+text-align:right
+}
+
+.stat-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:12px
+}
+
+.stat{
+background:#080b14;
+border:1px solid #30394f;
+border-radius:16px;
+padding:15px;
+text-align:center
+}
+
+.stat strong{
+display:block;
+font-size:24px;
+margin-bottom:5px
+}
+
+.stat span{
+font-size:13px;
+color:#8f99ad
+}
+
+.green{
+color:#8ee7a1
+}
+
+.save-status{
+font-size:13px;
+color:#8f99ad;
+margin-top:10px
+}
+
+.error-box{
+display:none;
+background:#3a2025;
+border:1px solid #7b3d46;
+color:#ffb4bb;
+padding:12px;
+border-radius:14px;
+margin-top:12px;
+line-height:1.7;
+font-size:14px
+}
+
+@media(max-width:450px){
+
+.logo{
+font-size:32px
+}
+
+.question{
+font-size:19px
+}
+
+.stat-grid{
+grid-template-columns:1fr 1fr
+}
+
+}
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
+<!-- HOME -->
+
 <section id="home" class="card center">
+
 <div class="logo">🧠 تحدي شهاب</div>
-<p class="text">مش مجرد اختبار...<br>دي مواجهة مع طريقة تفكيرك.</p>
-<div class="badge">🔥 أعلى نتيجة حاليًا: 9 / 10</div>
+
+<p class="text">
+مش مجرد اختبار...<br>
+دي مواجهة مع طريقة تفكيرك.
+</p>
+
+<div class="badge">
+🔥 أعلى نتيجة حاليًا: 9 / 10
+</div>
+
 <h2>فاكر نفسك بتعرف تفكر؟</h2>
-<p class="text">شهاب دخل التحدي.<br>دلوقتي دورك تشوف هل تقدر تكسر نتيجته.</p>
-<button class="primary" onclick="showName()">ابدأ التحدي 🧠</button>
+
+<p class="text">
+شهاب دخل التحدي.<br>
+دلوقتي دورك تشوف هل تقدر تكسر نتيجته.
+</p>
+
+<button class="primary" onclick="showName()">
+ابدأ التحدي 🧠
+</button>
+
 </section>
 
+
+<!-- NAME -->
+
 <section id="namePage" class="card center hidden">
+
 <h2>قبل المواجهة 👀</h2>
-<p class="text">اكتب اسمك علشان نبدأ التحدي.</p>
-<input id="nameInput" maxlength="30" placeholder="اكتب اسمك هنا" autocomplete="off">
+
+<p class="text">
+اكتب اسمك علشان نبدأ التحدي.
+</p>
+
+<input
+id="nameInput"
+maxlength="30"
+placeholder="اكتب اسمك هنا"
+autocomplete="off"
+>
+
 <div id="startError" class="error-box"></div>
-<button id="startButton" class="primary" onclick="startGame()">ابدأ المواجهة 🚀</button>
-<button class="secondary" onclick="goHome()">رجوع</button>
+
+<button
+id="startButton"
+class="primary"
+onclick="startGame()"
+>
+ابدأ المواجهة 🚀
+</button>
+
+<button
+class="secondary"
+onclick="goHome()"
+>
+رجوع
+</button>
+
 </section>
+
+
+<!-- QUIZ -->
 
 <section id="quizPage" class="card hidden">
 
 <div class="progress">
-<span id="progress">السؤال 1 من 10</span>
-<span id="remaining" class="remaining">00:00</span>
+
+<span id="progress">
+السؤال 1 من 10
+</span>
+
+<span id="remaining" class="remaining">
+00:00
+</span>
+
 </div>
+
 
 <div class="shehab-box">
-<small>⏱️ الوقت الذي احتاجه شهاب</small>
-<div id="shehabTime" class="shehab-time">00:00</div>
+
+<small>
+⏱️ الوقت الذي احتاجه شهاب
+</small>
+
+<div id="shehabTime" class="shehab-time">
+00:00
 </div>
+
+</div>
+
 
 <div id="question" class="question"></div>
+
 <div id="choices"></div>
 
+
 <div id="reasonArea" class="hidden">
-<div class="reason-title">💭 ليه اخترت الإجابة دي؟</div>
+
+<div class="reason-title">
+💭 ليه اخترت الإجابة دي؟
+</div>
 
 <div class="reason-info">
-الجزء ده اختياري تمامًا. اكتب رأيك أو سبب اختيارك لو حابب.<br>
-<strong>مهم:</strong> السبب لا يؤثر على الدرجة.
+
+الجزء ده اختياري تمامًا. اكتب رأيك أو سبب اختيارك لو حابب.
+
+<br>
+
+<strong>مهم:</strong>
+السبب لا يؤثر على الدرجة.
+
 </div>
 
-<textarea id="reason" maxlength="500" placeholder="اكتب سبب اختيارك بطريقتك... (اختياري)"></textarea>
+<textarea
+id="reason"
+maxlength="500"
+placeholder="اكتب سبب اختيارك بطريقتك... (اختياري)"
+></textarea>
 
-<button id="nextButton" class="primary" onclick="nextQuestion()">التالي →</button>
+<button
+id="nextButton"
+class="primary"
+onclick="nextQuestion()"
+>
+التالي →
+</button>
+
 </div>
+
 
 <div id="overTimeMessage" class="over-time">
+
 ⚠️ عداد شهاب خلص.<br>
 أنت كده تجاوزت الوقت اللي احتاجه شهاب، لكن السؤال لسه مفتوح.
+
 </div>
 
+
 <p class="warning">
+
 العداد للمقارنة فقط، وانتهاء العداد لا يقفل السؤال.
+
 </p>
 
 <p id="saveStatus" class="save-status"></p>
 
 </section>
 
-<section id="resultPage" class="card center">
 
-<div class="logo">🏆</div>
+<!-- RESULT -->
+
+<section id="resultPage" class="card center hidden">
+
+<div class="logo">
+🏆
+</div>
 
 <h2 id="resultTitle"></h2>
 
 <div id="score" class="score"></div>
 
 <p id="resultText" class="text"></p>
+
 
 <div class="result-box">
 
@@ -158,35 +498,66 @@ textarea{height:120px;resize:none;line-height:1.8}
 
 </div>
 
+
 <div class="result-box">
+
 <h3>🧠 أسلوب تفكيرك</h3>
+
 <div id="style"></div>
+
 </div>
 
+
 <div class="result-box">
+
 <h3>🔥 مقارنة بشهاب</h3>
+
 <div id="comparison"></div>
+
 </div>
 
+
 <div class="result-box">
+
 <h3>💬 رسالة ليك</h3>
+
 <div id="message">
-الرقم مش حكم نهائي على ذكائك. الاختبار بيقيس اختياراتك في المواقف دي فقط.
+
+الرقم مش حكم نهائي على ذكائك.
+الاختبار بيقيس اختياراتك في المواقف دي فقط.
+
 </div>
+
 </div>
+
 
 <div class="result-box">
-<h3>📌 عايز تعرف إجابتك كانت منطقية ليه أو لأ؟</h3>
+
+<h3>
+📌 عايز تعرف إجابتك كانت منطقية ليه أو لأ؟
+</h3>
+
 <div>
+
 لو مش مقتنع بإجابة معينة وعايز تعرف النموذج المنطقي للإجابة وتفهم ليه اختيارك صح أو غلط، تواصل مع شهاب على واتساب.
-</div>
+
 </div>
 
-<button class="whatsapp" onclick="contactShehab()">
+</div>
+
+
+<button
+class="whatsapp"
+onclick="contactShehab()"
+>
 📱 تواصل مع شهاب على واتساب
 </button>
 
-<button class="primary" onclick="location.reload()">
+
+<button
+class="primary"
+onclick="location.reload()"
+>
 تحدي شهاب مرة أخرى 🔥
 </button>
 
@@ -194,7 +565,13 @@ textarea{height:120px;resize:none;line-height:1.8}
 
 </div>
 
+
 <script>
+
+
+/* ==============================
+   QUESTIONS
+============================== */
 
 const questions=[
 
@@ -331,6 +708,10 @@ choices:[
 ];
 
 
+/* ==============================
+   VARIABLES
+============================== */
+
 let currentQuestion=0;
 let totalScore=0;
 let playerName="";
@@ -341,25 +722,24 @@ let playerExceededShehabTime=false;
 let playerAnswers=[];
 
 
-/* =========================
-   LOCAL STORAGE
-========================= */
+/* ==============================
+   LOCAL DATABASE
+============================== */
 
 function getPlayers(){
 
 try{
 
-const players=JSON.parse(localStorage.getItem("shehab_challenge_players"));
+const data=
+JSON.parse(
+localStorage.getItem("shehab_challenge_players")
+);
 
-if(Array.isArray(players)){
-return players;
-}
-
-return [];
+return Array.isArray(data)?data:[];
 
 }catch(error){
 
-return [];
+return[];
 
 }
 
@@ -380,13 +760,27 @@ JSON.stringify(players)
 }
 
 
+/* ==============================
+   NAVIGATION
+============================== */
+
 function hideAll(){
 
-["home","namePage","quizPage","resultPage"].forEach(id=>{
+[
+"home",
+"namePage",
+"quizPage",
+"resultPage"
+].forEach(id=>{
 
-const e=document.getElementById(id);
+const element=
+document.getElementById(id);
 
-if(e)e.classList.add("hidden");
+if(element){
+
+element.classList.add("hidden");
+
+}
 
 });
 
@@ -397,9 +791,13 @@ function showName(){
 
 hideAll();
 
-document.getElementById("namePage").classList.remove("hidden");
+document
+.getElementById("namePage")
+.classList.remove("hidden");
 
-document.getElementById("nameInput").focus();
+document
+.getElementById("nameInput")
+.focus();
 
 }
 
@@ -410,24 +808,31 @@ stopTimer();
 
 hideAll();
 
-document.getElementById("home").classList.remove("hidden");
+document
+.getElementById("home")
+.classList.remove("hidden");
 
 }
 
 
-/* =========================
-   START GAME
-========================= */
+/* ==============================
+   START
+============================== */
 
 function startGame(){
 
-const input=document.getElementById("nameInput");
+const input=
+document.getElementById("nameInput");
 
-const button=document.getElementById("startButton");
+const button=
+document.getElementById("startButton");
 
-const errorBox=document.getElementById("startError");
+const errorBox=
+document.getElementById("startError");
 
-const name=input.value.trim();
+const name=
+input.value.trim();
+
 
 errorBox.style.display="none";
 
@@ -456,7 +861,8 @@ return;
 
 button.disabled=true;
 
-button.textContent="جاري تجهيز المواجهة...";
+button.textContent=
+"جاري تجهيز المواجهة...";
 
 
 playerName=name;
@@ -474,7 +880,8 @@ setTimeout(()=>{
 
 button.disabled=false;
 
-button.textContent="ابدأ المواجهة 🚀";
+button.textContent=
+"ابدأ المواجهة 🚀";
 
 showQuestion();
 
@@ -483,9 +890,9 @@ showQuestion();
 }
 
 
-/* =========================
-   SHOW QUESTION
-========================= */
+/* ==============================
+   QUESTION
+============================== */
 
 function showQuestion(){
 
@@ -493,19 +900,31 @@ stopTimer();
 
 hideAll();
 
-document.getElementById("quizPage").classList.remove("hidden");
+document
+.getElementById("quizPage")
+.classList.remove("hidden");
 
 
-const q=questions[currentQuestion];
+const q=
+questions[currentQuestion];
 
 
-document.getElementById("progress").textContent=
+document
+.getElementById("progress")
+.textContent=
 "السؤال "+(currentQuestion+1)+" من 10";
 
 
-document.getElementById("question").textContent=q.question;
+document
+.getElementById("question")
+.textContent=
+q.question;
 
-document.getElementById("shehabTime").textContent=q.shehabTime;
+
+document
+.getElementById("shehabTime")
+.textContent=
+q.shehabTime;
 
 
 selectedAnswer=null;
@@ -513,42 +932,59 @@ selectedAnswer=null;
 playerExceededShehabTime=false;
 
 
-document.getElementById("reason").value="";
-
-document.getElementById("reasonArea").classList.add("hidden");
-
-document.getElementById("overTimeMessage").classList.remove("show");
-
-document.getElementById("saveStatus").textContent="";
+document
+.getElementById("reason")
+.value="";
 
 
-const container=document.getElementById("choices");
+document
+.getElementById("reasonArea")
+.classList.add("hidden");
+
+
+document
+.getElementById("overTimeMessage")
+.classList.remove("show");
+
+
+document
+.getElementById("saveStatus")
+.textContent="";
+
+
+const container=
+document.getElementById("choices");
 
 container.innerHTML="";
 
 
 q.choices.forEach((choice,index)=>{
 
-const button=document.createElement("button");
+const button=
+document.createElement("button");
 
 button.className="choice";
 
 button.textContent=
 String.fromCharCode(65+index)+") "+choice.text;
 
-button.onclick=()=>selectChoice(button,index);
+button.onclick=()=>{
+selectChoice(button,index)
+};
 
 container.appendChild(button);
 
 });
 
 
-remainingSeconds=q.visitorTime;
+remainingSeconds=
+q.visitorTime;
 
 updateTimer();
 
 
-timerInterval=setInterval(()=>{
+timerInterval=
+setInterval(()=>{
 
 if(remainingSeconds>0){
 
@@ -565,11 +1001,17 @@ stopTimer();
 
 playerExceededShehabTime=true;
 
-document.getElementById("remaining").textContent="00:00";
+document
+.getElementById("remaining")
+.textContent="00:00";
 
-document.getElementById("remaining").classList.add("timer-danger");
+document
+.getElementById("remaining")
+.classList.add("timer-danger");
 
-document.getElementById("overTimeMessage").classList.add("show");
+document
+.getElementById("overTimeMessage")
+.classList.add("show");
 
 }
 
@@ -578,21 +1020,25 @@ document.getElementById("overTimeMessage").classList.add("show");
 }
 
 
-/* =========================
+/* ==============================
    TIMER
-========================= */
+============================== */
 
 function updateTimer(){
 
-const timer=document.getElementById("remaining");
+const timer=
+document.getElementById("remaining");
 
-const minutes=Math.floor(remainingSeconds/60);
+const minutes=
+Math.floor(remainingSeconds/60);
 
-const seconds=remainingSeconds%60;
+const seconds=
+remainingSeconds%60;
 
 
 timer.textContent=
-String(minutes).padStart(2,"0")+":"+
+String(minutes).padStart(2,"0")+
+":"+
 String(seconds).padStart(2,"0");
 
 
@@ -617,28 +1063,34 @@ timerInterval=null;
 }
 
 
-/* =========================
-   SELECT ANSWER
-========================= */
+/* ==============================
+   ANSWER
+============================== */
 
 function selectChoice(button,index){
 
-document.querySelectorAll(".choice")
-.forEach(b=>b.classList.remove("selected"));
+document
+.querySelectorAll(".choice")
+.forEach(b=>{
+b.classList.remove("selected")
+});
+
 
 button.classList.add("selected");
 
 selectedAnswer=index;
 
-document.getElementById("reasonArea")
+
+document
+.getElementById("reasonArea")
 .classList.remove("hidden");
 
 }
 
 
-/* =========================
-   SAVE ANSWER LOCALLY
-========================= */
+/* ==============================
+   SAVE ANSWER
+============================== */
 
 function saveAnswer(){
 
@@ -649,13 +1101,23 @@ return false;
 }
 
 
-const q=questions[currentQuestion];
+const q=
+questions[currentQuestion];
+
 
 const timeUsed=
 q.visitorTime-remainingSeconds;
 
+
 const reason=
-document.getElementById("reason").value.trim();
+document
+.getElementById("reason")
+.value
+.trim();
+
+
+const correct=
+selectedAnswer===q.correctAnswer;
 
 
 const answer={
@@ -666,13 +1128,14 @@ selectedAnswer:selectedAnswer,
 
 correctAnswer:q.correctAnswer,
 
-correct:selectedAnswer===q.correctAnswer,
+correct:correct,
 
 reason:reason||null,
 
 timeUsed:Math.max(0,timeUsed),
 
-exceededShehabTime:playerExceededShehabTime
+exceededShehabTime:
+playerExceededShehabTime
 
 };
 
@@ -680,7 +1143,7 @@ exceededShehabTime:playerExceededShehabTime
 playerAnswers.push(answer);
 
 
-if(selectedAnswer===q.correctAnswer){
+if(correct){
 
 totalScore++;
 
@@ -692,9 +1155,9 @@ return true;
 }
 
 
-/* =========================
-   NEXT QUESTION
-========================= */
+/* ==============================
+   NEXT
+============================== */
 
 function nextQuestion(){
 
@@ -710,23 +1173,25 @@ return;
 stopTimer();
 
 
-const button=document.getElementById("nextButton");
+const button=
+document.getElementById("nextButton");
 
 button.disabled=true;
 
-document.getElementById("saveStatus").textContent=
+
+document
+.getElementById("saveStatus")
+.textContent=
 "جاري حفظ إجابتك...";
 
 
-const saved=saveAnswer();
+const saved=
+saveAnswer();
 
 
 if(!saved){
 
 button.disabled=false;
-
-document.getElementById("saveStatus").textContent=
-"حاول مرة أخرى.";
 
 return;
 
@@ -752,17 +1217,16 @@ finishQuiz();
 }
 
 
-/* =========================
-   FINISH QUIZ
-========================= */
+/* ==============================
+   FINISH
+============================== */
 
 function finishQuiz(){
 
-document.getElementById("saveStatus").textContent=
+document
+.getElementById("saveStatus")
+.textContent=
 "جاري حساب النتيجة...";
-
-
-const players=getPlayers();
 
 
 const player={
@@ -792,9 +1256,9 @@ showResult();
 }
 
 
-/* =========================
+/* ==============================
    RESULT
-========================= */
+============================== */
 
 function showResult(){
 
@@ -802,18 +1266,27 @@ stopTimer();
 
 hideAll();
 
-document.getElementById("resultPage").classList.remove("hidden");
+document
+.getElementById("resultPage")
+.classList.remove("hidden");
 
 
-document.getElementById("resultTitle").textContent=
+document
+.getElementById("resultTitle")
+.textContent=
 "🔥 ممتاز يا "+playerName;
 
 
-document.getElementById("score").textContent=
+document
+.getElementById("score")
+.textContent=
 totalScore+" / 10";
 
 
-document.getElementById("resultText").textContent=
+document
+.getElementById("resultText")
+.textContent=
+
 totalScore>=9
 ?
 "🔥 نتيجة قوية جدًا. وصلت لمستوى شهاب أو كسرته."
@@ -829,7 +1302,10 @@ totalScore>=4
 "النتيجة منخفضة، لكن الرقم لا يحكم على ذكائك؛ الاختبار يقيس اختياراتك في المواقف دي فقط.";
 
 
-document.getElementById("style").textContent=
+document
+.getElementById("style")
+.textContent=
+
 totalScore>=9
 ?
 "تفكير متوازن جدًا وتميل لتحليل المخاطر والبدائل قبل اتخاذ القرار."
@@ -845,7 +1321,10 @@ totalScore>=4
 "تميل أحيانًا للحسم السريع أو الانتظار الزائد؛ حاول توازن بين المخاطرة والمعلومة المتاحة.";
 
 
-document.getElementById("comparison").textContent=
+document
+.getElementById("comparison")
+.textContent=
+
 totalScore>9
 ?
 "🔥 كسرت نتيجة شهاب."
@@ -854,31 +1333,39 @@ totalScore===9
 ?
 "🔥 تعادلت مع شهاب: 9 / 10."
 :
-"نتيجة شهاب أعلى منك بـ "+(9-totalScore)+" نقطة.";
+"نتيجة شهاب أعلى منك بـ "+
+(9-totalScore)+
+" نقطة.";
 
 
-/* =========================
-   LOCAL STATISTICS
-========================= */
+/* ==============================
+   STATISTICS
+============================== */
 
-const players=getPlayers();
-
-
-const totalPlayers=players.length;
+const players=
+getPlayers();
 
 
-const scores=players.map(player=>
+const scores=
+players.map(player=>
 Number(player.score)||0
 );
 
 
-const completed=players.length;
+const totalPlayers=
+players.length;
+
+
+const completed=
+players.length;
 
 
 const average=
 completed
 ?
-scores.reduce((sum,score)=>sum+score,0)/completed
+scores.reduce(
+(sum,score)=>sum+score,0
+)/completed
 :
 totalScore;
 
@@ -891,7 +1378,8 @@ Math.max(...scores)
 totalScore;
 
 
-const sortedScores=[...scores].sort(
+const sortedScores=
+[...scores].sort(
 (a,b)=>b-a
 );
 
@@ -900,34 +1388,46 @@ const rank=
 sortedScores.indexOf(totalScore)+1;
 
 
-const percentage=totalScore*10;
+document
+.getElementById("percentage")
+.textContent=
+(totalScore*10)+"%";
 
 
-document.getElementById("percentage").textContent=
-percentage+"%";
-
-
-document.getElementById("rank").textContent=
+document
+.getElementById("rank")
+.textContent=
 "#"+rank;
 
 
-document.getElementById("totalPlayers").textContent=
+document
+.getElementById("totalPlayers")
+.textContent=
 totalPlayers;
 
 
-document.getElementById("completed").textContent=
+document
+.getElementById("completed")
+.textContent=
 completed;
 
 
-document.getElementById("average").textContent=
+document
+.getElementById("average")
+.textContent=
 average.toFixed(1)+" / 10";
 
 
-document.getElementById("highest").textContent=
+document
+.getElementById("highest")
+.textContent=
 highest+" / 10";
 
 
-document.getElementById("progressMessage").textContent=
+document
+.getElementById("progressMessage")
+.textContent=
+
 totalScore>average
 ?
 "📈 نتيجتك أعلى من متوسط المشاركين."
@@ -941,33 +1441,42 @@ totalScore===Number(average.toFixed(1))
 }
 
 
-/* =========================
+/* ==============================
    WHATSAPP
-========================= */
+============================== */
 
 function contactShehab(){
 
-const phone="201011641423";
+const phone=
+"201011641423";
 
-const message=encodeURIComponent(
+
+const message=
+encodeURIComponent(
 "السلام عليكم يا شهاب، جربت تحدي شهاب وعاوز أعرف تفسير الإجابات المنطقية للاختبار."
 );
 
 
 window.open(
-"https://wa.me/"+phone+"?text="+message,
+"https://wa.me/"+
+phone+
+"?text="+
+message,
 "_blank"
 );
 
 }
 
 
-/* =========================
-   ENTER KEY
-========================= */
+/* ==============================
+   ENTER
+============================== */
 
-document.getElementById("nameInput")
-.addEventListener("keydown",function(event){
+document
+.getElementById("nameInput")
+.addEventListener(
+"keydown",
+function(event){
 
 if(event.key==="Enter"){
 
@@ -975,7 +1484,8 @@ startGame();
 
 }
 
-});
+}
+);
 
 </script>
 
