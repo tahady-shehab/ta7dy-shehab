@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تحدي شهاب</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 *{box-sizing:border-box}
 
@@ -225,6 +227,12 @@ text-align:right;
 .green{
 color:#8ee7a1;
 }
+
+.save-status{
+font-size:13px;
+color:#8f99ad;
+margin-top:10px;
+}
 </style>
 </head>
 
@@ -306,7 +314,7 @@ autocomplete="off"
 </span>
 
 <span id="remaining" class="remaining">
-03:53
+00:00
 </span>
 
 </div>
@@ -318,7 +326,7 @@ autocomplete="off"
 </small>
 
 <div id="shehabTime" class="shehab-time">
-03:53
+00:00
 </div>
 
 </div>
@@ -363,6 +371,8 @@ onclick="nextQuestion()"
 <p class="warning">
 ⏱️ العداد بيمثل وقت شهاب في السؤال. لو خلص، ده معناه إنك تجاوزت وقته فقط، وليس انتهاء السؤال.
 </p>
+
+<p id="saveStatus" class="save-status"></p>
 
 </section>
 
@@ -444,9 +454,26 @@ onclick="location.reload()"
 
 <script>
 
-/* =========================
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+"https://buqgmkqtdyrnwwkswgiz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_o4RI813xC3WH4YAphxEqxQ_23OM1CiT";
+
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
+
+
+/* =====================================================
    منع النسخ واللصق
-========================= */
+===================================================== */
 
 document.addEventListener("copy",function(e){
 e.preventDefault();
@@ -473,9 +500,9 @@ e.preventDefault();
 });
 
 
-/* =========================
+/* =====================================================
    الأسئلة
-========================= */
+===================================================== */
 
 const questions = [
 
@@ -489,18 +516,10 @@ visitorTime:233,
 correctAnswer:2,
 
 choices:[
-{
-text:"أتصرف بالمعلومات الموجودة، وأراجع القرار لاحقًا إذا ظهرت المعلومة الجديدة."
-},
-{
-text:"أؤجل القرار حتى تظهر المعلومة الجديدة مهما كانت تكلفة الانتظار."
-},
-{
-text:"أحدد أولًا هل المعلومة المتوقعة قادرة فعلًا على تغيير القرار، ثم أقرر هل الانتظار يستحق."
-},
-{
-text:"أطلب رأيًا آخر حتى أقرر هل الانتظار أفضل أم التصرف الآن."
-}
+{text:"أتصرف بالمعلومات الموجودة، وأراجع القرار لاحقًا إذا ظهرت المعلومة الجديدة."},
+{text:"أؤجل القرار حتى تظهر المعلومة الجديدة مهما كانت تكلفة الانتظار."},
+{text:"أحدد أولًا هل المعلومة المتوقعة قادرة فعلًا على تغيير القرار، ثم أقرر هل الانتظار يستحق."},
+{text:"أطلب رأيًا آخر حتى أقرر هل الانتظار أفضل أم التصرف الآن."}
 ]
 },
 
@@ -514,18 +533,10 @@ visitorTime:534,
 correctAnswer:0,
 
 choices:[
-{
-text:"أدخل بجزء صغير من رأس المال وأتعامل مع البداية كاختبار قبل زيادة المبلغ."
-},
-{
-text:"أدخل بالمبلغ الأكبر طالما أن فرصة الربح تبدو أعلى من الخسارة."
-},
-{
-text:"أنتظر فرصة أوضح حتى لو ضاعت الفرصة الحالية."
-},
-{
-text:"أحاول جمع رأس مال أكبر أولًا حتى يكون الربح المحتمل أكبر."
-}
+{text:"أدخل بجزء صغير من رأس المال وأتعامل مع البداية كاختبار قبل زيادة المبلغ."},
+{text:"أدخل بالمبلغ الأكبر طالما أن فرصة الربح تبدو أعلى من الخسارة."},
+{text:"أنتظر فرصة أوضح حتى لو ضاعت الفرصة الحالية."},
+{text:"أحاول جمع رأس مال أكبر أولًا حتى يكون الربح المحتمل أكبر."}
 ]
 },
 
@@ -539,18 +550,10 @@ visitorTime:380,
 correctAnswer:3,
 
 choices:[
-{
-text:"أستمر كما أنا فترة أطول لأن النتائج قد تتحسن مع الوقت."
-},
-{
-text:"أوقف المشروع وأنتقل لفكرة أخرى قبل خسارة المزيد."
-},
-{
-text:"أغير عدة أشياء مرة واحدة لأحاول تحسين النتيجة بسرعة."
-},
-{
-text:"أحدد المشكلة الأساسية، أغير عاملًا واحدًا وأقارن النتيجة قبل اتخاذ قرار أكبر."
-}
+{text:"أستمر كما أنا فترة أطول لأن النتائج قد تتحسن مع الوقت."},
+{text:"أوقف المشروع وأنتقل لفكرة أخرى قبل خسارة المزيد."},
+{text:"أغير عدة أشياء مرة واحدة لأحاول تحسين النتيجة بسرعة."},
+{text:"أحدد المشكلة الأساسية، أغير عاملًا واحدًا وأقارن النتيجة قبل اتخاذ قرار أكبر."}
 ]
 },
 
@@ -564,18 +567,10 @@ visitorTime:660,
 correctAnswer:3,
 
 choices:[
-{
-text:"أغير الفكرة مباشرة لأن وجود جزء منطقي في كلامه يعني أن الفكرة بها مشكلة."
-},
-{
-text:"أتجاهله تمامًا لأن الشخص الذي لا يؤمن بالفكرة لن يفهمها."
-},
-{
-text:"أناقشه لأعرف هل لديه دليل فعلي أم أن اعتراضه مجرد انطباع."
-},
-{
-text:"أفصل كلامه إلى نقاط يمكن اختبارها، وأحكم عليها بالنتائج بدل موقفه الشخصي."
-}
+{text:"أغير الفكرة مباشرة لأن وجود جزء منطقي في كلامه يعني أن الفكرة بها مشكلة."},
+{text:"أتجاهله تمامًا لأن الشخص الذي لا يؤمن بالفكرة لن يفهمها."},
+{text:"أناقشه لأعرف هل لديه دليل فعلي أم أن اعتراضه مجرد انطباع."},
+{text:"أفصل كلامه إلى نقاط يمكن اختبارها، وأحكم عليها بالنتائج بدل موقفه الشخصي."}
 ]
 },
 
@@ -589,18 +584,10 @@ visitorTime:430,
 correctAnswer:1,
 
 choices:[
-{
-text:"أختار المنتج الذي أتوقع أنه الأكثر طلبًا وأضع أغلب رأس المال فيه."
-},
-{
-text:"أختبر كميات صغيرة من عدة منتجات، ثم أزيد الاستثمار في الذي تظهر عليه مؤشرات أفضل."
-},
-{
-text:"أقسم رأس المال بالتساوي على كل المنتجات حتى أضمن عدم خسارة اختيار واحد."
-},
-{
-text:"لا أبدأ حتى أعرف بشكل شبه مؤكد المنتج الأفضل."
-}
+{text:"أختار المنتج الذي أتوقع أنه الأكثر طلبًا وأضع أغلب رأس المال فيه."},
+{text:"أختبر كميات صغيرة من عدة منتجات، ثم أزيد الاستثمار في الذي تظهر عليه مؤشرات أفضل."},
+{text:"أقسم رأس المال بالتساوي على كل المنتجات حتى أضمن عدم خسارة اختيار واحد."},
+{text:"لا أبدأ حتى أعرف بشكل شبه مؤكد المنتج الأفضل."}
 ]
 },
 
@@ -614,18 +601,10 @@ visitorTime:340,
 correctAnswer:1,
 
 choices:[
-{
-text:"أعيد التجربة بنفس الطريقة لأن الفشل قد يكون مجرد ظرف عابر."
-},
-{
-text:"أبحث عن السبب الأكثر احتمالًا، وأغيره قبل المحاولة الثانية."
-},
-{
-text:"أغير الفكرة بالكامل حتى لا أكرر التجربة السابقة."
-},
-{
-text:"أجمع معلومات إضافية أولًا، ثم أقرر هل إعادة التجربة تستحق."
-}
+{text:"أعيد التجربة بنفس الطريقة لأن الفشل قد يكون مجرد ظرف عابر."},
+{text:"أبحث عن السبب الأكثر احتمالًا، وأغيره قبل المحاولة الثانية."},
+{text:"أغير الفكرة بالكامل حتى لا أكرر التجربة السابقة."},
+{text:"أجمع معلومات إضافية أولًا، ثم أقرر هل إعادة التجربة تستحق."}
 ]
 },
 
@@ -639,18 +618,10 @@ visitorTime:510,
 correctAnswer:2,
 
 choices:[
-{
-text:"أعيد الثقة كما كانت فورًا لأن الاعتذار بالنسبة لي كافٍ."
-},
-{
-text:"أحافظ على العلاقة لكن أتوقف تمامًا عن الاعتماد عليه في أي قرار."
-},
-{
-text:"أقبل الاعتذار، وأترك عودة الثقة مرتبطة بتصرفاته بعد الخطأ."
-},
-{
-text:"أقطع العلاقة لأن الخطأ أثبت أن الثقة كانت في غير محلها."
-}
+{text:"أعيد الثقة كما كانت فورًا لأن الاعتذار بالنسبة لي كافٍ."},
+{text:"أحافظ على العلاقة لكن أتوقف تمامًا عن الاعتماد عليه في أي قرار."},
+{text:"أقبل الاعتذار، وأترك عودة الثقة مرتبطة بتصرفاته بعد الخطأ."},
+{text:"أقطع العلاقة لأن الخطأ أثبت أن الثقة كانت في غير محلها."}
 ]
 },
 
@@ -664,18 +635,10 @@ visitorTime:405,
 correctAnswer:2,
 
 choices:[
-{
-text:"أترك الدخل الحالي وأركز بالكامل على الفرصة الأكبر."
-},
-{
-text:"أختار الدخل السريع لأن العائد الحالي أهم من الاحتمالات."
-},
-{
-text:"أستخدم الدخل الحالي لتأمين احتياجاتي وأخصص جزءًا من وقتي ومواردي للفرصة الأكبر."
-},
-{
-text:"أنتظر حتى تتضح نتائج الفرصة الأكبر قبل أن أقرر."
-}
+{text:"أترك الدخل الحالي وأركز بالكامل على الفرصة الأكبر."},
+{text:"أختار الدخل السريع لأن العائد الحالي أهم من الاحتمالات."},
+{text:"أستخدم الدخل الحالي لتأمين احتياجاتي وأخصص جزءًا من وقتي ومواردي للفرصة الأكبر."},
+{text:"أنتظر حتى تتضح نتائج الفرصة الأكبر قبل أن أقرر."}
 ]
 },
 
@@ -689,18 +652,10 @@ visitorTime:440,
 correctAnswer:0,
 
 choices:[
-{
-text:"أجمع أهم المعلومات التي يمكن الحصول عليها بسرعة، ثم أقرر بناءً على ما يكفي للحسم."
-},
-{
-text:"أقرر فورًا لأن السرعة أهم من أي شيء آخر."
-},
-{
-text:"أؤجل القرار حتى تصبح الصورة كاملة مهما كان ثمن التأخير."
-},
-{
-text:"أطلب من شخص أكثر خبرة أن يقرر معي قبل التحرك."
-}
+{text:"أجمع أهم المعلومات التي يمكن الحصول عليها بسرعة، ثم أقرر بناءً على ما يكفي للحسم."},
+{text:"أقرر فورًا لأن السرعة أهم من أي شيء آخر."},
+{text:"أؤجل القرار حتى تصبح الصورة كاملة مهما كان ثمن التأخير."},
+{text:"أطلب من شخص أكثر خبرة أن يقرر معي قبل التحرك."}
 ]
 },
 
@@ -714,31 +669,24 @@ visitorTime:720,
 correctAnswer:3,
 
 choices:[
-{
-text:"أختار أكبر فرصة متاحة حتى لو لم تكن لدي خطة واضحة."
-},
-{
-text:"أجمع أكبر قدر ممكن من المعلومات قبل أن أختار أي اتجاه."
-},
-{
-text:"أختار المجال الذي أشعر أن فرصتي فيه أكبر."
-},
-{
-text:"أحدد النتيجة المطلوبة ثم أبدأ بأقرب خطوة عملية يمكن تنفيذها واختبارها."
-}
+{text:"أختار أكبر فرصة متاحة حتى لو لم تكن لدي خطة واضحة."},
+{text:"أجمع أكبر قدر ممكن من المعلومات قبل أن أختار أي اتجاه."},
+{text:"أختار المجال الذي أشعر أن فرصتي فيه أكبر."},
+{text:"أحدد النتيجة المطلوبة ثم أبدأ بأقرب خطوة عملية يمكن تنفيذها واختبارها."}
 ]
 }
 
 ];
 
 
-/* =========================
+/* =====================================================
    المتغيرات
-========================= */
+===================================================== */
 
 let currentQuestion = 0;
 let totalScore = 0;
 let playerName = "";
+
 let selectedAnswer = null;
 
 let remainingSeconds = 0;
@@ -746,16 +694,55 @@ let timerInterval = null;
 
 let playerExceededShehabTime = false;
 
+let playerId = null;
+let attemptId = null;
 
-/* =========================
+let attemptStartedAt = null;
+
+
+/* =====================================================
+   UUID
+===================================================== */
+
+function createId(){
+
+if(window.crypto && crypto.randomUUID){
+
+return crypto.randomUUID();
+
+}
+
+return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+/[xy]/g,
+function(c){
+
+const r =
+Math.random() * 16 | 0;
+
+const v =
+c === "x"
+? r
+: (r & 0x3 | 0x8);
+
+return v.toString(16);
+
+});
+
+}
+
+
+/* =====================================================
    الصفحات
-========================= */
+===================================================== */
 
 function hideAll(){
 
 document.getElementById("home").classList.add("hidden");
+
 document.getElementById("namePage").classList.add("hidden");
+
 document.getElementById("quizPage").classList.add("hidden");
+
 document.getElementById("resultPage").classList.add("hidden");
 
 }
@@ -785,11 +772,11 @@ document
 }
 
 
-/* =========================
+/* =====================================================
    بدء الاختبار
-========================= */
+===================================================== */
 
-function startGame(){
+async function startGame(){
 
 const name =
 document
@@ -811,14 +798,79 @@ currentQuestion = 0;
 totalScore = 0;
 selectedAnswer = null;
 
+playerId = createId();
+
+attemptId = createId();
+
+attemptStartedAt =
+new Date().toISOString();
+
+
+/*
+   حفظ اللاعب
+*/
+
+const playerResult =
+await supabaseClient
+.from("players")
+.insert({
+id:playerId,
+name:playerName,
+last_seen_at:new Date().toISOString()
+});
+
+if(playerResult.error){
+
+console.error(playerResult.error);
+
+alert(
+"حصلت مشكلة في الاتصال بقاعدة البيانات.\n" +
+"تأكد إن الموقع متصل بـ Supabase."
+);
+
+return;
+
+}
+
+
+/*
+   إنشاء محاولة جديدة
+*/
+
+const attemptResult =
+await supabaseClient
+.from("attempts")
+.insert({
+id:attemptId,
+player_id:playerId,
+score:0,
+total_questions:questions.length,
+started_at:attemptStartedAt,
+shehab_score:9,
+questions_completed:0,
+exceeded_shehab_time:false
+});
+
+if(attemptResult.error){
+
+console.error(attemptResult.error);
+
+alert(
+"تم تسجيل اسمك لكن حصلت مشكلة في بدء الاختبار."
+);
+
+return;
+
+}
+
 showQuestion();
 
 }
 
 
-/* =========================
+/* =====================================================
    عرض السؤال
-========================= */
+===================================================== */
 
 function showQuestion(){
 
@@ -830,7 +882,8 @@ document
 .getElementById("quizPage")
 .classList.remove("hidden");
 
-const q = questions[currentQuestion];
+const q =
+questions[currentQuestion];
 
 document
 .getElementById("progress")
@@ -866,6 +919,10 @@ document
 .getElementById("overTimeMessage")
 .classList.remove("show");
 
+document
+.getElementById("saveStatus")
+.textContent = "";
+
 const choicesContainer =
 document.getElementById("choices");
 
@@ -893,10 +950,6 @@ choicesContainer.appendChild(button);
 
 });
 
-
-/*
-   يبدأ العداد من وقت شهاب نفسه.
-*/
 
 remainingSeconds =
 q.visitorTime;
@@ -940,9 +993,9 @@ document
 }
 
 
-/* =========================
+/* =====================================================
    العداد
-========================= */
+===================================================== */
 
 function updateTimer(){
 
@@ -950,7 +1003,9 @@ const timer =
 document.getElementById("remaining");
 
 const minutes =
-Math.floor(remainingSeconds / 60);
+Math.floor(
+remainingSeconds / 60
+);
 
 const seconds =
 remainingSeconds % 60;
@@ -986,9 +1041,9 @@ timerInterval = null;
 }
 
 
-/* =========================
+/* =====================================================
    اختيار الإجابة
-========================= */
+===================================================== */
 
 function selectChoice(button,index){
 
@@ -1011,48 +1066,190 @@ document
 }
 
 
-/* =========================
-   السؤال التالي
-========================= */
+/* =====================================================
+   حفظ الإجابة في Supabase
+===================================================== */
 
-function nextQuestion(){
+async function saveAnswer(){
+
+const q =
+questions[currentQuestion];
+
+const timeUsed =
+q.visitorTime -
+remainingSeconds;
+
+const isCorrect =
+selectedAnswer === q.correctAnswer;
+
+const reason =
+document
+.getElementById("reason")
+.value
+.trim();
+
+const answerResult =
+await supabaseClient
+.from("answers")
+.insert({
+
+id:createId(),
+
+attempt_id:attemptId,
+
+question_number:
+currentQuestion + 1,
+
+selected_answer:
+selectedAnswer,
+
+is_correct:
+isCorrect,
+
+reason:
+reason || null,
+
+time_used_seconds:
+Math.max(0,timeUsed),
+
+exceeded_shehab_time:
+playerExceededShehabTime
+
+});
+
+if(answerResult.error){
+
+console.error(answerResult.error);
+
+return false;
+
+}
+
+return true;
+
+}
+
+
+/* =====================================================
+   تحديث المحاولة
+===================================================== */
+
+async function updateAttempt(){
+
+const result =
+await supabaseClient
+.from("attempts")
+.update({
+
+score:totalScore,
+
+questions_completed:
+currentQuestion + 1,
+
+exceeded_shehab_time:
+playerExceededShehabTime
+
+})
+.eq("id",attemptId);
+
+if(result.error){
+
+console.error(result.error);
+
+}
+
+}
+
+
+/* =====================================================
+   السؤال التالي
+===================================================== */
+
+async function nextQuestion(){
 
 if(selectedAnswer === null){
 
-alert("اختار إجابة الأول يا بطل 😏");
+alert(
+"اختار إجابة الأول يا بطل 😏"
+);
 
 return;
 
 }
 
-/*
-   السبب اختياري.
-   لا يوجد حد أدنى للكلمات.
-   لا يؤثر على الدرجة.
-*/
-
 stopTimer();
 
-const q = questions[currentQuestion];
+document
+.getElementById("nextButton")
+.disabled = true;
+
+document
+.getElementById("saveStatus")
+.textContent =
+"جاري حفظ إجابتك...";
+
+
+const q =
+questions[currentQuestion];
+
+const isCorrect =
+selectedAnswer === q.correctAnswer;
 
 
 /*
    التصحيح يعتمد على الاختيار فقط.
 */
 
-if(selectedAnswer === q.correctAnswer){
+if(isCorrect){
 
 totalScore += 1;
 
 }
 
+
+/*
+   حفظ الإجابة
+*/
+
+const saved =
+await saveAnswer();
+
+if(!saved){
+
+document
+.getElementById("nextButton")
+.disabled = false;
+
+document
+.getElementById("saveStatus")
+.textContent =
+"تعذر حفظ الإجابة. حاول مرة أخرى.";
+
+return;
+
+}
+
+
+/*
+   تحديث المحاولة
+*/
+
+await updateAttempt();
+
+
 currentQuestion++;
 
 if(currentQuestion < questions.length){
 
+document
+.getElementById("nextButton")
+.disabled = false;
+
 showQuestion();
 
 }else{
+
+await finishAttempt();
 
 showResult();
 
@@ -1061,9 +1258,43 @@ showResult();
 }
 
 
-/* =========================
-   النتيجة النهائية
-========================= */
+/* =====================================================
+   إنهاء الاختبار
+===================================================== */
+
+async function finishAttempt(){
+
+const completedAt =
+new Date().toISOString();
+
+const result =
+await supabaseClient
+.from("attempts")
+.update({
+
+score:totalScore,
+
+questions_completed:
+questions.length,
+
+completed_at:
+completedAt
+
+})
+.eq("id",attemptId);
+
+if(result.error){
+
+console.error(result.error);
+
+}
+
+}
+
+
+/* =====================================================
+   النتيجة
+===================================================== */
 
 function showResult(){
 
@@ -1078,11 +1309,13 @@ document
 const finalScore =
 totalScore;
 
+
 document
 .getElementById("resultTitle")
 .textContent =
 "🔥 ممتاز يا " +
 playerName;
+
 
 document
 .getElementById("score")
@@ -1090,8 +1323,6 @@ document
 finalScore +
 " / 10";
 
-
-/* رسالة النتيجة */
 
 if(finalScore >= 9){
 
@@ -1127,7 +1358,9 @@ document
 }
 
 
-/* أسلوب التفكير */
+/*
+   أسلوب التفكير
+*/
 
 if(finalScore >= 9){
 
@@ -1163,7 +1396,9 @@ document
 }
 
 
-/* المقارنة مع شهاب */
+/*
+   المقارنة مع شهاب
+*/
 
 const shehabScore = 9;
 
@@ -1203,7 +1438,9 @@ difference +
 }
 
 
-/* الرسالة */
+/*
+   الرسالة
+*/
 
 document
 .getElementById("message")
@@ -1213,9 +1450,9 @@ document
 }
 
 
-/* =========================
-   زر واتساب
-========================= */
+/* =====================================================
+   واتساب
+===================================================== */
 
 function contactShehab(){
 
