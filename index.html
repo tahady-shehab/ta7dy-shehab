@@ -76,6 +76,11 @@ background:#252d42;
 color:#fff;
 }
 
+.whatsapp{
+background:#25D366;
+color:#fff;
+}
+
 input,textarea{
 width:100%;
 background:#080b14;
@@ -114,7 +119,7 @@ direction:ltr;
 }
 
 .timer-danger{
-color:#ff7777!important;
+color:#ff7b7b!important;
 }
 
 .shehab-box{
@@ -150,6 +155,11 @@ border:2px solid #30394f;
 color:#fff;
 text-align:right;
 line-height:1.65;
+transition:.15s;
+}
+
+.choice:hover{
+border-color:#8f99ad;
 }
 
 .choice.selected{
@@ -188,6 +198,7 @@ text-align:right;
 .green{
 color:#8ee7a1;
 }
+
 </style>
 </head>
 
@@ -195,11 +206,11 @@ color:#8ee7a1;
 
 <div class="container">
 
-<!-- الصفحة الرئيسية -->
-
 <section id="home" class="card center">
 
-<div class="logo">🧠 تحدي شهاب</div>
+<div class="logo">
+🧠 تحدي شهاب
+</div>
 
 <p class="text">
 مش مجرد اختبار...<br>
@@ -210,7 +221,9 @@ color:#8ee7a1;
 🔥 أعلى نتيجة حاليًا: 9.0 / 10
 </div>
 
-<h2>فاكر نفسك بتعرف تفكر؟</h2>
+<h2>
+فاكر نفسك بتعرف تفكر؟
+</h2>
 
 <p class="text">
 شهاب دخل التحدي.<br>
@@ -224,11 +237,11 @@ color:#8ee7a1;
 </section>
 
 
-<!-- الاسم -->
-
 <section id="namePage" class="card center hidden">
 
-<h2>قبل المواجهة 👀</h2>
+<h2>
+قبل المواجهة 👀
+</h2>
 
 <p class="text">
 اكتب اسمك علشان نشوف النتيجة في النهاية.
@@ -237,8 +250,8 @@ color:#8ee7a1;
 <input
 id="nameInput"
 maxlength="30"
-autocomplete="off"
 placeholder="اكتب اسمك هنا"
+autocomplete="off"
 >
 
 <button class="primary" onclick="startGame()">
@@ -251,8 +264,6 @@ placeholder="اكتب اسمك هنا"
 
 </section>
 
-
-<!-- الاختبار -->
 
 <section id="quizPage" class="card hidden">
 
@@ -268,11 +279,10 @@ placeholder="اكتب اسمك هنا"
 
 </div>
 
-
 <div class="shehab-box">
 
 <small>
-⏱️ شهاب احتاج لهذا السؤال
+⏱️ الوقت الذي احتاجه شهاب
 </small>
 
 <div id="shehabTime" class="shehab-time">
@@ -281,11 +291,9 @@ placeholder="اكتب اسمك هنا"
 
 </div>
 
-
 <div id="question" class="question"></div>
 
 <div id="choices"></div>
-
 
 <div id="reasonArea" class="hidden">
 
@@ -300,6 +308,7 @@ placeholder="اكتب سبب اختيارك بطريقتك..."
 ></textarea>
 
 <button
+id="nextButton"
 class="primary"
 onclick="nextQuestion()"
 >
@@ -308,19 +317,19 @@ onclick="nextQuestion()"
 
 </div>
 
-
 <p class="warning">
-اختار إجابة واكتب سبب اختيارك قبل الانتقال للسؤال التالي.
+الوقت المتبقي خاص بك أنت، وليس وقت شهاب.
+خلصت إجابتك؟ اختار التالي.
 </p>
 
 </section>
 
 
-<!-- النتيجة -->
-
 <section id="resultPage" class="card center hidden">
 
-<div class="logo">🏆</div>
+<div class="logo">
+🏆
+</div>
 
 <h2 id="resultTitle"></h2>
 
@@ -330,39 +339,40 @@ onclick="nextQuestion()"
 
 <div class="result-box">
 
-<h3>🧠 نقاط تميزك</h3>
+<h3>
+🧠 أسلوب تفكيرك
+</h3>
 
-<div id="strength"></div>
-
-</div>
-
-
-<div class="result-box">
-
-<h3>🎯 حاجات ممكن تطورها</h3>
-
-<div id="weakness"></div>
+<div id="style" class="green"></div>
 
 </div>
 
-
 <div class="result-box">
 
-<h3>🔥 مقارنة بشهاب</h3>
+<h3>
+🔥 مقارنة بشهاب
+</h3>
 
 <div id="comparison"></div>
 
 </div>
 
-
 <div class="result-box">
 
-<h3>💬 رسالة ليك</h3>
+<h3>
+💬 رسالة ليك
+</h3>
 
 <div id="message"></div>
 
 </div>
 
+<button
+class="whatsapp"
+onclick="contactShehab()"
+>
+📱 تواصل مع شهاب على واتساب
+</button>
 
 <button
 class="primary"
@@ -378,9 +388,9 @@ onclick="location.reload()"
 
 <script>
 
-/* =================================
-   منع النسخ واللصق والتحديد
-================================= */
+/* =========================
+   منع النسخ واللصق
+========================= */
 
 document.addEventListener("copy",function(e){
 e.preventDefault();
@@ -407,266 +417,309 @@ e.preventDefault();
 });
 
 
-/* =================================
+/* =========================
    الأسئلة
-
-   الدرجة:
    10 = الأقوى
    7  = جيد
-   4  = ضعيف نسبيًا
+   4  = ضعيف
    0  = الأضعف
-================================= */
+========================= */
 
-const questions=[
+const questions = [
 
 {
 question:
 "أنت على وشك اتخاذ قرار مهم. المعلومات الحالية تبدو كافية، لكنك تعرف أن معلومة إضافية قد تظهر خلال وقت قصير. ما التصرف الأقرب لطريقتك؟",
 
-shehab:"03:53",
-time:240,
+shehabTime:"03:53",
+visitorTime:240,
 
 choices:[
+
 {
-text:"أؤجل القرار حتى تظهر المعلومة الجديدة، حتى لو كان التأجيل له تكلفة.",
+text:"أتصرف بالمعلومات الموجودة، وأراجع القرار لاحقًا إذا ظهرت المعلومة الجديدة.",
 score:7
 },
+
 {
-text:"أتخذ القرار الحالي لأن المعلومات المتاحة تبدو كافية.",
+text:"أؤجل القرار حتى تظهر المعلومة الجديدة مهما كانت تكلفة الانتظار.",
 score:4
 },
+
 {
-text:"أحدد أولًا هل المعلومة المتوقعة يمكن أن تغير القرار، ثم أقرر هل الانتظار يستحق تكلفته.",
+text:"أحدد أولًا هل المعلومة المتوقعة قادرة فعلًا على تغيير القرار، ثم أقرر هل الانتظار يستحق.",
 score:10
 },
+
 {
-text:"أطلب رأي شخص آخر قبل أن أحدد هل أنتظر أم أتصرف.",
-score:7
+text:"أطلب رأيًا آخر حتى أقرر هل الانتظار أفضل أم التصرف الآن.",
+score:0
 }
+
 ]
 },
 
 
 {
 question:
-"معك رأس مال محدود، وظهرت فرصة تبدو مربحة جدًا. لا تستطيع التأكد من النتيجة، لكن لديك أسباب تجعلها معقولة. كيف تتعامل معها؟",
+"معك رأس مال محدود، وظهرت فرصة تبدو مربحة جدًا، لكن احتمال الخسارة موجود. كيف تتعامل معها؟",
 
-shehab:"08:54",
-time:270,
+shehabTime:"08:54",
+visitorTime:270,
 
 choices:[
+
 {
-text:"أدخل بمبلغ محدود وأعتبر البداية اختبارًا قبل توسيع المشاركة.",
+text:"أدخل بجزء صغير من رأس المال وأتعامل مع البداية كاختبار قبل زيادة المبلغ.",
 score:10
 },
+
 {
-text:"أدخل بالمبلغ الأكبر طالما أن احتمال الربح يبدو أعلى.",
+text:"أدخل بالمبلغ الأكبر طالما أن فرصة الربح تبدو أعلى من الخسارة.",
 score:7
 },
+
 {
-text:"أنتظر فرصة أكثر وضوحًا حتى لو خسرت الفرصة الحالية.",
-score:7
-},
-{
-text:"أحاول زيادة رأس المال أولًا حتى يكون الدخول أكبر.",
+text:"أنتظر فرصة أوضح حتى لو ضاعت الفرصة الحالية.",
 score:4
+},
+
+{
+text:"أحاول جمع رأس مال أكبر أولًا حتى يكون الربح المحتمل أكبر.",
+score:0
 }
+
 ]
 },
 
 
 {
 question:
-"بدأت مشروعًا، وبعد فترة اكتشفت أن النتائج أقل من توقعاتك. لا يوجد انهيار واضح، لكن المؤشرات ليست مريحة. ماذا تفعل؟",
+"بدأت مشروعًا، وبعد فترة كانت النتائج أقل من المتوقع، لكن المشروع لم يفشل تمامًا. ماذا تفعل؟",
 
-shehab:"06:20",
-time:300,
-
-choices:[
-{
-text:"أستمر فترة أطول لأن النتائج المبكرة قد لا تعكس الصورة الحقيقية.",
-score:7
-},
-{
-text:"أوقف المشروع وأبدأ فكرة أخرى.",
-score:4
-},
-{
-text:"أغيّر عدة أشياء في نفس الوقت لأرى ما الذي سينجح.",
-score:4
-},
-{
-text:"أحدد المؤشر الذي فشل، وأختبر تعديلًا محددًا ثم أقارن النتيجة.",
-score:10
-}
-]
-},
-
-
-{
-question:
-"شخص انتقد فكرتك بقوة وقال لك إنك لن تنجح. بعض كلامه منطقي وبعضه مبالغ فيه. كيف تتعامل؟",
-
-shehab:"11:00",
-time:330,
+shehabTime:"06:20",
+visitorTime:300,
 
 choices:[
+
 {
-text:"آخذ الأجزاء التي يمكن اختبارها وأترك الحكم النهائي للنتائج.",
-score:10
+text:"أستمر كما أنا فترة أطول لأن النتائج قد تتحسن مع الوقت.",
+score:4
 },
+
 {
-text:"أغيّر الفكرة لأن جزءًا من كلامه كان منطقيًا.",
-score:7
-},
-{
-text:"أتجاهله لأن الشخص الذي لا يؤمن بالفكرة لن يفهمها.",
+text:"أوقف المشروع وأنتقل لفكرة أخرى قبل خسارة المزيد.",
 score:0
 },
+
 {
-text:"أناقشه حتى أعرف هل ينتقد الفكرة فعلًا أم يحاول إحباطي.",
+text:"أغير عدة أشياء مرة واحدة لأحاول تحسين النتيجة بسرعة.",
 score:7
+},
+
+{
+text:"أحدد المشكلة الأساسية، أغير عاملًا واحدًا وأقارن النتيجة قبل اتخاذ قرار أكبر.",
+score:10
 }
+
 ]
 },
 
 
 {
 question:
-"لو كنت ستبدأ مشروعًا بـ10,000 جنيه، لكنك لا تعرف أي منتج سيحقق أفضل دوران، كيف تبدأ؟",
+"شخص انتقد فكرتك بقوة وقال إنك لن تنجح. بعض كلامه منطقي وبعضه مبالغ فيه. ماذا تفعل؟",
 
-shehab:"07:10",
-time:300,
+shehabTime:"11:00",
+visitorTime:330,
 
 choices:[
+
 {
-text:"أضع معظم المبلغ في المنتج الذي أراه الأقرب للنجاح.",
-score:7
-},
-{
-text:"أوزع المبلغ على عدة منتجات حتى لا أعتمد على اختيار واحد.",
-score:7
-},
-{
-text:"أختبر كميات صغيرة من أكثر من خيار ثم أوسع ما تظهر عليه مؤشرات أفضل.",
-score:10
-},
-{
-text:"أنتظر حتى أعرف المنتج الأفضل بشكل شبه مؤكد.",
+text:"أغير الفكرة مباشرة لأن وجود جزء منطقي في كلامه يعني أن الفكرة بها مشكلة.",
 score:4
+},
+
+{
+text:"أتجاهله تمامًا لأن الشخص الذي لا يؤمن بالفكرة لن يفهمها.",
+score:0
+},
+
+{
+text:"أناقشه لأعرف هل لديه دليل فعلي أم أن اعتراضه مجرد انطباع.",
+score:7
+},
+
+{
+text:"أفصل كلامه إلى نقاط يمكن اختبارها، وأحكم عليها بالنتائج بدل موقفه الشخصي.",
+score:10
 }
+
 ]
 },
 
 
 {
 question:
-"فشلت محاولة كنت متأكدًا نسبيًا أنها ستنجح. أمامك فرصة لإعادة التجربة، لكنك لا تعرف سبب الفشل بشكل كامل. ماذا تفعل؟",
+"معك 10,000 جنيه وتريد بدء تجارة، لكنك لا تعرف أي منتج سيدور أسرع. كيف تبدأ؟",
 
-shehab:"05:40",
-time:240,
+shehabTime:"07:10",
+visitorTime:300,
 
 choices:[
+
 {
-text:"أعيد المحاولة بنفس الطريقة لأن الفشل قد يكون ظرفًا استثنائيًا.",
-score:4
+text:"أختار المنتج الذي أتوقع أنه الأكثر طلبًا وأضع أغلب رأس المال فيه.",
+score:7
 },
+
 {
-text:"أبحث عن السبب الأكثر احتمالًا وأغيره قبل إعادة المحاولة.",
+text:"أختبر كميات صغيرة من عدة منتجات، ثم أزيد الاستثمار في الذي تظهر عليه مؤشرات أفضل.",
 score:10
 },
+
 {
-text:"أغير الفكرة بالكامل حتى لا أكرر التجربة.",
+text:"أقسم رأس المال بالتساوي على كل المنتجات حتى أضمن عدم خسارة اختيار واحد.",
 score:4
 },
+
 {
-text:"أنتظر معلومات أكثر قبل تحديد ما إذا كانت المحاولة الثانية تستحق.",
-score:7
+text:"لا أبدأ حتى أعرف بشكل شبه مؤكد المنتج الأفضل.",
+score:0
 }
+
 ]
 },
 
 
 {
 question:
-"شخص تثق به أخطأ في قرار أثر عليك، لكنه تحمل مسؤوليته واعتذر. ماذا تفعل؟",
+"فشلت محاولة كنت تتوقع نجاحها، لكنك لا تعرف سبب الفشل بشكل كامل. لديك فرصة لإعادة التجربة. ماذا تفعل؟",
 
-shehab:"08:30",
-time:270,
+shehabTime:"05:40",
+visitorTime:240,
 
 choices:[
+
 {
-text:"أعيد الثقة كما كانت لأن اعترافه بالخطأ كافٍ.",
-score:4
+text:"أعيد التجربة بنفس الطريقة لأن الفشل قد يكون مجرد ظرف عابر.",
+score:0
 },
+
 {
-text:"أقبل الاعتذار، لكن عودة الثقة تكون مرتبطة بتصرفاته بعد ذلك.",
+text:"أبحث عن السبب الأكثر احتمالًا، وأغيره قبل المحاولة الثانية.",
 score:10
 },
+
 {
-text:"أحافظ على العلاقة لكن لا أعتمد عليه مرة أخرى في القرارات المهمة.",
-score:7
-},
-{
-text:"أبتعد عنه لأن الخطأ أثبت أنه لا يمكن الوثوق به.",
+text:"أغير الفكرة بالكامل حتى لا أكرر التجربة السابقة.",
 score:4
+},
+
+{
+text:"أجمع معلومات إضافية أولًا، ثم أقرر هل إعادة التجربة تستحق.",
+score:7
 }
+
 ]
 },
 
 
 {
 question:
-"أمامك مصدر دخل سريع لكنه محدود، وفي نفس الوقت فرصة أكبر تحتاج عدة أشهر قبل أن تظهر نتائجها. كيف تنظر للموقف؟",
+"شخص تثق به أخطأ في قرار أثر عليك، لكنه اعترف بخطئه واعتذر. ماذا تفعل؟",
 
-shehab:"06:45",
-time:300,
+shehabTime:"08:30",
+visitorTime:270,
 
 choices:[
+
 {
-text:"أختار الفرصة الأكبر لأن المستقبل أهم من العائد الحالي.",
-score:7
-},
-{
-text:"أختار الدخل السريع لأن النتيجة الحالية أهم.",
+text:"أعيد الثقة كما كانت فورًا لأن الاعتذار بالنسبة لي كافٍ.",
 score:4
 },
+
 {
-text:"أستخدم الدخل الحالي لتأمين احتياجاتي وأخصص جزءًا من مواردي للفرصة الأكبر.",
+text:"أحافظ على العلاقة لكن أتوقف تمامًا عن الاعتماد عليه في أي قرار.",
+score:7
+},
+
+{
+text:"أقبل الاعتذار، وأترك عودة الثقة مرتبطة بتصرفاته بعد الخطأ.",
 score:10
 },
+
 {
-text:"أنتظر حتى أعرف أيهما سيحقق نتيجة أفضل.",
-score:7
+text:"أقطع العلاقة لأن الخطأ أثبت أن الثقة كانت في غير محلها.",
+score:0
 }
+
 ]
 },
 
 
 {
 question:
-"عليك اتخاذ قرار سريع، والمعلومات المتاحة ليست كاملة. الخطأ ممكن يكلفك، لكن التأخير أيضًا له تكلفة. ماذا تفعل؟",
+"أمامك مصدر دخل سريع لكنه محدود، وفي نفس الوقت فرصة أكبر تحتاج عدة أشهر قبل ظهور نتائجها. كيف تتعامل؟",
 
-shehab:"07:20",
-time:240,
+shehabTime:"06:45",
+visitorTime:300,
 
 choices:[
+
 {
-text:"أجمع أهم المعلومات التي يمكن الحصول عليها بسرعة ثم أقرر.",
-score:10
-},
-{
-text:"أقرر فورًا لأن السرعة أهم.",
+text:"أترك الدخل الحالي وأركز بالكامل على الفرصة الأكبر.",
 score:4
 },
+
 {
-text:"أؤجل القرار حتى تصبح الصورة كاملة.",
-score:7
+text:"أختار الدخل السريع لأن العائد الحالي أهم من الاحتمالات.",
+score:0
 },
+
 {
-text:"أطلب من شخص لديه خبرة أن يقرر معي.",
+text:"أستخدم الدخل الحالي لتأمين احتياجاتي وأخصص جزءًا من وقتي ومواردي للفرصة الأكبر.",
+score:10
+},
+
+{
+text:"أنتظر حتى تتضح نتائج الفرصة الأكبر قبل أن أقرر.",
 score:7
 }
+
+]
+},
+
+
+{
+question:
+"عليك اتخاذ قرار سريع، والمعلومات المتاحة ليست كاملة. الخطأ له تكلفة والتأخير له تكلفة أيضًا. ماذا تفعل؟",
+
+shehabTime:"07:20",
+visitorTime:240,
+
+choices:[
+
+{
+text:"أجمع أهم المعلومات التي يمكن الحصول عليها بسرعة، ثم أقرر بناءً على ما يكفي للحسم.",
+score:10
+},
+
+{
+text:"أقرر فورًا لأن السرعة أهم من أي شيء آخر.",
+score:0
+},
+
+{
+text:"أؤجل القرار حتى تصبح الصورة كاملة مهما كان ثمن التأخير.",
+score:4
+},
+
+{
+text:"أطلب من شخص أكثر خبرة أن يقرر معي قبل التحرك.",
+score:7
+}
+
 ]
 },
 
@@ -675,61 +728,62 @@ score:7
 question:
 "لو عرفت أن أمامك فرصة واحدة فقط لتغيير مستقبلك، ما أول خطوة ستأخذها؟",
 
-shehab:"12:00",
-time:360,
+shehabTime:"12:00",
+visitorTime:360,
 
 choices:[
+
 {
-text:"أختار أكبر فرصة متاحة حتى لو لم تكن الخطة واضحة بالكامل.",
+text:"أختار أكبر فرصة متاحة حتى لو لم تكن لدي خطة واضحة.",
 score:4
 },
+
 {
-text:"أحدد النتيجة التي أريدها ثم أبدأ بأقرب خطوة عملية يمكن اختبارها.",
+text:"أجمع أكبر قدر ممكن من المعلومات قبل أن أختار أي اتجاه.",
+score:7
+},
+
+{
+text:"أختار المجال الذي أشعر أن فرصتي فيه أكبر.",
+score:0
+},
+
+{
+text:"أحدد النتيجة المطلوبة ثم أبدأ بأقرب خطوة عملية يمكن تنفيذها واختبارها.",
 score:10
-},
-{
-text:"أجمع أكبر قدر ممكن من المعلومات قبل اختيار الاتجاه.",
-score:7
-},
-{
-text:"أختار المجال الذي أشعر أن لدي فرصة أكبر للنجاح فيه.",
-score:7
 }
+
 ]
 }
 
 ];
 
 
-/* =================================
+/* =========================
    المتغيرات
-================================= */
+========================= */
 
-let current=0;
-let total=0;
-let name="";
-let selected=null;
-let timer=null;
-let seconds=0;
+let currentQuestion = 0;
+let totalScore = 0;
+let playerName = "";
+let selectedScore = null;
+let remainingSeconds = 0;
+let timerInterval = null;
 
 
-/* =================================
+/* =========================
    الصفحات
-================================= */
+========================= */
 
 function hideAll(){
 
-document.getElementById("home")
-.classList.add("hidden");
+document.getElementById("home").classList.add("hidden");
 
-document.getElementById("namePage")
-.classList.add("hidden");
+document.getElementById("namePage").classList.add("hidden");
 
-document.getElementById("quizPage")
-.classList.add("hidden");
+document.getElementById("quizPage").classList.add("hidden");
 
-document.getElementById("resultPage")
-.classList.add("hidden");
+document.getElementById("resultPage").classList.add("hidden");
 
 }
 
@@ -738,36 +792,34 @@ function showName(){
 
 hideAll();
 
-document.getElementById("namePage")
-.classList.remove("hidden");
+document.getElementById("namePage").classList.remove("hidden");
 
 }
 
 
 function goHome(){
 
-clearInterval(timer);
+stopTimer();
 
 hideAll();
 
-document.getElementById("home")
-.classList.remove("hidden");
+document.getElementById("home").classList.remove("hidden");
 
 }
 
 
-/* =================================
-   بدء اللعبة
-================================= */
+/* =========================
+   بدء الاختبار
+========================= */
 
 function startGame(){
 
-const n=document
-.getElementById("nameInput")
+const name =
+document.getElementById("nameInput")
 .value
 .trim();
 
-if(n===""){
+if(name === ""){
 
 alert("اكتب اسمك الأول يا بطل 😏");
 
@@ -775,90 +827,99 @@ return;
 
 }
 
-name=n;
+playerName = name;
 
-current=0;
+currentQuestion = 0;
 
-total=0;
+totalScore = 0;
 
 showQuestion();
 
 }
 
 
-/* =================================
+/* =========================
    عرض السؤال
-================================= */
+========================= */
 
 function showQuestion(){
 
-clearInterval(timer);
+stopTimer();
 
 hideAll();
 
 document.getElementById("quizPage")
 .classList.remove("hidden");
 
-const q=questions[current];
+const q = questions[currentQuestion];
 
 document.getElementById("progress")
-.textContent=
-"السؤال "+(current+1)+" من 10";
-
-document.getElementById("shehabTime")
-.textContent=q.shehab;
+.textContent =
+"السؤال " +
+(currentQuestion + 1) +
+" من 10";
 
 document.getElementById("question")
-.textContent=q.question;
+.textContent =
+q.question;
 
-document.getElementById("choices")
-.innerHTML="";
+document.getElementById("shehabTime")
+.textContent =
+q.shehabTime;
+
+selectedScore = null;
 
 document.getElementById("reason")
-.value="";
+.value = "";
 
 document.getElementById("reasonArea")
 .classList.add("hidden");
 
-selected=null;
+const choicesContainer =
+document.getElementById("choices");
+
+choicesContainer.innerHTML = "";
 
 q.choices.forEach(function(choice,index){
 
-const btn=document.createElement("button");
+const button =
+document.createElement("button");
 
-btn.className="choice";
+button.className = "choice";
 
-btn.textContent=
-String.fromCharCode(65+index)+") "+
+button.textContent =
+String.fromCharCode(65 + index) +
+") " +
 choice.text;
 
-btn.onclick=function(){
+button.onclick = function(){
 
-selectChoice(btn,choice.score);
+selectChoice(button,choice.score);
 
 };
 
-document.getElementById("choices")
-.appendChild(btn);
+choicesContainer.appendChild(button);
 
 });
 
 
-seconds=q.time;
+remainingSeconds =
+q.visitorTime;
 
 updateTimer();
 
-timer=setInterval(function(){
+timerInterval =
+setInterval(function(){
 
-seconds--;
+remainingSeconds--;
 
 updateTimer();
 
-if(seconds<=0){
+if(remainingSeconds <= 0){
 
-clearInterval(timer);
+stopTimer();
 
-timeUp();
+autoFinishQuestion();
 
 }
 
@@ -867,42 +928,57 @@ timeUp();
 }
 
 
-/* =================================
+/* =========================
    العداد
-================================= */
+========================= */
 
 function updateTimer(){
 
-const el=document
-.getElementById("remaining");
+const timer =
+document.getElementById("remaining");
 
-const m=Math.floor(seconds/60);
+const minutes =
+Math.floor(remainingSeconds / 60);
 
-const s=seconds%60;
+const seconds =
+remainingSeconds % 60;
 
-el.textContent=
-String(m).padStart(2,"0")+
-":"+
-String(s).padStart(2,"0");
+timer.textContent =
+String(minutes).padStart(2,"0") +
+":" +
+String(seconds).padStart(2,"0");
 
-if(seconds<=20){
+if(remainingSeconds <= 20){
 
-el.classList.add("timer-danger");
+timer.classList.add("timer-danger");
 
 }else{
 
-el.classList.remove("timer-danger");
+timer.classList.remove("timer-danger");
 
 }
 
 }
 
 
-/* =================================
+function stopTimer(){
+
+if(timerInterval !== null){
+
+clearInterval(timerInterval);
+
+timerInterval = null;
+
+}
+
+}
+
+
+/* =========================
    الاختيار
-================================= */
+========================= */
 
-function selectChoice(btn,score){
+function selectChoice(button,score){
 
 document
 .querySelectorAll(".choice")
@@ -912,9 +988,9 @@ b.classList.remove("selected");
 
 });
 
-btn.classList.add("selected");
+button.classList.add("selected");
 
-selected=score;
+selectedScore = score;
 
 document
 .getElementById("reasonArea")
@@ -923,13 +999,13 @@ document
 }
 
 
-/* =================================
+/* =========================
    التالي
-================================= */
+========================= */
 
 function nextQuestion(){
 
-if(selected===null){
+if(selectedScore === null){
 
 alert("اختار إجابة الأول يا بطل 😏");
 
@@ -937,12 +1013,12 @@ return;
 
 }
 
-const reason=document
-.getElementById("reason")
+const reason =
+document.getElementById("reason")
 .value
 .trim();
 
-if(reason.length<8){
+if(reason.length < 8){
 
 alert("اكتب سبب اختيارك بشكل أوضح شوية 🧠");
 
@@ -950,13 +1026,13 @@ return;
 
 }
 
-clearInterval(timer);
+stopTimer();
 
-total+=selected;
+totalScore += selectedScore;
 
-current++;
+currentQuestion++;
 
-if(current<questions.length){
+if(currentQuestion < questions.length){
 
 showQuestion();
 
@@ -969,27 +1045,21 @@ showResult();
 }
 
 
-/* =================================
+/* =========================
    انتهاء الوقت
-================================= */
+========================= */
 
-function timeUp(){
+function autoFinishQuestion(){
 
-/*
-إذا انتهى الوقت:
-لو اختار إجابة يتم احتسابها.
-لو لم يختر، يحصل على صفر.
-*/
+if(selectedScore !== null){
 
-if(selected!==null){
-
-total+=selected;
+totalScore += selectedScore;
 
 }
 
-current++;
+currentQuestion++;
 
-if(current<questions.length){
+if(currentQuestion < questions.length){
 
 showQuestion();
 
@@ -1002,142 +1072,173 @@ showResult();
 }
 
 
-/* =================================
+/* =========================
    النتيجة
-================================= */
+========================= */
 
 function showResult(){
 
-clearInterval(timer);
+stopTimer();
 
 hideAll();
 
-document.getElementById("resultPage")
+document
+.getElementById("resultPage")
 .classList.remove("hidden");
 
-const finalScore=
-Math.round((total/10)*10)/10;
+const finalScore =
+Math.round((totalScore / 10) * 10) / 10;
 
-document.getElementById("resultTitle")
-.textContent=
-"🔥 ممتاز يا "+name;
+document
+.getElementById("resultTitle")
+.textContent =
+"🔥 ممتاز يا " +
+playerName;
 
-document.getElementById("score")
-.textContent=
-finalScore.toFixed(1)+" / 10";
+document
+.getElementById("score")
+.textContent =
+finalScore.toFixed(1) +
+" / 10";
 
 
-if(finalScore>=9){
+if(finalScore >= 9){
 
-document.getElementById("resultText")
-.textContent=
-"🔥 أداء قوي جدًا. وصلت لمستوى شهاب أو اقتربت منه بشكل واضح.";
-
-}
-else if(finalScore>=7){
-
-document.getElementById("resultText")
-.textContent=
-"نتيجة جيدة، لكن لسه عندك فرصة تكسر نتيجة شهاب.";
+document
+.getElementById("resultText")
+.textContent =
+"🔥 نتيجة قوية جدًا. وصلت لمستوى شهاب أو اقتربت منه بشكل واضح.";
 
 }
-else if(finalScore>=4){
+else if(finalScore >= 7){
 
-document.getElementById("resultText")
-.textContent=
-"نتيجة متوسطة. بعض اختياراتك كانت جيدة، لكن في مواقف تانية كان ممكن تختار بشكل أقوى.";
-
-}
-else{
-
-document.getElementById("resultText")
-.textContent=
-"النتيجة منخفضة، لكن ده لا يعني إنك أقل ذكاء. الاختبار بيقيس اختياراتك في المواقف دي فقط.";
+document
+.getElementById("resultText")
+.textContent =
+"نتيجة جيدة جدًا، لكن لسه عندك فرصة تكسر نتيجة شهاب.";
 
 }
+else if(finalScore >= 4){
 
-
-/* نقاط التميز */
-
-if(finalScore>=8){
-
-document.getElementById("strength")
-.textContent=
-"بتفكر في النتائج والمخاطر، وبتحاول تتعامل مع القرار بطريقة عملية.";
-
-}
-else if(finalScore>=5){
-
-document.getElementById("strength")
-.textContent=
-"عندك بعض القرارات المتوازنة، وبتقدر تشوف أكثر من جانب للموقف.";
+document
+.getElementById("resultText")
+.textContent =
+"نتيجة متوسطة. بعض اختياراتك كانت قوية، وبعضها كان يحتاج تفكيرًا أعمق.";
 
 }
 else{
 
-document.getElementById("strength")
-.textContent=
-"عندك استعداد لاتخاذ قرارات واضحة، لكن محتاج تراجع البدائل قبل الحسم.";
+document
+.getElementById("resultText")
+.textContent =
+"النتيجة منخفضة، لكن الرقم لا يحكم على ذكائك؛ الاختبار يقيس اختياراتك في المواقف دي فقط.";
 
 }
 
 
-/* التطوير */
+/* أسلوب التفكير */
 
-if(finalScore>=8){
+if(finalScore >= 8.5){
 
-document.getElementById("weakness")
-.textContent=
-"ركز أكثر على اختبار افتراضاتك بدل الاعتماد على أول تفسير للموقف.";
+document
+.getElementById("style")
+.textContent =
+"تفكير متوازن وتميل لتحليل المخاطر والبدائل قبل اتخاذ القرار.";
+
+}
+else if(finalScore >= 7){
+
+document
+.getElementById("style")
+.textContent =
+"تفكير عملي جيد، لكن بعض قراراتك كان يمكن أن تستفيد من تحليل أوسع.";
+
+}
+else if(finalScore >= 4){
+
+document
+.getElementById("style")
+.textContent =
+"عندك بعض القرارات المتوازنة، لكن أحيانًا تحتاج تراجع البدائل قبل الحسم.";
 
 }
 else{
 
-document.getElementById("weakness")
-.textContent=
-"حاول توزن بين المخاطرة والنتيجة، وتفكر في أكثر من احتمال قبل اتخاذ القرار.";
+document
+.getElementById("style")
+.textContent =
+"تميل أحيانًا للحسم السريع أو الانتظار الزائد؛ حاول توازن بين المخاطرة والمعلومة المتاحة.";
 
 }
 
 
 /* المقارنة */
 
-const difference=
-Math.abs(finalScore-9.0)
+const difference =
+Math.abs(finalScore - 9.0)
 .toFixed(1);
 
-if(finalScore>9){
+if(finalScore > 9){
 
-document.getElementById("comparison")
-.textContent=
-"🔥 كسرت نتيجة شهاب بـ "+
-difference+
+document
+.getElementById("comparison")
+.textContent =
+"🔥 كسرت نتيجة شهاب بـ " +
+difference +
 " نقطة.";
 
 }
-else if(finalScore===9){
+else if(finalScore === 9){
 
-document.getElementById("comparison")
-.textContent=
+document
+.getElementById("comparison")
+.textContent =
 "🔥 تعادلت مع شهاب: 9.0 / 10.";
 
 }
 else{
 
-document.getElementById("comparison")
-.textContent=
-"نتيجة شهاب أعلى منك بـ "+
-difference+
-" نقطة.";
+document
+.getElementById("comparison")
+.textContent =
+"نتيجة شهاب أعلى منك بـ " +
+difference +
+" نقطة. لسه تقدر ترجع وتحاول تكسر الرقم.";
 
 }
 
 
 /* الرسالة */
 
-document.getElementById("message")
-.textContent=
-"الرقم مش حكم نهائي على ذكائك. المهم تعرف إزاي بتفكر تحت الضغط، وإيه اللي ممكن تطوره في المرة الجاية. 🧠🔥";
+document
+.getElementById("message")
+.textContent =
+"الرقم مش حكم نهائي على ذكائك. المهم تعرف ليه اخترت، وتقدر تراجع طريقة تفكيرك لما تظهر معلومات جديدة. 🧠🔥";
+
+}
+
+
+/* =========================
+   زر واتساب
+========================= */
+
+function contactShehab(){
+
+const phone =
+"201011641423";
+
+const message =
+encodeURIComponent(
+"السلام عليكم يا شهاب، جربت تحدي شهاب وعاوز أكلمك."
+);
+
+window.open(
+"https://wa.me/" +
+phone +
+"?text=" +
+message,
+"_blank"
+);
 
 }
 
