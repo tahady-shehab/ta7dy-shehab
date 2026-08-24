@@ -290,7 +290,7 @@ placeholder="اكتب اسمك هنا"
 autocomplete="off"
 >
 
-<button class="primary" onclick="startGame()">
+<button id="startButton" class="primary" onclick="startGame()">
 ابدأ المواجهة 🚀
 </button>
 
@@ -662,6 +662,8 @@ hideAll();
 document.getElementById("namePage")
 .classList.remove("hidden");
 
+document.getElementById("nameInput").focus();
+
 }
 
 function goHome(){
@@ -683,6 +685,7 @@ document.getElementById("home")
 async function startGame(){
 
 const input=document.getElementById("nameInput");
+const button=document.getElementById("startButton");
 
 const name=input.value.trim();
 
@@ -690,60 +693,86 @@ if(!name){
 
 alert("اكتب اسمك الأول يا بطل 😏");
 
+input.focus();
+
 return;
 
 }
+
+if(name.length>30){
+
+alert("الاسم لازم يكون 30 حرف أو أقل.");
+
+return;
+
+}
+
+button.disabled=true;
+button.textContent="جاري تجهيز المواجهة...";
 
 playerName=name;
 
 currentQuestion=0;
 totalScore=0;
 selectedAnswer=null;
+playerId=null;
+attemptId=null;
 
-playerId=crypto.randomUUID();
-attemptId=crypto.randomUUID();
+try{
 
-const playerResult=
-await supabaseClient
-.from("players")
-.insert({
-id:playerId,
-name:playerName
-});
+const result =
+await supabaseClient.rpc(
+"start_quiz",
+{
+p_name:name
+}
+);
 
-if(playerResult.error){
+if(result.error){
 
-console.error(playerResult.error);
+console.error("START QUIZ ERROR:",result.error);
 
-alert("حصلت مشكلة في تسجيل الاسم. حاول مرة تانية.");
+alert(
+"حصلت مشكلة في بدء التحدي.\n\n"+
+(result.error.message || "حاول مرة تانية.")
+);
 
 return;
 
 }
 
-const attemptResult=
-await supabaseClient
-.from("attempts")
-.insert({
-id:attemptId,
-player_id:playerId,
-score:0,
-total_questions:10,
-shehab_score:9,
-questions_completed:0
-});
+if(!result.data){
 
-if(attemptResult.error){
+throw new Error("لم يتم استلام بيانات المحاولة.");
 
-console.error(attemptResult.error);
+}
 
-alert("حصلت مشكلة في بدء الاختبار.");
+playerId=result.data.player_id;
+attemptId=result.data.attempt_id;
 
-return;
+if(!playerId || !attemptId){
+
+throw new Error("بيانات اللاعب أو المحاولة غير مكتملة.");
 
 }
 
 showQuestion();
+
+}catch(error){
+
+console.error("START GAME ERROR:",error);
+
+alert(
+"حصلت مشكلة في الاتصال بالموقع.\n\n"+
+(error.message || "حاول مرة تانية.")
+);
+
+}finally{
+
+button.disabled=false;
+button.textContent="ابدأ المواجهة 🚀";
+
+}
 
 }
 
@@ -793,7 +822,9 @@ button.className="choice";
 button.textContent=
 String.fromCharCode(65+index)+") "+choice.text;
 
-button.onclick=()=>selectChoice(button,index);
+button.onclick=()=>{
+selectChoice(button,index);
+};
 
 container.appendChild(button);
 
@@ -895,6 +926,14 @@ document.getElementById("reasonArea")
 
 async function saveAnswer(){
 
+if(!attemptId){
+
+console.error("No attempt ID");
+
+return false;
+
+}
+
 const q=questions[currentQuestion];
 
 const timeUsed=
@@ -916,7 +955,15 @@ time_used_seconds:Math.max(0,timeUsed),
 exceeded_shehab_time:playerExceededShehabTime
 });
 
-return !result.error;
+if(result.error){
+
+console.error("SAVE ANSWER ERROR:",result.error);
+
+return false;
+
+}
+
+return true;
 
 }
 
@@ -975,7 +1022,7 @@ await finishQuiz();
 
 
 /* =====================================================
-   إنهاء الاختبار من السيرفر
+   إنهاء الاختبار
 ===================================================== */
 
 async function finishQuiz(){
@@ -994,19 +1041,28 @@ p_exceeded_shehab_time:playerExceededShehabTime
 
 if(result.error){
 
-console.error(result.error);
+console.error("FINISH ERROR:",result.error);
 
 alert(
-"حصلت مشكلة أثناء حساب النتيجة. حاول تحديث الصفحة والمحاولة مرة أخرى."
+"حصلت مشكلة أثناء حساب النتيجة.\n\n"+
+(result.error.message || "حاول تحديث الصفحة والمحاولة مرة أخرى.")
 );
 
 return;
 
 }
 
-const score=result.data.score;
+if(!result.data || typeof result.data.score!=="number"){
 
-totalScore=score;
+console.error("INVALID FINISH RESPONSE:",result.data);
+
+alert("لم يتم استلام النتيجة بشكل صحيح. حاول مرة أخرى.");
+
+return;
+
+}
+
+totalScore=result.data.score;
 
 await showResult();
 
@@ -1116,7 +1172,7 @@ p_attempt_id:attemptId
 
 if(stats.error){
 
-console.error(stats.error);
+console.error("STATS ERROR:",stats.error);
 
 document.getElementById("percentage").textContent=
 Math.round(totalScore*10)+"%";
