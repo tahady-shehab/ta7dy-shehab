@@ -3,46 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>تحدي شهاب</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
 
 body{
 margin:0;
 font-family:Arial,Tahoma,sans-serif;
 background:#080b14;
 color:#fff;
-min-height:100vh
+min-height:100vh;
 }
 
 .container{
-max-width:700px;
+max-width:720px;
 margin:auto;
-padding:24px 16px
+padding:14px 10px 40px;
 }
 
 .card{
 background:#111625;
 border:1px solid #293248;
 border-radius:25px;
-padding:28px 22px;
-box-shadow:0 20px 50px rgba(0,0,0,.4)
+padding:26px 20px;
+box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
 
-.center{text-align:center}
-.hidden{display:none!important}
+.center{
+text-align:center;
+}
+
+.hidden{
+display:none!important;
+}
 
 .logo{
 font-size:40px;
 font-weight:bold;
-margin-bottom:18px
+margin-bottom:16px;
 }
 
 .text{
 color:#aeb6c8;
 font-size:17px;
-line-height:1.9
+line-height:1.9;
 }
 
 .badge{
@@ -50,7 +60,7 @@ display:inline-block;
 background:#222a3d;
 padding:9px 15px;
 border-radius:30px;
-margin:15px 0
+margin:14px 0;
 }
 
 button{
@@ -61,30 +71,35 @@ padding:16px;
 font-size:18px;
 font-weight:bold;
 cursor:pointer;
-margin-top:14px
+margin-top:12px;
+transition:.15s;
+}
+
+button:active{
+transform:scale(.98);
 }
 
 .primary{
 background:#fff;
-color:#080b14
+color:#080b14;
 }
 
 .secondary{
 background:#252d42;
-color:#fff
+color:#fff;
 }
 
 .whatsapp{
 background:#25D366;
-color:#fff
+color:#fff;
 }
 
 button:disabled{
-opacity:.5;
-cursor:not-allowed
+opacity:.45;
+cursor:not-allowed;
 }
 
-input,textarea{
+input{
 width:100%;
 background:#080b14;
 border:1px solid #30394f;
@@ -93,33 +108,37 @@ color:#fff;
 padding:15px;
 font-size:17px;
 outline:none;
-margin-top:10px
-}
-
-textarea{
-height:120px;
-resize:none;
-line-height:1.8
+margin-top:10px;
 }
 
 .progress{
 display:flex;
 justify-content:space-between;
 align-items:center;
+gap:10px;
 color:#aeb6c8;
-margin-bottom:14px
+margin-bottom:14px;
 }
 
 .remaining{
 background:#191f31;
-padding:8px 13px;
+padding:9px 14px;
 border-radius:20px;
 font-weight:bold;
-direction:ltr
+direction:ltr;
+min-width:76px;
+text-align:center;
 }
 
 .timer-danger{
-color:#ff7b7b!important
+color:#ff7777!important;
+animation:pulse .8s infinite;
+}
+
+@keyframes pulse{
+50%{
+opacity:.45;
+}
 }
 
 .shehab-box{
@@ -127,26 +146,26 @@ background:#191f31;
 border-radius:18px;
 padding:14px;
 text-align:center;
-margin-bottom:20px
+margin-bottom:20px;
 }
 
 .shehab-box small{
 display:block;
 color:#aeb6c8;
-margin-bottom:5px
+margin-bottom:5px;
 }
 
 .shehab-time{
 font-size:30px;
 font-weight:bold;
-direction:ltr
+direction:ltr;
 }
 
 .question{
 font-size:22px;
 font-weight:bold;
-line-height:1.8;
-margin-bottom:18px
+line-height:1.85;
+margin-bottom:18px;
 }
 
 .choice{
@@ -154,58 +173,26 @@ background:#191f31;
 border:2px solid #30394f;
 color:#fff;
 text-align:right;
-line-height:1.65
+line-height:1.7;
 }
 
 .choice.selected{
 background:#252d42;
-border-color:#fff
+border-color:#fff;
 }
 
-.reason-title{
-margin-top:22px;
-font-size:18px;
-font-weight:bold
-}
-
-.reason-info{
-font-size:14px;
+.timer-note{
+text-align:center;
 color:#8f99ad;
-line-height:1.8;
-margin-top:8px;
-background:#191f31;
-padding:12px;
-border-radius:14px
-}
-
-.warning{
 font-size:13px;
-color:#8f99ad;
-margin-top:12px;
-line-height:1.7
-}
-
-.over-time{
-display:none;
-background:#3a2025;
-border:1px solid #7b3d46;
-color:#ffb4bb;
-border-radius:14px;
-padding:13px;
-margin-top:15px;
 line-height:1.7;
-font-size:14px;
-font-weight:bold
-}
-
-.over-time.show{
-display:block
+margin-top:14px;
 }
 
 .score{
 font-size:68px;
 font-weight:bold;
-margin:12px 0
+margin:12px 0;
 }
 
 .result-box{
@@ -214,14 +201,14 @@ border-radius:18px;
 padding:18px;
 margin-top:16px;
 line-height:1.9;
-text-align:right
+text-align:right;
 }
 
 .stat-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:10px;
-margin-top:12px
+margin-top:12px;
 }
 
 .stat{
@@ -229,57 +216,146 @@ background:#080b14;
 border:1px solid #30394f;
 border-radius:16px;
 padding:15px;
-text-align:center
+text-align:center;
 }
 
 .stat strong{
 display:block;
 font-size:24px;
-margin-bottom:5px
+margin-bottom:5px;
 }
 
 .stat span{
 font-size:13px;
-color:#8f99ad
+color:#8f99ad;
 }
 
 .green{
-color:#8ee7a1
+color:#8ee7a1;
 }
 
-.save-status{
-font-size:13px;
+.red{
+color:#ff8d8d;
+}
+
+.review-card{
+background:#080b14;
+border:1px solid #30394f;
+border-radius:18px;
+padding:17px;
+margin-top:14px;
+}
+
+.review-number{
 color:#8f99ad;
-margin-top:10px
+font-size:13px;
+margin-bottom:8px;
 }
 
-.error-box{
-display:none;
+.review-question{
+font-size:18px;
+font-weight:bold;
+line-height:1.8;
+margin-bottom:14px;
+}
+
+.answer-line{
+padding:11px 13px;
+border-radius:12px;
+margin-top:8px;
+line-height:1.7;
+}
+
+.answer-player{
+background:#191f31;
+}
+
+.answer-correct{
+background:#173522;
+border:1px solid #2d7044;
+}
+
+.answer-wrong{
 background:#3a2025;
 border:1px solid #7b3d46;
-color:#ffb4bb;
-padding:12px;
+}
+
+.explanation{
+margin-top:13px;
+background:#191f31;
+padding:13px;
+border-radius:13px;
+color:#c6ccda;
+font-size:14px;
+line-height:1.9;
+}
+
+.status-badge{
+display:inline-block;
+padding:7px 12px;
+border-radius:20px;
+font-size:13px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.status-correct{
+background:#173522;
+color:#8ee7a1;
+}
+
+.status-wrong{
+background:#3a2025;
+color:#ff9ca4;
+}
+
+.status-timeout{
+background:#342c18;
+color:#ffd875;
+}
+
+.timeout-box{
+background:#342c18;
+border:1px solid #705d29;
+color:#ffd875;
+padding:13px;
 border-radius:14px;
 margin-top:12px;
 line-height:1.7;
-font-size:14px
+font-size:14px;
+font-weight:bold;
 }
 
 @media(max-width:450px){
 
+.container{
+padding:9px 7px 30px;
+}
+
+.card{
+padding:21px 14px;
+border-radius:21px;
+}
+
 .logo{
-font-size:32px
+font-size:32px;
 }
 
 .question{
-font-size:19px
+font-size:19px;
 }
 
-.stat-grid{
-grid-template-columns:1fr 1fr
+.choice{
+font-size:16px;
+padding:14px;
+}
+
+.score{
+font-size:58px;
 }
 
 }
+
 </style>
 </head>
 
@@ -291,7 +367,9 @@ grid-template-columns:1fr 1fr
 
 <section id="home" class="card center">
 
-<div class="logo">🧠 تحدي شهاب</div>
+<div class="logo">
+🧠 تحدي شهاب
+</div>
 
 <p class="text">
 مش مجرد اختبار...<br>
@@ -302,14 +380,19 @@ grid-template-columns:1fr 1fr
 🔥 أعلى نتيجة حاليًا: 9 / 10
 </div>
 
-<h2>فاكر نفسك بتعرف تفكر؟</h2>
+<h2>
+فاكر نفسك بتعرف تفكر؟ 👀
+</h2>
 
 <p class="text">
 شهاب دخل التحدي.<br>
 دلوقتي دورك تشوف هل تقدر تكسر نتيجته.
 </p>
 
-<button class="primary" onclick="showName()">
+<button
+class="primary"
+onclick="showName()"
+>
 ابدأ التحدي 🧠
 </button>
 
@@ -318,9 +401,14 @@ grid-template-columns:1fr 1fr
 
 <!-- NAME -->
 
-<section id="namePage" class="card center hidden">
+<section
+id="namePage"
+class="card center hidden"
+>
 
-<h2>قبل المواجهة 👀</h2>
+<h2>
+قبل المواجهة 👀
+</h2>
 
 <p class="text">
 اكتب اسمك علشان نبدأ التحدي.
@@ -333,7 +421,10 @@ placeholder="اكتب اسمك هنا"
 autocomplete="off"
 >
 
-<div id="startError" class="error-box"></div>
+<div
+id="startError"
+class="timeout-box hidden"
+></div>
 
 <button
 id="startButton"
@@ -355,7 +446,10 @@ onclick="goHome()"
 
 <!-- QUIZ -->
 
-<section id="quizPage" class="card hidden">
+<section
+id="quizPage"
+class="card hidden"
+>
 
 <div class="progress">
 
@@ -363,8 +457,11 @@ onclick="goHome()"
 السؤال 1 من 10
 </span>
 
-<span id="remaining" class="remaining">
-00:00
+<span
+id="remaining"
+class="remaining"
+>
+01:00
 </span>
 
 </div>
@@ -373,77 +470,52 @@ onclick="goHome()"
 <div class="shehab-box">
 
 <small>
-⏱️ الوقت الذي احتاجه شهاب
+⏱️ وقت شهاب في السؤال
 </small>
 
-<div id="shehabTime" class="shehab-time">
+<div
+id="shehabTime"
+class="shehab-time"
+>
 00:00
 </div>
 
 </div>
 
 
-<div id="question" class="question"></div>
+<div
+id="question"
+class="question"
+></div>
+
 
 <div id="choices"></div>
 
-
-<div id="reasonArea" class="hidden">
-
-<div class="reason-title">
-💭 ليه اخترت الإجابة دي؟
-</div>
-
-<div class="reason-info">
-
-الجزء ده اختياري تمامًا. اكتب رأيك أو سبب اختيارك لو حابب.
-
-<br>
-
-<strong>مهم:</strong>
-السبب لا يؤثر على الدرجة.
-
-</div>
-
-<textarea
-id="reason"
-maxlength="500"
-placeholder="اكتب سبب اختيارك بطريقتك... (اختياري)"
-></textarea>
 
 <button
 id="nextButton"
 class="primary"
 onclick="nextQuestion()"
+disabled
 >
 التالي →
 </button>
 
-</div>
 
-
-<div id="overTimeMessage" class="over-time">
-
-⚠️ عداد شهاب خلص.<br>
-أنت كده تجاوزت الوقت اللي احتاجه شهاب، لكن السؤال لسه مفتوح.
-
-</div>
-
-
-<p class="warning">
-
-العداد للمقارنة فقط، وانتهاء العداد لا يقفل السؤال.
-
+<p class="timer-note">
+🔔 آخر 10 ثواني فيها تنبيه صوتي.<br>
+⏳ لو الوقت خلص، السؤال ينتقل تلقائيًا.
 </p>
-
-<p id="saveStatus" class="save-status"></p>
 
 </section>
 
 
 <!-- RESULT -->
 
-<section id="resultPage" class="card center hidden">
+<section
+id="resultPage"
+class="card center hidden"
+>
 
 <div class="logo">
 🏆
@@ -451,14 +523,33 @@ onclick="nextQuestion()"
 
 <h2 id="resultTitle"></h2>
 
-<div id="score" class="score"></div>
+<div
+id="score"
+class="score"
+></div>
 
-<p id="resultText" class="text"></p>
+<p
+id="resultText"
+class="text"
+></p>
 
 
 <div class="result-box">
 
-<h3>📊 نتيجتك في الموقع</h3>
+<h3>
+🔥 مقارنة بشهاب
+</h3>
+
+<div id="comparison"></div>
+
+</div>
+
+
+<div class="result-box">
+
+<h3>
+📊 نتيجتك
+</h3>
 
 <div class="stat-grid">
 
@@ -478,11 +569,6 @@ onclick="nextQuestion()"
 </div>
 
 <div class="stat">
-<strong id="completed">-</strong>
-<span>اختبارات مكتملة</span>
-</div>
-
-<div class="stat">
 <strong id="average">-</strong>
 <span>متوسط النتائج</span>
 </div>
@@ -492,16 +578,26 @@ onclick="nextQuestion()"
 <span>أعلى نتيجة</span>
 </div>
 
+<div class="stat">
+<strong id="completed">-</strong>
+<span>اختبارات مكتملة</span>
 </div>
 
-<p id="progressMessage" class="green"></p>
+</div>
+
+<p
+id="progressMessage"
+class="green"
+></p>
 
 </div>
 
 
 <div class="result-box">
 
-<h3>🧠 أسلوب تفكيرك</h3>
+<h3>
+🧠 أسلوب تفكيرك
+</h3>
 
 <div id="style"></div>
 
@@ -510,48 +606,17 @@ onclick="nextQuestion()"
 
 <div class="result-box">
 
-<h3>🔥 مقارنة بشهاب</h3>
-
-<div id="comparison"></div>
-
-</div>
-
-
-<div class="result-box">
-
-<h3>💬 رسالة ليك</h3>
-
-<div id="message">
-
-الرقم مش حكم نهائي على ذكائك.
-الاختبار بيقيس اختياراتك في المواقف دي فقط.
-
-</div>
-
-</div>
-
-
-<div class="result-box">
-
 <h3>
-📌 عايز تعرف إجابتك كانت منطقية ليه أو لأ؟
+📋 مراجعة إجاباتك
 </h3>
 
-<div>
+<p class="text">
+شوف إجابتك، والإجابة الصحيحة، والتفسير المنطقي لكل سؤال.
+</p>
 
-لو مش مقتنع بإجابة معينة وعايز تعرف النموذج المنطقي للإجابة وتفهم ليه اختيارك صح أو غلط، تواصل مع شهاب على واتساب.
+<div id="review"></div>
 
 </div>
-
-</div>
-
-
-<button
-class="whatsapp"
-onclick="contactShehab()"
->
-📱 تواصل مع شهاب على واتساب
-</button>
 
 
 <button
@@ -561,6 +626,14 @@ onclick="location.reload()"
 تحدي شهاب مرة أخرى 🔥
 </button>
 
+
+<button
+class="whatsapp"
+onclick="contactShehab()"
+>
+📱 تواصل مع شهاب على واتساب
+</button>
+
 </section>
 
 </div>
@@ -568,149 +641,218 @@ onclick="location.reload()"
 
 <script>
 
-
-/* ==============================
-   QUESTIONS
-============================== */
+/* =====================================================
+   الأسئلة النهائية
+===================================================== */
 
 const questions=[
 
 {
-question:"أنت على وشك اتخاذ قرار مهم. المعلومات الحالية تبدو كافية، لكنك تعرف أن معلومة إضافية قد تظهر خلال وقت قصير. ما التصرف الأقرب لطريقتك؟",
+question:
+"أبوك قالك: «أنا شوفتك وإنت داخل البيت الساعة 8». إنت متأكد 100% إن أبوك لم يكن موجودًا في البيت الساعة 8. بعدها اكتشفت إن أبوك كان بيتفرج على كاميرا البيت الساعة 8 وشافك وأنت داخل. مين كلامه صحيح؟",
+
+time:60,
 shehabTime:"03:53",
-visitorTime:233,
+
 correctAnswer:2,
+
 choices:[
-{text:"أتصرف بالمعلومات الموجودة، وأراجع القرار لاحقًا إذا ظهرت المعلومة الجديدة."},
-{text:"أؤجل القرار حتى تظهر المعلومة الجديدة مهما كانت تكلفة الانتظار."},
-{text:"أحدد أولًا هل المعلومة المتوقعة قادرة فعلًا على تغيير القرار، ثم أقرر هل الانتظار يستحق."},
-{text:"أطلب رأيًا آخر حتى أقرر هل الانتظار أفضل أم التصرف الآن."}
-]
+"أ) إنت فقط",
+"ب) أبوك فقط",
+"ج) الاتنين",
+"د) محدش"
+],
+
+explanation:
+"إنت صح إن أبوك لم يكن موجودًا جسديًا في البيت، وهو صح إنه شافك عن طريق الكاميرا. الفخ إن العقل يربط كلمة «شافك» تلقائيًا بوجوده أمامك."
 },
 
 {
-question:"معك رأس مال محدود، وظهرت فرصة تبدو مربحة جدًا، لكن احتمال الخسارة موجود. كيف تتعامل معها؟",
+question:
+"تلاتة دخلوا محل. أحمد خرج الأول، محمد خرج بعد أحمد، وعلي خرج بعد محمد. مين آخر واحد من التلاتة خرج من المحل؟",
+
+time:60,
 shehabTime:"08:54",
-visitorTime:534,
-correctAnswer:0,
+
+correctAnswer:2,
+
 choices:[
-{text:"أدخل بجزء صغير من رأس المال وأتعامل مع البداية كاختبار قبل زيادة المبلغ."},
-{text:"أدخل بالمبلغ الأكبر طالما أن فرصة الربح تبدو أعلى من الخسارة."},
-{text:"أنتظر فرصة أوضح حتى لو ضاعت الفرصة الحالية."},
-{text:"أحاول جمع رأس مال أكبر أولًا حتى يكون الربح المحتمل أكبر."}
-]
+"أ) أحمد",
+"ب) محمد",
+"ج) علي",
+"د) مفيش حد"
+],
+
+explanation:
+"ترتيب الخروج هو أحمد، ثم محمد، ثم علي. لذلك علي هو آخر واحد خرج من المحل."
 },
 
 {
-question:"بدأت مشروعًا، وبعد فترة كانت النتائج أقل من المتوقع، لكن المشروع لم يفشل تمامًا. ماذا تفعل؟",
+question:
+"أحمد قال لمحمد الساعة 8:00: «أنا لسه داخل البيت». الساعة 8:10 محمد اتصل بأحمد، وأحمد رد عليه من داخل البيت. إيه الحاجة اللي لا يمكن إثباتها من المعلومات دي وحدها؟",
+
+time:60,
 shehabTime:"06:20",
-visitorTime:380,
-correctAnswer:3,
+
+correctAnswer:1,
+
 choices:[
-{text:"أستمر كما أنا فترة أطول لأن النتائج قد تتحسن مع الوقت."},
-{text:"أوقف المشروع وأنتقل لفكرة أخرى قبل خسارة المزيد."},
-{text:"أغير عدة أشياء مرة واحدة لأحاول تحسين النتيجة بسرعة."},
-{text:"أحدد المشكلة الأساسية، أغير عاملًا واحدًا وأقارن النتيجة قبل اتخاذ قرار أكبر."}
-]
+"أ) أحمد كان داخل البيت الساعة 8:10",
+"ب) أحمد كان داخل البيت وقت إرسال الرسالة",
+"ج) أحمد قال إنه داخل البيت الساعة 8",
+"د) محمد اتصل بأحمد الساعة 8:10"
+],
+
+explanation:
+"نعرف أن أحمد قال الساعة 8 إنه داخل البيت، لكن كلامه وحده لا يثبت أن العبارة كانت صحيحة في تلك اللحظة. أما وجوده في البيت الساعة 8:10 فلدينا عليه دليل من السيناريو."
 },
 
 {
-question:"شخص انتقد فكرتك بقوة وقال إنك لن تنجح. بعض كلامه منطقي وبعضه مبالغ فيه. ماذا تفعل؟",
+question:
+"واحد قال: «أنا متأكد إن أحمد كان لابس قميص أزرق الساعة 5». عندك صورة لأحمد اتصورت الساعة 5 بالضبط، والقميص فيها أحمر. إيه اللي نقدر نثبته أكيد؟",
+
+time:60,
 shehabTime:"11:00",
-visitorTime:660,
-correctAnswer:3,
-choices:[
-{text:"أغير الفكرة مباشرة لأن وجود جزء منطقي في كلامه يعني أن الفكرة بها مشكلة."},
-{text:"أتجاهله تمامًا لأن الشخص الذي لا يؤمن بالفكرة لن يفهمها."},
-{text:"أناقشه لأعرف هل لديه دليل فعلي أم أن اعتراضه مجرد انطباع."},
-{text:"أفصل كلامه إلى نقاط يمكن اختبارها، وأحكم عليها بالنتائج بدل موقفه الشخصي."}
-]
-},
 
-{
-question:"معك 10,000 جنيه وتريد بدء تجارة، لكنك لا تعرف أي منتج سيدور أسرع. كيف تبدأ؟",
-shehabTime:"07:10",
-visitorTime:430,
-correctAnswer:1,
-choices:[
-{text:"أختار المنتج الذي أتوقع أنه الأكثر طلبًا وأضع أغلب رأس المال فيه."},
-{text:"أختبر كميات صغيرة من عدة منتجات، ثم أزيد الاستثمار في الذي تظهر عليه مؤشرات أفضل."},
-{text:"أقسم رأس المال بالتساوي على كل المنتجات حتى أضمن عدم خسارة اختيار واحد."},
-{text:"لا أبدأ حتى أعرف بشكل شبه مؤكد المنتج الأفضل."}
-]
-},
-
-{
-question:"فشلت محاولة كنت تتوقع نجاحها، لكنك لا تعرف سبب الفشل بشكل كامل. لديك فرصة لإعادة التجربة. ماذا تفعل؟",
-shehabTime:"05:40",
-visitorTime:340,
-correctAnswer:1,
-choices:[
-{text:"أعيد التجربة بنفس الطريقة لأن الفشل قد يكون مجرد ظرف عابر."},
-{text:"أبحث عن السبب الأكثر احتمالًا، وأغيره قبل المحاولة الثانية."},
-{text:"أغير الفكرة بالكامل حتى لا أكرر التجربة السابقة."},
-{text:"أجمع معلومات إضافية أولًا، ثم أقرر هل إعادة التجربة تستحق."}
-]
-},
-
-{
-question:"شخص تثق به أخطأ في قرار أثر عليك، لكنه اعترف بخطئه واعتذر. ماذا تفعل؟",
-shehabTime:"08:30",
-visitorTime:510,
-correctAnswer:2,
-choices:[
-{text:"أعيد الثقة كما كانت فورًا لأن الاعتذار بالنسبة لي كافٍ."},
-{text:"أحافظ على العلاقة لكن أتوقف تمامًا عن الاعتماد عليه في أي قرار."},
-{text:"أقبل الاعتذار، وأترك عودة الثقة مرتبطة بتصرفاته بعد الخطأ."},
-{text:"أقطع العلاقة لأن الخطأ أثبت أن الثقة كانت في غير محلها."}
-]
-},
-
-{
-question:"أمامك مصدر دخل سريع لكنه محدود، وفي نفس الوقت فرصة أكبر تحتاج عدة أشهر قبل ظهور نتائجها. كيف تتعامل؟",
-shehabTime:"06:45",
-visitorTime:405,
-correctAnswer:2,
-choices:[
-{text:"أترك الدخل الحالي وأركز بالكامل على الفرصة الأكبر."},
-{text:"أختار الدخل السريع لأن العائد الحالي أهم من الاحتمالات."},
-{text:"أستخدم الدخل الحالي لتأمين احتياجاتي وأخصص جزءًا من وقتي ومواردي للفرصة الأكبر."},
-{text:"أنتظر حتى تتضح نتائج الفرصة الأكبر قبل أن أقرر."}
-]
-},
-
-{
-question:"عليك اتخاذ قرار سريع، والمعلومات المتاحة ليست كاملة. الخطأ له تكلفة والتأخير له تكلفة أيضًا. ماذا تفعل؟",
-shehabTime:"07:20",
-visitorTime:440,
 correctAnswer:0,
+
 choices:[
-{text:"أجمع أهم المعلومات التي يمكن الحصول عليها بسرعة، ثم أقرر بناءً على ما يكفي للحسم."},
-{text:"أقرر فورًا لأن السرعة أهم من أي شيء آخر."},
-{text:"أؤجل القرار حتى تصبح الصورة كاملة مهما كان ثمن التأخير."},
-{text:"أطلب من شخص أكثر خبرة أن يقرر معي قبل التحرك."}
-]
+"أ) أحمد كان لابس أحمر الساعة 5",
+"ب) الراجل كذاب",
+"ج) الراجل كان بيتعمد تضليلنا",
+"د) الصورة مزورة"
+],
+
+explanation:
+"الصورة تثبت لون القميص في لحظة التصوير، لكنها لا تكفي لإثبات نية الشخص الآخر أو أنه كذب عمدًا."
 },
 
 {
-question:"لو عرفت أن أمامك فرصة واحدة فقط لتغيير مستقبلك، ما أول خطوة ستأخذها؟",
-shehabTime:"12:00",
-visitorTime:720,
-correctAnswer:3,
+question:
+"محمد قال لأحمد: «النهارده الجمعة». محمد كان معتقد فعلًا إن النهارده الجمعة، لكنه كان مخطئًا، لأن اليوم الحقيقي كان الخميس. هل محمد كذب؟",
+
+time:60,
+shehabTime:"07:10",
+
+correctAnswer:1,
+
 choices:[
-{text:"أختار أكبر فرصة متاحة حتى لو لم تكن لدي خطة واضحة."},
-{text:"أجمع أكبر قدر ممكن من المعلومات قبل أن أختار أي اتجاه."},
-{text:"أختار المجال الذي أشعر أن فرصتي فيه أكبر."},
-{text:"أحدد النتيجة المطلوبة ثم أبدأ بأقرب خطوة عملية يمكن تنفيذها واختبارها."}
-]
+"أ) آه، لأنه قال معلومة غلط",
+"ب) لأ، لأنه كان معتقد إنها صح",
+"ج) آه، طالما أحمد صدقه",
+"د) مينفعش نعرف"
+],
+
+explanation:
+"المعلومة خاطئة، لكن محمد لم يكن يعلم أنها خاطئة. الخطأ في المعلومة ليس بالضرورة كذبًا."
+},
+
+{
+question:
+"محمد قال: «روحت الشغل بالعربية ورجعت بيها الساعة 9». صاحبه قال: «مستحيل! أنا شوفت عربيتك قدام البيت الساعة 10». واتأكدنا أن محمد فعلًا رجع بالعربية الساعة 9، وأن العربية ظلت أمام البيت حتى الساعة 10. مين كلامه فيه مشكلة؟",
+
+time:75,
+shehabTime:"05:40",
+
+correctAnswer:3,
+
+choices:[
+"أ) محمد",
+"ب) صاحبه",
+"ج) الاتنين",
+"د) مفيش مشكلة في كلام أي واحد"
+],
+
+explanation:
+"لا يوجد أي تعارض. العربية يمكن أن تعود الساعة 9 وتظل أمام البيت حتى الساعة 10. الفخ هو افتراض أن الحدثين متناقضان."
+},
+
+{
+question:
+"كريم لاحظ إن كل مرة يشرب قهوة قبل الشغل، بيشتغل كويس. فقرر إن القهوة هي سبب شغله الكويس. إيه المعلومة اللي أقوى شيء تضعف استنتاجه؟",
+
+time:60,
+shehabTime:"08:30",
+
+correctAnswer:2,
+
+choices:[
+"أ) كريم يشعر بتركيز أكبر بعد القهوة",
+"ب) ناس كتير تشرب قهوة قبل الشغل",
+"ج) في أيام لم يشرب فيها قهوة وبرضه اشتغل كويس",
+"د) القهوة التي يشربها قوية"
+],
+
+explanation:
+"إذا كان كريم يستطيع العمل جيدًا أحيانًا بدون القهوة، فوجود القهوة ليس شرطًا لحدوث النتيجة، وبالتالي يصبح استنتاجه عن السببية أضعف."
+},
+
+{
+question:
+"محمد دخل السينما ومعاه تذكرة في إيده. بعد فترة خرج، والتذكرة ما زالت معه. إيه اللي نقدر نعرفه أكيد؟",
+
+time:75,
+shehabTime:"06:45",
+
+correctAnswer:2,
+
+choices:[
+"أ) محمد اشترى التذكرة بنفسه",
+"ب) محمد دفع ثمن التذكرة",
+"ج) محمد دخل السينما",
+"د) محمد شاهد الفيلم كاملًا"
+],
+
+explanation:
+"وجود التذكرة لا يثبت من اشتراها أو من دفع ثمنها، ووجود محمد داخل السينما لا يثبت أنه شاهد الفيلم كاملًا."
+},
+
+{
+question:
+"أربعة أصحاب اتفقوا يوم الخميس إنهم يخرجوا يوم الجمعة. الثلاثة فهموا إن الموعد الساعة 8:00. الرابع قال: «ماشي». يوم الجمعة الساعة 8، الثلاثة وصلوا، والرابع لم يأتِ. الساعة 8:20 قال لهم: «أنا كنت فاكر إنكم هتتجمعوا 8 ونص». إيه أكتر استنتاج نقدر نطلعه عن فهم الرابع وقت الاتفاق؟",
+
+time60,
+shehabTime:"07:20",
+
+correctAnswer:2,
+
+choices:[
+"أ) كان فاهم 8 لكنه غير رأيه",
+"ب) كان فاهم 8 لكنه اتأخر",
+"ج) وافق على الخروج لكنه فهم الموعد بشكل مختلف",
+"د) كان فاهم 8 لكنه نسي"
+],
+
+explanation:
+"كلامه يوضح أنه كان يفهم الموعد بطريقة مختلفة، لكن لا توجد معلومات تثبت أنه نسي أو اتأخر أو غيّر رأيه."
+},
+
+{
+question:
+"أمامك صندوقان: الصندوق الأول مكتوب عليه «الجائزة هنا». الصندوق الثاني مكتوب عليه «الجائزة ليست هنا». أنت تعرف أن واحدًا فقط من الكلامين صحيح. إيه اللي نقدر نعرفه أكيد؟",
+
+time:90,
+shehabTime:"12:00",
+
+correctAnswer:2,
+
+choices:[
+"أ) الجائزة في الصندوق الأول",
+"ب) الجائزة في الصندوق الثاني",
+"ج) الجائزة موجودة في أحد الصندوقين، لكن لا نعرف أيهما من هذه المعلومات وحدها",
+"د) الكلامان كاذبان"
+],
+
+explanation:
+"لو الجائزة في الصندوق الأول، تكون العبارة الأولى صحيحة والثانية خاطئة. ولو كانت في الصندوق الثاني، تكون الأولى خاطئة والثانية صحيحة. إذن الشرط لا يحدد أي صندوق يحتوي الجائزة."
 }
 
 ];
 
 
-/* ==============================
-   VARIABLES
-============================== */
+/* =====================================================
+   المتغيرات
+===================================================== */
 
 let currentQuestion=0;
 let totalScore=0;
@@ -718,13 +860,14 @@ let playerName="";
 let selectedAnswer=null;
 let remainingSeconds=0;
 let timerInterval=null;
-let playerExceededShehabTime=false;
 let playerAnswers=[];
+let audioContext=null;
+let gameFinished=false;
 
 
-/* ==============================
-   LOCAL DATABASE
-============================== */
+/* =====================================================
+   LocalStorage
+===================================================== */
 
 function getPlayers(){
 
@@ -760,9 +903,9 @@ JSON.stringify(players)
 }
 
 
-/* ==============================
-   NAVIGATION
-============================== */
+/* =====================================================
+   Navigation
+===================================================== */
 
 function hideAll(){
 
@@ -773,14 +916,9 @@ function hideAll(){
 "resultPage"
 ].forEach(id=>{
 
-const element=
-document.getElementById(id);
-
-if(element){
-
-element.classList.add("hidden");
-
-}
+document
+.getElementById(id)
+.classList.add("hidden");
 
 });
 
@@ -815,9 +953,86 @@ document
 }
 
 
-/* ==============================
-   START
-============================== */
+/* =====================================================
+   Audio
+===================================================== */
+
+function initAudio(){
+
+try{
+
+if(!audioContext){
+
+audioContext=
+new(
+window.AudioContext ||
+window.webkitAudioContext
+)();
+
+}
+
+if(audioContext.state==="suspended"){
+
+audioContext.resume();
+
+}
+
+}catch(error){}
+
+}
+
+
+function beep(){
+
+try{
+
+if(!audioContext)return;
+
+const oscillator=
+audioContext.createOscillator();
+
+const gain=
+audioContext.createGain();
+
+oscillator.type="sine";
+
+oscillator.frequency.value=850;
+
+gain.gain.setValueAtTime(
+0.001,
+audioContext.currentTime
+);
+
+gain.gain.exponentialRampToValueAtTime(
+0.18,
+audioContext.currentTime+0.02
+);
+
+gain.gain.exponentialRampToValueAtTime(
+0.001,
+audioContext.currentTime+0.18
+);
+
+oscillator.connect(gain);
+
+gain.connect(
+audioContext.destination
+);
+
+oscillator.start();
+
+oscillator.stop(
+audioContext.currentTime+0.2
+);
+
+}catch(error){}
+
+}
+
+
+/* =====================================================
+   Start
+===================================================== */
 
 function startGame(){
 
@@ -833,15 +1048,14 @@ document.getElementById("startError");
 const name=
 input.value.trim();
 
-
-errorBox.style.display="none";
-
-errorBox.textContent="";
-
+errorBox.classList.add("hidden");
 
 if(!name){
 
-alert("اكتب اسمك الأول يا بطل 😏");
+errorBox.textContent=
+"اكتب اسمك الأول يا بطل 😏";
+
+errorBox.classList.remove("hidden");
 
 input.focus();
 
@@ -849,32 +1063,20 @@ return;
 
 }
 
-
-if(name.length>30){
-
-alert("الاسم لازم يكون 30 حرف أو أقل.");
-
-return;
-
-}
-
+initAudio();
 
 button.disabled=true;
 
 button.textContent=
 "جاري تجهيز المواجهة...";
 
-
 playerName=name;
 
 currentQuestion=0;
-
 totalScore=0;
-
 selectedAnswer=null;
-
 playerAnswers=[];
-
+gameFinished=false;
 
 setTimeout(()=>{
 
@@ -890,13 +1092,21 @@ showQuestion();
 }
 
 
-/* ==============================
-   QUESTION
-============================== */
+/* =====================================================
+   Show Question
+===================================================== */
 
 function showQuestion(){
 
 stopTimer();
+
+if(currentQuestion>=questions.length){
+
+finishQuiz();
+
+return;
+
+}
 
 hideAll();
 
@@ -904,84 +1114,68 @@ document
 .getElementById("quizPage")
 .classList.remove("hidden");
 
-
 const q=
 questions[currentQuestion];
-
 
 document
 .getElementById("progress")
 .textContent=
-"السؤال "+(currentQuestion+1)+" من 10";
-
+"السؤال "+
+(currentQuestion+1)+
+" من "+
+questions.length;
 
 document
 .getElementById("question")
 .textContent=
 q.question;
 
-
 document
 .getElementById("shehabTime")
 .textContent=
 q.shehabTime;
 
-
 selectedAnswer=null;
 
-playerExceededShehabTime=false;
+const nextButton=
+document.getElementById("nextButton");
 
+nextButton.disabled=true;
 
-document
-.getElementById("reason")
-.value="";
+nextButton.textContent=
+currentQuestion===
+questions.length-1
+?
+"إنهاء التحدي 🏆"
+:
+"التالي →";
 
-
-document
-.getElementById("reasonArea")
-.classList.add("hidden");
-
-
-document
-.getElementById("overTimeMessage")
-.classList.remove("show");
-
-
-document
-.getElementById("saveStatus")
-.textContent="";
-
-
-const container=
+const choices=
 document.getElementById("choices");
 
-container.innerHTML="";
+choices.innerHTML="";
 
-
-q.choices.forEach((choice,index)=>{
+q.choices.forEach(
+(choice,index)=>{
 
 const button=
 document.createElement("button");
 
 button.className="choice";
 
-button.textContent=
-String.fromCharCode(65+index)+") "+choice.text;
+button.textContent=choice;
 
 button.onclick=()=>{
-selectChoice(button,index)
+selectChoice(button,index);
 };
 
-container.appendChild(button);
+choices.appendChild(button);
 
 });
 
-
-remainingSeconds=
-q.visitorTime;
+remainingSeconds=q.time;
 
 updateTimer();
-
 
 timerInterval=
 setInterval(()=>{
@@ -992,26 +1186,22 @@ remainingSeconds--;
 
 updateTimer();
 
+if(
+remainingSeconds<=10 &&
+remainingSeconds>0
+){
+
+beep();
+
 }
 
+}
 
 if(remainingSeconds<=0){
 
 stopTimer();
 
-playerExceededShehabTime=true;
-
-document
-.getElementById("remaining")
-.textContent="00:00";
-
-document
-.getElementById("remaining")
-.classList.add("timer-danger");
-
-document
-.getElementById("overTimeMessage")
-.classList.add("show");
+handleTimeout();
 
 }
 
@@ -1020,9 +1210,9 @@ document
 }
 
 
-/* ==============================
-   TIMER
-============================== */
+/* =====================================================
+   Timer
+===================================================== */
 
 function updateTimer(){
 
@@ -1030,21 +1220,21 @@ const timer=
 document.getElementById("remaining");
 
 const minutes=
-Math.floor(remainingSeconds/60);
+Math.floor(
+remainingSeconds/60
+);
 
 const seconds=
 remainingSeconds%60;
-
 
 timer.textContent=
 String(minutes).padStart(2,"0")+
 ":"+
 String(seconds).padStart(2,"0");
 
-
 timer.classList.toggle(
 "timer-danger",
-remainingSeconds<=20
+remainingSeconds<=10
 );
 
 }
@@ -1063,64 +1253,46 @@ timerInterval=null;
 }
 
 
-/* ==============================
-   ANSWER
-============================== */
+/* =====================================================
+   Answer
+===================================================== */
 
 function selectChoice(button,index){
 
+if(gameFinished)return;
+
 document
 .querySelectorAll(".choice")
-.forEach(b=>{
-b.classList.remove("selected")
-});
-
+.forEach(
+b=>b.classList.remove("selected")
+);
 
 button.classList.add("selected");
 
 selectedAnswer=index;
 
-
 document
-.getElementById("reasonArea")
-.classList.remove("hidden");
+.getElementById("nextButton")
+.disabled=false;
 
 }
 
 
-/* ==============================
-   SAVE ANSWER
-============================== */
+/* =====================================================
+   Save Answer
+===================================================== */
 
-function saveAnswer(){
-
-if(selectedAnswer===null){
-
-return false;
-
-}
-
+function saveAnswer(timedOut=false){
 
 const q=
 questions[currentQuestion];
 
-
-const timeUsed=
-q.visitorTime-remainingSeconds;
-
-
-const reason=
-document
-.getElementById("reason")
-.value
-.trim();
-
-
 const correct=
-selectedAnswer===q.correctAnswer;
+selectedAnswer!==null &&
+selectedAnswer===
+q.correctAnswer;
 
-
-const answer={
+playerAnswers.push({
 
 question:currentQuestion+1,
 
@@ -1130,18 +1302,15 @@ correctAnswer:q.correctAnswer,
 
 correct:correct,
 
-reason:reason||null,
+timedOut:timedOut,
 
-timeUsed:Math.max(0,timeUsed),
+timeUsed:
+Math.max(
+0,
+q.time-remainingSeconds
+)
 
-exceededShehabTime:
-playerExceededShehabTime
-
-};
-
-
-playerAnswers.push(answer);
-
+});
 
 if(correct){
 
@@ -1149,85 +1318,100 @@ totalScore++;
 
 }
 
+}
 
-return true;
+
+/* =====================================================
+   Timeout
+===================================================== */
+
+function handleTimeout(){
+
+if(gameFinished)return;
+
+saveAnswer(true);
+
+currentQuestion++;
+
+setTimeout(()=>{
+
+if(
+currentQuestion<
+questions.length
+){
+
+showQuestion();
+
+}else{
+
+finishQuiz();
+
+}
+
+},500);
 
 }
 
 
-/* ==============================
-   NEXT
-============================== */
+/* =====================================================
+   Next
+===================================================== */
 
 function nextQuestion(){
 
+if(gameFinished)return;
+
 if(selectedAnswer===null){
 
-alert("اختار إجابة الأول يا بطل 😏");
+alert(
+"اختار إجابة الأول يا بطل 😏"
+);
 
 return;
 
 }
 
-
 stopTimer();
-
 
 const button=
 document.getElementById("nextButton");
 
 button.disabled=true;
 
-
-document
-.getElementById("saveStatus")
-.textContent=
-"جاري حفظ إجابتك...";
-
-
-const saved=
-saveAnswer();
-
-
-if(!saved){
-
-button.disabled=false;
-
-return;
-
-}
-
+saveAnswer(false);
 
 currentQuestion++;
 
+if(
+currentQuestion<
+questions.length
+){
 
-if(currentQuestion<10){
+setTimeout(
+showQuestion,
+180
+);
 
-button.disabled=false;
-
-showQuestion();
-
-return;
-
-}
-
+}else{
 
 finishQuiz();
 
 }
 
+}
 
-/* ==============================
-   FINISH
-============================== */
+
+/* =====================================================
+   Finish
+===================================================== */
 
 function finishQuiz(){
 
-document
-.getElementById("saveStatus")
-.textContent=
-"جاري حساب النتيجة...";
+if(gameFinished)return;
 
+gameFinished=true;
+
+stopTimer();
 
 const player={
 
@@ -1243,26 +1427,21 @@ answers:playerAnswers
 
 };
 
-
 savePlayer(player);
 
-
-setTimeout(()=>{
-
-showResult();
-
-},300);
+setTimeout(
+showResult,
+250
+);
 
 }
 
 
-/* ==============================
-   RESULT
-============================== */
+/* =====================================================
+   Result
+===================================================== */
 
 function showResult(){
-
-stopTimer();
 
 hideAll();
 
@@ -1270,12 +1449,10 @@ document
 .getElementById("resultPage")
 .classList.remove("hidden");
 
-
 document
 .getElementById("resultTitle")
 .textContent=
 "🔥 ممتاز يا "+playerName;
-
 
 document
 .getElementById("score")
@@ -1283,24 +1460,79 @@ document
 totalScore+" / 10";
 
 
+if(totalScore===10){
+
 document
 .getElementById("resultText")
 .textContent=
+"🏆🔥 كسرت نتيجة شهاب! جبت 10 / 10.";
 
-totalScore>=9
-?
-"🔥 نتيجة قوية جدًا. وصلت لمستوى شهاب أو كسرته."
-:
-totalScore>=7
-?
-"نتيجة جيدة جدًا، لكن لسه عندك فرصة تكسر نتيجة شهاب."
-:
-totalScore>=4
-?
-"نتيجة متوسطة. بعض اختياراتك كانت قوية، وبعضها يحتاج تفكيرًا أعمق."
-:
-"النتيجة منخفضة، لكن الرقم لا يحكم على ذكائك؛ الاختبار يقيس اختياراتك في المواقف دي فقط.";
+}else if(totalScore===9){
 
+document
+.getElementById("resultText")
+.textContent=
+"⚖️ تعادلت مع شهاب. 9 / 10.";
+
+}else if(totalScore>=7){
+
+document
+.getElementById("resultText")
+.textContent=
+"🔥 نتيجة قوية جدًا، لكن لسه ماكسرتش شهاب.";
+
+}else if(totalScore>=4){
+
+document
+.getElementById("resultText")
+.textContent=
+"نتيجة متوسطة. عندك اختيارات قوية، وبعض الأسئلة قدرت توقعك في الفخ.";
+
+}else{
+
+document
+.getElementById("resultText")
+.textContent=
+"النتيجة مش حكم على ذكائك. الاختبار بيقيس استجاباتك في المواقف دي فقط.";
+
+}
+
+
+/* Comparison */
+
+const comparison=
+document.getElementById("comparison");
+
+if(totalScore===10){
+
+comparison.innerHTML=
+'<strong class="green">🏆 كسرت نتيجة شهاب!</strong><br><br>'+
+"أنت: 10 / 10<br>"+
+"شهاب: 9 / 10";
+
+}else if(totalScore===9){
+
+comparison.innerHTML=
+'<strong>⚖️ تعادلت مع شهاب.</strong><br><br>'+
+"أنت: 9 / 10<br>"+
+"شهاب: 9 / 10";
+
+}else{
+
+comparison.innerHTML=
+'<strong class="red">شهاب ما زال متقدمًا.</strong><br><br>'+
+"أنت: "+
+totalScore+
+" / 10<br>"+
+"شهاب: 9 / 10<br><br>"+
+"الفارق: "+
+(9-totalScore)+
+" نقطة.";
+
+}
+
+
+/* Style */
 
 document
 .getElementById("style")
@@ -1308,67 +1540,43 @@ document
 
 totalScore>=9
 ?
-"تفكير متوازن جدًا وتميل لتحليل المخاطر والبدائل قبل اتخاذ القرار."
+"تفكيرك قوي جدًا في فحص المعنى والافتراضات، وغالبًا لا تكتفي بأول إجابة تبدو صحيحة."
 :
 totalScore>=7
 ?
-"تفكير عملي جيد، وتعرف غالبًا كيف توازن بين المخاطرة والمعلومة المتاحة."
+"عندك قدرة جيدة على التفكير التحليلي، لكن بعض الفخاخ قدرت تسحبك للاستنتاج السريع."
 :
 totalScore>=4
 ?
-"عندك بعض القرارات المتوازنة، لكن أحيانًا تحتاج تراجع البدائل قبل الحسم."
+"عندك مزيج من التفكير السريع والتحليلي، وتقدر تطور نتيجتك أكثر لو راجعت الافتراضات قبل الحكم."
 :
-"تميل أحيانًا للحسم السريع أو الانتظار الزائد؛ حاول توازن بين المخاطرة والمعلومة المتاحة.";
+"التحدي أظهر إن بعض الإجابات الأولى عندك تعتمد على الحدس السريع. التمهل وفحص المعلومات قد يغير النتيجة بشكل كبير.";
 
 
-document
-.getElementById("comparison")
-.textContent=
+/* Statistics */
 
-totalScore>9
-?
-"🔥 كسرت نتيجة شهاب."
-:
-totalScore===9
-?
-"🔥 تعادلت مع شهاب: 9 / 10."
-:
-"نتيجة شهاب أعلى منك بـ "+
-(9-totalScore)+
-" نقطة.";
-
-
-/* ==============================
-   STATISTICS
-============================== */
-
-const players=
-getPlayers();
-
+const players=getPlayers();
 
 const scores=
-players.map(player=>
-Number(player.score)||0
+players.map(
+player=>Number(player.score)||0
 );
-
 
 const totalPlayers=
 players.length;
 
-
 const completed=
 players.length;
-
 
 const average=
 completed
 ?
 scores.reduce(
-(sum,score)=>sum+score,0
+(sum,score)=>sum+score,
+0
 )/completed
 :
 totalScore;
-
 
 const highest=
 completed
@@ -1377,85 +1585,207 @@ Math.max(...scores)
 :
 totalScore;
 
-
 const sortedScores=
 [...scores].sort(
 (a,b)=>b-a
 );
 
-
 const rank=
 sortedScores.indexOf(totalScore)+1;
-
 
 document
 .getElementById("percentage")
 .textContent=
 (totalScore*10)+"%";
 
-
 document
 .getElementById("rank")
 .textContent=
 "#"+rank;
-
 
 document
 .getElementById("totalPlayers")
 .textContent=
 totalPlayers;
 
-
 document
 .getElementById("completed")
 .textContent=
 completed;
-
 
 document
 .getElementById("average")
 .textContent=
 average.toFixed(1)+" / 10";
 
-
 document
 .getElementById("highest")
 .textContent=
 highest+" / 10";
 
-
 document
 .getElementById("progressMessage")
 .textContent=
-
 totalScore>average
 ?
 "📈 نتيجتك أعلى من متوسط المشاركين."
 :
-totalScore===Number(average.toFixed(1))
+totalScore===Number(
+average.toFixed(1)
+)
 ?
 "⚖️ نتيجتك قريبة من متوسط المشاركين."
 :
-"📊 عندك مساحة كويسة للتحسن في المحاولة القادمة.";
+"📊 عندك مساحة كويسة للتحسن.";
+
+
+/* Review */
+
+renderReview();
 
 }
 
 
-/* ==============================
-   WHATSAPP
-============================== */
+/* =====================================================
+   Review
+===================================================== */
+
+function renderReview(){
+
+const review=
+document.getElementById("review");
+
+review.innerHTML="";
+
+playerAnswers.forEach(
+(answer,index)=>{
+
+const q=
+questions[index];
+
+const card=
+document.createElement("div");
+
+card.className=
+"review-card";
+
+const playerAnswerText=
+answer.selectedAnswer===null
+?
+"لم يتم اختيار إجابة — الوقت انتهى."
+:
+q.choices[
+answer.selectedAnswer
+];
+
+const correctAnswerText=
+q.choices[
+q.correctAnswer
+];
+
+let statusClass="";
+let statusText="";
+
+if(answer.correct){
+
+statusClass=
+"status-correct";
+
+statusText=
+"✓ إجابة صحيحة";
+
+}else if(answer.timedOut){
+
+statusClass=
+"status-timeout";
+
+statusText=
+"⏰ الوقت انتهى";
+
+}else{
+
+statusClass=
+"status-wrong";
+
+statusText=
+"✕ إجابة غير صحيحة";
+
+}
+
+card.innerHTML=`
+
+<div class="review-number">
+السؤال ${index+1} من 10
+</div>
+
+<div class="review-question">
+${escapeHTML(q.question)}
+</div>
+
+<div class="answer-line answer-player">
+<strong>إجابتك:</strong><br>
+${escapeHTML(playerAnswerText)}
+</div>
+
+<div class="answer-line answer-correct">
+<strong>الإجابة الصحيحة:</strong><br>
+${escapeHTML(correctAnswerText)}
+</div>
+
+<div>
+<span class="status-badge ${statusClass}">
+${statusText}
+</span>
+</div>
+
+<div class="explanation">
+<strong>🧠 التفسير المنطقي:</strong><br>
+${escapeHTML(q.explanation)}
+</div>
+
+`;
+
+review.appendChild(card);
+
+});
+
+}
+
+
+/* =====================================================
+   Security
+===================================================== */
+
+function escapeHTML(text){
+
+return String(text)
+
+.replace(/&/g,"&amp;")
+
+.replace(/</g,"&lt;")
+
+.replace(/>/g,"&gt;")
+
+.replace(/"/g,"&quot;")
+
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   WhatsApp
+===================================================== */
 
 function contactShehab(){
 
 const phone=
 "201011641423";
 
-
 const message=
 encodeURIComponent(
 "السلام عليكم يا شهاب، جربت تحدي شهاب وعاوز أعرف تفسير الإجابات المنطقية للاختبار."
 );
-
 
 window.open(
 "https://wa.me/"+
@@ -1468,9 +1798,9 @@ message,
 }
 
 
-/* ==============================
-   ENTER
-============================== */
+/* =====================================================
+   Enter
+===================================================== */
 
 document
 .getElementById("nameInput")
@@ -1484,8 +1814,7 @@ startGame();
 
 }
 
-}
-);
+});
 
 </script>
 
