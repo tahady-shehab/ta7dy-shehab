@@ -35,9 +35,13 @@ padding:26px 20px;
 box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
 
-.center{text-align:center}
+.center{
+text-align:center;
+}
 
-.hidden{display:none!important}
+.hidden{
+display:none!important;
+}
 
 .logo{
 font-size:40px;
@@ -113,7 +117,7 @@ justify-content:space-between;
 align-items:center;
 gap:10px;
 color:#aeb6c8;
-margin-bottom:14px;
+margin-bottom:20px;
 }
 
 .remaining{
@@ -132,27 +136,9 @@ animation:pulse .8s infinite;
 }
 
 @keyframes pulse{
-50%{opacity:.45}
+50%{
+opacity:.45;
 }
-
-.shehab-box{
-background:#191f31;
-border-radius:18px;
-padding:14px;
-text-align:center;
-margin-bottom:20px;
-}
-
-.shehab-box small{
-display:block;
-color:#aeb6c8;
-margin-bottom:5px;
-}
-
-.shehab-time{
-font-size:30px;
-font-weight:bold;
-direction:ltr;
 }
 
 .question{
@@ -224,8 +210,13 @@ font-size:13px;
 color:#8f99ad;
 }
 
-.green{color:#8ee7a1}
-.red{color:#ff8d8d}
+.green{
+color:#8ee7a1;
+}
+
+.red{
+color:#ff8d8d;
+}
 
 .review-card{
 background:#080b14;
@@ -264,11 +255,6 @@ background:#173522;
 border:1px solid #2d7044;
 }
 
-.answer-wrong{
-background:#3a2025;
-border:1px solid #7b3d46;
-}
-
 .explanation{
 margin-top:13px;
 background:#191f31;
@@ -301,18 +287,6 @@ color:#ff9ca4;
 .status-timeout{
 background:#342c18;
 color:#ffd875;
-}
-
-.timeout-box{
-background:#342c18;
-border:1px solid #705d29;
-color:#ffd875;
-padding:13px;
-border-radius:14px;
-margin-top:12px;
-line-height:1.7;
-font-size:14px;
-font-weight:bold;
 }
 
 .error-box{
@@ -389,7 +363,10 @@ font-size:58px;
 دلوقتي دورك تشوف هل تقدر تكسر نتيجته.
 </p>
 
-<button class="primary" id="startChallengeButton">
+<button
+class="primary"
+id="startChallengeButton"
+>
 ابدأ التحدي 🧠
 </button>
 
@@ -398,7 +375,10 @@ font-size:58px;
 
 <!-- NAME -->
 
-<section id="namePage" class="card center hidden">
+<section
+id="namePage"
+class="card center hidden"
+>
 
 <h2>
 قبل المواجهة 👀
@@ -415,13 +395,22 @@ placeholder="اكتب اسمك هنا"
 autocomplete="off"
 >
 
-<div id="startError" class="error-box hidden"></div>
+<div
+id="startError"
+class="error-box hidden"
+></div>
 
-<button id="startButton" class="primary">
+<button
+id="startButton"
+class="primary"
+>
 ابدأ المواجهة 🚀
 </button>
 
-<button id="backButton" class="secondary">
+<button
+id="backButton"
+class="secondary"
+>
 رجوع
 </button>
 
@@ -430,7 +419,10 @@ autocomplete="off"
 
 <!-- QUIZ -->
 
-<section id="quizPage" class="card hidden">
+<section
+id="quizPage"
+class="card hidden"
+>
 
 <div class="progress">
 
@@ -438,27 +430,24 @@ autocomplete="off"
 السؤال 1 من 10
 </span>
 
-<span id="remaining" class="remaining">
+<span
+id="remaining"
+class="remaining"
+>
 01:00
 </span>
 
 </div>
 
-<div class="shehab-box">
 
-<small>
-⏱️ وقت شهاب في السؤال
-</small>
+<div
+id="question"
+class="question"
+></div>
 
-<div id="shehabTime" class="shehab-time">
-00:00
-</div>
-
-</div>
-
-<div id="question" class="question"></div>
 
 <div id="choices"></div>
+
 
 <button
 id="nextButton"
@@ -467,6 +456,7 @@ disabled
 >
 التالي →
 </button>
+
 
 <p class="timer-note">
 🔔 آخر 10 ثواني فيها تنبيه صوتي.<br>
@@ -478,7 +468,10 @@ disabled
 
 <!-- RESULT -->
 
-<section id="resultPage" class="card center hidden">
+<section
+id="resultPage"
+class="card center hidden"
+>
 
 <div class="logo">
 🏆
@@ -486,9 +479,16 @@ disabled
 
 <h2 id="resultTitle"></h2>
 
-<div id="score" class="score"></div>
+<div
+id="score"
+class="score"
+></div>
 
-<p id="resultText" class="text"></p>
+<p
+id="resultText"
+class="text"
+></p>
+
 
 <div class="result-box">
 
@@ -541,7 +541,10 @@ disabled
 
 </div>
 
-<p id="progressMessage" class="green"></p>
+<p
+id="progressMessage"
+class="green"
+></p>
 
 </div>
 
@@ -572,11 +575,18 @@ disabled
 </div>
 
 
-<button id="restartButton" class="primary">
+<button
+id="restartButton"
+class="primary"
+>
 تحدي شهاب مرة أخرى 🔥
 </button>
 
-<button id="whatsappButton" class="whatsapp">
+
+<button
+id="whatsappButton"
+class="whatsapp"
+>
 📱 تواصل مع شهاب على واتساب
 </button>
 
@@ -591,14 +601,14 @@ disabled
    الأسئلة النهائية
 ===================================================== */
 
-const questions = [
+const questions=[
 
 {
 question:
 "أبوك قالك: «أنا شوفتك وإنت داخل البيت الساعة 8». إنت متأكد 100% إن أبوك لم يكن موجودًا في البيت الساعة 8. بعدها اكتشفت إن أبوك كان بيتفرج على كاميرا البيت الساعة 8 وشافك وأنت داخل. مين كلامه صحيح؟",
 
 time:60,
-shehabTime:"03:53",
+
 correctAnswer:2,
 
 choices:[
@@ -617,7 +627,7 @@ question:
 "تلاتة دخلوا محل. أحمد خرج الأول، محمد خرج بعد أحمد، وعلي خرج بعد محمد. مين آخر واحد من التلاتة خرج من المحل؟",
 
 time:60,
-shehabTime:"08:54",
+
 correctAnswer:2,
 
 choices:[
@@ -636,7 +646,7 @@ question:
 "أحمد قال لمحمد الساعة 8:00: «أنا لسه داخل البيت». الساعة 8:10 محمد اتصل بأحمد، وأحمد رد عليه من داخل البيت. إيه الحاجة اللي لا يمكن إثباتها من المعلومات دي وحدها؟",
 
 time:60,
-shehabTime:"06:20",
+
 correctAnswer:1,
 
 choices:[
@@ -655,7 +665,7 @@ question:
 "واحد قال: «أنا متأكد إن أحمد كان لابس قميص أزرق الساعة 5». عندك صورة لأحمد اتصورت الساعة 5 بالضبط، والقميص فيها أحمر. إيه اللي نقدر نثبته أكيد؟",
 
 time:60,
-shehabTime:"11:00",
+
 correctAnswer:0,
 
 choices:[
@@ -674,7 +684,7 @@ question:
 "محمد قال لأحمد: «النهارده الجمعة». محمد كان معتقد فعلًا إن النهارده الجمعة، لكنه كان مخطئًا، لأن اليوم الحقيقي كان الخميس. هل محمد كذب؟",
 
 time:60,
-shehabTime:"07:10",
+
 correctAnswer:1,
 
 choices:[
@@ -693,7 +703,7 @@ question:
 "محمد قال: «روحت الشغل بالعربية ورجعت بيها الساعة 9». صاحبه قال: «مستحيل! أنا شوفت عربيتك قدام البيت الساعة 10». واتأكدنا أن محمد فعلًا رجع بالعربية الساعة 9، وأن العربية ظلت أمام البيت حتى الساعة 10. مين كلامه فيه مشكلة؟",
 
 time:75,
-shehabTime:"05:40",
+
 correctAnswer:3,
 
 choices:[
@@ -712,7 +722,7 @@ question:
 "كريم لاحظ إن كل مرة يشرب قهوة قبل الشغل، بيشتغل كويس. فقرر إن القهوة هي سبب شغله الكويس. إيه المعلومة اللي أقوى شيء تضعف استنتاجه؟",
 
 time:60,
-shehabTime:"08:30",
+
 correctAnswer:2,
 
 choices:[
@@ -731,7 +741,7 @@ question:
 "محمد دخل السينما ومعاه تذكرة في إيده. بعد فترة خرج، والتذكرة ما زالت معه. إيه اللي نقدر نعرفه أكيد؟",
 
 time:75,
-shehabTime:"06:45",
+
 correctAnswer:2,
 
 choices:[
@@ -750,7 +760,7 @@ question:
 "أربعة أصحاب اتفقوا يوم الخميس إنهم يخرجوا يوم الجمعة. الثلاثة فهموا إن الموعد الساعة 8:00. الرابع قال: «ماشي». يوم الجمعة الساعة 8، الثلاثة وصلوا، والرابع لم يأتِ. الساعة 8:20 قال لهم: «أنا كنت فاكر إنكم هتتجمعوا 8 ونص». إيه أكتر استنتاج نقدر نطلعه عن فهم الرابع وقت الاتفاق؟",
 
 time:60,
-shehabTime:"07:20",
+
 correctAnswer:2,
 
 choices:[
@@ -769,7 +779,7 @@ question:
 "أمامك صندوقان: الصندوق الأول مكتوب عليه «الجائزة هنا». الصندوق الثاني مكتوب عليه «الجائزة ليست هنا». أنت تعرف أن واحدًا فقط من الكلامين صحيح. إيه اللي نقدر نعرفه أكيد؟",
 
 time:90,
-shehabTime:"12:00",
+
 correctAnswer:2,
 
 choices:[
@@ -790,19 +800,19 @@ explanation:
    المتغيرات
 ===================================================== */
 
-let currentQuestion = 0;
-let totalScore = 0;
-let playerName = "";
-let selectedAnswer = null;
-let remainingSeconds = 0;
-let timerInterval = null;
-let playerAnswers = [];
-let audioContext = null;
-let gameFinished = false;
+let currentQuestion=0;
+let totalScore=0;
+let playerName="";
+let selectedAnswer=null;
+let remainingSeconds=0;
+let timerInterval=null;
+let playerAnswers=[];
+let audioContext=null;
+let gameFinished=false;
 
 
 /* =====================================================
-   أدوات DOM
+   DOM
 ===================================================== */
 
 function $(id){
@@ -818,18 +828,27 @@ function getPlayers(){
 
 try{
 
-const data =
+const data=
 JSON.parse(
-localStorage.getItem("shehab_challenge_players") || "[]"
+localStorage.getItem(
+"shehab_challenge_players"
+) || "[]"
 );
 
-return Array.isArray(data) ? data : [];
+return Array.isArray(data)
+?
+data
+:
+[];
 
 }catch(error){
 
-console.error("LocalStorage read error:",error);
+console.error(
+"LocalStorage read error:",
+error
+);
 
-return [];
+return[];
 
 }
 
@@ -840,7 +859,7 @@ function savePlayer(player){
 
 try{
 
-const players = getPlayers();
+const players=getPlayers();
 
 players.push(player);
 
@@ -851,7 +870,10 @@ JSON.stringify(players)
 
 }catch(error){
 
-console.error("LocalStorage save error:",error);
+console.error(
+"LocalStorage save error:",
+error
+);
 
 }
 
@@ -882,9 +904,11 @@ function showName(){
 
 hideAll();
 
-$("namePage").classList.remove("hidden");
+$("namePage")
+.classList.remove("hidden");
 
-$("startError").classList.add("hidden");
+$("startError")
+.classList.add("hidden");
 
 setTimeout(function(){
 
@@ -901,7 +925,8 @@ stopTimer();
 
 hideAll();
 
-$("home").classList.remove("hidden");
+$("home")
+.classList.remove("hidden");
 
 }
 
@@ -916,7 +941,7 @@ try{
 
 if(!audioContext){
 
-const AudioContext =
+const AudioContext=
 window.AudioContext ||
 window.webkitAudioContext;
 
@@ -924,19 +949,27 @@ if(!AudioContext){
 return;
 }
 
-audioContext = new AudioContext();
+audioContext=
+new AudioContext();
 
 }
 
-if(audioContext.state === "suspended"){
+if(
+audioContext.state===
+"suspended"
+){
 
-audioContext.resume().catch(function(){});
+audioContext
+.resume()
+.catch(function(){});
 
 }
 
 }catch(error){
 
-console.log("Audio unavailable");
+console.log(
+"Audio unavailable"
+);
 
 }
 
@@ -951,15 +984,19 @@ if(!audioContext){
 return;
 }
 
-const oscillator =
-audioContext.createOscillator();
+const oscillator=
+audioContext
+.createOscillator();
 
-const gain =
-audioContext.createGain();
+const gain=
+audioContext
+.createGain();
 
-oscillator.type = "sine";
+oscillator.type=
+"sine";
 
-oscillator.frequency.value = 850;
+oscillator.frequency.value=
+850;
 
 gain.gain.setValueAtTime(
 0.001,
@@ -968,12 +1005,12 @@ audioContext.currentTime
 
 gain.gain.exponentialRampToValueAtTime(
 0.18,
-audioContext.currentTime + 0.02
+audioContext.currentTime+0.02
 );
 
 gain.gain.exponentialRampToValueAtTime(
 0.001,
-audioContext.currentTime + 0.18
+audioContext.currentTime+0.18
 );
 
 oscillator.connect(gain);
@@ -985,12 +1022,14 @@ audioContext.destination
 oscillator.start();
 
 oscillator.stop(
-audioContext.currentTime + 0.2
+audioContext.currentTime+0.2
 );
 
 }catch(error){
 
-console.log("Beep failed");
+console.log(
+"Beep failed"
+);
 
 }
 
@@ -998,26 +1037,35 @@ console.log("Beep failed");
 
 
 /* =====================================================
-   Start Game
+   Start
 ===================================================== */
 
 function startGame(){
 
-const input = $("nameInput");
-const button = $("startButton");
-const errorBox = $("startError");
+const input=
+$("nameInput");
 
-const name =
+const button=
+$("startButton");
+
+const errorBox=
+$("startError");
+
+const name=
 input.value.trim();
 
-errorBox.classList.add("hidden");
+errorBox.classList.add(
+"hidden"
+);
 
 if(!name){
 
-errorBox.textContent =
+errorBox.textContent=
 "اكتب اسمك الأول يا بطل 😏";
 
-errorBox.classList.remove("hidden");
+errorBox.classList.remove(
+"hidden"
+);
 
 input.focus();
 
@@ -1025,23 +1073,27 @@ return;
 
 }
 
-playerName = name;
+playerName=name;
 
-currentQuestion = 0;
-totalScore = 0;
-selectedAnswer = null;
-playerAnswers = [];
-gameFinished = false;
+currentQuestion=0;
+totalScore=0;
+selectedAnswer=null;
+playerAnswers=[];
+gameFinished=false;
 
 initAudio();
 
-button.disabled = true;
-button.textContent = "جاري بدء المواجهة...";
+button.disabled=true;
+
+button.textContent=
+"جاري بدء المواجهة...";
 
 setTimeout(function(){
 
-button.disabled = false;
-button.textContent = "ابدأ المواجهة 🚀";
+button.disabled=false;
+
+button.textContent=
+"ابدأ المواجهة 🚀";
 
 showQuestion();
 
@@ -1051,14 +1103,17 @@ showQuestion();
 
 
 /* =====================================================
-   Show Question
+   Question
 ===================================================== */
 
 function showQuestion(){
 
 stopTimer();
 
-if(currentQuestion >= questions.length){
+if(
+currentQuestion>=
+questions.length
+){
 
 finishQuiz();
 
@@ -1068,82 +1123,95 @@ return;
 
 hideAll();
 
-$("quizPage").classList.remove("hidden");
+$("quizPage")
+.classList.remove("hidden");
 
-const q =
+const q=
 questions[currentQuestion];
 
-$("progress").textContent =
-"السؤال " +
-(currentQuestion + 1) +
-" من " +
+$("progress").textContent=
+"السؤال "+
+(currentQuestion+1)+
+" من "+
 questions.length;
 
-$("question").textContent =
+$("question").textContent=
 q.question;
 
-$("shehabTime").textContent =
-q.shehabTime;
+selectedAnswer=null;
 
-selectedAnswer = null;
-
-const nextButton =
+const nextButton=
 $("nextButton");
 
-nextButton.disabled = true;
+nextButton.disabled=true;
 
-nextButton.textContent =
-currentQuestion === questions.length - 1
+nextButton.textContent=
+currentQuestion===
+questions.length-1
 ?
 "إنهاء التحدي 🏆"
 :
 "التالي →";
 
-const choicesContainer =
+const choices=
 $("choices");
 
-choicesContainer.innerHTML = "";
+choices.innerHTML="";
 
-q.choices.forEach(function(choice,index){
+q.choices.forEach(
+function(choice,index){
 
-const button =
-document.createElement("button");
+const button=
+document.createElement(
+"button"
+);
 
-button.type = "button";
+button.type="button";
 
-button.className = "choice";
+button.className=
+"choice";
 
-button.textContent = choice;
+button.textContent=
+choice;
 
 button.addEventListener(
 "click",
 function(){
 
-selectChoice(button,index);
+selectChoice(
+button,
+index
+);
 
 }
 );
 
-choicesContainer.appendChild(button);
+choices.appendChild(
+button
+);
 
 });
 
-remainingSeconds = q.time;
+remainingSeconds=
+q.time;
 
 updateTimer();
 
-timerInterval =
-setInterval(function(){
+timerInterval=
+setInterval(
+function(){
 
-if(remainingSeconds > 0){
+if(
+remainingSeconds>0
+){
 
 remainingSeconds--;
 
 updateTimer();
 
 if(
-remainingSeconds <= 10 &&
-remainingSeconds > 0
+remainingSeconds<=10 &&
+remainingSeconds>0
 ){
 
 beep();
@@ -1152,7 +1220,9 @@ beep();
 
 }
 
-if(remainingSeconds <= 0){
+if(
+remainingSeconds<=0
+){
 
 stopTimer();
 
@@ -1160,7 +1230,9 @@ handleTimeout();
 
 }
 
-},1000);
+},
+1000
+);
 
 }
 
@@ -1171,25 +1243,27 @@ handleTimeout();
 
 function updateTimer(){
 
-const timer =
+const timer=
 $("remaining");
 
-const minutes =
+const minutes=
 Math.floor(
-remainingSeconds / 60
+remainingSeconds/60
 );
 
-const seconds =
-remainingSeconds % 60;
+const seconds=
+remainingSeconds%60;
 
-timer.textContent =
-String(minutes).padStart(2,"0") +
-":" +
-String(seconds).padStart(2,"0");
+timer.textContent=
+String(minutes)
+.padStart(2,"0")+
+":"+
+String(seconds)
+.padStart(2,"0");
 
 timer.classList.toggle(
 "timer-danger",
-remainingSeconds <= 10
+remainingSeconds<=10
 );
 
 }
@@ -1197,11 +1271,15 @@ remainingSeconds <= 10
 
 function stopTimer(){
 
-if(timerInterval !== null){
+if(
+timerInterval!==null
+){
 
-clearInterval(timerInterval);
+clearInterval(
+timerInterval
+);
 
-timerInterval = null;
+timerInterval=null;
 
 }
 
@@ -1209,10 +1287,13 @@ timerInterval = null;
 
 
 /* =====================================================
-   Answer
+   Select Answer
 ===================================================== */
 
-function selectChoice(button,index){
+function selectChoice(
+button,
+index
+){
 
 if(gameFinished){
 return;
@@ -1220,17 +1301,23 @@ return;
 
 document
 .querySelectorAll(".choice")
-.forEach(function(b){
+.forEach(
+function(b){
 
-b.classList.remove("selected");
+b.classList.remove(
+"selected"
+);
 
 });
 
-button.classList.add("selected");
+button.classList.add(
+"selected"
+);
 
-selectedAnswer = index;
+selectedAnswer=index;
 
-$("nextButton").disabled = false;
+$("nextButton")
+.disabled=false;
 
 }
 
@@ -1239,31 +1326,40 @@ $("nextButton").disabled = false;
    Save Answer
 ===================================================== */
 
-function saveAnswer(timedOut){
+function saveAnswer(
+timedOut
+){
 
-const q =
+const q=
 questions[currentQuestion];
 
-const correct =
-selectedAnswer !== null &&
-selectedAnswer === q.correctAnswer;
+const correct=
+selectedAnswer!==null &&
+selectedAnswer===
+q.correctAnswer;
 
 playerAnswers.push({
 
-question: currentQuestion + 1,
+question:
+currentQuestion+1,
 
-selectedAnswer: selectedAnswer,
+selectedAnswer:
+selectedAnswer,
 
-correctAnswer: q.correctAnswer,
+correctAnswer:
+q.correctAnswer,
 
-correct: correct,
+correct:
+correct,
 
-timedOut: Boolean(timedOut),
+timedOut:
+Boolean(timedOut),
 
 timeUsed:
 Math.max(
 0,
-q.time - remainingSeconds
+q.time-
+remainingSeconds
 )
 
 });
@@ -1291,7 +1387,10 @@ saveAnswer(true);
 
 currentQuestion++;
 
-if(currentQuestion < questions.length){
+if(
+currentQuestion<
+questions.length
+){
 
 showQuestion();
 
@@ -1314,9 +1413,13 @@ if(gameFinished){
 return;
 }
 
-if(selectedAnswer === null){
+if(
+selectedAnswer===null
+){
 
-alert("اختار إجابة الأول يا بطل 😏");
+alert(
+"اختار إجابة الأول يا بطل 😏"
+);
 
 return;
 
@@ -1324,13 +1427,17 @@ return;
 
 stopTimer();
 
-$("nextButton").disabled = true;
+$("nextButton")
+.disabled=true;
 
 saveAnswer(false);
 
 currentQuestion++;
 
-if(currentQuestion < questions.length){
+if(
+currentQuestion<
+questions.length
+){
 
 showQuestion();
 
@@ -1353,21 +1460,26 @@ if(gameFinished){
 return;
 }
 
-gameFinished = true;
+gameFinished=true;
 
 stopTimer();
 
-const player = {
+const player={
 
-name: playerName,
+name:
+playerName,
 
-score: totalScore,
+score:
+totalScore,
 
-percentage: totalScore * 10,
+percentage:
+totalScore*10,
 
-date: new Date().toISOString(),
+date:
+new Date().toISOString(),
 
-answers: playerAnswers
+answers:
+playerAnswers
 
 };
 
@@ -1386,38 +1498,54 @@ function showResult(){
 
 hideAll();
 
-$("resultPage").classList.remove("hidden");
+$("resultPage")
+.classList.remove("hidden");
 
-$("resultTitle").textContent =
-"🔥 ممتاز يا " + playerName;
+$("resultTitle")
+.textContent=
+"🔥 ممتاز يا "+
+playerName;
 
-$("score").textContent =
-totalScore + " / 10";
+$("score")
+.textContent=
+totalScore+
+" / 10";
 
 
-if(totalScore === 10){
+if(totalScore===10){
 
-$("resultText").textContent =
+$("resultText")
+.textContent=
 "🏆🔥 كسرت نتيجة شهاب! جبت 10 / 10.";
 
-}else if(totalScore === 9){
+}else if(
+totalScore===9
+){
 
-$("resultText").textContent =
+$("resultText")
+.textContent=
 "⚖️ تعادلت مع شهاب. 9 / 10.";
 
-}else if(totalScore >= 7){
+}else if(
+totalScore>=7
+){
 
-$("resultText").textContent =
+$("resultText")
+.textContent=
 "🔥 نتيجة قوية جدًا، لكن لسه ماكسرتش شهاب.";
 
-}else if(totalScore >= 4){
+}else if(
+totalScore>=4
+){
 
-$("resultText").textContent =
+$("resultText")
+.textContent=
 "نتيجة متوسطة. عندك اختيارات قوية، وبعض الأسئلة قدرت توقعك في الفخ.";
 
 }else{
 
-$("resultText").textContent =
+$("resultText")
+.textContent=
 "النتيجة مش حكم على ذكائك. الاختبار بيقيس استجاباتك في المواقف دي فقط.";
 
 }
@@ -1425,33 +1553,35 @@ $("resultText").textContent =
 
 /* Comparison */
 
-const comparison =
+const comparison=
 $("comparison");
 
-if(totalScore === 10){
+if(totalScore===10){
 
-comparison.innerHTML =
-'<strong class="green">🏆 كسرت نتيجة شهاب!</strong><br><br>' +
-"أنت: 10 / 10<br>" +
+comparison.innerHTML=
+'<strong class="green">🏆 كسرت نتيجة شهاب!</strong><br><br>'+
+"أنت: 10 / 10<br>"+
 "شهاب: 9 / 10";
 
-}else if(totalScore === 9){
+}else if(
+totalScore===9
+){
 
-comparison.innerHTML =
-'<strong>⚖️ تعادلت مع شهاب.</strong><br><br>' +
-"أنت: 9 / 10<br>" +
+comparison.innerHTML=
+'<strong>⚖️ تعادلت مع شهاب.</strong><br><br>'+
+"أنت: 9 / 10<br>"+
 "شهاب: 9 / 10";
 
 }else{
 
-comparison.innerHTML =
-'<strong class="red">شهاب ما زال متقدمًا.</strong><br><br>' +
-"أنت: " +
-totalScore +
-" / 10<br>" +
-"شهاب: 9 / 10<br><br>" +
-"الفارق: " +
-(9 - totalScore) +
+comparison.innerHTML=
+'<strong class="red">شهاب ما زال متقدمًا.</strong><br><br>'+
+"أنت: "+
+totalScore+
+" / 10<br>"+
+"شهاب: 9 / 10<br><br>"+
+"الفارق: "+
+(9-totalScore)+
 " نقطة.";
 
 }
@@ -1459,17 +1589,17 @@ totalScore +
 
 /* Style */
 
-$("style").textContent =
+$("style").textContent=
 
-totalScore >= 9
+totalScore>=9
 ?
 "تفكيرك قوي جدًا في فحص المعنى والافتراضات، وغالبًا لا تكتفي بأول إجابة تبدو صحيحة."
 :
-totalScore >= 7
+totalScore>=7
 ?
 "عندك قدرة جيدة على التفكير التحليلي، لكن بعض الفخاخ قدرت تسحبك للاستنتاج السريع."
 :
-totalScore >= 4
+totalScore>=4
 ?
 "عندك مزيج من التفكير السريع والتحليلي، وتقدر تطور نتيجتك أكثر لو راجعت الافتراضات قبل الحكم."
 :
@@ -1478,97 +1608,114 @@ totalScore >= 4
 
 /* Statistics */
 
-const players =
+const players=
 getPlayers();
 
-const scores =
-players.map(function(player){
+const scores=
+players.map(
+function(player){
 
-return Number(player.score) || 0;
+return Number(
+player.score
+)||0;
 
 });
 
-const totalPlayers =
+const totalPlayers=
 players.length;
 
-const completed =
+const completed=
 players.length;
 
-const average =
+const average=
 completed
 ?
-scores.reduce(function(sum,score){
+scores.reduce(
+function(sum,score){
 
-return sum + score;
+return sum+score;
 
-},0) / completed
+},
+0
+)/
+completed
 :
 totalScore;
 
-const highest =
+const highest=
 completed
 ?
-Math.max.apply(null,scores)
+Math.max.apply(
+null,
+scores
+)
 :
 totalScore;
 
+const rank=
+1+
+scores.filter(
+function(score){
 
-/*
-  الترتيب:
-  نحسب عدد الأشخاص الذين
-  درجتهم أعلى من اللاعب + 1
-  بدل indexOf حتى يكون التعادل عادل.
-*/
+return score>
+totalScore;
 
-const rank =
-1 +
-scores.filter(function(score){
+}
+).length;
 
-return score > totalScore;
+$("percentage")
+.textContent=
+(totalScore*10)+
+"%";
 
-}).length;
+$("rank")
+.textContent=
+"#"+rank;
 
-
-$("percentage").textContent =
-(totalScore * 10) + "%";
-
-$("rank").textContent =
-"#" + rank;
-
-$("totalPlayers").textContent =
+$("totalPlayers")
+.textContent=
 totalPlayers;
 
-$("completed").textContent =
+$("completed")
+.textContent=
 completed;
 
-$("average").textContent =
-average.toFixed(1) + " / 10";
+$("average")
+.textContent=
+average.toFixed(1)+
+" / 10";
 
-$("highest").textContent =
-highest + " / 10";
+$("highest")
+.textContent=
+highest+
+" / 10";
 
 
-if(totalScore > average){
+if(
+totalScore>average
+){
 
-$("progressMessage").textContent =
+$("progressMessage")
+.textContent=
 "📈 نتيجتك أعلى من متوسط المشاركين.";
 
 }else if(
-Math.abs(totalScore - average) < 0.05
+Math.abs(
+totalScore-average
+)<0.05
 ){
 
-$("progressMessage").textContent =
+$("progressMessage")
+.textContent=
 "⚖️ نتيجتك قريبة من متوسط المشاركين.";
 
 }else{
 
-$("progressMessage").textContent =
+$("progressMessage")
+.textContent=
 "📊 عندك مساحة كويسة للتحسن.";
 
 }
-
-
-/* Review */
 
 renderReview();
 
@@ -1581,134 +1728,178 @@ renderReview();
 
 function renderReview(){
 
-const review =
+const review=
 $("review");
 
-review.innerHTML = "";
+review.innerHTML="";
 
-playerAnswers.forEach(function(answer,index){
+playerAnswers.forEach(
+function(answer,index){
 
-const q =
+const q=
 questions[index];
 
-const card =
-document.createElement("div");
+const card=
+document.createElement(
+"div"
+);
 
-card.className =
+card.className=
 "review-card";
 
-const playerAnswerText =
-answer.selectedAnswer === null
+const playerAnswerText=
+answer.selectedAnswer===null
 ?
 "لم يتم اختيار إجابة — الوقت انتهى."
 :
-q.choices[answer.selectedAnswer];
+q.choices[
+answer.selectedAnswer
+];
 
-const correctAnswerText =
-q.choices[q.correctAnswer];
+const correctAnswerText=
+q.choices[
+q.correctAnswer
+];
 
-let statusClass = "";
-let statusText = "";
+let statusClass="";
+let statusText="";
 
 if(answer.correct){
 
-statusClass = "status-correct";
-statusText = "✓ إجابة صحيحة";
+statusClass=
+"status-correct";
 
-}else if(answer.timedOut){
+statusText=
+"✓ إجابة صحيحة";
 
-statusClass = "status-timeout";
-statusText = "⏰ الوقت انتهى";
+}else if(
+answer.timedOut
+){
+
+statusClass=
+"status-timeout";
+
+statusText=
+"⏰ الوقت انتهى";
 
 }else{
 
-statusClass = "status-wrong";
-statusText = "✕ إجابة غير صحيحة";
+statusClass=
+"status-wrong";
+
+statusText=
+"✕ إجابة غير صحيحة";
 
 }
 
-const number =
-document.createElement("div");
+const number=
+document.createElement(
+"div"
+);
 
-number.className =
+number.className=
 "review-number";
 
-number.textContent =
-"السؤال " +
-(index + 1) +
+number.textContent=
+"السؤال "+
+(index+1)+
 " من 10";
 
-const question =
-document.createElement("div");
+const question=
+document.createElement(
+"div"
+);
 
-question.className =
+question.className=
 "review-question";
 
-question.textContent =
+question.textContent=
 q.question;
 
-const playerLine =
-document.createElement("div");
+const playerLine=
+document.createElement(
+"div"
+);
 
-playerLine.className =
+playerLine.className=
 "answer-line answer-player";
 
-playerLine.innerHTML =
+playerLine.innerHTML=
 "<strong>إجابتك:</strong><br>";
 
-const playerText =
-document.createElement("span");
+const playerText=
+document.createElement(
+"span"
+);
 
-playerText.textContent =
+playerText.textContent=
 playerAnswerText;
 
-playerLine.appendChild(playerText);
+playerLine.appendChild(
+playerText
+);
 
-const correctLine =
-document.createElement("div");
+const correctLine=
+document.createElement(
+"div"
+);
 
-correctLine.className =
+correctLine.className=
 "answer-line answer-correct";
 
-correctLine.innerHTML =
+correctLine.innerHTML=
 "<strong>الإجابة الصحيحة:</strong><br>";
 
-const correctText =
-document.createElement("span");
+const correctText=
+document.createElement(
+"span"
+);
 
-correctText.textContent =
+correctText.textContent=
 correctAnswerText;
 
-correctLine.appendChild(correctText);
+correctLine.appendChild(
+correctText
+);
 
-const status =
-document.createElement("div");
+const status=
+document.createElement(
+"div"
+);
 
-const statusBadge =
-document.createElement("span");
+const statusBadge=
+document.createElement(
+"span"
+);
 
-statusBadge.className =
-"status-badge " +
+statusBadge.className=
+"status-badge "+
 statusClass;
 
-statusBadge.textContent =
+statusBadge.textContent=
 statusText;
 
-status.appendChild(statusBadge);
+status.appendChild(
+statusBadge
+);
 
-const explanation =
-document.createElement("div");
+const explanation=
+document.createElement(
+"div"
+);
 
-explanation.className =
+explanation.className=
 "explanation";
 
-explanation.innerHTML =
+explanation.innerHTML=
 "<strong>🧠 التفسير المنطقي:</strong><br>";
 
-const explanationText =
-document.createElement("span");
+const explanationText=
+document.createElement(
+"span"
+);
 
-explanationText.textContent =
+explanationText.textContent=
 q.explanation;
 
 explanation.appendChild(
@@ -1735,18 +1926,18 @@ review.appendChild(card);
 
 function contactShehab(){
 
-const phone =
+const phone=
 "201011641423";
 
-const message =
+const message=
 encodeURIComponent(
 "السلام عليكم يا شهاب، جربت تحدي شهاب وعاوز أعرف تفسير الإجابات المنطقية للاختبار."
 );
 
 window.open(
-"https://wa.me/" +
-phone +
-"?text=" +
+"https://wa.me/"+
+phone+
+"?text="+
 message,
 "_blank"
 );
@@ -1755,7 +1946,7 @@ message,
 
 
 /* =====================================================
-   Event Listeners
+   Events
 ===================================================== */
 
 $("startChallengeButton")
@@ -1803,7 +1994,9 @@ $("nameInput")
 "keydown",
 function(event){
 
-if(event.key === "Enter"){
+if(
+event.key==="Enter"
+){
 
 event.preventDefault();
 
@@ -1816,7 +2009,7 @@ startGame();
 
 
 /* =====================================================
-   حماية عامة من أخطاء JavaScript
+   Error Handling
 ===================================================== */
 
 window.addEventListener(
@@ -1825,21 +2018,25 @@ function(event){
 
 console.error(
 "Shehab Challenge Error:",
-event.error || event.message
+event.error ||
+event.message
 );
 
-const errorBox =
+const errorBox=
 $("startError");
 
 if(
 errorBox &&
-!$("namePage").classList.contains("hidden")
+!$("namePage")
+.classList.contains("hidden")
 ){
 
-errorBox.textContent =
+errorBox.textContent=
 "حصل خطأ بسيط في تشغيل التحدي. جرّب تحديث الصفحة.";
 
-errorBox.classList.remove("hidden");
+errorBox.classList.remove(
+"hidden"
+);
 
 }
 
