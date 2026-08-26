@@ -35,13 +35,9 @@ padding:26px 20px;
 box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
 
-.center{
-text-align:center;
-}
+.center{text-align:center}
 
-.hidden{
-display:none!important;
-}
+.hidden{display:none!important}
 
 .logo{
 font-size:40px;
@@ -136,9 +132,7 @@ animation:pulse .8s infinite;
 }
 
 @keyframes pulse{
-50%{
-opacity:.45;
-}
+50%{opacity:.45}
 }
 
 .shehab-box{
@@ -230,13 +224,8 @@ font-size:13px;
 color:#8f99ad;
 }
 
-.green{
-color:#8ee7a1;
-}
-
-.red{
-color:#ff8d8d;
-}
+.green{color:#8ee7a1}
+.red{color:#ff8d8d}
 
 .review-card{
 background:#080b14;
@@ -326,6 +315,17 @@ font-size:14px;
 font-weight:bold;
 }
 
+.error-box{
+background:#3a2025;
+border:1px solid #7b3d46;
+color:#ffb0b8;
+padding:13px;
+border-radius:14px;
+margin-top:12px;
+line-height:1.7;
+font-size:14px;
+}
+
 @media(max-width:450px){
 
 .container{
@@ -389,10 +389,7 @@ font-size:58px;
 دلوقتي دورك تشوف هل تقدر تكسر نتيجته.
 </p>
 
-<button
-class="primary"
-onclick="showName()"
->
+<button class="primary" id="startChallengeButton">
 ابدأ التحدي 🧠
 </button>
 
@@ -401,10 +398,7 @@ onclick="showName()"
 
 <!-- NAME -->
 
-<section
-id="namePage"
-class="card center hidden"
->
+<section id="namePage" class="card center hidden">
 
 <h2>
 قبل المواجهة 👀
@@ -421,23 +415,13 @@ placeholder="اكتب اسمك هنا"
 autocomplete="off"
 >
 
-<div
-id="startError"
-class="timeout-box hidden"
-></div>
+<div id="startError" class="error-box hidden"></div>
 
-<button
-id="startButton"
-class="primary"
-onclick="startGame()"
->
+<button id="startButton" class="primary">
 ابدأ المواجهة 🚀
 </button>
 
-<button
-class="secondary"
-onclick="goHome()"
->
+<button id="backButton" class="secondary">
 رجوع
 </button>
 
@@ -446,10 +430,7 @@ onclick="goHome()"
 
 <!-- QUIZ -->
 
-<section
-id="quizPage"
-class="card hidden"
->
+<section id="quizPage" class="card hidden">
 
 <div class="progress">
 
@@ -457,15 +438,11 @@ class="card hidden"
 السؤال 1 من 10
 </span>
 
-<span
-id="remaining"
-class="remaining"
->
+<span id="remaining" class="remaining">
 01:00
 </span>
 
 </div>
-
 
 <div class="shehab-box">
 
@@ -473,34 +450,23 @@ class="remaining"
 ⏱️ وقت شهاب في السؤال
 </small>
 
-<div
-id="shehabTime"
-class="shehab-time"
->
+<div id="shehabTime" class="shehab-time">
 00:00
 </div>
 
 </div>
 
-
-<div
-id="question"
-class="question"
-></div>
-
+<div id="question" class="question"></div>
 
 <div id="choices"></div>
-
 
 <button
 id="nextButton"
 class="primary"
-onclick="nextQuestion()"
 disabled
 >
 التالي →
 </button>
-
 
 <p class="timer-note">
 🔔 آخر 10 ثواني فيها تنبيه صوتي.<br>
@@ -512,10 +478,7 @@ disabled
 
 <!-- RESULT -->
 
-<section
-id="resultPage"
-class="card center hidden"
->
+<section id="resultPage" class="card center hidden">
 
 <div class="logo">
 🏆
@@ -523,16 +486,9 @@ class="card center hidden"
 
 <h2 id="resultTitle"></h2>
 
-<div
-id="score"
-class="score"
-></div>
+<div id="score" class="score"></div>
 
-<p
-id="resultText"
-class="text"
-></p>
-
+<p id="resultText" class="text"></p>
 
 <div class="result-box">
 
@@ -585,10 +541,7 @@ class="text"
 
 </div>
 
-<p
-id="progressMessage"
-class="green"
-></p>
+<p id="progressMessage" class="green"></p>
 
 </div>
 
@@ -619,18 +572,11 @@ class="green"
 </div>
 
 
-<button
-class="primary"
-onclick="location.reload()"
->
+<button id="restartButton" class="primary">
 تحدي شهاب مرة أخرى 🔥
 </button>
 
-
-<button
-class="whatsapp"
-onclick="contactShehab()"
->
+<button id="whatsappButton" class="whatsapp">
 📱 تواصل مع شهاب على واتساب
 </button>
 
@@ -645,7 +591,7 @@ onclick="contactShehab()"
    الأسئلة النهائية
 ===================================================== */
 
-const questions=[
+const questions = [
 
 {
 question:
@@ -653,7 +599,6 @@ question:
 
 time:60,
 shehabTime:"03:53",
-
 correctAnswer:2,
 
 choices:[
@@ -673,7 +618,6 @@ question:
 
 time:60,
 shehabTime:"08:54",
-
 correctAnswer:2,
 
 choices:[
@@ -693,7 +637,6 @@ question:
 
 time:60,
 shehabTime:"06:20",
-
 correctAnswer:1,
 
 choices:[
@@ -713,7 +656,6 @@ question:
 
 time:60,
 shehabTime:"11:00",
-
 correctAnswer:0,
 
 choices:[
@@ -733,7 +675,6 @@ question:
 
 time:60,
 shehabTime:"07:10",
-
 correctAnswer:1,
 
 choices:[
@@ -753,7 +694,6 @@ question:
 
 time:75,
 shehabTime:"05:40",
-
 correctAnswer:3,
 
 choices:[
@@ -773,7 +713,6 @@ question:
 
 time:60,
 shehabTime:"08:30",
-
 correctAnswer:2,
 
 choices:[
@@ -793,7 +732,6 @@ question:
 
 time:75,
 shehabTime:"06:45",
-
 correctAnswer:2,
 
 choices:[
@@ -811,9 +749,8 @@ explanation:
 question:
 "أربعة أصحاب اتفقوا يوم الخميس إنهم يخرجوا يوم الجمعة. الثلاثة فهموا إن الموعد الساعة 8:00. الرابع قال: «ماشي». يوم الجمعة الساعة 8، الثلاثة وصلوا، والرابع لم يأتِ. الساعة 8:20 قال لهم: «أنا كنت فاكر إنكم هتتجمعوا 8 ونص». إيه أكتر استنتاج نقدر نطلعه عن فهم الرابع وقت الاتفاق؟",
 
-time60,
+time:60,
 shehabTime:"07:20",
-
 correctAnswer:2,
 
 choices:[
@@ -833,7 +770,6 @@ question:
 
 time:90,
 shehabTime:"12:00",
-
 correctAnswer:2,
 
 choices:[
@@ -854,15 +790,24 @@ explanation:
    المتغيرات
 ===================================================== */
 
-let currentQuestion=0;
-let totalScore=0;
-let playerName="";
-let selectedAnswer=null;
-let remainingSeconds=0;
-let timerInterval=null;
-let playerAnswers=[];
-let audioContext=null;
-let gameFinished=false;
+let currentQuestion = 0;
+let totalScore = 0;
+let playerName = "";
+let selectedAnswer = null;
+let remainingSeconds = 0;
+let timerInterval = null;
+let playerAnswers = [];
+let audioContext = null;
+let gameFinished = false;
+
+
+/* =====================================================
+   أدوات DOM
+===================================================== */
+
+function $(id){
+return document.getElementById(id);
+}
 
 
 /* =====================================================
@@ -873,16 +818,18 @@ function getPlayers(){
 
 try{
 
-const data=
+const data =
 JSON.parse(
-localStorage.getItem("shehab_challenge_players")
+localStorage.getItem("shehab_challenge_players") || "[]"
 );
 
-return Array.isArray(data)?data:[];
+return Array.isArray(data) ? data : [];
 
 }catch(error){
 
-return[];
+console.error("LocalStorage read error:",error);
+
+return [];
 
 }
 
@@ -891,7 +838,9 @@ return[];
 
 function savePlayer(player){
 
-const players=getPlayers();
+try{
+
+const players = getPlayers();
 
 players.push(player);
 
@@ -899,6 +848,12 @@ localStorage.setItem(
 "shehab_challenge_players",
 JSON.stringify(players)
 );
+
+}catch(error){
+
+console.error("LocalStorage save error:",error);
+
+}
 
 }
 
@@ -914,11 +869,9 @@ function hideAll(){
 "namePage",
 "quizPage",
 "resultPage"
-].forEach(id=>{
+].forEach(function(id){
 
-document
-.getElementById(id)
-.classList.add("hidden");
+$(id).classList.add("hidden");
 
 });
 
@@ -929,13 +882,15 @@ function showName(){
 
 hideAll();
 
-document
-.getElementById("namePage")
-.classList.remove("hidden");
+$("namePage").classList.remove("hidden");
 
-document
-.getElementById("nameInput")
-.focus();
+$("startError").classList.add("hidden");
+
+setTimeout(function(){
+
+$("nameInput").focus();
+
+},50);
 
 }
 
@@ -946,9 +901,7 @@ stopTimer();
 
 hideAll();
 
-document
-.getElementById("home")
-.classList.remove("hidden");
+$("home").classList.remove("hidden");
 
 }
 
@@ -963,21 +916,29 @@ try{
 
 if(!audioContext){
 
-audioContext=
-new(
+const AudioContext =
 window.AudioContext ||
-window.webkitAudioContext
-)();
+window.webkitAudioContext;
+
+if(!AudioContext){
+return;
+}
+
+audioContext = new AudioContext();
 
 }
 
-if(audioContext.state==="suspended"){
+if(audioContext.state === "suspended"){
 
-audioContext.resume();
+audioContext.resume().catch(function(){});
 
 }
 
-}catch(error){}
+}catch(error){
+
+console.log("Audio unavailable");
+
+}
 
 }
 
@@ -986,17 +947,19 @@ function beep(){
 
 try{
 
-if(!audioContext)return;
+if(!audioContext){
+return;
+}
 
-const oscillator=
+const oscillator =
 audioContext.createOscillator();
 
-const gain=
+const gain =
 audioContext.createGain();
 
-oscillator.type="sine";
+oscillator.type = "sine";
 
-oscillator.frequency.value=850;
+oscillator.frequency.value = 850;
 
 gain.gain.setValueAtTime(
 0.001,
@@ -1005,12 +968,12 @@ audioContext.currentTime
 
 gain.gain.exponentialRampToValueAtTime(
 0.18,
-audioContext.currentTime+0.02
+audioContext.currentTime + 0.02
 );
 
 gain.gain.exponentialRampToValueAtTime(
 0.001,
-audioContext.currentTime+0.18
+audioContext.currentTime + 0.18
 );
 
 oscillator.connect(gain);
@@ -1022,37 +985,36 @@ audioContext.destination
 oscillator.start();
 
 oscillator.stop(
-audioContext.currentTime+0.2
+audioContext.currentTime + 0.2
 );
 
-}catch(error){}
+}catch(error){
+
+console.log("Beep failed");
+
+}
 
 }
 
 
 /* =====================================================
-   Start
+   Start Game
 ===================================================== */
 
 function startGame(){
 
-const input=
-document.getElementById("nameInput");
+const input = $("nameInput");
+const button = $("startButton");
+const errorBox = $("startError");
 
-const button=
-document.getElementById("startButton");
-
-const errorBox=
-document.getElementById("startError");
-
-const name=
+const name =
 input.value.trim();
 
 errorBox.classList.add("hidden");
 
 if(!name){
 
-errorBox.textContent=
+errorBox.textContent =
 "اكتب اسمك الأول يا بطل 😏";
 
 errorBox.classList.remove("hidden");
@@ -1063,31 +1025,27 @@ return;
 
 }
 
+playerName = name;
+
+currentQuestion = 0;
+totalScore = 0;
+selectedAnswer = null;
+playerAnswers = [];
+gameFinished = false;
+
 initAudio();
 
-button.disabled=true;
+button.disabled = true;
+button.textContent = "جاري بدء المواجهة...";
 
-button.textContent=
-"جاري تجهيز المواجهة...";
+setTimeout(function(){
 
-playerName=name;
-
-currentQuestion=0;
-totalScore=0;
-selectedAnswer=null;
-playerAnswers=[];
-gameFinished=false;
-
-setTimeout(()=>{
-
-button.disabled=false;
-
-button.textContent=
-"ابدأ المواجهة 🚀";
+button.disabled = false;
+button.textContent = "ابدأ المواجهة 🚀";
 
 showQuestion();
 
-},300);
+},200);
 
 }
 
@@ -1100,7 +1058,7 @@ function showQuestion(){
 
 stopTimer();
 
-if(currentQuestion>=questions.length){
+if(currentQuestion >= questions.length){
 
 finishQuiz();
 
@@ -1110,85 +1068,82 @@ return;
 
 hideAll();
 
-document
-.getElementById("quizPage")
-.classList.remove("hidden");
+$("quizPage").classList.remove("hidden");
 
-const q=
+const q =
 questions[currentQuestion];
 
-document
-.getElementById("progress")
-.textContent=
-"السؤال "+
-(currentQuestion+1)+
-" من "+
+$("progress").textContent =
+"السؤال " +
+(currentQuestion + 1) +
+" من " +
 questions.length;
 
-document
-.getElementById("question")
-.textContent=
+$("question").textContent =
 q.question;
 
-document
-.getElementById("shehabTime")
-.textContent=
+$("shehabTime").textContent =
 q.shehabTime;
 
-selectedAnswer=null;
+selectedAnswer = null;
 
-const nextButton=
-document.getElementById("nextButton");
+const nextButton =
+$("nextButton");
 
-nextButton.disabled=true;
+nextButton.disabled = true;
 
-nextButton.textContent=
-currentQuestion===
-questions.length-1
+nextButton.textContent =
+currentQuestion === questions.length - 1
 ?
 "إنهاء التحدي 🏆"
 :
 "التالي →";
 
-const choices=
-document.getElementById("choices");
+const choicesContainer =
+$("choices");
 
-choices.innerHTML="";
+choicesContainer.innerHTML = "";
 
-q.choices.forEach(
-(choice,index)=>{
+q.choices.forEach(function(choice,index){
 
-const button=
+const button =
 document.createElement("button");
 
-button.className="choice";
+button.type = "button";
 
-button.textContent=choice;
+button.className = "choice";
 
-button.onclick=()=>{
+button.textContent = choice;
+
+button.addEventListener(
+"click",
+function(){
+
 selectChoice(button,index);
-};
 
-choices.appendChild(button);
+}
+);
+
+choicesContainer.appendChild(button);
 
 });
 
-remainingSeconds=q.time;
+remainingSeconds = q.time;
 
 updateTimer();
 
-timerInterval=
-setInterval(()=>{
+timerInterval =
+setInterval(function(){
 
-if(remainingSeconds>0){
+if(remainingSeconds > 0){
 
 remainingSeconds--;
 
 updateTimer();
 
 if(
-remainingSeconds<=10 &&
-remainingSeconds>0
+remainingSeconds <= 10 &&
+remainingSeconds > 0
 ){
 
 beep();
@@ -1197,7 +1152,7 @@ beep();
 
 }
 
-if(remainingSeconds<=0){
+if(remainingSeconds <= 0){
 
 stopTimer();
 
@@ -1216,25 +1171,25 @@ handleTimeout();
 
 function updateTimer(){
 
-const timer=
-document.getElementById("remaining");
+const timer =
+$("remaining");
 
-const minutes=
+const minutes =
 Math.floor(
-remainingSeconds/60
+remainingSeconds / 60
 );
 
-const seconds=
-remainingSeconds%60;
+const seconds =
+remainingSeconds % 60;
 
-timer.textContent=
-String(minutes).padStart(2,"0")+
-":"+
+timer.textContent =
+String(minutes).padStart(2,"0") +
+":" +
 String(seconds).padStart(2,"0");
 
 timer.classList.toggle(
 "timer-danger",
-remainingSeconds<=10
+remainingSeconds <= 10
 );
 
 }
@@ -1242,11 +1197,11 @@ remainingSeconds<=10
 
 function stopTimer(){
 
-if(timerInterval!==null){
+if(timerInterval !== null){
 
 clearInterval(timerInterval);
 
-timerInterval=null;
+timerInterval = null;
 
 }
 
@@ -1259,21 +1214,23 @@ timerInterval=null;
 
 function selectChoice(button,index){
 
-if(gameFinished)return;
+if(gameFinished){
+return;
+}
 
 document
 .querySelectorAll(".choice")
-.forEach(
-b=>b.classList.remove("selected")
-);
+.forEach(function(b){
+
+b.classList.remove("selected");
+
+});
 
 button.classList.add("selected");
 
-selectedAnswer=index;
+selectedAnswer = index;
 
-document
-.getElementById("nextButton")
-.disabled=false;
+$("nextButton").disabled = false;
 
 }
 
@@ -1282,32 +1239,31 @@ document
    Save Answer
 ===================================================== */
 
-function saveAnswer(timedOut=false){
+function saveAnswer(timedOut){
 
-const q=
+const q =
 questions[currentQuestion];
 
-const correct=
-selectedAnswer!==null &&
-selectedAnswer===
-q.correctAnswer;
+const correct =
+selectedAnswer !== null &&
+selectedAnswer === q.correctAnswer;
 
 playerAnswers.push({
 
-question:currentQuestion+1,
+question: currentQuestion + 1,
 
-selectedAnswer:selectedAnswer,
+selectedAnswer: selectedAnswer,
 
-correctAnswer:q.correctAnswer,
+correctAnswer: q.correctAnswer,
 
-correct:correct,
+correct: correct,
 
-timedOut:timedOut,
+timedOut: Boolean(timedOut),
 
 timeUsed:
 Math.max(
 0,
-q.time-remainingSeconds
+q.time - remainingSeconds
 )
 
 });
@@ -1327,18 +1283,15 @@ totalScore++;
 
 function handleTimeout(){
 
-if(gameFinished)return;
+if(gameFinished){
+return;
+}
 
 saveAnswer(true);
 
 currentQuestion++;
 
-setTimeout(()=>{
-
-if(
-currentQuestion<
-questions.length
-){
+if(currentQuestion < questions.length){
 
 showQuestion();
 
@@ -1347,8 +1300,6 @@ showQuestion();
 finishQuiz();
 
 }
-
-},500);
 
 }
 
@@ -1359,13 +1310,13 @@ finishQuiz();
 
 function nextQuestion(){
 
-if(gameFinished)return;
+if(gameFinished){
+return;
+}
 
-if(selectedAnswer===null){
+if(selectedAnswer === null){
 
-alert(
-"اختار إجابة الأول يا بطل 😏"
-);
+alert("اختار إجابة الأول يا بطل 😏");
 
 return;
 
@@ -1373,24 +1324,15 @@ return;
 
 stopTimer();
 
-const button=
-document.getElementById("nextButton");
-
-button.disabled=true;
+$("nextButton").disabled = true;
 
 saveAnswer(false);
 
 currentQuestion++;
 
-if(
-currentQuestion<
-questions.length
-){
+if(currentQuestion < questions.length){
 
-setTimeout(
-showQuestion,
-180
-);
+showQuestion();
 
 }else{
 
@@ -1407,32 +1349,31 @@ finishQuiz();
 
 function finishQuiz(){
 
-if(gameFinished)return;
+if(gameFinished){
+return;
+}
 
-gameFinished=true;
+gameFinished = true;
 
 stopTimer();
 
-const player={
+const player = {
 
-name:playerName,
+name: playerName,
 
-score:totalScore,
+score: totalScore,
 
-percentage:totalScore*10,
+percentage: totalScore * 10,
 
-date:new Date().toISOString(),
+date: new Date().toISOString(),
 
-answers:playerAnswers
+answers: playerAnswers
 
 };
 
 savePlayer(player);
 
-setTimeout(
-showResult,
-250
-);
+showResult();
 
 }
 
@@ -1445,54 +1386,38 @@ function showResult(){
 
 hideAll();
 
-document
-.getElementById("resultPage")
-.classList.remove("hidden");
+$("resultPage").classList.remove("hidden");
 
-document
-.getElementById("resultTitle")
-.textContent=
-"🔥 ممتاز يا "+playerName;
+$("resultTitle").textContent =
+"🔥 ممتاز يا " + playerName;
 
-document
-.getElementById("score")
-.textContent=
-totalScore+" / 10";
+$("score").textContent =
+totalScore + " / 10";
 
 
-if(totalScore===10){
+if(totalScore === 10){
 
-document
-.getElementById("resultText")
-.textContent=
+$("resultText").textContent =
 "🏆🔥 كسرت نتيجة شهاب! جبت 10 / 10.";
 
-}else if(totalScore===9){
+}else if(totalScore === 9){
 
-document
-.getElementById("resultText")
-.textContent=
+$("resultText").textContent =
 "⚖️ تعادلت مع شهاب. 9 / 10.";
 
-}else if(totalScore>=7){
+}else if(totalScore >= 7){
 
-document
-.getElementById("resultText")
-.textContent=
+$("resultText").textContent =
 "🔥 نتيجة قوية جدًا، لكن لسه ماكسرتش شهاب.";
 
-}else if(totalScore>=4){
+}else if(totalScore >= 4){
 
-document
-.getElementById("resultText")
-.textContent=
+$("resultText").textContent =
 "نتيجة متوسطة. عندك اختيارات قوية، وبعض الأسئلة قدرت توقعك في الفخ.";
 
 }else{
 
-document
-.getElementById("resultText")
-.textContent=
+$("resultText").textContent =
 "النتيجة مش حكم على ذكائك. الاختبار بيقيس استجاباتك في المواقف دي فقط.";
 
 }
@@ -1500,33 +1425,33 @@ document
 
 /* Comparison */
 
-const comparison=
-document.getElementById("comparison");
+const comparison =
+$("comparison");
 
-if(totalScore===10){
+if(totalScore === 10){
 
-comparison.innerHTML=
-'<strong class="green">🏆 كسرت نتيجة شهاب!</strong><br><br>'+
-"أنت: 10 / 10<br>"+
+comparison.innerHTML =
+'<strong class="green">🏆 كسرت نتيجة شهاب!</strong><br><br>' +
+"أنت: 10 / 10<br>" +
 "شهاب: 9 / 10";
 
-}else if(totalScore===9){
+}else if(totalScore === 9){
 
-comparison.innerHTML=
-'<strong>⚖️ تعادلت مع شهاب.</strong><br><br>'+
-"أنت: 9 / 10<br>"+
+comparison.innerHTML =
+'<strong>⚖️ تعادلت مع شهاب.</strong><br><br>' +
+"أنت: 9 / 10<br>" +
 "شهاب: 9 / 10";
 
 }else{
 
-comparison.innerHTML=
-'<strong class="red">شهاب ما زال متقدمًا.</strong><br><br>'+
-"أنت: "+
-totalScore+
-" / 10<br>"+
-"شهاب: 9 / 10<br><br>"+
-"الفارق: "+
-(9-totalScore)+
+comparison.innerHTML =
+'<strong class="red">شهاب ما زال متقدمًا.</strong><br><br>' +
+"أنت: " +
+totalScore +
+" / 10<br>" +
+"شهاب: 9 / 10<br><br>" +
+"الفارق: " +
+(9 - totalScore) +
 " نقطة.";
 
 }
@@ -1534,19 +1459,17 @@ totalScore+
 
 /* Style */
 
-document
-.getElementById("style")
-.textContent=
+$("style").textContent =
 
-totalScore>=9
+totalScore >= 9
 ?
 "تفكيرك قوي جدًا في فحص المعنى والافتراضات، وغالبًا لا تكتفي بأول إجابة تبدو صحيحة."
 :
-totalScore>=7
+totalScore >= 7
 ?
 "عندك قدرة جيدة على التفكير التحليلي، لكن بعض الفخاخ قدرت تسحبك للاستنتاج السريع."
 :
-totalScore>=4
+totalScore >= 4
 ?
 "عندك مزيج من التفكير السريع والتحليلي، وتقدر تطور نتيجتك أكثر لو راجعت الافتراضات قبل الحكم."
 :
@@ -1555,88 +1478,94 @@ totalScore>=4
 
 /* Statistics */
 
-const players=getPlayers();
+const players =
+getPlayers();
 
-const scores=
-players.map(
-player=>Number(player.score)||0
-);
+const scores =
+players.map(function(player){
 
-const totalPlayers=
+return Number(player.score) || 0;
+
+});
+
+const totalPlayers =
 players.length;
 
-const completed=
+const completed =
 players.length;
 
-const average=
+const average =
 completed
 ?
-scores.reduce(
-(sum,score)=>sum+score,
-0
-)/completed
+scores.reduce(function(sum,score){
+
+return sum + score;
+
+},0) / completed
 :
 totalScore;
 
-const highest=
+const highest =
 completed
 ?
-Math.max(...scores)
+Math.max.apply(null,scores)
 :
 totalScore;
 
-const sortedScores=
-[...scores].sort(
-(a,b)=>b-a
-);
 
-const rank=
-sortedScores.indexOf(totalScore)+1;
+/*
+  الترتيب:
+  نحسب عدد الأشخاص الذين
+  درجتهم أعلى من اللاعب + 1
+  بدل indexOf حتى يكون التعادل عادل.
+*/
 
-document
-.getElementById("percentage")
-.textContent=
-(totalScore*10)+"%";
+const rank =
+1 +
+scores.filter(function(score){
 
-document
-.getElementById("rank")
-.textContent=
-"#"+rank;
+return score > totalScore;
 
-document
-.getElementById("totalPlayers")
-.textContent=
+}).length;
+
+
+$("percentage").textContent =
+(totalScore * 10) + "%";
+
+$("rank").textContent =
+"#" + rank;
+
+$("totalPlayers").textContent =
 totalPlayers;
 
-document
-.getElementById("completed")
-.textContent=
+$("completed").textContent =
 completed;
 
-document
-.getElementById("average")
-.textContent=
-average.toFixed(1)+" / 10";
+$("average").textContent =
+average.toFixed(1) + " / 10";
 
-document
-.getElementById("highest")
-.textContent=
-highest+" / 10";
+$("highest").textContent =
+highest + " / 10";
 
-document
-.getElementById("progressMessage")
-.textContent=
-totalScore>average
-?
-"📈 نتيجتك أعلى من متوسط المشاركين."
-:
-totalScore===Number(
-average.toFixed(1)
-)
-?
-"⚖️ نتيجتك قريبة من متوسط المشاركين."
-:
+
+if(totalScore > average){
+
+$("progressMessage").textContent =
+"📈 نتيجتك أعلى من متوسط المشاركين.";
+
+}else if(
+Math.abs(totalScore - average) < 0.05
+){
+
+$("progressMessage").textContent =
+"⚖️ نتيجتك قريبة من متوسط المشاركين.";
+
+}else{
+
+$("progressMessage").textContent =
 "📊 عندك مساحة كويسة للتحسن.";
+
+}
 
 
 /* Review */
@@ -1652,123 +1581,150 @@ renderReview();
 
 function renderReview(){
 
-const review=
-document.getElementById("review");
+const review =
+$("review");
 
-review.innerHTML="";
+review.innerHTML = "";
 
-playerAnswers.forEach(
-(answer,index)=>{
+playerAnswers.forEach(function(answer,index){
 
-const q=
+const q =
 questions[index];
 
-const card=
+const card =
 document.createElement("div");
 
-card.className=
+card.className =
 "review-card";
 
-const playerAnswerText=
-answer.selectedAnswer===null
+const playerAnswerText =
+answer.selectedAnswer === null
 ?
 "لم يتم اختيار إجابة — الوقت انتهى."
 :
-q.choices[
-answer.selectedAnswer
-];
+q.choices[answer.selectedAnswer];
 
-const correctAnswerText=
-q.choices[
-q.correctAnswer
-];
+const correctAnswerText =
+q.choices[q.correctAnswer];
 
-let statusClass="";
-let statusText="";
+let statusClass = "";
+let statusText = "";
 
 if(answer.correct){
 
-statusClass=
-"status-correct";
-
-statusText=
-"✓ إجابة صحيحة";
+statusClass = "status-correct";
+statusText = "✓ إجابة صحيحة";
 
 }else if(answer.timedOut){
 
-statusClass=
-"status-timeout";
-
-statusText=
-"⏰ الوقت انتهى";
+statusClass = "status-timeout";
+statusText = "⏰ الوقت انتهى";
 
 }else{
 
-statusClass=
-"status-wrong";
-
-statusText=
-"✕ إجابة غير صحيحة";
+statusClass = "status-wrong";
+statusText = "✕ إجابة غير صحيحة";
 
 }
 
-card.innerHTML=`
+const number =
+document.createElement("div");
 
-<div class="review-number">
-السؤال ${index+1} من 10
-</div>
+number.className =
+"review-number";
 
-<div class="review-question">
-${escapeHTML(q.question)}
-</div>
+number.textContent =
+"السؤال " +
+(index + 1) +
+" من 10";
 
-<div class="answer-line answer-player">
-<strong>إجابتك:</strong><br>
-${escapeHTML(playerAnswerText)}
-</div>
+const question =
+document.createElement("div");
 
-<div class="answer-line answer-correct">
-<strong>الإجابة الصحيحة:</strong><br>
-${escapeHTML(correctAnswerText)}
-</div>
+question.className =
+"review-question";
 
-<div>
-<span class="status-badge ${statusClass}">
-${statusText}
-</span>
-</div>
+question.textContent =
+q.question;
 
-<div class="explanation">
-<strong>🧠 التفسير المنطقي:</strong><br>
-${escapeHTML(q.explanation)}
-</div>
+const playerLine =
+document.createElement("div");
 
-`;
+playerLine.className =
+"answer-line answer-player";
+
+playerLine.innerHTML =
+"<strong>إجابتك:</strong><br>";
+
+const playerText =
+document.createElement("span");
+
+playerText.textContent =
+playerAnswerText;
+
+playerLine.appendChild(playerText);
+
+const correctLine =
+document.createElement("div");
+
+correctLine.className =
+"answer-line answer-correct";
+
+correctLine.innerHTML =
+"<strong>الإجابة الصحيحة:</strong><br>";
+
+const correctText =
+document.createElement("span");
+
+correctText.textContent =
+correctAnswerText;
+
+correctLine.appendChild(correctText);
+
+const status =
+document.createElement("div");
+
+const statusBadge =
+document.createElement("span");
+
+statusBadge.className =
+"status-badge " +
+statusClass;
+
+statusBadge.textContent =
+statusText;
+
+status.appendChild(statusBadge);
+
+const explanation =
+document.createElement("div");
+
+explanation.className =
+"explanation";
+
+explanation.innerHTML =
+"<strong>🧠 التفسير المنطقي:</strong><br>";
+
+const explanationText =
+document.createElement("span");
+
+explanationText.textContent =
+q.explanation;
+
+explanation.appendChild(
+explanationText
+);
+
+card.appendChild(number);
+card.appendChild(question);
+card.appendChild(playerLine);
+card.appendChild(correctLine);
+card.appendChild(status);
+card.appendChild(explanation);
 
 review.appendChild(card);
 
 });
-
-}
-
-
-/* =====================================================
-   Security
-===================================================== */
-
-function escapeHTML(text){
-
-return String(text)
-
-.replace(/&/g,"&amp;")
-
-.replace(/</g,"&lt;")
-
-.replace(/>/g,"&gt;")
-
-.replace(/"/g,"&quot;")
-
-.replace(/'/g,"&#039;");
 
 }
 
@@ -1779,18 +1735,18 @@ return String(text)
 
 function contactShehab(){
 
-const phone=
+const phone =
 "201011641423";
 
-const message=
+const message =
 encodeURIComponent(
 "السلام عليكم يا شهاب، جربت تحدي شهاب وعاوز أعرف تفسير الإجابات المنطقية للاختبار."
 );
 
 window.open(
-"https://wa.me/"+
-phone+
-"?text="+
+"https://wa.me/" +
+phone +
+"?text=" +
 message,
 "_blank"
 );
@@ -1799,22 +1755,96 @@ message,
 
 
 /* =====================================================
-   Enter
+   Event Listeners
 ===================================================== */
 
-document
-.getElementById("nameInput")
+$("startChallengeButton")
+.addEventListener(
+"click",
+showName
+);
+
+$("startButton")
+.addEventListener(
+"click",
+startGame
+);
+
+$("backButton")
+.addEventListener(
+"click",
+goHome
+);
+
+$("nextButton")
+.addEventListener(
+"click",
+nextQuestion
+);
+
+$("restartButton")
+.addEventListener(
+"click",
+function(){
+
+location.reload();
+
+}
+);
+
+$("whatsappButton")
+.addEventListener(
+"click",
+contactShehab
+);
+
+$("nameInput")
 .addEventListener(
 "keydown",
 function(event){
 
-if(event.key==="Enter"){
+if(event.key === "Enter"){
+
+event.preventDefault();
 
 startGame();
 
 }
 
-});
+}
+);
+
+
+/* =====================================================
+   حماية عامة من أخطاء JavaScript
+===================================================== */
+
+window.addEventListener(
+"error",
+function(event){
+
+console.error(
+"Shehab Challenge Error:",
+event.error || event.message
+);
+
+const errorBox =
+$("startError");
+
+if(
+errorBox &&
+!$("namePage").classList.contains("hidden")
+){
+
+errorBox.textContent =
+"حصل خطأ بسيط في تشغيل التحدي. جرّب تحديث الصفحة.";
+
+errorBox.classList.remove("hidden");
+
+}
+
+}
+);
 
 </script>
 
