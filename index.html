@@ -266,11 +266,6 @@ background:#173522;
 border:1px solid #2d7044;
 }
 
-.answer-wrong{
-background:#3a2025;
-border:1px solid #7b3d46;
-}
-
 .explanation{
 margin-top:13px;
 background:#191f31;
@@ -303,72 +298,6 @@ color:#ff9ca4;
 .status-timeout{
 background:#342c18;
 color:#ffd875;
-}
-
-.timeout-box{
-background:#342c18;
-border:1px solid #705d29;
-color:#ffd875;
-padding:13px;
-border-radius:14px;
-margin-top:12px;
-line-height:1.7;
-font-size:14px;
-font-weight:bold;
-}
-
-.rating-box{text-align:center;}
-
-.rating-title{
-font-size:21px;
-font-weight:bold;
-margin-bottom:8px;
-}
-
-.rating-subtitle{
-color:#aeb6c8;
-font-size:15px;
-line-height:1.7;
-}
-
-.stars{
-display:flex;
-justify-content:center;
-gap:6px;
-direction:ltr;
-margin:18px 0;
-}
-
-.star{
-width:auto;
-margin:0;
-padding:4px 5px;
-background:transparent;
-color:#596275;
-font-size:38px;
-line-height:1;
-}
-
-.star.selected,
-.star:hover{
-color:#ffd34d;
-}
-
-.rating-result{
-text-align:center;
-color:#8ee7a1;
-font-weight:bold;
-margin-top:12px;
-}
-
-.thanks-box{
-background:#173522;
-border:1px solid #2d7044;
-border-radius:15px;
-padding:14px;
-margin-top:14px;
-line-height:1.8;
-text-align:center;
 }
 
 .agent-box{
@@ -418,18 +347,55 @@ margin-top:12px;
 font-weight:bold;
 }
 
-.save-status{
-background:#191f31;
-border:1px solid #30394f;
+.rating-box{text-align:center;}
+
+.rating-title{
+font-size:21px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.rating-subtitle{
 color:#aeb6c8;
-padding:12px;
-border-radius:14px;
-margin-top:12px;
-font-size:14px;
+font-size:15px;
 line-height:1.7;
 }
 
+.stars{
+display:flex;
+justify-content:center;
+gap:6px;
+direction:ltr;
+margin:18px 0;
+}
+
+.star{
+width:auto;
+margin:0;
+padding:4px 5px;
+background:transparent;
+color:#596275;
+font-size:38px;
+line-height:1;
+}
+
+.star.selected,
+.star:hover{
+color:#ffd34d;
+}
+
+.thanks-box{
+background:#173522;
+border:1px solid #2d7044;
+border-radius:15px;
+padding:14px;
+margin-top:14px;
+line-height:1.8;
+text-align:center;
+}
+
 @media(max-width:450px){
+
 .container{
 padding:9px 7px 30px;
 }
@@ -451,6 +417,7 @@ padding:14px;
 .score{font-size:58px;}
 
 .star{font-size:34px;}
+
 }
 </style>
 </head>
@@ -458,6 +425,8 @@ padding:14px;
 <body>
 
 <div class="container">
+
+<!-- HOME -->
 
 <section id="home" class="card center">
 
@@ -514,6 +483,8 @@ padding:14px;
 </section>
 
 
+<!-- AGENT -->
+
 <section id="agentPage" class="card center hidden">
 
 <h2>🔐 دخول التحدي</h2>
@@ -556,6 +527,8 @@ onclick="verifyAgent()"
 </section>
 
 
+<!-- NAME -->
+
 <section id="namePage" class="card center hidden">
 
 <h2>قبل المواجهة 👀</h2>
@@ -571,7 +544,7 @@ placeholder="اكتب اسمك هنا"
 autocomplete="off"
 >
 
-<div id="startError" class="timeout-box hidden"></div>
+<div id="startError" class="offer-error hidden"></div>
 
 <button
 id="startButton"
@@ -587,6 +560,8 @@ onclick="startGame()"
 
 </section>
 
+
+<!-- QUIZ -->
 
 <section id="quizPage" class="card hidden">
 
@@ -623,11 +598,15 @@ disabled
 </section>
 
 
+<!-- PRODUCT OFFER -->
+
 <section id="offerPage" class="card hidden">
 
 <div class="offer-box">
 
-<div class="offer-title">📦 المنتج</div>
+<div class="offer-title">
+📦 المنتج
+</div>
 
 <p>
 قبل ما تكمل باقي التحدي، لازم تحدد اختيارك بوضوح:
@@ -660,8 +639,6 @@ onclick="selectProductOffer(false)"
 لازم تختار أحد الاختيارين علشان تكمل التحدي.
 </div>
 
-<div id="offerSaveStatus" class="save-status hidden"></div>
-
 <button
 id="continueAfterOffer"
 class="primary"
@@ -676,6 +653,8 @@ disabled
 </section>
 
 
+<!-- RESULT -->
+
 <section id="resultPage" class="card center hidden">
 
 <div class="logo">🏆</div>
@@ -687,6 +666,9 @@ disabled
 <p id="resultText" class="text"></p>
 
 <div id="productResult" class="result-box"></div>
+
+
+<!-- RATING -->
 
 <div class="result-box rating-box">
 
@@ -735,6 +717,8 @@ disabled
 </div>
 
 
+<!-- COMPARISON -->
+
 <div class="result-box">
 
 <h3>🔥 مقارنة بشهاب</h3>
@@ -743,6 +727,8 @@ disabled
 
 </div>
 
+
+<!-- STATS -->
 
 <div class="result-box">
 
@@ -787,6 +773,8 @@ disabled
 </div>
 
 
+<!-- STYLE -->
+
 <div class="result-box">
 
 <h3>🧠 أسلوب تفكيرك</h3>
@@ -795,6 +783,8 @@ disabled
 
 </div>
 
+
+<!-- REVIEW -->
 
 <div class="result-box">
 
@@ -858,7 +848,7 @@ const response=await fetch(
 SUPABASE_URL+endpoint,
 {
 ...options,
-headers:headers
+headers
 }
 );
 
@@ -886,9 +876,11 @@ if(data){
 
 if(data.message){
 message=data.message;
-}else if(data.error){
+}
+else if(data.error){
 message=data.error;
-}else if(data.hint){
+}
+else if(data.hint){
 message=data.hint;
 }
 
@@ -1474,15 +1466,25 @@ new Date().toISOString();
 try{
 
 const testData={
+
 id:currentTestId,
+
 agent_id:agentId,
+
 player_name:playerName,
+
 score:0,
+
 percentage:0,
+
 product_offer_answer:null,
+
 started_at:startedAt,
+
 status:"started",
+
 answers:[]
+
 };
 
 await supabaseRequest(
@@ -1492,11 +1494,6 @@ method:"POST",
 prefer:"return=minimal",
 body:JSON.stringify(testData)
 }
-);
-
-console.log(
-"TEST CREATED:",
-currentTestId
 );
 
 showQuestion();
@@ -1581,6 +1578,7 @@ const button=
 document.createElement("button");
 
 button.className="choice";
+
 button.textContent=choice;
 
 button.onclick=()=>{
@@ -1660,6 +1658,7 @@ function stopTimer(){
 if(timerInterval!==null){
 
 clearInterval(timerInterval);
+
 timerInterval=null;
 
 }
@@ -1705,9 +1704,13 @@ selectedAnswer===q.correctAnswer;
 playerAnswers.push({
 
 question:currentQuestion+1,
+
 selectedAnswer:selectedAnswer,
+
 correctAnswer:q.correctAnswer,
+
 correct:correct,
+
 timedOut:timedOut,
 
 timeUsed:
@@ -1816,6 +1819,7 @@ finishQuiz();
 
 /* =====================================================
 PRODUCT OFFER
+IMPORTANT FIX
 ===================================================== */
 
 function showProductOffer(){
@@ -1840,16 +1844,13 @@ document.getElementById("continueAfterOffer")
 document.getElementById("offerError")
 .classList.add("hidden");
 
-document.getElementById("offerSaveStatus")
-.classList.add("hidden");
-
 }
 
-async function selectProductOffer(answer){
 
-if(!currentTestId)return;
+function selectProductOffer(answer){
 
 offerSelection=Boolean(answer);
+
 productOfferAnswer=offerSelection;
 
 document.querySelectorAll(".offer-choice")
@@ -1861,57 +1862,34 @@ const buttons=
 document.querySelectorAll(".offer-choice");
 
 if(offerSelection===true){
+
 buttons[0].classList.add("selected");
+
 }else{
+
 buttons[1].classList.add("selected");
+
 }
-
-document.getElementById("continueAfterOffer")
-.disabled=true;
-
-const statusBox=
-document.getElementById("offerSaveStatus");
-
-statusBox.classList.remove("hidden");
-statusBox.textContent=
-"جاري حفظ اختيارك...";
-
-try{
-
-await updateCurrentTest({
-product_offer_answer:productOfferAnswer
-});
-
-statusBox.textContent=
-"✅ تم حفظ اختيارك.";
 
 document.getElementById("continueAfterOffer")
 .disabled=false;
 
-}catch(error){
-
-console.error(
-"PRODUCT OFFER SAVE ERROR:",
-error
-);
-
-statusBox.textContent=
-"⚠️ حصلت مشكلة في حفظ الاختيار. حاول الضغط مرة أخرى.";
-
-productOfferAnswer=null;
-offerSelection=null;
-
-document.querySelectorAll(".offer-choice")
-.forEach(
-button=>button.classList.remove("selected")
-);
-
-}
-
 }
 
 
-async function continueAfterOffer(){
+/*
+IMPORTANT FIX:
+
+هنا لا يوجد أي طلب إلى Supabase.
+
+الاختيار يفضل محفوظًا في:
+productOfferAnswer
+
+وبعد نهاية الاختبار يتم حفظه
+مع النتيجة النهائية.
+*/
+
+function continueAfterOffer(){
 
 if(offerSelection===null){
 
@@ -1922,72 +1900,16 @@ return;
 
 }
 
+productOfferAnswer=
+offerSelection;
+
 showQuestion();
 
 }
 
 
 /* =====================================================
-UPDATE CURRENT TEST
-===================================================== */
-
-async function updateCurrentTest(updateData){
-
-if(!currentTestId){
-
-throw new Error(
-"رقم الاختبار غير موجود."
-);
-
-}
-
-const endpoint=
-"/rest/v1/tests?id=eq."+
-encodeURIComponent(currentTestId);
-
-await supabaseRequest(
-endpoint,
-{
-method:"PATCH",
-prefer:"return=minimal",
-body:JSON.stringify(updateData)
-}
-);
-
-/*
-نتأكد إن الصف موجود بعد التحديث.
-ده مهم جدًا علشان نعرف إن العملية
-تمت على نفس الاختبار.
-*/
-
-const check=
-await supabaseRequest(
-"/rest/v1/tests?select=id,status,score,percentage,product_offer_answer,answers&id=eq."+
-encodeURIComponent(currentTestId),
-{
-method:"GET",
-prefer:"return=representation"
-}
-);
-
-if(
-!Array.isArray(check) ||
-check.length===0
-){
-
-throw new Error(
-"تم إرسال التحديث لكن لم يتم العثور على الاختبار بعد الحفظ."
-);
-
-}
-
-return check[0];
-
-}
-
-
-/* =====================================================
-FINISH
+FINISH QUIZ
 ===================================================== */
 
 async function finishQuiz(){
@@ -2001,37 +1923,19 @@ stopTimer();
 const completedAt=
 new Date().toISOString();
 
-const finalScore=
-Number(totalScore)||0;
-
-const finalPercentage=
-finalScore*10;
-
-const finalAnswers=
-Array.isArray(playerAnswers)
-?
-playerAnswers
-:
-[];
-
-const finalOffer=
-productOfferAnswer===true
-?
-true
-:
-productOfferAnswer===false
-?
-false
-:
-null;
-
 const player={
 
 name:playerName,
-score:finalScore,
-percentage:finalPercentage,
+
+score:totalScore,
+
+percentage:totalScore*10,
+
 date:completedAt,
-answers:finalAnswers
+
+answers:playerAnswers,
+
+productOfferAnswer:productOfferAnswer
 
 };
 
@@ -2039,33 +1943,50 @@ savePlayer(player);
 
 
 /*
-نحدث نفس الصف الذي تم إنشاؤه في بداية الاختبار.
+هنا فقط يتم تحديث الاختبار في Supabase.
 */
 
 if(currentTestId){
 
 try{
 
-const saved=
-await updateCurrentTest({
+await supabaseRequest(
 
-score:finalScore,
+"/rest/v1/tests?id=eq."+
+encodeURIComponent(currentTestId),
 
-percentage:finalPercentage,
+{
 
-product_offer_answer:finalOffer,
+method:"PATCH",
 
-completed_at:completedAt,
+prefer:"return=minimal",
+
+body:JSON.stringify({
+
+score:totalScore,
+
+percentage:totalScore*10,
+
+product_offer_answer:
+productOfferAnswer,
+
+completed_at:
+completedAt,
 
 status:"completed",
 
-answers:finalAnswers
+answers:
+playerAnswers
 
-});
+})
+
+}
+
+);
 
 console.log(
-"FINAL TEST SAVED:",
-saved
+"TEST COMPLETED SUCCESSFULLY:",
+currentTestId
 );
 
 }catch(error){
@@ -2075,21 +1996,14 @@ console.error(
 error
 );
 
-/*
-نعرض النتيجة للمستخدم، لكن نحتفظ
-بمعلومة أن الحفظ النهائي حصلت فيه مشكلة.
-*/
+}
 
-localStorage.setItem(
-"shehab_last_save_error",
-error.message || "Unknown error"
+}
+
+setTimeout(
+showResult,
+250
 );
-
-}
-
-}
-
-setTimeout(showResult,250);
 
 }
 
@@ -2113,31 +2027,36 @@ document.getElementById("score")
 .textContent=
 totalScore+" / 10";
 
+
 if(totalScore===10){
 
 document.getElementById("resultText")
 .textContent=
 "🏆🔥 كسرت نتيجة شهاب! جبت 10 / 10.";
 
-}else if(totalScore===9){
+}
+else if(totalScore===9){
 
 document.getElementById("resultText")
 .textContent=
 "⚖️ تعادلت مع شهاب. 9 / 10.";
 
-}else if(totalScore>=7){
+}
+else if(totalScore>=7){
 
 document.getElementById("resultText")
 .textContent=
 "🔥 نتيجة قوية جدًا، لكن لسه ماكسرتش شهاب.";
 
-}else if(totalScore>=4){
+}
+else if(totalScore>=4){
 
 document.getElementById("resultText")
 .textContent=
 "نتيجة متوسطة. عندك اختيارات قوية، وبعض الأسئلة قدرت توقعك في الفخ.";
 
-}else{
+}
+else{
 
 document.getElementById("resultText")
 .textContent=
@@ -2156,7 +2075,8 @@ if(totalScore>9){
 productResult.innerHTML=
 '<strong class="green">🏆 المنتج من حقك مجانًا.</strong>';
 
-}else if(
+}
+else if(
 totalScore<9 &&
 productOfferAnswer===true
 ){
@@ -2164,7 +2084,8 @@ productOfferAnswer===true
 productResult.innerHTML=
 "إنت اخترت الحصول على المنتج مقابل 10 جنيه في حالة عدم التفوق على شهاب.";
 
-}else if(
+}
+else if(
 totalScore<9 &&
 productOfferAnswer===false
 ){
@@ -2172,12 +2093,14 @@ productOfferAnswer===false
 productResult.innerHTML=
 "إنت اخترت تكمل التجربة بدون شراء المنتج.";
 
-}else if(totalScore===9){
+}
+else if(totalScore===9){
 
 productResult.innerHTML=
 "⚖️ تعادلت مع شهاب، والمنتج لا يتم اعتباره مكافأة تفوق.";
 
-}else{
+}
+else{
 
 productResult.innerHTML=
 "تم تسجيل نتيجتك واختيارك أثناء الاختبار.";
@@ -2198,14 +2121,16 @@ comparison.innerHTML=
 "شهاب: 9 / 10<br><br>"+
 "🎁 المنتج من حقك مجانًا.";
 
-}else if(totalScore===9){
+}
+else if(totalScore===9){
 
 comparison.innerHTML=
 '<strong>⚖️ تعادلت مع شهاب.</strong><br><br>'+
 "أنت: 9 / 10<br>"+
 "شهاب: 9 / 10";
 
-}else{
+}
+else{
 
 comparison.innerHTML=
 '<strong class="red">شهاب ما زال متقدمًا.</strong><br><br>'+
@@ -2249,9 +2174,11 @@ players.map(
 player=>Number(player.score)||0
 );
 
-const totalPlayers=players.length;
+const totalPlayers=
+players.length;
 
-const completed=players.length;
+const completed=
+players.length;
 
 const average=
 completed
@@ -2358,12 +2285,14 @@ if(answer.correct){
 statusClass="status-correct";
 statusText="✓ إجابة صحيحة";
 
-}else if(answer.timedOut){
+}
+else if(answer.timedOut){
 
 statusClass="status-timeout";
 statusText="⏰ الوقت انتهى";
 
-}else{
+}
+else{
 
 statusClass="status-wrong";
 statusText="✕ إجابة غير صحيحة";
@@ -2434,9 +2363,13 @@ value<=rating
 const texts={
 
 1:"😕 محتاجين نشتغل أكتر على التجربة.",
+
 2:"🙂 التجربة محتاجة تطوير.",
+
 3:"👍 تجربة كويسة.",
+
 4:"🔥 تجربة ممتازة.",
+
 5:"🏆🔥 ممتاز جدًا! مبسوطين إن التجربة عجبتك."
 
 };
@@ -2458,22 +2391,20 @@ async function submitRating(){
 
 if(!selectedRating)return;
 
-const button=
-document.getElementById("ratingButton");
-
 const review=
 document.getElementById("reviewInput")
 .value.trim();
 
-button.disabled=true;
-button.textContent="جاري إرسال التقييم...";
-
 const ratingData={
 
 test_id:currentTestId,
+
 player_name:playerName,
+
 score:totalScore,
+
 rating:selectedRating,
+
 comment:review
 
 };
@@ -2489,7 +2420,8 @@ body:JSON.stringify(ratingData)
 }
 );
 
-button.textContent="تم إرسال التقييم ✓";
+document.getElementById("ratingButton")
+.disabled=true;
 
 document.getElementById("reviewInput")
 .disabled=true;
@@ -2503,9 +2435,6 @@ console.error(
 "RATING ERROR:",
 error
 );
-
-button.disabled=false;
-button.textContent="إرسال التقييم ⭐";
 
 alert(
 "حصلت مشكلة في إرسال التقييم: "+
@@ -2524,10 +2453,15 @@ ESCAPE HTML
 function escapeHTML(text){
 
 return String(text)
+
 .replace(/&/g,"&amp;")
+
 .replace(/</g,"&lt;")
+
 .replace(/>/g,"&gt;")
+
 .replace(/"/g,"&quot;")
+
 .replace(/'/g,"&#039;");
 
 }
@@ -2567,10 +2501,13 @@ document.getElementById("nameInput")
 function(event){
 
 if(event.key==="Enter"){
+
 startGame();
+
 }
 
 });
+
 
 document.getElementById("agentCodeInput")
 .addEventListener(
@@ -2578,7 +2515,9 @@ document.getElementById("agentCodeInput")
 function(event){
 
 if(event.key==="Enter"){
+
 verifyAgent();
+
 }
 
 });
