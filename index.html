@@ -95,6 +95,7 @@ font-weight:bold;
 cursor:pointer;
 margin-top:12px;
 transition:.15s;
+font-family:inherit;
 }
 
 button:active{
@@ -392,15 +393,23 @@ line-height:1.8;
 text-align:center;
 }
 
-/* ================= OFFER ================= */
+.agent-box{
+background:#191f31;
+border:1px solid #30394f;
+border-radius:18px;
+padding:17px;
+margin:18px 0;
+text-align:right;
+}
 
 .offer-box{
 background:#191f31;
-border:1px solid #4b5875;
+border:2px solid #596275;
 border-radius:20px;
-padding:20px;
+padding:22px;
+margin-top:18px;
 line-height:1.9;
-margin-top:15px;
+text-align:right;
 }
 
 .offer-title{
@@ -409,29 +418,33 @@ font-weight:bold;
 margin-bottom:12px;
 }
 
-.offer-price{
-font-size:30px;
-font-weight:bold;
-margin:14px 0;
-}
-
 .offer-choice{
-text-align:right;
-background:#080b14;
+background:#252d42;
 border:2px solid #30394f;
 color:#fff;
+text-align:right;
 }
 
 .offer-choice.selected{
 border-color:#fff;
-background:#252d42;
+background:#30394f;
 }
 
-.offer-note{
+.offer-error{
+background:#3a2025;
+border:1px solid #7b3d46;
+color:#ffb0b7;
+padding:12px;
+border-radius:14px;
+margin-top:12px;
+font-weight:bold;
+}
+
+.db-status{
 font-size:13px;
 color:#8f99ad;
-line-height:1.8;
-margin-top:12px;
+text-align:center;
+margin-top:10px;
 }
 
 @media(max-width:450px){
@@ -504,7 +517,7 @@ font-size:34px;
 
 <div class="reward-box">
 
-🎁 <strong>المنتج</strong>
+🎁 <strong>المنتج:</strong>
 
 <br>
 
@@ -514,12 +527,12 @@ font-size:34px;
 <br>
 
 ولو شهاب تفوق عليك،
-تقدر تاخد المنتج مقابل <strong>10 جنيه</strong>.
+تقدر تحصل على المنتج مقابل <strong>10 جنيه</strong>.
 
 <br><br>
 
-ولو مش حابب تدفع الـ10 جنيه،
-تقدر تكمل التجربة بدون شراء المنتج.
+ولو مش حابب تحصل على المنتج،
+تقدر تكمل التجربة بدون شراءه.
 
 </div>
 
@@ -528,9 +541,10 @@ font-size:34px;
 <strong>❤️ والأهم بالنسبة لنا:</strong><br>
 
 إحنا حابين إنك تجرب التحدي نفسه،
-حتى لو مش حابب تدفع الـ10 جنيه.
+حتى لو مش حابب تحصل على المنتج.
 وجودك وتجربتك ورأيك أهم عندنا،
-لأننا بنختبر فكرة مشروع بنحاول نبنيه بإمكانيات بسيطة.
+لأننا بنختبر فكرة مشروع بنحاول نبنيه بإمكانيات بسيطة،
+وكل تجربة بتساعدنا نعرف نكمل ونطوّر.
 
 </div>
 
@@ -544,9 +558,68 @@ font-size:34px;
 
 <button
 class="primary"
-onclick="showName()"
+onclick="showAgentPage()"
 >
 ابدأ التحدي 🧠
+</button>
+
+</section>
+
+
+<!-- ================= AGENT ================= -->
+
+<section
+id="agentPage"
+class="card center hidden"
+>
+
+<h2>
+قبل ما نبدأ 👀
+</h2>
+
+<p class="text">
+لو أنت بتعمل الاختبار مع مندوبة، اكتب الكود اللي ادتهولك.
+</p>
+
+<div class="agent-box">
+
+<strong>كود المندوبة</strong>
+
+<input
+id="agentCodeInput"
+maxlength="20"
+placeholder="مثال: BNT01"
+autocomplete="off"
+style="direction:ltr;text-align:center;text-transform:uppercase;"
+>
+
+<div
+id="agentError"
+class="offer-error hidden"
+></div>
+
+<button
+id="agentButton"
+class="primary"
+onclick="verifyAgent()"
+>
+تأكيد الكود
+</button>
+
+</div>
+
+<button
+class="secondary"
+onclick="showNameWithoutAgent()"
+>
+أنا بعمل الاختبار بدون مندوبة
+</button>
+
+<button
+class="secondary"
+onclick="goHome()"
+>
+رجوع
 </button>
 
 </section>
@@ -589,7 +662,7 @@ onclick="startGame()"
 
 <button
 class="secondary"
-onclick="goHome()"
+onclick="showAgentPage()"
 >
 رجوع
 </button>
@@ -643,63 +716,60 @@ disabled
 </section>
 
 
-<!-- ================= OFFER ================= -->
+<!-- ================= PRODUCT OFFER ================= -->
 
 <section
 id="offerPage"
 class="card hidden"
 >
 
-<div class="center">
-
-<div class="logo">
-📦
-</div>
-
-<div class="offer-title">
-المنتج
-</div>
-
-<p class="text">
-قبل ما تكمل، محتاجين نعرف اختيارك بوضوح.
-</p>
-
-</div>
-
 <div class="offer-box">
 
-<strong>
-حضرتك لو خسرت التحدي، هل تقبل أخذ المنتج مقابل 10 جنيه؟
-</strong>
-
-<div class="offer-price">
-10 جنيه
+<div class="offer-title">
+📦 المنتج
 </div>
 
-<p class="text">
-اختار إجابة واحدة علشان تكمل الاختبار.
+<p>
+قبل ما تكمل باقي التحدي، لازم تحدد اختيارك بوضوح:
 </p>
 
+<p>
+لو شهاب تفوق عليك في النهاية، هل توافق على الحصول على المنتج مقابل <strong>10 جنيه</strong>؟
+</p>
+
+<div id="offerChoices">
+
 <button
-id="acceptOfferButton"
 class="offer-choice"
-onclick="selectOffer(true)"
+onclick="selectProductOffer(true)"
 >
 أيوه، موافق أخد المنتج بـ10 جنيه لو خسرت
 </button>
 
 <button
-id="declineOfferButton"
 class="offer-choice"
-onclick="selectOffer(false)"
+onclick="selectProductOffer(false)"
 >
-لأ، هكمل التجربة من غير شراء المنتج
+لا، هكمل التجربة بدون شراء المنتج
 </button>
 
-<p class="offer-note">
-اختيارك هنا لا يغيّر نتيجة الاختبار، ولا يؤثر على الأسئلة.
-هو فقط لتسجيل اختيارك بخصوص المنتج.
-</p>
+</div>
+
+<div
+id="offerError"
+class="offer-error hidden"
+>
+لازم تختار أحد الاختيارين علشان تكمل التحدي.
+</div>
+
+<button
+id="continueAfterOffer"
+class="primary"
+onclick="continueAfterOffer()"
+disabled
+>
+متابعة التحدي →
+</button>
 
 </div>
 
@@ -752,45 +822,11 @@ class="result-box"
 
 <div class="stars">
 
-<button
-class="star"
-data-rating="1"
-onclick="selectRating(1)"
->
-★
-</button>
-
-<button
-class="star"
-data-rating="2"
-onclick="selectRating(2)"
->
-★
-</button>
-
-<button
-class="star"
-data-rating="3"
-onclick="selectRating(3)"
->
-★
-</button>
-
-<button
-class="star"
-data-rating="4"
-onclick="selectRating(4)"
->
-★
-</button>
-
-<button
-class="star"
-data-rating="5"
-onclick="selectRating(5)"
->
-★
-</button>
+<button class="star" data-rating="1" onclick="selectRating(1)">★</button>
+<button class="star" data-rating="2" onclick="selectRating(2)">★</button>
+<button class="star" data-rating="3" onclick="selectRating(3)">★</button>
+<button class="star" data-rating="4" onclick="selectRating(4)">★</button>
+<button class="star" data-rating="5" onclick="selectRating(5)">★</button>
 
 </div>
 
@@ -837,7 +873,7 @@ class="thanks-box hidden"
 </div>
 
 
-<!-- STATS -->
+<!-- PERSONAL STATS -->
 
 <div class="result-box">
 
@@ -854,22 +890,22 @@ class="thanks-box hidden"
 
 <div class="stat">
 <strong id="rank">-</strong>
-<span>ترتيبك</span>
+<span>ترتيبك المحلي</span>
 </div>
 
 <div class="stat">
 <strong id="totalPlayers">-</strong>
-<span>عدد المشاركين</span>
+<span>اختبارات هذا الجهاز</span>
 </div>
 
 <div class="stat">
 <strong id="average">-</strong>
-<span>متوسط النتائج</span>
+<span>متوسط هذا الجهاز</span>
 </div>
 
 <div class="stat">
 <strong id="highest">-</strong>
-<span>أعلى نتيجة</span>
+<span>أعلى نتيجة هذا الجهاز</span>
 </div>
 
 <div class="stat">
@@ -939,14 +975,86 @@ onclick="contactShehab()"
 <script>
 
 /* =====================================================
-   الأسئلة - النسخة المعدلة
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+"https://buqgmkqtdyrnwwkswgiz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_o4RI813xC3WH4YAphxEqxQ_23OM1CiT";
+
+
+/* =====================================================
+   SUPABASE REQUEST
+===================================================== */
+
+async function supabaseRequest(
+endpoint,
+options={}
+){
+
+const response =
+await fetch(
+SUPABASE_URL + endpoint,
+{
+...options,
+headers:{
+"Content-Type":"application/json",
+"apikey":SUPABASE_PUBLISHABLE_KEY,
+"Authorization":
+"Bearer "+SUPABASE_PUBLISHABLE_KEY,
+"Prefer":
+options.prefer || "return=representation",
+...(options.headers || {})
+}
+}
+);
+
+const text =
+await response.text();
+
+let data=null;
+
+try{
+
+data=text?JSON.parse(text):null;
+
+}catch(error){
+
+data=text;
+
+}
+
+if(!response.ok){
+
+throw new Error(
+typeof data==="object" &&
+data &&
+data.message
+?
+data.message
+:
+"Supabase request failed: "+
+response.status
+);
+
+}
+
+return data;
+
+}
+
+
+/* =====================================================
+   الأسئلة
 ===================================================== */
 
 const questions=[
 
 {
 question:
-"أبوك قالك: «أنا شوفتك وإنت داخل البيت الساعة 8». إنت متأكد 100% إن أبوك لم يكن موجودًا داخل البيت الساعة 8. بعدها اكتشفت إن أبوك كان بيتابع كاميرا البيت الساعة 8 وشافك وأنت داخل. مين كلامه صحيح؟",
+"أبوك قالك: «أنا شوفتك وإنت داخل البيت الساعة 8». إنت متأكد 100% إن أبوك لم يكن موجودًا في البيت الساعة 8. بعدها اكتشفت إن أبوك كان بيتفرج على كاميرا البيت الساعة 8 وشافك وأنت داخل. مين كلامه صحيح؟",
 
 time:60,
 
@@ -960,128 +1068,128 @@ choices:[
 ],
 
 explanation:
-"الاتنين كلامهم صحيح. إنت بتتكلم عن وجود أبوك جسديًا داخل البيت، بينما أبوك يقصد إنه شاهدك عن طريق الكاميرا. الخطأ المتوقع هنا هو افتراض أن كلمة «شوفتك» تعني بالضرورة أنه كان واقفًا أمامك."
+"إنت صح إن أبوك لم يكن موجودًا جسديًا في البيت، وهو صح إنه شافك عن طريق الكاميرا. الفخ هنا إن العقل يربط كلمة «شافك» تلقائيًا بوجود الشخص أمامك."
 },
 
 {
 question:
-"أحمد خرج من البيت قبل محمد. محمد وصل إلى المحل قبل علي. علي خرج من المحل بعد أحمد. أي ترتيب من الآتي يمكن أن يكون صحيحًا؟",
+"تلاتة دخلوا محل. أحمد خرج الأول، محمد خرج بعد أحمد، وعلي خرج بعد محمد. مين آخر واحد من التلاتة خرج من المحل؟",
 
-time:70,
+time:60,
 
-correctAnswer:1,
+correctAnswer:2,
 
 choices:[
-"أ) أحمد خرج بعد محمد، ومحمد وصل بعد علي",
-"ب) أحمد خرج قبل محمد، ومحمد وصل قبل علي",
-"ج) علي خرج قبل أحمد، وأحمد خرج قبل محمد",
-"د) محمد خرج قبل أحمد، وعلي وصل قبل محمد"
+"أ) أحمد",
+"ب) محمد",
+"ج) علي",
+"د) مفيش حد"
 ],
 
 explanation:
-"المعلومة الوحيدة التي يجب الحفاظ عليها هي: أحمد خرج قبل محمد، ومحمد وصل قبل علي. الاختيار «ب» يحقق الشرطين معًا، بينما باقي الاختيارات تكسر واحدة من المعلومات المعطاة."
+"المعلومات رتبت الأشخاص بوضوح: أحمد أولًا، محمد ثانيًا، وعلي ثالثًا. لذلك علي هو آخر واحد خرج."
 },
 
 {
 question:
-"أحمد قال الساعة 8:00: «أنا داخل البيت». الساعة 8:10 اتصل محمد بأحمد، ورد أحمد من داخل البيت. ما الشيء الذي لا نستطيع إثباته من المعلومات وحدها؟",
+"أحمد قال لمحمد الساعة 8:00: «أنا لسه داخل البيت». الساعة 8:10 محمد اتصل بأحمد، وأحمد رد عليه من داخل البيت. إيه الحاجة اللي لا يمكن إثباتها من المعلومات دي وحدها؟",
 
-time:70,
+time:60,
 
 correctAnswer:1,
 
 choices:[
 "أ) أحمد كان داخل البيت الساعة 8:10",
-"ب) أحمد كان داخل البيت فعلًا الساعة 8:00",
-"ج) أحمد قال إنه داخل البيت الساعة 8:00",
+"ب) أحمد كان داخل البيت فعلًا وقت كلامه الساعة 8",
+"ج) أحمد قال إنه داخل البيت الساعة 8",
 "د) محمد اتصل بأحمد الساعة 8:10"
 ],
 
 explanation:
-"نحن نعرف أن أحمد قال الساعة 8 إنه داخل البيت، لكننا لا نملك دليلًا مستقلًا يثبت أن كلامه كان صحيحًا في تلك اللحظة. أما الساعة 8:10 فلدينا معلومة أنه رد من داخل البيت."
+"نحن نعرف أن أحمد قال الساعة 8 إنه داخل البيت، لكن مجرد قوله لا يثبت أن الكلام كان صحيحًا وقتها. أما وجوده في البيت الساعة 8:10 فمذكور صراحة في السيناريو."
 },
 
 {
 question:
-"شخص قال: «أنا متأكد إن أحمد كان لابس قميص أزرق الساعة 5». توجد صورة لأحمد ملتقطة الساعة 5 بالضبط، والقميص فيها أحمر. ما النتيجة الأقوى التي نستطيع الوصول إليها؟",
+"واحد قال: «أنا متأكد إن أحمد كان لابس قميص أزرق الساعة 5». عندك صورة لأحمد اتصورت الساعة 5 بالضبط، والقميص فيها أحمر. إيه اللي نقدر نثبته أكيد؟",
 
-time:65,
+time:60,
 
 correctAnswer:0,
 
 choices:[
-"أ) الصورة تشير إلى أن أحمد كان يرتدي الأحمر وقت التصوير",
-"ب) الشخص كاذب عمدًا",
-"ج) الشخص لم يرَ أحمد أصلًا",
+"أ) أحمد كان لابس أحمر الساعة 5",
+"ب) الراجل كذاب",
+"ج) الراجل كان بيتعمد تضليلنا",
 "د) الصورة مزورة"
 ],
 
 explanation:
-"الصورة دليل مباشر على لون القميص وقت التصوير. لكنها لا تثبت أن الشخص الآخر تعمد الكذب؛ ربما أخطأ، أو اعتمد على معلومة غير صحيحة. لذلك لا يجوز القفز من «المعلومة خاطئة» إلى «الشخص كاذب عمدًا»."
+"الصورة دليل مباشر على لون القميص في لحظة التصوير، لذلك نستطيع إثبات أنه كان أحمر في تلك اللحظة. لكن لا نستطيع من هذه المعلومة وحدها إثبات أن الشخص الآخر كذب عمدًا أو أن الصورة مزورة."
 },
 
 {
 question:
-"محمد قال لأحمد: «النهارده الجمعة». محمد كان يعتقد فعلًا أن اليوم الجمعة، لكن اليوم الحقيقي كان الخميس. هل محمد كذب؟",
+"محمد قال لأحمد: «النهارده الجمعة». محمد كان معتقد فعلًا إن النهارده الجمعة، لكنه كان مخطئًا، لأن اليوم الحقيقي كان الخميس. هل محمد كذب؟",
 
 time:60,
 
 correctAnswer:1,
 
 choices:[
-"أ) نعم، لأن كلامه غير صحيح",
-"ب) لا، لأنه لم يكن يعرف أن كلامه خاطئ",
-"ج) نعم، لأن أحمد صدقه",
-"د) لا يمكن معرفة ذلك"
+"أ) آه، لأنه قال معلومة غلط",
+"ب) لأ، لأنه كان معتقد إنها صح",
+"ج) آه، طالما أحمد صدقه",
+"د) مينفعش نعرف"
 ],
 
 explanation:
-"الكذب لا يعني مجرد قول معلومة خاطئة؛ عنصر مهم هو معرفة الشخص أن المعلومة خاطئة مع تعمد تقديمها على أنها صحيحة. هنا محمد كان مخطئًا لكنه كان يعتقد أن كلامه صحيح."
+"الكذب لا يعني مجرد قول معلومة خاطئة؛ المقصود عادة هو قول شيء تعرف أنه غير صحيح بقصد تضليل الآخرين. هنا محمد كان يعتقد أن كلامه صحيح، لذلك هو مخطئ لكنه ليس كاذبًا وفق المعطيات."
 },
 
 {
 question:
-"محمد قال: «رجعت بالعربية الساعة 9». صاحبه قال: «أنا شوفت عربيتك قدام البيت الساعة 10». وتأكدنا أن محمد فعلًا رجع بالعربية الساعة 9 وأن العربية ظلت أمام البيت حتى الساعة 10. ما الاستنتاج الصحيح؟",
+"محمد قال: «روحت الشغل بالعربية ورجعت بيها الساعة 9». صاحبه قال: «مستحيل! أنا شوفت عربيتك قدام البيت الساعة 10». واتأكدنا أن محمد فعلًا رجع بالعربية الساعة 9، وأن العربية ظلت أمام البيت حتى الساعة 10. مين كلامه فيه مشكلة؟",
 
-time:70,
+time:75,
 
 correctAnswer:3,
 
 choices:[
-"أ) محمد كذب",
-"ب) صاحبه كذب",
-"ج) الاتنين كلامهم متناقض",
-"د) لا يوجد تعارض بين الكلامين"
+"أ) محمد",
+"ب) صاحبه",
+"ج) الاتنين",
+"د) مفيش مشكلة في كلام أي واحد"
 ],
 
 explanation:
-"العربية يمكن أن تعود الساعة 9 وتظل موجودة أمام البيت الساعة 10. وجودها الساعة 10 لا يعني أنها وصلت الساعة 10. التعارض الظاهري جاء من افتراض غير مذكور في السؤال."
+"لا يوجد تعارض منطقي. العربية يمكن أن ترجع الساعة 9 ثم تظل أمام البيت حتى الساعة 10. الخطأ هو افتراض أن رؤية السيارة الساعة 10 تمنع عودتها الساعة 9."
 },
 
 {
 question:
-"كريم لاحظ أن أداءه يكون جيدًا في الأيام التي يشرب فيها القهوة قبل الشغل، فقال: «القهوة هي سبب أدائي الجيد». أي معلومة تضعف استنتاجه السببي أكثر؟",
+"كريم لاحظ إن كل مرة يشرب قهوة قبل الشغل، بيشتغل كويس. فقرر إن القهوة هي سبب شغله الكويس. إيه المعلومة اللي أقوى شيء تضعف استنتاجه؟",
 
-time:70,
+time:60,
 
 correctAnswer:2,
 
 choices:[
-"أ) كريم يشعر أنه أكثر تركيزًا بعد القهوة",
-"ب) أغلب زملائه يشربون القهوة",
-"ج) توجد أيام لم يشرب فيها القهوة وحقق فيها أداءً جيدًا أيضًا",
+"أ) كريم يشعر بتركيز أكبر بعد القهوة",
+"ب) ناس كتير تشرب قهوة قبل الشغل",
+"ج) في أيام لم يشرب فيها قهوة وبرضه اشتغل كويس",
 "د) القهوة التي يشربها قوية"
 ],
 
 explanation:
-"وجود أداء جيد في أيام بدون قهوة يضعف فكرة أن القهوة شرط أو سبب كافٍ للأداء الجيد. قد تكون هناك عوامل أخرى مثل النوم أو طبيعة المهمة أو الحالة النفسية."
+"إذا كان كريم يستطيع العمل جيدًا أحيانًا من غير القهوة، فالقهوة ليست شرطًا لحدوث النتيجة. هذا لا يثبت أنها لا تساعده، لكنه يضعف استنتاجه بأنها السبب الوحيد أو الضروري."
 },
 
 {
 question:
-"محمد دخل السينما ومعه تذكرة. بعد فترة خرج، والتذكرة ما زالت معه. أي معلومة يمكن إثباتها مباشرة من السيناريو؟",
+"محمد دخل السينما ومعاه تذكرة في إيده. بعد فترة خرج، والتذكرة ما زالت معه. إيه اللي نقدر نعرفه أكيد؟",
 
-time:60,
+time:75,
 
 correctAnswer:2,
 
@@ -1093,31 +1201,31 @@ choices:[
 ],
 
 explanation:
-"السيناريو يقول صراحة إن محمد دخل السينما، لذلك نستطيع إثبات ذلك. أما طريقة حصوله على التذكرة أو دفع ثمنها أو مشاهدة الفيلم كاملًا فلا نملك عنها دليلًا كافيًا."
+"وجود التذكرة معه لا يثبت من اشتراها أو من دفع ثمنها، ولا يثبت أنه شاهد الفيلم كاملًا. لكن السيناريو يقول صراحة إنه دخل السينما، لذلك هذا هو الاستنتاج المؤكد."
 },
 
 {
 question:
-"أربعة أصحاب اتفقوا يوم الخميس على الخروج يوم الجمعة. ثلاثة فهموا أن الموعد الساعة 8:00. الرابع قال «ماشي». يوم الجمعة الساعة 8 لم يأتِ، ثم قال 8:20: «أنا كنت فاكر إنكم هتتجمعوا 8 ونص». ما الاستنتاج الأكثر دقة؟",
+"أربعة أصحاب اتفقوا يوم الخميس إنهم يخرجوا يوم الجمعة. الثلاثة فهموا إن الموعد الساعة 8:00. الرابع قال: «ماشي». يوم الجمعة الساعة 8، الثلاثة وصلوا، والرابع لم يأتِ. الساعة 8:20 قال لهم: «أنا كنت فاكر إنكم هتتجمعوا 8 ونص». إيه أكتر استنتاج نقدر نطلعه عن فهم الرابع وقت الاتفاق؟",
 
-time:70,
+time:60,
 
 correctAnswer:2,
 
 choices:[
-"أ) كان يعرف أن الموعد 8 لكنه قرر التأخر",
-"ب) كان يعرف أن الموعد 8 لكنه نسي",
-"ج) وافق على الخروج، لكنه فهم الموعد بطريقة مختلفة",
-"د) كان يعرف أن الموعد 8 لكنه لم يرغب في الحضور"
+"أ) كان فاهم 8 لكنه غير رأيه",
+"ب) كان فاهم 8 لكنه اتأخر",
+"ج) وافق على الخروج لكنه فهم الموعد بشكل مختلف",
+"د) كان فاهم 8 لكنه نسي"
 ],
 
 explanation:
-"المعلومة المتاحة تثبت أنه فهم الموعد بشكل مختلف. لا يوجد دليل كافٍ على أنه نسي أو تعمد التأخر أو لم يرغب في الحضور؛ هذه إضافات من عندنا وليست معلومات في السؤال."
+"المعلومة الوحيدة التي نملكها عن فهمه أنه كان يعتقد أن الموعد 8:30. لذلك نستطيع القول إنه وافق على الخروج لكنه فهم الموعد بطريقة مختلفة. لا توجد أدلة كافية لنعرف هل نسي أو تأخر أو غيّر رأيه."
 },
 
 {
 question:
-"أمامك صندوقان. الأول مكتوب عليه: «الجائزة في الصندوق الأول». والثاني مكتوب عليه: «الجائزة ليست في الصندوق الأول». أنت تعرف أن واحدة فقط من العبارتين صحيحة. ماذا تستطيع أن تستنتج؟",
+"أمامك صندوقان: الصندوق الأول مكتوب عليه «الجائزة هنا». الصندوق الثاني مكتوب عليه «الجائزة ليست هنا». أنت تعرف أن واحدًا فقط من الكلامين صحيح. إيه اللي نقدر نعرفه أكيد؟",
 
 time:90,
 
@@ -1126,12 +1234,12 @@ correctAnswer:2,
 choices:[
 "أ) الجائزة في الصندوق الأول",
 "ب) الجائزة في الصندوق الثاني",
-"ج) لا يمكن تحديد مكان الجائزة من هذا الشرط وحده",
-"د) العبارتان كاذبتان"
+"ج) الجائزة موجودة في أحد الصندوقين، لكن لا نعرف أيهما من هذه المعلومات وحدها",
+"د) الكلامان كاذبان"
 ],
 
 explanation:
-"العبارتان متناقضتان منطقيًا: إذا كانت الجائزة في الصندوق الأول فالأولى صحيحة والثانية خاطئة، وإذا لم تكن فيه فالأولى خاطئة والثانية صحيحة. في الحالتين يتحقق شرط «واحدة فقط صحيحة»، لذلك الشرط لا يحدد مكان الجائزة."
+"لو الجائزة في الصندوق الأول، تكون العبارة الأولى صحيحة والثانية خاطئة. ولو كانت في الصندوق الثاني، تكون الأولى خاطئة والثانية صحيحة. في الحالتين يتحقق شرط أن عبارة واحدة فقط صحيحة، لذلك الشرط وحده لا يحدد الصندوق."
 }
 
 ];
@@ -1152,7 +1260,14 @@ let audioContext=null;
 let gameFinished=false;
 let selectedRating=0;
 
-let productChoice=null;
+let agentId=null;
+let agentCode="";
+let currentTestId=null;
+
+let productOfferAnswer=null;
+let offerSelection=null;
+
+let startedAt=null;
 
 
 /* =====================================================
@@ -1201,6 +1316,7 @@ function hideAll(){
 
 [
 "home",
+"agentPage",
 "namePage",
 "quizPage",
 "offerPage",
@@ -1212,6 +1328,31 @@ document
 .classList.add("hidden");
 
 });
+
+}
+
+
+function showAgentPage(){
+
+hideAll();
+
+document
+.getElementById("agentPage")
+.classList.remove("hidden");
+
+document
+.getElementById("agentCodeInput")
+.focus();
+
+}
+
+
+function showNameWithoutAgent(){
+
+agentId=null;
+agentCode="";
+
+showName();
 
 }
 
@@ -1240,6 +1381,86 @@ hideAll();
 document
 .getElementById("home")
 .classList.remove("hidden");
+
+}
+
+
+/* =====================================================
+   Verify Agent
+===================================================== */
+
+async function verifyAgent(){
+
+const input=
+document.getElementById("agentCodeInput");
+
+const errorBox=
+document.getElementById("agentError");
+
+const button=
+document.getElementById("agentButton");
+
+const code=
+input.value.trim().toUpperCase();
+
+errorBox.classList.add("hidden");
+
+if(!code){
+
+errorBox.textContent=
+"اكتب كود المندوبة الأول.";
+
+errorBox.classList.remove("hidden");
+
+return;
+
+}
+
+button.disabled=true;
+button.textContent="جاري التحقق...";
+
+try{
+
+const agents=
+await supabaseRequest(
+"/rest/v1/agents?select=id,code,name,active&code=eq."+encodeURIComponent(code)+"&active=eq.true",
+{
+method:"GET",
+prefer:"return=representation"
+}
+);
+
+if(
+!Array.isArray(agents) ||
+agents.length===0
+){
+
+throw new Error(
+"الكود غير موجود أو غير مفعل."
+);
+
+}
+
+agentId=agents[0].id;
+agentCode=agents[0].code;
+
+showName();
+
+}catch(error){
+
+errorBox.textContent=
+"الكود غير صحيح أو حصلت مشكلة في الاتصال. جرّب تاني.";
+
+errorBox.classList.remove("hidden");
+
+console.error(error);
+
+}finally{
+
+button.disabled=false;
+button.textContent="تأكيد الكود";
+
+}
 
 }
 
@@ -1325,7 +1546,7 @@ audioContext.currentTime+0.2
    Start
 ===================================================== */
 
-function startGame(){
+async function startGame(){
 
 const input=
 document.getElementById("nameInput");
@@ -1368,8 +1589,62 @@ totalScore=0;
 selectedAnswer=null;
 playerAnswers=[];
 gameFinished=false;
-productChoice=null;
-selectedRating=0;
+
+productOfferAnswer=null;
+offerSelection=null;
+currentTestId=null;
+
+startedAt=
+new Date().toISOString();
+
+try{
+
+const testData={
+agent_id:agentId,
+player_name:playerName,
+score:0,
+percentage:0,
+product_offer_answer:null,
+started_at:startedAt,
+status:"started",
+answers:[]
+};
+
+const inserted=
+await supabaseRequest(
+"/rest/v1/tests",
+{
+method:"POST",
+headers:{
+"Prefer":"return=representation"
+},
+body:JSON.stringify(testData)
+}
+);
+
+if(
+Array.isArray(inserted) &&
+inserted.length>0
+){
+
+currentTestId=
+inserted[0].id;
+
+}
+
+}catch(error){
+
+console.error(
+"Could not create test:",
+error
+);
+
+/*
+الاختبار يستمر محليًا لو حصلت مشكلة اتصال،
+لكن لن يكون لدينا test_id في Supabase.
+*/
+
+}
 
 setTimeout(()=>{
 
@@ -1628,7 +1903,15 @@ currentQuestion<
 questions.length
 ){
 
+if(currentQuestion===5){
+
+showProductOffer();
+
+}else{
+
 showQuestion();
+
+}
 
 }else{
 
@@ -1670,26 +1953,24 @@ saveAnswer(false);
 
 currentQuestion++;
 
-/*
-   بعد السؤال الخامس مباشرة
-*/
-if(currentQuestion===5){
-
-showOffer();
-
-return;
-
-}
-
 if(
 currentQuestion<
 questions.length
 ){
 
-setTimeout(
-showQuestion,
-180
-);
+setTimeout(()=>{
+
+if(currentQuestion===5){
+
+showProductOffer();
+
+}else{
+
+showQuestion();
+
+}
+
+},180);
 
 }else{
 
@@ -1701,10 +1982,10 @@ finishQuiz();
 
 
 /* =====================================================
-   Offer
+   Product Offer
 ===================================================== */
 
-function showOffer(){
+function showProductOffer(){
 
 stopTimer();
 
@@ -1714,39 +1995,107 @@ document
 .getElementById("offerPage")
 .classList.remove("hidden");
 
+offerSelection=null;
+
+document
+.querySelectorAll(".offer-choice")
+.forEach(button=>{
+button.classList.remove("selected");
+});
+
+document
+.getElementById("continueAfterOffer")
+.disabled=true;
+
+document
+.getElementById("offerError")
+.classList.add("hidden");
+
 }
 
 
-function selectOffer(accepted){
+/* =====================================================
+   Select Product Offer
+===================================================== */
 
-productChoice=
-accepted;
+function selectProductOffer(answer){
 
-const acceptButton=
-document.getElementById("acceptOfferButton");
+offerSelection=Boolean(answer);
 
-const declineButton=
-document.getElementById("declineOfferButton");
+productOfferAnswer=offerSelection;
 
-acceptButton.classList.toggle(
-"selected",
-accepted
+document
+.querySelectorAll(".offer-choice")
+.forEach(
+button=>button.classList.remove("selected")
 );
 
-declineButton.classList.toggle(
-"selected",
-!accepted
+const buttons=
+document.querySelectorAll(".offer-choice");
+
+if(offerSelection===true){
+
+buttons[0].classList.add("selected");
+
+}else{
+
+buttons[1].classList.add("selected");
+
+}
+
+document
+.getElementById("continueAfterOffer")
+.disabled=false;
+
+}
+
+
+/* =====================================================
+   Continue After Offer
+===================================================== */
+
+async function continueAfterOffer(){
+
+if(offerSelection===null){
+
+document
+.getElementById("offerError")
+.classList.remove("hidden");
+
+return;
+
+}
+
+if(currentTestId){
+
+try{
+
+await supabaseRequest(
+"/rest/v1/tests?id=eq."+encodeURIComponent(currentTestId),
+{
+method:"PATCH",
+headers:{
+"Prefer":"return=minimal"
+},
+body:JSON.stringify({
+product_offer_answer:
+productOfferAnswer
+})
+}
 );
 
-/*
-   نسجل الاختيار قبل استكمال الاختبار
-*/
+}catch(error){
 
-setTimeout(()=>{
+console.error(
+"Could not save product offer:",
+error
+);
+
+}
+
+}
 
 showQuestion();
-
-},250);
 
 }
 
@@ -1755,13 +2104,16 @@ showQuestion();
    Finish
 ===================================================== */
 
-function finishQuiz(){
+async function finishQuiz(){
 
 if(gameFinished)return;
 
 gameFinished=true;
 
 stopTimer();
+
+const completedAt=
+new Date().toISOString();
 
 const player={
 
@@ -1771,15 +2123,58 @@ score:totalScore,
 
 percentage:totalScore*10,
 
-productChoice:productChoice,
-
-date:new Date().toISOString(),
+date:completedAt,
 
 answers:playerAnswers
 
 };
 
 savePlayer(player);
+
+
+/* Save final test */
+
+if(currentTestId){
+
+try{
+
+await supabaseRequest(
+"/rest/v1/tests?id=eq."+encodeURIComponent(currentTestId),
+{
+method:"PATCH",
+headers:{
+"Prefer":"return=minimal"
+},
+body:JSON.stringify({
+
+score:totalScore,
+
+percentage:totalScore*10,
+
+product_offer_answer:
+productOfferAnswer,
+
+completed_at:
+completedAt,
+
+status:"completed",
+
+answers:playerAnswers
+
+})
+}
+);
+
+}catch(error){
+
+console.error(
+"Could not save completed test:",
+error
+);
+
+}
+
+}
 
 setTimeout(
 showResult,
@@ -1860,30 +2255,33 @@ document.getElementById("productResult");
 if(totalScore>9){
 
 productResult.innerHTML=
-'<strong class="green">🏆 المنتج مجاني ليك.</strong><br><br>'+
-"إنت حققت نتيجة أعلى من نتيجة شهاب.";
+'<strong class="green">🏆 المنتج من حقك مجانًا.</strong>';
+
+}else if(
+totalScore<9 &&
+productOfferAnswer===true
+){
+
+productResult.innerHTML=
+"إنت اخترت الحصول على المنتج مقابل 10 جنيه في حالة عدم التفوق على شهاب.";
+
+}else if(
+totalScore<9 &&
+productOfferAnswer===false
+){
+
+productResult.innerHTML=
+"إنت اخترت تكمل التجربة بدون شراء المنتج.";
 
 }else if(totalScore===9){
 
 productResult.innerHTML=
-'<strong>⚖️ تعادلت مع شهاب.</strong><br><br>'+
-"المنتج متاح ليك مقابل 10 جنيه.";
-
-}else{
-
-if(productChoice===true){
-
-productResult.innerHTML=
-'<strong>المنتج متاح ليك مقابل 10 جنيه.</strong><br><br>'+
-"إنت اخترت قبل استكمال الاختبار إنك موافق تاخده بـ10 جنيه لو خسرت.";
+"⚖️ تعادلت مع شهاب، والمنتج لا يتم اعتباره مكافأة تفوق.";
 
 }else{
 
 productResult.innerHTML=
-'<strong>إنت اخترت تكمل التجربة من غير شراء المنتج.</strong><br><br>'+
-"مش مطلوب منك دفع الـ10 جنيه بناءً على اختيارك.";
-
-}
+"تم تسجيل نتيجتك واختيارك أثناء الاختبار.";
 
 }
 
@@ -1908,8 +2306,7 @@ comparison.innerHTML=
 comparison.innerHTML=
 '<strong>⚖️ تعادلت مع شهاب.</strong><br><br>'+
 "أنت: 9 / 10<br>"+
-"شهاب: 9 / 10<br><br>"+
-"المنتج متاح ليك مقابل 10 جنيه.";
+"شهاب: 9 / 10";
 
 }else{
 
@@ -1950,7 +2347,7 @@ totalScore>=4
 
 
 /* =====================================================
-   Statistics
+   Statistics - Local Device
 ===================================================== */
 
 const players=getPlayers();
@@ -2026,13 +2423,13 @@ document
 .textContent=
 totalScore>average
 ?
-"📈 نتيجتك أعلى من متوسط المشاركين."
+"📈 نتيجتك أعلى من متوسط الاختبارات على هذا الجهاز."
 :
 totalScore===Number(
 average.toFixed(1)
 )
 ?
-"⚖️ نتيجتك قريبة من متوسط المشاركين."
+"⚖️ نتيجتك قريبة من متوسط الاختبارات على هذا الجهاز."
 :
 "📊 عندك مساحة كويسة للتحسن.";
 
@@ -2204,7 +2601,7 @@ document
    Submit Rating
 ===================================================== */
 
-function submitRating(){
+async function submitRating(){
 
 if(!selectedRating){
 
@@ -2220,35 +2617,30 @@ document
 
 const ratingData={
 
-name:playerName,
+test_id:currentTestId,
+
+player_name:playerName,
 
 score:totalScore,
 
 rating:selectedRating,
 
-comment:review,
-
-date:new Date().toISOString()
+comment:review
 
 };
 
 try{
 
-const ratings=
-JSON.parse(
-localStorage.getItem(
-"shehab_challenge_ratings"
-)
-)||[];
-
-ratings.push(ratingData);
-
-localStorage.setItem(
-"shehab_challenge_ratings",
-JSON.stringify(ratings)
+await supabaseRequest(
+"/rest/v1/ratings",
+{
+method:"POST",
+headers:{
+"Prefer":"return=minimal"
+},
+body:JSON.stringify(ratingData)
+}
 );
-
-}catch(error){}
 
 document
 .getElementById("ratingButton")
@@ -2262,11 +2654,24 @@ document
 .getElementById("ratingSuccess")
 .classList.remove("hidden");
 
+}catch(error){
+
+console.error(
+"Could not save rating:",
+error
+);
+
+alert(
+"حصلت مشكلة بسيطة في إرسال التقييم. جرّب تاني."
+);
+
+}
+
 }
 
 
 /* =====================================================
-   Security
+   Security / HTML
 ===================================================== */
 
 function escapeHTML(text){
@@ -2329,7 +2734,22 @@ startGame();
 
 });
 
+
+document
+.getElementById("agentCodeInput")
+.addEventListener(
+"keydown",
+function(event){
+
+if(event.key==="Enter"){
+
+verifyAgent();
+
+}
+
+});
+
 </script>
 
 </body>
-   </html>
+</html>
