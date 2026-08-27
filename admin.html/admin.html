@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>لوحة تحكم تحدي شهاب</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,Tahoma,sans-serif;
+background:#080b14;
+color:#fff;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px 12px 50px;
+}
+
+.card{
+background:#111625;
+border:1px solid #293248;
+border-radius:22px;
+padding:20px;
+margin-bottom:16px;
+}
+
+h1,h2{margin-top:0}
+
+.text{
+color:#aeb6c8;
+line-height:1.8;
+}
+
+input,button{
+width:100%;
+padding:14px;
+border-radius:14px;
+border:1px solid #30394f;
+font-size:16px;
+font-family:inherit;
+}
+
+input{
+background:#080b14;
+color:#fff;
+margin:8px 0;
+}
+
+button{
+background:#fff;
+color:#080b14;
+font-weight:bold;
+cursor:pointer;
+margin-top:8px;
+}
+
+.hidden{display:none!important}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.stat{
+background:#080b14;
+border:1px solid #30394f;
+border-radius:16px;
+padding:18px;
+text-align:center;
+}
+
+.stat strong{
+display:block;
+font-size:28px;
+margin-bottom:6px;
+}
+
+.stat span{
+color:#8f99ad;
+font-size:14px;
+}
+
+.table-wrap{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:600px;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #30394f;
+text-align:center;
+}
+
+th{
+color:#aeb6c8;
+}
+
+.success{color:#8ee7a1}
+.warning{color:#ffd875}
+.danger{color:#ff8d8d}
+
+@media(max-width:500px){
+.stats{
+grid-template-columns:1fr 1fr;
+}
+
+.stat strong{
+font-size:23px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="loginCard" class="card">
+
+<h1>🔐 لوحة تحكم تحدي شهاب</h1>
+
+<p class="text">
+سجل الدخول بحساب الإدارة.
+</p>
+
+<input
+id="email"
+type="email"
+placeholder="الإيميل"
+autocomplete="email"
+>
+
+<input
+id="password"
+type="password"
+placeholder="الباسورد"
+autocomplete="current-password"
+>
+
+<button onclick="login()">
+دخول لوحة التحكم
+</button>
+
+<p id="loginMessage" class="danger"></p>
+
+</div>
+
+
+<div id="dashboard" class="hidden">
+
+<div class="card">
+
+<h1>📊 لوحة تحكم تحدي شهاب</h1>
+
+<p id="welcome" class="text"></p>
+
+<button onclick="loadDashboard()">
+🔄 تحديث البيانات
+</button>
+
+<button onclick="logout()">
+تسجيل الخروج
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📈 إحصائيات عامة</h2>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="total">0</strong>
+<span>إجمالي الاختبارات</span>
+</div>
+
+<div class="stat">
+<strong id="today">0</strong>
+<span>اختبارات اليوم</span>
+</div>
+
+<div class="stat">
+<strong id="paid">0</strong>
+<span>اختاروا المنتج بـ10 جنيه</span>
+</div>
+
+<div class="stat">
+<strong id="free">0</strong>
+<span>كملوا بدون شراء</span>
+</div>
+
+<div class="stat">
+<strong id="completed">0</strong>
+<span>اختبارات مكتملة</span>
+</div>
+
+<div class="stat">
+<strong id="started">0</strong>
+<span>اختبارات بدأت</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>👩‍💼 إحصائيات المندوبات</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>الكود</th>
+<th>الاسم</th>
+<th>كل الاختبارات</th>
+<th>اختبارات اليوم</th>
+<th>مدفوع</th>
+<th>مجاني</th>
+</tr>
+</thead>
+
+<tbody id="agentsTable">
+<tr>
+<td colspan="6">جاري التحميل...</td>
+</tr>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🧪 آخر الاختبارات</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>الاسم</th>
+<th>المندوبة</th>
+<th>النتيجة</th>
+<th>المنتج</th>
+<th>الحالة</th>
+<th>التاريخ</th>
+</tr>
+</thead>
+
+<tbody id="testsTable">
+<tr>
+<td colspan="6">جاري التحميل...</td>
+</tr>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://buqgmkqtdyrnwwkswgiz.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_o4RI813xC3WH4YAphxEqxQ_23OM1CiT";
+
+
+async function request(endpoint,options={}){
+
+const response =
+await fetch(
+SUPABASE_URL+endpoint,
+{
+...options,
+headers:{
+"Content-Type":"application/json",
+"apikey":SUPABASE_KEY,
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+...(options.headers||{})
+}
+}
+);
+
+const text=await response.text();
+
+let data=null;
+
+try{
+data=text?JSON.parse(text):null;
+}catch{
+data=text;
+}
+
+if(!response.ok){
+
+throw new Error(
+typeof data==="object" &&
+data &&
+data.message
+?
+data.message
+:
+"Supabase error"
+);
+
+}
+
+return data;
+
+}
+
+
+/* ================= LOGIN ================= */
+
+async function login(){
+
+const email=
+document.getElementById("email")
+.value.trim();
+
+const password=
+document.getElementById("password")
+.value;
+
+const message=
+document.getElementById("loginMessage");
+
+message.textContent="";
+
+if(!email||!password){
+
+message.textContent=
+"اكتب الإيميل والباسورد.";
+
+return;
+
+}
+
+try{
+
+const response=
+await fetch(
+SUPABASE_URL+
+"/auth/v1/token?grant_type=password",
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json",
+"apikey":
+SUPABASE_KEY
+},
+body:JSON.stringify({
+email:email,
+password:password
+})
+}
+);
+
+const data=await response.json();
+
+if(!response.ok){
+
+throw new Error(
+data.error_description||
+data.msg||
+"بيانات الدخول غير صحيحة."
+);
+
+}
+
+const accessToken=
+data.access_token;
+
+const user=
+data.user;
+
+const admin=
+await request(
+"/rest/v1/admins?id=eq."+
+encodeURIComponent(user.id)+
+"&select=id"
+,{
+headers:{
+"Authorization":
+"Bearer "+accessToken
+}
+}
+);
+
+if(!Array.isArray(admin)||admin.length===0){
+
+throw new Error(
+"الحساب ده مش مسجل كمسؤول."
+);
+
+}
+
+localStorage.setItem(
+"admin_access_token",
+accessToken
+);
+
+localStorage.setItem(
+"admin_user",
+JSON.stringify(user)
+);
+
+document
+.getElementById("loginCard")
+.classList.add("hidden");
+
+document
+.getElementById("dashboard")
+.classList.remove("hidden");
+
+document
+.getElementById("welcome")
+.textContent=
+"تم تسجيل الدخول بنجاح.";
+
+await loadDashboard();
+
+}catch(error){
+
+console.error(error);
+
+message.textContent=
+error.message||
+"حصلت مشكلة أثناء تسجيل الدخول.";
+
+}
+
+}
+
+
+/* ================= AUTH ================= */
+
+function authHeaders(){
+
+const token=
+localStorage.getItem(
+"admin_access_token"
+);
+
+return{
+"Authorization":
+"Bearer "+token
+};
+
+}
+
+
+function logout(){
+
+localStorage.removeItem(
+"admin_access_token"
+);
+
+localStorage.removeItem(
+"admin_user"
+);
+
+location.reload();
+
+}
+
+
+/* ================= DATE ================= */
+
+function isToday(dateString){
+
+if(!dateString)return false;
+
+const date=
+new Date(dateString);
+
+const now=
+new Date();
+
+return(
+date.getFullYear()===
+now.getFullYear() &&
+date.getMonth()===
+now.getMonth() &&
+date.getDate()===
+now.getDate()
+);
+
+}
+
+
+/* ================= DASHBOARD ================= */
+
+async function loadDashboard(){
+
+try{
+
+const headers=
+authHeaders();
+
+const tests=
+await request(
+"/rest/v1/tests?select=id,agent_id,player_name,score,product_offer_answer,status,started_at,completed_at&order=started_at.desc",
+{
+headers
+}
+);
+
+const agents=
+await request(
+"/rest/v1/agents?select=id,code,name,active&order=code.asc",
+{
+headers
+}
+);
+
+
+/* ================= GENERAL ================= */
+
+const total=
+tests.length;
+
+const todayTests=
+tests.filter(
+test=>isToday(test.started_at)
+);
+
+const paid=
+tests.filter(
+test=>test.product_offer_answer===true
+);
+
+const free=
+tests.filter(
+test=>test.product_offer_answer===false
+);
+
+const completed=
+tests.filter(
+test=>test.status==="completed"
+);
+
+document
+.getElementById("total")
+.textContent=total;
+
+document
+.getElementById("today")
+.textContent=
+todayTests.length;
+
+document
+.getElementById("paid")
+.textContent=
+paid.length;
+
+document
+.getElementById("free")
+.textContent=
+free.length;
+
+document
+.getElementById("completed")
+.textContent=
+completed.length;
+
+document
+.getElementById("started")
+.textContent=
+tests.filter(
+test=>test.status==="started"
+).length;
+
+
+/* ================= AGENTS ================= */
+
+const agentMap={};
+
+agents.forEach(agent=>{
+
+agentMap[agent.id]=agent;
+
+});
+
+const tbody=
+document.getElementById(
+"agentsTable"
+);
+
+tbody.innerHTML="";
+
+agents.forEach(agent=>{
+
+const agentTests=
+tests.filter(
+test=>test.agent_id===agent.id
+);
+
+const todayAgent=
+agentTests.filter(
+test=>isToday(test.started_at)
+);
+
+const agentPaid=
+agentTests.filter(
+test=>test.product_offer_answer===true
+);
+
+const agentFree=
+agentTests.filter(
+test=>test.product_offer_answer===false
+);
+
+const tr=
+document.createElement("tr");
+
+tr.innerHTML=`
+
+<td>${escapeHTML(agent.code||"")}</td>
+
+<td>${escapeHTML(agent.name||"")}</td>
+
+<td>${agentTests.length}</td>
+
+<td>${todayAgent.length}</td>
+
+<td class="success">${agentPaid.length}</td>
+
+<td>${agentFree.length}</td>
+
+`;
+
+tbody.appendChild(tr);
+
+});
+
+
+/* ================= TESTS ================= */
+
+const testsBody=
+document.getElementById(
+"testsTable"
+);
+
+testsBody.innerHTML="";
+
+tests
+.slice(0,50)
+.forEach(test=>{
+
+const agent=
+agentMap[test.agent_id];
+
+const product=
+test.product_offer_answer===true
+?
+"مدفوع"
+:
+test.product_offer_answer===false
+?
+"مجاني"
+:
+"-";
+
+const tr=
+document.createElement("tr");
+
+tr.innerHTML=`
+
+<td>
+${escapeHTML(test.player_name||"")}
+</td>
+
+<td>
+${escapeHTML(agent?.code||"بدون مندوبة")}
+</td>
+
+<td>
+${test.score??"-"} / 10
+</td>
+
+<td>
+${product}
+</td>
+
+<td>
+${escapeHTML(test.status||"")}
+</td>
+
+<td>
+${formatDate(test.started_at)}
+</td>
+
+`;
+
+testsBody.appendChild(tr);
+
+});
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"حصلت مشكلة في تحميل البيانات. تأكد إنك مسجل الدخول."
+);
+
+}
+
+}
+
+
+/* ================= HELPERS ================= */
+
+function formatDate(dateString){
+
+if(!dateString)return"-";
+
+return new Date(dateString)
+.toLocaleString(
+"ar-EG",
+{
+dateStyle:"short",
+timeStyle:"short"
+}
+);
+
+}
+
+
+function escapeHTML(value){
+
+return String(value??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* ================= AUTO LOGIN ================= */
+
+window.addEventListener(
+"load",
+async()=>{
+
+const token=
+localStorage.getItem(
+"admin_access_token"
+);
+
+if(!token)return;
+
+try{
+
+const user=
+JSON.parse(
+localStorage.getItem(
+"admin_user"
+)
+);
+
+document
+.getElementById("loginCard")
+.classList.add("hidden");
+
+document
+.getElementById("dashboard")
+.classList.remove("hidden");
+
+document
+.getElementById("welcome")
+.textContent=
+"أهلًا يا شهاب 👋";
+
+await loadDashboard();
+
+}catch{
+
+logout();
+
+}
+
+});
+
+</script>
+
+</body>
+  </html>
