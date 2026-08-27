@@ -566,7 +566,7 @@ onclick="showAgentPage()"
 </section>
 
 
-<!-- ================= AGENT ================= -->
+<!-- ================= ACCESS CODE ================= -->
 
 <section
 id="agentPage"
@@ -574,25 +574,25 @@ class="card center hidden"
 >
 
 <h2>
-قبل ما نبدأ 👀
+كود الدخول 🔐
 </h2>
 
 <p class="text">
-لو أنت بتعمل الاختبار مع مندوبة، اكتب الكود اللي ادتهولك.
+الاختبار متاح فقط باستخدام كود دخول صالح.
 </p>
 
 <div class="agent-box">
 
-<strong>كود المندوبة</strong>
-
-<!-- الكود الآن 6 أرقام فقط والخانة فاضية -->
+<strong>
+أدخل كود الدخول المكون من 6 أرقام
+</strong>
 
 <input
 id="agentCodeInput"
 maxlength="6"
 inputmode="numeric"
 pattern="[0-9]{6}"
-placeholder=""
+placeholder="000000"
 autocomplete="off"
 style="direction:ltr;text-align:center;"
 >
@@ -611,13 +611,6 @@ onclick="verifyAgent()"
 </button>
 
 </div>
-
-<button
-class="secondary"
-onclick="showNameWithoutAgent()"
->
-أنا بعمل الاختبار بدون مندوبة
-</button>
 
 <button
 class="secondary"
@@ -803,16 +796,10 @@ id="resultText"
 class="text"
 ></p>
 
-
-<!-- PRODUCT RESULT -->
-
 <div
 id="productResult"
 class="result-box"
 ></div>
-
-
-<!-- RATING -->
 
 <div class="result-box rating-box">
 
@@ -864,8 +851,6 @@ class="thanks-box hidden"
 </div>
 
 
-<!-- COMPARISON -->
-
 <div class="result-box">
 
 <h3>
@@ -876,8 +861,6 @@ class="thanks-box hidden"
 
 </div>
 
-
-<!-- PERSONAL STATS -->
 
 <div class="result-box">
 
@@ -927,8 +910,6 @@ class="green"
 </div>
 
 
-<!-- STYLE -->
-
 <div class="result-box">
 
 <h3>
@@ -939,8 +920,6 @@ class="green"
 
 </div>
 
-
-<!-- REVIEW -->
 
 <div class="result-box">
 
@@ -987,6 +966,20 @@ const SUPABASE_URL =
 
 const SUPABASE_PUBLISHABLE_KEY =
 "sb_publishable_o4RI813xC3WH4YAphxEqxQ_23OM1CiT";
+
+
+/* =====================================================
+   الأكواد المسموح بها
+   هذه هي البوابة الوحيدة للاختبار
+===================================================== */
+
+const ALLOWED_AGENT_CODES = [
+"583214",
+"741906",
+"326581",
+"905437",
+"168294"
+];
 
 
 /* =====================================================
@@ -1338,25 +1331,20 @@ document
 
 function showAgentPage(){
 
+stopTimer();
+
 hideAll();
 
 document
 .getElementById("agentPage")
 .classList.remove("hidden");
 
-document
-.getElementById("agentCodeInput")
-.focus();
+const input =
+document.getElementById("agentCodeInput");
 
-}
+input.value="";
 
-
-function showNameWithoutAgent(){
-
-agentId=null;
-agentCode="";
-
-showName();
+input.focus();
 
 }
 
@@ -1391,44 +1379,66 @@ document
 
 /* =====================================================
    Verify Agent
-   الكود أصبح 6 أرقام فقط
+   الدخول الوحيد للاختبار
 ===================================================== */
 
 async function verifyAgent(){
 
-const input=
+const input =
 document.getElementById("agentCodeInput");
 
-const errorBox=
+const errorBox =
 document.getElementById("agentError");
 
-const button=
+const button =
 document.getElementById("agentButton");
 
-const code=
+const code =
 input.value.trim();
 
 errorBox.classList.add("hidden");
 
 if(!code){
 
-errorBox.textContent=
-"اكتب كود المندوبة الأول.";
+errorBox.textContent =
+"اكتب كود الدخول الأول.";
 
 errorBox.classList.remove("hidden");
+
+input.focus();
 
 return;
 
 }
 
-/* لازم يكون الكود 6 أرقام بالضبط */
-
 if(!/^\d{6}$/.test(code)){
 
-errorBox.textContent=
-"كود المندوبة لازم يكون 6 أرقام.";
+errorBox.textContent =
+"كود الدخول لازم يكون 6 أرقام بالضبط.";
 
 errorBox.classList.remove("hidden");
+
+input.focus();
+
+return;
+
+}
+
+
+/*
+=====================================================
+فحص الأكواد الخمسة المسموح بها
+=====================================================
+*/
+
+if(!ALLOWED_AGENT_CODES.includes(code)){
+
+errorBox.textContent =
+"الكود غير صحيح أو غير مصرح له بالدخول.";
+
+errorBox.classList.remove("hidden");
+
+input.focus();
 
 return;
 
@@ -1439,9 +1449,11 @@ button.textContent="جاري التحقق...";
 
 try{
 
-const agents=
+const agents =
 await supabaseRequest(
-"/rest/v1/agents?select=id,code,name,active&code=eq."+encodeURIComponent(code)+"&active=eq.true",
+"/rest/v1/agents?select=id,code,name,active&code=eq."+
+encodeURIComponent(code)+
+"&active=eq.true",
 {
 method:"GET",
 prefer:"return=representation"
@@ -1459,15 +1471,32 @@ throw new Error(
 
 }
 
-agentId=agents[0].id;
-agentCode=agents[0].code;
+const agent=agents[0];
+
+if(
+!ALLOWED_AGENT_CODES.includes(
+String(agent.code)
+)
+){
+
+throw new Error(
+"الكود غير مصرح له."
+);
+
+}
+
+agentId=agent.id;
+agentCode=String(agent.code);
 
 showName();
 
 }catch(error){
 
-errorBox.textContent=
-"الكود غير صحيح أو حصلت مشكلة في الاتصال. جرّب تاني.";
+agentId=null;
+agentCode="";
+
+errorBox.textContent =
+"الكود غير صحيح أو غير مصرح له بالدخول. جرّب تاني.";
 
 errorBox.classList.remove("hidden");
 
@@ -1566,6 +1595,31 @@ audioContext.currentTime+0.2
 
 async function startGame(){
 
+/*
+=====================================================
+حماية إضافية:
+لا يمكن بدء الاختبار بدون كود صالح
+=====================================================
+*/
+
+if(
+!agentId ||
+!agentCode ||
+!ALLOWED_AGENT_CODES.includes(
+String(agentCode)
+)
+){
+
+alert(
+"لا يمكن بدء الاختبار بدون كود دخول صالح."
+);
+
+showAgentPage();
+
+return;
+
+}
+
 const input=
 document.getElementById("nameInput");
 
@@ -1618,14 +1672,23 @@ new Date().toISOString();
 try{
 
 const testData={
+
 agent_id:agentId,
+
 player_name:playerName,
+
 score:0,
+
 percentage:0,
+
 product_offer_answer:null,
+
 started_at:startedAt,
+
 status:"started",
+
 answers:[]
+
 };
 
 const inserted=
@@ -1633,10 +1696,13 @@ await supabaseRequest(
 "/rest/v1/tests",
 {
 method:"POST",
+
 headers:{
 "Prefer":"return=representation"
 },
+
 body:JSON.stringify(testData)
+
 }
 );
 
@@ -1656,6 +1722,23 @@ console.error(
 "Could not create test:",
 error
 );
+
+/*
+لو حصل خطأ في إنشاء الاختبار،
+نوقف الدخول بدل ما نكمل بدون تسجيل.
+*/
+
+errorBox.textContent=
+"حصلت مشكلة في الاتصال بقاعدة البيانات. حاول تاني.";
+
+errorBox.classList.remove("hidden");
+
+button.disabled=false;
+
+button.textContent=
+"ابدأ المواجهة 🚀";
+
+return;
 
 }
 
@@ -2084,16 +2167,22 @@ if(currentTestId){
 try{
 
 await supabaseRequest(
-"/rest/v1/tests?id=eq."+encodeURIComponent(currentTestId),
+"/rest/v1/tests?id=eq."+
+encodeURIComponent(currentTestId),
 {
 method:"PATCH",
+
 headers:{
 "Prefer":"return=minimal"
 },
+
 body:JSON.stringify({
+
 product_offer_answer:
 productOfferAnswer
+
 })
+
 }
 );
 
@@ -2145,19 +2234,26 @@ answers:playerAnswers
 savePlayer(player);
 
 
-/* Save final test */
+/*
+=====================================================
+Save final test
+=====================================================
+*/
 
 if(currentTestId){
 
 try{
 
 await supabaseRequest(
-"/rest/v1/tests?id=eq."+encodeURIComponent(currentTestId),
+"/rest/v1/tests?id=eq."+
+encodeURIComponent(currentTestId),
 {
 method:"PATCH",
+
 headers:{
 "Prefer":"return=minimal"
 },
+
 body:JSON.stringify({
 
 score:totalScore,
@@ -2175,6 +2271,7 @@ status:"completed",
 answers:playerAnswers
 
 })
+
 }
 );
 
@@ -2648,10 +2745,13 @@ await supabaseRequest(
 "/rest/v1/ratings",
 {
 method:"POST",
+
 headers:{
 "Prefer":"return=minimal"
 },
+
 body:JSON.stringify(ratingData)
+
 }
 );
 
