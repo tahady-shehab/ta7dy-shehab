@@ -448,7 +448,6 @@ padding:14px;
 
 <div class="container">
 
-<!-- HOME -->
 <section id="home" class="card center">
 
 <div class="logo">🧠 تحدي شهاب</div>
@@ -459,50 +458,34 @@ padding:14px;
 </p>
 
 <div class="intro-box">
-
 <strong>فكرة التحدي ببساطة:</strong><br>
-
 إنت هتدخل تجاوب على 10 أسئلة،
 وهنشوف هل تقدر تتفوق على نتيجة شهاب أم لأ.
-
 <br><br>
-
 إحنا بنحاول نبني المشروع ده بإمكانيات بسيطة،
 والتجربة دي جزء من اختبار الفكرة على أرض الواقع.
-
 </div>
 
 <div class="reward-box">
-
 🎁 <strong>المنتج:</strong>
-
 <br>
-
 لو جبت نتيجة أعلى من شهاب،
 هتاخد المنتج <strong>مجانًا</strong> كمكافأة.
-
 <br>
-
 ولو شهاب تفوق عليك،
 تقدر تحصل على المنتج مقابل <strong>10 جنيه</strong>.
-
 <br><br>
-
 ولو مش حابب تحصل على المنتج،
 تقدر تكمل التجربة بدون شراءه.
-
 </div>
 
 <div class="intro-box">
-
 <strong>❤️ والأهم بالنسبة لنا:</strong><br>
-
 إحنا حابين إنك تجرب التحدي نفسه،
 حتى لو مش حابب تحصل على المنتج.
 وجودك وتجربتك ورأيك أهم عندنا،
 لأننا بنختبر فكرة مشروع بنحاول نبنيه بإمكانيات بسيطة،
 وكل تجربة بتساعدنا نعرف نكمل ونطوّر.
-
 </div>
 
 <div class="badge">
@@ -519,8 +502,6 @@ padding:14px;
 
 </section>
 
-
-<!-- AGENT CODE -->
 <section id="agentPage" class="card center hidden">
 
 <h2>🔐 دخول التحدي</h2>
@@ -562,8 +543,6 @@ onclick="verifyAgent()"
 
 </section>
 
-
-<!-- NAME -->
 <section id="namePage" class="card center hidden">
 
 <h2>قبل المواجهة 👀</h2>
@@ -595,8 +574,6 @@ onclick="startGame()"
 
 </section>
 
-
-<!-- QUIZ -->
 <section id="quizPage" class="card hidden">
 
 <div class="progress">
@@ -631,8 +608,6 @@ disabled
 
 </section>
 
-
-<!-- PRODUCT OFFER -->
 <section id="offerPage" class="card hidden">
 
 <div class="offer-box">
@@ -683,8 +658,6 @@ disabled
 
 </section>
 
-
-<!-- RESULT -->
 <section id="resultPage" class="card center hidden">
 
 <div class="logo">🏆</div>
@@ -697,8 +670,6 @@ disabled
 
 <div id="productResult" class="result-box"></div>
 
-
-<!-- RATING -->
 <div class="result-box rating-box">
 
 <div class="rating-title">
@@ -745,8 +716,6 @@ disabled
 
 </div>
 
-
-<!-- COMPARISON -->
 <div class="result-box">
 
 <h3>🔥 مقارنة بشهاب</h3>
@@ -755,8 +724,6 @@ disabled
 
 </div>
 
-
-<!-- STATS -->
 <div class="result-box">
 
 <h3>📊 نتيجتك</h3>
@@ -799,8 +766,6 @@ disabled
 
 </div>
 
-
-<!-- STYLE -->
 <div class="result-box">
 
 <h3>🧠 أسلوب تفكيرك</h3>
@@ -809,8 +774,6 @@ disabled
 
 </div>
 
-
-<!-- REVIEW -->
 <div class="result-box">
 
 <h3>📋 مراجعة إجاباتك</h3>
@@ -834,7 +797,6 @@ disabled
 </section>
 
 </div>
-
 
 <script>
 
@@ -1167,6 +1129,55 @@ JSON.stringify(players)
 
 
 /* =====================================================
+GENERATE TEST ID
+===================================================== */
+
+function generateUUID(){
+
+if(
+window.crypto &&
+typeof window.crypto.randomUUID==="function"
+){
+
+return window.crypto.randomUUID();
+
+}
+
+if(
+window.crypto &&
+typeof window.crypto.getRandomValues==="function"
+){
+
+const bytes=new Uint8Array(16);
+
+window.crypto.getRandomValues(bytes);
+
+bytes[6]=(bytes[6]&0x0f)|0x40;
+bytes[8]=(bytes[8]&0x3f)|0x80;
+
+const hex=
+Array.from(bytes)
+.map(b=>b.toString(16).padStart(2,"0"))
+.join("");
+
+return(
+hex.substring(0,8)+"-"+
+hex.substring(8,12)+"-"+
+hex.substring(12,16)+"-"+
+hex.substring(16,20)+"-"+
+hex.substring(20)
+);
+
+}
+
+throw new Error(
+"المتصفح لا يدعم إنشاء رقم الاختبار."
+);
+
+}
+
+
+/* =====================================================
 NAVIGATION
 ===================================================== */
 
@@ -1376,7 +1387,7 @@ audioContext.currentTime+0.2
 
 
 /* =====================================================
-START GAME
+START GAME - FIXED
 ===================================================== */
 
 async function startGame(){
@@ -1431,7 +1442,14 @@ gameFinished=false;
 
 productOfferAnswer=null;
 offerSelection=null;
-currentTestId=null;
+
+/*
+IMPORTANT:
+نولّد ID محليًا بدل ما نعتمد على
+return=representation من Supabase.
+*/
+
+currentTestId=generateUUID();
 
 startedAt=
 new Date().toISOString();
@@ -1439,6 +1457,7 @@ new Date().toISOString();
 try{
 
 const testData={
+id:currentTestId,
 agent_id:agentId,
 player_name:playerName,
 score:0,
@@ -1449,30 +1468,20 @@ status:"started",
 answers:[]
 };
 
-const inserted=
+/*
+return=minimal
+يعني Supabase يحفظ الصف فقط
+بدون محاولة إرجاع الصف.
+*/
+
 await supabaseRequest(
 "/rest/v1/tests",
 {
 method:"POST",
-prefer:"return=representation",
+prefer:"return=minimal",
 body:JSON.stringify(testData)
 }
 );
-
-if(
-Array.isArray(inserted) &&
-inserted.length>0
-){
-
-currentTestId=inserted[0].id;
-
-}else{
-
-throw new Error(
-"تم إنشاء الاختبار لكن لم يتم استرجاع رقم الاختبار."
-);
-
-}
 
 showQuestion();
 
