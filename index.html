@@ -585,12 +585,16 @@ class="card center hidden"
 
 <strong>كود المندوبة</strong>
 
+<!-- الكود الآن 6 أرقام فقط والخانة فاضية -->
+
 <input
 id="agentCodeInput"
-maxlength="20"
-placeholder="مثال: BNT01"
+maxlength="6"
+inputmode="numeric"
+pattern="[0-9]{6}"
+placeholder=""
 autocomplete="off"
-style="direction:ltr;text-align:center;text-transform:uppercase;"
+style="direction:ltr;text-align:center;"
 >
 
 <div
@@ -1387,6 +1391,7 @@ document
 
 /* =====================================================
    Verify Agent
+   الكود أصبح 6 أرقام فقط
 ===================================================== */
 
 async function verifyAgent(){
@@ -1401,7 +1406,7 @@ const button=
 document.getElementById("agentButton");
 
 const code=
-input.value.trim().toUpperCase();
+input.value.trim();
 
 errorBox.classList.add("hidden");
 
@@ -1409,6 +1414,19 @@ if(!code){
 
 errorBox.textContent=
 "اكتب كود المندوبة الأول.";
+
+errorBox.classList.remove("hidden");
+
+return;
+
+}
+
+/* لازم يكون الكود 6 أرقام بالضبط */
+
+if(!/^\d{6}$/.test(code)){
+
+errorBox.textContent=
+"كود المندوبة لازم يكون 6 أرقام.";
 
 errorBox.classList.remove("hidden");
 
@@ -1638,11 +1656,6 @@ console.error(
 "Could not create test:",
 error
 );
-
-/*
-الاختبار يستمر محليًا لو حصلت مشكلة اتصال،
-لكن لن يكون لدينا test_id في Supabase.
-*/
 
 }
 
