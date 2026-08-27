@@ -89,7 +89,9 @@ transition:.15s;
 font-family:inherit;
 }
 
-button:active{transform:scale(.98);}
+button:active{
+transform:scale(.98);
+}
 
 .primary{
 background:#fff;
@@ -259,7 +261,9 @@ margin-top:8px;
 line-height:1.7;
 }
 
-.answer-player{background:#191f31;}
+.answer-player{
+background:#191f31;
+}
 
 .answer-correct{
 background:#173522;
@@ -317,7 +321,9 @@ font-size:14px;
 font-weight:bold;
 }
 
-.rating-box{text-align:center;}
+.rating-box{
+text-align:center;
+}
 
 .rating-title{
 font-size:21px;
@@ -418,7 +424,15 @@ margin-top:12px;
 font-weight:bold;
 }
 
+.loading{
+text-align:center;
+color:#aeb6c8;
+padding:10px;
+font-size:14px;
+}
+
 @media(max-width:450px){
+
 .container{
 padding:9px 7px 30px;
 }
@@ -428,18 +442,27 @@ padding:21px 14px;
 border-radius:21px;
 }
 
-.logo{font-size:32px;}
+.logo{
+font-size:32px;
+}
 
-.question{font-size:19px;}
+.question{
+font-size:19px;
+}
 
 .choice{
 font-size:16px;
 padding:14px;
 }
 
-.score{font-size:58px;}
+.score{
+font-size:58px;
+}
 
-.star{font-size:34px;}
+.star{
+font-size:34px;
+}
+
 }
 </style>
 </head>
@@ -447,6 +470,10 @@ padding:14px;
 <body>
 
 <div class="container">
+
+<!-- =====================================================
+HOME
+===================================================== -->
 
 <section id="home" class="card center">
 
@@ -458,34 +485,51 @@ padding:14px;
 </p>
 
 <div class="intro-box">
+
 <strong>فكرة التحدي ببساطة:</strong><br>
+
 إنت هتدخل تجاوب على 10 أسئلة،
 وهنشوف هل تقدر تتفوق على نتيجة شهاب أم لأ.
+
 <br><br>
+
 إحنا بنحاول نبني المشروع ده بإمكانيات بسيطة،
 والتجربة دي جزء من اختبار الفكرة على أرض الواقع.
+
 </div>
 
 <div class="reward-box">
+
 🎁 <strong>المنتج:</strong>
+
 <br>
+
 لو جبت نتيجة أعلى من شهاب،
 هتاخد المنتج <strong>مجانًا</strong> كمكافأة.
+
 <br>
+
 ولو شهاب تفوق عليك،
 تقدر تحصل على المنتج مقابل <strong>10 جنيه</strong>.
+
 <br><br>
+
 ولو مش حابب تحصل على المنتج،
 تقدر تكمل التجربة بدون شراءه.
+
 </div>
 
 <div class="intro-box">
+
 <strong>❤️ والأهم بالنسبة لنا:</strong><br>
+
 إحنا حابين إنك تجرب التحدي نفسه،
 حتى لو مش حابب تحصل على المنتج.
+
 وجودك وتجربتك ورأيك أهم عندنا،
 لأننا بنختبر فكرة مشروع بنحاول نبنيه بإمكانيات بسيطة،
 وكل تجربة بتساعدنا نعرف نكمل ونطوّر.
+
 </div>
 
 <div class="badge">
@@ -496,11 +540,19 @@ padding:14px;
 تجربتك وتقييمك ورأيك بيساعدونا نعرف هل الفكرة تستاهل نكمل ونطورها.
 </p>
 
-<button class="primary" onclick="showAgentPage()">
+<button
+class="primary"
+onclick="showAgentPage()"
+>
 ابدأ التحدي 🧠
 </button>
 
 </section>
+
+
+<!-- =====================================================
+AGENT
+===================================================== -->
 
 <section id="agentPage" class="card center hidden">
 
@@ -525,7 +577,10 @@ autocomplete="off"
 style="direction:ltr;text-align:center;"
 >
 
-<div id="agentError" class="offer-error hidden"></div>
+<div
+id="agentError"
+class="offer-error hidden"
+></div>
 
 <button
 id="agentButton"
@@ -537,11 +592,19 @@ onclick="verifyAgent()"
 
 </div>
 
-<button class="secondary" onclick="goHome()">
+<button
+class="secondary"
+onclick="goHome()"
+>
 رجوع
 </button>
 
 </section>
+
+
+<!-- =====================================================
+NAME
+===================================================== -->
 
 <section id="namePage" class="card center hidden">
 
@@ -558,7 +621,10 @@ placeholder="اكتب اسمك هنا"
 autocomplete="off"
 >
 
-<div id="startError" class="timeout-box hidden"></div>
+<div
+id="startError"
+class="timeout-box hidden"
+></div>
 
 <button
 id="startButton"
@@ -568,11 +634,19 @@ onclick="startGame()"
 ابدأ المواجهة 🚀
 </button>
 
-<button class="secondary" onclick="showAgentPage()">
+<button
+class="secondary"
+onclick="showAgentPage()"
+>
 رجوع
 </button>
 
 </section>
+
+
+<!-- =====================================================
+QUIZ
+===================================================== -->
 
 <section id="quizPage" class="card hidden">
 
@@ -582,13 +656,19 @@ onclick="startGame()"
 السؤال 1 من 10
 </span>
 
-<span id="remaining" class="remaining">
+<span
+id="remaining"
+class="remaining"
+>
 01:00
 </span>
 
 </div>
 
-<div id="question" class="question"></div>
+<div
+id="question"
+class="question"
+></div>
 
 <div id="choices"></div>
 
@@ -602,17 +682,27 @@ disabled
 </button>
 
 <p class="timer-note">
+
 🔔 آخر 10 ثواني فيها تنبيه صوتي.<br>
+
 ⏳ لو الوقت خلص، السؤال ينتقل تلقائيًا.
+
 </p>
 
 </section>
+
+
+<!-- =====================================================
+PRODUCT OFFER
+===================================================== -->
 
 <section id="offerPage" class="card hidden">
 
 <div class="offer-box">
 
-<div class="offer-title">📦 المنتج</div>
+<div class="offer-title">
+📦 المنتج
+</div>
 
 <p>
 قبل ما تكمل باقي التحدي، لازم تحدد اختيارك بوضوح:
@@ -641,7 +731,10 @@ onclick="selectProductOffer(false)"
 
 </div>
 
-<div id="offerError" class="offer-error hidden">
+<div
+id="offerError"
+class="offer-error hidden"
+>
 لازم تختار أحد الاختيارين علشان تكمل التحدي.
 </div>
 
@@ -658,17 +751,39 @@ disabled
 
 </section>
 
+
+<!-- =====================================================
+RESULT
+===================================================== -->
+
 <section id="resultPage" class="card center hidden">
 
-<div class="logo">🏆</div>
+<div class="logo">
+🏆
+</div>
 
 <h2 id="resultTitle"></h2>
 
-<div id="score" class="score"></div>
+<div
+id="score"
+class="score"
+></div>
 
-<p id="resultText" class="text"></p>
+<p
+id="resultText"
+class="text"
+></p>
 
-<div id="productResult" class="result-box"></div>
+
+<!-- PRODUCT RESULT -->
+
+<div
+id="productResult"
+class="result-box"
+></div>
+
+
+<!-- RATING -->
 
 <div class="result-box rating-box">
 
@@ -682,11 +797,45 @@ disabled
 
 <div class="stars">
 
-<button class="star" data-rating="1" onclick="selectRating(1)">★</button>
-<button class="star" data-rating="2" onclick="selectRating(2)">★</button>
-<button class="star" data-rating="3" onclick="selectRating(3)">★</button>
-<button class="star" data-rating="4" onclick="selectRating(4)">★</button>
-<button class="star" data-rating="5" onclick="selectRating(5)">★</button>
+<button
+class="star"
+data-rating="1"
+onclick="selectRating(1)"
+>
+★
+</button>
+
+<button
+class="star"
+data-rating="2"
+onclick="selectRating(2)"
+>
+★
+</button>
+
+<button
+class="star"
+data-rating="3"
+onclick="selectRating(3)"
+>
+★
+</button>
+
+<button
+class="star"
+data-rating="4"
+onclick="selectRating(4)"
+>
+★
+</button>
+
+<button
+class="star"
+data-rating="5"
+onclick="selectRating(5)"
+>
+★
+</button>
 
 </div>
 
@@ -709,74 +858,142 @@ disabled
 إرسال التقييم ⭐
 </button>
 
-<div id="ratingSuccess" class="thanks-box hidden">
+<div
+id="ratingSuccess"
+class="thanks-box hidden"
+>
 ❤️ شكرًا ليك.<br>
 تقييمك ورأيك بيساعدونا نطوّر المشروع.
 </div>
 
 </div>
 
+
+<!-- COMPARISON -->
+
 <div class="result-box">
 
-<h3>🔥 مقارنة بشهاب</h3>
+<h3>
+🔥 مقارنة بشهاب
+</h3>
 
 <div id="comparison"></div>
 
 </div>
 
+
+<!-- STATS -->
+
 <div class="result-box">
 
-<h3>📊 نتيجتك</h3>
+<h3>
+📊 نتيجتك
+</h3>
 
 <div class="stat-grid">
 
 <div class="stat">
-<strong id="percentage">-</strong>
-<span>نسبتك</span>
+
+<strong id="percentage">
+-
+</strong>
+
+<span>
+نسبتك
+</span>
+
 </div>
 
 <div class="stat">
-<strong id="rank">-</strong>
-<span>ترتيبك المحلي</span>
+
+<strong id="rank">
+-
+</strong>
+
+<span>
+ترتيبك المحلي
+</span>
+
 </div>
 
 <div class="stat">
-<strong id="totalPlayers">-</strong>
-<span>اختبارات هذا الجهاز</span>
+
+<strong id="totalPlayers">
+-
+</strong>
+
+<span>
+اختبارات هذا الجهاز
+</span>
+
 </div>
 
 <div class="stat">
-<strong id="average">-</strong>
-<span>متوسط هذا الجهاز</span>
+
+<strong id="average">
+-
+</strong>
+
+<span>
+متوسط هذا الجهاز
+</span>
+
 </div>
 
 <div class="stat">
-<strong id="highest">-</strong>
-<span>أعلى نتيجة هذا الجهاز</span>
+
+<strong id="highest">
+-
+</strong>
+
+<span>
+أعلى نتيجة هذا الجهاز
+</span>
+
 </div>
 
 <div class="stat">
-<strong id="completed">-</strong>
-<span>اختبارات مكتملة</span>
-</div>
+
+<strong id="completed">
+-
+</strong>
+
+<span>
+اختبارات مكتملة
+</span>
 
 </div>
 
-<p id="progressMessage" class="green"></p>
+</div>
+
+<p
+id="progressMessage"
+class="green"
+></p>
 
 </div>
+
+
+<!-- THINKING STYLE -->
 
 <div class="result-box">
 
-<h3>🧠 أسلوب تفكيرك</h3>
+<h3>
+🧠 أسلوب تفكيرك
+</h3>
 
 <div id="style"></div>
 
 </div>
 
+
+<!-- REVIEW -->
+
 <div class="result-box">
 
-<h3>📋 مراجعة إجاباتك</h3>
+<h3>
+📋 مراجعة إجاباتك
+</h3>
 
 <p class="text">
 شوف إجابتك، والإجابة الصحيحة، والتفسير المنطقي لكل سؤال.
@@ -786,11 +1003,18 @@ disabled
 
 </div>
 
-<button class="primary" onclick="location.reload()">
+
+<button
+class="primary"
+onclick="location.reload()"
+>
 تحدي شهاب مرة أخرى 🔥
 </button>
 
-<button class="whatsapp" onclick="contactShehab()">
+<button
+class="whatsapp"
+onclick="contactShehab()"
+>
 📱 تواصل مع شهاب على واتساب
 </button>
 
@@ -798,10 +1022,11 @@ disabled
 
 </div>
 
+
 <script>
 
 /* =====================================================
-SUPABASE
+SUPABASE CONFIG
 ===================================================== */
 
 const SUPABASE_URL =
@@ -815,12 +1040,14 @@ const SUPABASE_PUBLISHABLE_KEY =
 SUPABASE REQUEST
 ===================================================== */
 
-async function supabaseRequest(endpoint, options={}){
+async function supabaseRequest(endpoint,options={}){
 
 const headers={
 "Content-Type":"application/json",
 "apikey":SUPABASE_PUBLISHABLE_KEY,
-"Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY
+"Authorization":
+"Bearer "+
+SUPABASE_PUBLISHABLE_KEY
 };
 
 if(options.prefer){
@@ -828,14 +1055,17 @@ headers["Prefer"]=options.prefer;
 }
 
 if(options.headers){
-Object.assign(headers,options.headers);
+Object.assign(
+headers,
+options.headers
+);
 }
 
 const response=await fetch(
 SUPABASE_URL+endpoint,
 {
 ...options,
-headers:headers
+headers
 }
 );
 
@@ -844,9 +1074,17 @@ const text=await response.text();
 let data=null;
 
 try{
-data=text?JSON.parse(text):null;
+
+data=text
+?
+JSON.parse(text)
+:
+null;
+
 }catch(error){
+
 data=text;
+
 }
 
 if(!response.ok){
@@ -857,24 +1095,38 @@ response.status,
 data
 );
 
-let message="Supabase error "+response.status;
+let message=
+"Supabase error "+
+response.status;
 
 if(data){
 
 if(data.message){
+
 message=data.message;
+
 }else if(data.error){
+
 message=data.error;
+
 }else if(data.hint){
+
 message=data.hint;
+
+}else if(typeof data==="string"){
+
+message=data;
+
 }
 
 }
 
 throw new Error(message);
+
 }
 
 return data;
+
 }
 
 
@@ -889,6 +1141,7 @@ question:
 "أبوك قالك: «أنا شوفتك وإنت داخل البيت الساعة 8». إنت متأكد 100% إن أبوك لم يكن موجودًا في البيت الساعة 8. بعدها اكتشفت إن أبوك كان بيتفرج على كاميرا البيت الساعة 8 وشافك وأنت داخل. مين كلامه صحيح؟",
 
 time:60,
+
 correctAnswer:2,
 
 choices:[
@@ -907,6 +1160,7 @@ question:
 "تلاتة دخلوا محل. أحمد خرج الأول، محمد خرج بعد أحمد، وعلي خرج بعد محمد. مين آخر واحد من التلاتة خرج من المحل؟",
 
 time:60,
+
 correctAnswer:2,
 
 choices:[
@@ -925,6 +1179,7 @@ question:
 "أحمد قال لمحمد الساعة 8:00: «أنا لسه داخل البيت». الساعة 8:10 محمد اتصل بأحمد، وأحمد رد عليه من داخل البيت. إيه الحاجة اللي لا يمكن إثباتها من المعلومات دي وحدها؟",
 
 time:60,
+
 correctAnswer:1,
 
 choices:[
@@ -943,6 +1198,7 @@ question:
 "واحد قال: «أنا متأكد إن أحمد كان لابس قميص أزرق الساعة 5». عندك صورة لأحمد اتصورت الساعة 5 بالضبط، والقميص فيها أحمر. إيه اللي نقدر نثبته أكيد؟",
 
 time:60,
+
 correctAnswer:0,
 
 choices:[
@@ -961,6 +1217,7 @@ question:
 "محمد قال لأحمد: «النهارده الجمعة». محمد كان معتقد فعلًا إن النهارده الجمعة، لكنه كان مخطئًا، لأن اليوم الحقيقي كان الخميس. هل محمد كذب؟",
 
 time:60,
+
 correctAnswer:1,
 
 choices:[
@@ -979,6 +1236,7 @@ question:
 "محمد قال: «روحت الشغل بالعربية ورجعت بيها الساعة 9». صاحبه قال: «مستحيل! أنا شوفت عربيتك قدام البيت الساعة 10». واتأكدنا أن محمد فعلًا رجع بالعربية الساعة 9، وأن العربية ظلت أمام البيت حتى الساعة 10. مين كلامه فيه مشكلة؟",
 
 time:75,
+
 correctAnswer:3,
 
 choices:[
@@ -997,6 +1255,7 @@ question:
 "كريم لاحظ إن كل مرة يشرب قهوة قبل الشغل، بيشتغل كويس. فقرر إن القهوة هي سبب شغله الكويس. إيه المعلومة اللي أقوى شيء تضعف استنتاجه؟",
 
 time:60,
+
 correctAnswer:2,
 
 choices:[
@@ -1015,6 +1274,7 @@ question:
 "محمد دخل السينما ومعاه تذكرة في إيده. بعد فترة خرج، والتذكرة ما زالت معه. إيه اللي نقدر نعرفه أكيد؟",
 
 time:75,
+
 correctAnswer:2,
 
 choices:[
@@ -1033,6 +1293,7 @@ question:
 "أربعة أصحاب اتفقوا يوم الخميس إنهم يخرجوا يوم الجمعة. الثلاثة فهموا إن الموعد الساعة 8:00. الرابع قال: «ماشي». يوم الجمعة الساعة 8، الثلاثة وصلوا، والرابع لم يأتِ. الساعة 8:20 قال لهم: «أنا كنت فاكر إنكم هتتجمعوا 8 ونص». إيه أكتر استنتاج نقدر نطلعه عن فهم الرابع وقت الاتفاق؟",
 
 time:60,
+
 correctAnswer:2,
 
 choices:[
@@ -1051,6 +1312,7 @@ question:
 "أمامك صندوقان: الصندوق الأول مكتوب عليه «الجائزة هنا». الصندوق الثاني مكتوب عليه «الجائزة ليست هنا». أنت تعرف أن واحدًا فقط من الكلامين صحيح. إيه اللي نقدر نعرفه أكيد؟",
 
 time:90,
+
 correctAnswer:2,
 
 choices:[
@@ -1072,21 +1334,33 @@ VARIABLES
 ===================================================== */
 
 let currentQuestion=0;
+
 let totalScore=0;
+
 let playerName="";
+
 let selectedAnswer=null;
+
 let remainingSeconds=0;
+
 let timerInterval=null;
+
 let playerAnswers=[];
+
 let audioContext=null;
+
 let gameFinished=false;
+
 let selectedRating=0;
 
 let agentId=null;
+
 let agentCode="";
+
 let currentTestId=null;
 
 let productOfferAnswer=null;
+
 let offerSelection=null;
 
 let startedAt=null;
@@ -1102,16 +1376,23 @@ try{
 
 const data=
 JSON.parse(
-localStorage.getItem("shehab_challenge_players")
+localStorage.getItem(
+"shehab_challenge_players"
+)
 );
 
-return Array.isArray(data)?data:[];
+return Array.isArray(data)
+?
+data
+:
+[];
 
 }catch(error){
 
 return[];
 
 }
+
 }
 
 function savePlayer(player){
@@ -1129,7 +1410,7 @@ JSON.stringify(players)
 
 
 /* =====================================================
-GENERATE TEST ID
+UUID
 ===================================================== */
 
 function generateUUID(){
@@ -1148,16 +1429,22 @@ window.crypto &&
 typeof window.crypto.getRandomValues==="function"
 ){
 
-const bytes=new Uint8Array(16);
+const bytes=
+new Uint8Array(16);
 
 window.crypto.getRandomValues(bytes);
 
-bytes[6]=(bytes[6]&0x0f)|0x40;
-bytes[8]=(bytes[8]&0x3f)|0x80;
+bytes[6]=
+(bytes[6]&0x0f)|0x40;
+
+bytes[8]=
+(bytes[8]&0x3f)|0x80;
 
 const hex=
 Array.from(bytes)
-.map(b=>b.toString(16).padStart(2,"0"))
+.map(
+b=>b.toString(16).padStart(2,"0")
+)
 .join("");
 
 return(
@@ -1190,10 +1477,15 @@ function hideAll(){
 "quizPage",
 "offerPage",
 "resultPage"
-].forEach(id=>{
+]
+.forEach(id=>{
 
-document.getElementById(id)
-.classList.add("hidden");
+const element=
+document.getElementById(id);
+
+if(element){
+element.classList.add("hidden");
+}
 
 });
 
@@ -1203,11 +1495,17 @@ function showAgentPage(){
 
 hideAll();
 
-document.getElementById("agentPage")
-.classList.remove("hidden");
+document.getElementById(
+"agentPage"
+).classList.remove("hidden");
 
-document.getElementById("agentCodeInput")
-.focus();
+document.getElementById(
+"agentError"
+).classList.add("hidden");
+
+document.getElementById(
+"agentCodeInput"
+).focus();
 
 }
 
@@ -1215,11 +1513,13 @@ function showName(){
 
 hideAll();
 
-document.getElementById("namePage")
-.classList.remove("hidden");
+document.getElementById(
+"namePage"
+).classList.remove("hidden");
 
-document.getElementById("nameInput")
-.focus();
+document.getElementById(
+"nameInput"
+).focus();
 
 }
 
@@ -1229,8 +1529,9 @@ stopTimer();
 
 hideAll();
 
-document.getElementById("home")
-.classList.remove("hidden");
+document.getElementById(
+"home"
+).classList.remove("hidden");
 
 }
 
@@ -1242,13 +1543,19 @@ VERIFY AGENT
 async function verifyAgent(){
 
 const input=
-document.getElementById("agentCodeInput");
+document.getElementById(
+"agentCodeInput"
+);
 
 const errorBox=
-document.getElementById("agentError");
+document.getElementById(
+"agentError"
+);
 
 const button=
-document.getElementById("agentButton");
+document.getElementById(
+"agentButton"
+);
 
 const code=
 input.value.trim();
@@ -1267,13 +1574,17 @@ return;
 }
 
 button.disabled=true;
-button.textContent="جاري التحقق...";
+
+button.textContent=
+"جاري التحقق...";
 
 try{
 
 const agents=
 await supabaseRequest(
-"/rest/v1/agents?select=id,code,name,active&code=eq."+encodeURIComponent(code)+"&active=eq.true",
+"/rest/v1/agents?select=id,code,name,active&code=eq."+
+encodeURIComponent(code)+
+"&active=eq.true",
 {
 method:"GET",
 prefer:"return=representation"
@@ -1292,13 +1603,19 @@ throw new Error(
 }
 
 agentId=agents[0].id;
-agentCode=agents[0].code;
+
+agentCode=String(
+agents[0].code
+);
 
 showName();
 
 }catch(error){
 
-console.error(error);
+console.error(
+"VERIFY AGENT ERROR:",
+error
+);
 
 errorBox.textContent=
 error.message ||
@@ -1309,7 +1626,9 @@ errorBox.classList.remove("hidden");
 }finally{
 
 button.disabled=false;
-button.textContent="تأكيد الكود";
+
+button.textContent=
+"تأكيد الكود";
 
 }
 
@@ -1334,11 +1653,23 @@ window.webkitAudioContext
 
 }
 
-if(audioContext.state==="suspended"){
+if(
+audioContext &&
+audioContext.state==="suspended"
+){
+
 audioContext.resume();
+
 }
 
-}catch(error){}
+}catch(error){
+
+console.warn(
+"Audio unavailable",
+error
+);
+
+}
 
 }
 
@@ -1355,6 +1686,7 @@ const gain=
 audioContext.createGain();
 
 oscillator.type="sine";
+
 oscillator.frequency.value=850;
 
 gain.gain.setValueAtTime(
@@ -1373,7 +1705,10 @@ audioContext.currentTime+0.18
 );
 
 oscillator.connect(gain);
-gain.connect(audioContext.destination);
+
+gain.connect(
+audioContext.destination
+);
 
 oscillator.start();
 
@@ -1387,7 +1722,7 @@ audioContext.currentTime+0.2
 
 
 /* =====================================================
-START GAME - FIXED
+START GAME
 ===================================================== */
 
 async function startGame(){
@@ -1401,13 +1736,19 @@ return;
 }
 
 const input=
-document.getElementById("nameInput");
+document.getElementById(
+"nameInput"
+);
 
 const button=
-document.getElementById("startButton");
+document.getElementById(
+"startButton"
+);
 
 const errorBox=
-document.getElementById("startError");
+document.getElementById(
+"startError"
+);
 
 const name=
 input.value.trim();
@@ -1430,56 +1771,71 @@ return;
 initAudio();
 
 button.disabled=true;
-button.textContent="جاري تجهيز المواجهة...";
+
+button.textContent=
+"جاري تجهيز المواجهة...";
 
 playerName=name;
 
 currentQuestion=0;
+
 totalScore=0;
+
 selectedAnswer=null;
+
 playerAnswers=[];
+
 gameFinished=false;
 
 productOfferAnswer=null;
+
 offerSelection=null;
 
-/*
-IMPORTANT:
-نولّد ID محليًا بدل ما نعتمد على
-return=representation من Supabase.
-*/
-
-currentTestId=generateUUID();
+currentTestId=
+generateUUID();
 
 startedAt=
 new Date().toISOString();
 
-try{
-
 const testData={
+
 id:currentTestId,
+
 agent_id:agentId,
+
 player_name:playerName,
+
 score:0,
+
 percentage:0,
+
 product_offer_answer:null,
+
 started_at:startedAt,
+
 status:"started",
+
 answers:[]
+
 };
 
+try{
+
 /*
-return=minimal
-يعني Supabase يحفظ الصف فقط
-بدون محاولة إرجاع الصف.
+نحفظ الاختبار في Supabase.
+return=minimal يمنع محاولة إعادة
+الصف من السيرفر.
 */
 
 await supabaseRequest(
 "/rest/v1/tests",
 {
 method:"POST",
+
 prefer:"return=minimal",
+
 body:JSON.stringify(testData)
+
 }
 );
 
@@ -1494,12 +1850,17 @@ error
 
 errorBox.textContent=
 "تعذر بدء الاختبار: "+
-(error.message || "خطأ غير معروف");
+(
+error.message ||
+"خطأ غير معروف"
+);
 
 errorBox.classList.remove("hidden");
 
 button.disabled=false;
-button.textContent="ابدأ المواجهة 🚀";
+
+button.textContent=
+"ابدأ المواجهة 🚀";
 
 }
 
@@ -1514,7 +1875,9 @@ function showQuestion(){
 
 stopTimer();
 
-if(currentQuestion>=questions.length){
+if(
+currentQuestion>=questions.length
+){
 
 finishQuiz();
 
@@ -1524,25 +1887,32 @@ return;
 
 hideAll();
 
-document.getElementById("quizPage")
-.classList.remove("hidden");
+document.getElementById(
+"quizPage"
+).classList.remove("hidden");
 
-const q=questions[currentQuestion];
+const q=
+questions[currentQuestion];
 
-document.getElementById("progress")
-.textContent=
+document.getElementById(
+"progress"
+).textContent=
 "السؤال "+
 (currentQuestion+1)+
 " من "+
 questions.length;
 
-document.getElementById("question")
-.textContent=q.question;
+document.getElementById(
+"question"
+).textContent=
+q.question;
 
 selectedAnswer=null;
 
 const nextButton=
-document.getElementById("nextButton");
+document.getElementById(
+"nextButton"
+);
 
 nextButton.disabled=true;
 
@@ -1555,25 +1925,37 @@ questions.length-1
 "التالي →";
 
 const choices=
-document.getElementById("choices");
+document.getElementById(
+"choices"
+);
 
 choices.innerHTML="";
 
-q.choices.forEach((choice,index)=>{
+q.choices.forEach(
+(choice,index)=>{
 
 const button=
 document.createElement("button");
 
-button.className="choice";
-button.textContent=choice;
+button.className=
+"choice";
+
+button.type="button";
+
+button.textContent=
+choice;
 
 button.onclick=()=>{
-selectChoice(button,index);
+selectChoice(
+button,
+index
+);
 };
 
 choices.appendChild(button);
 
-});
+}
+);
 
 remainingSeconds=q.time;
 
@@ -1599,7 +1981,9 @@ beep();
 
 }
 
-if(remainingSeconds<=0){
+if(
+remainingSeconds<=0
+){
 
 stopTimer();
 
@@ -1619,10 +2003,14 @@ TIMER
 function updateTimer(){
 
 const timer=
-document.getElementById("remaining");
+document.getElementById(
+"remaining"
+);
 
 const minutes=
-Math.floor(remainingSeconds/60);
+Math.floor(
+remainingSeconds/60
+);
 
 const seconds=
 remainingSeconds%60;
@@ -1643,7 +2031,10 @@ function stopTimer(){
 
 if(timerInterval!==null){
 
-clearInterval(timerInterval);
+clearInterval(
+timerInterval
+);
+
 timerInterval=null;
 
 }
@@ -1652,24 +2043,33 @@ timerInterval=null;
 
 
 /* =====================================================
-ANSWER
+SELECT ANSWER
 ===================================================== */
 
-function selectChoice(button,index){
+function selectChoice(
+button,
+index
+){
 
 if(gameFinished)return;
 
-document.querySelectorAll(".choice")
-.forEach(
-b=>b.classList.remove("selected")
+document.querySelectorAll(
+".choice"
+).forEach(
+b=>b.classList.remove(
+"selected"
+)
 );
 
-button.classList.add("selected");
+button.classList.add(
+"selected"
+);
 
 selectedAnswer=index;
 
-document.getElementById("nextButton")
-.disabled=false;
+document.getElementById(
+"nextButton"
+).disabled=false;
 
 }
 
@@ -1678,21 +2078,34 @@ document.getElementById("nextButton")
 SAVE ANSWER
 ===================================================== */
 
-function saveAnswer(timedOut=false){
+function saveAnswer(
+timedOut=false
+){
 
-const q=questions[currentQuestion];
+const q=
+questions[currentQuestion];
 
 const correct=
 selectedAnswer!==null &&
-selectedAnswer===q.correctAnswer;
+selectedAnswer===
+q.correctAnswer;
 
 playerAnswers.push({
 
-question:currentQuestion+1,
-selectedAnswer:selectedAnswer,
-correctAnswer:q.correctAnswer,
-correct:correct,
-timedOut:timedOut,
+question:
+currentQuestion+1,
+
+selectedAnswer:
+selectedAnswer,
+
+correctAnswer:
+q.correctAnswer,
+
+correct:
+correct,
+
+timedOut:
+timedOut,
 
 timeUsed:
 Math.max(
@@ -1703,7 +2116,9 @@ q.time-remainingSeconds
 });
 
 if(correct){
+
 totalScore++;
+
 }
 
 }
@@ -1723,9 +2138,18 @@ currentQuestion++;
 
 setTimeout(()=>{
 
-if(currentQuestion<questions.length){
+if(
+currentQuestion<
+questions.length
+){
 
-if(currentQuestion===5){
+/*
+بعد السؤال السادس يظهر اختيار المنتج.
+*/
+
+if(
+currentQuestion===5
+){
 
 showProductOffer();
 
@@ -1747,7 +2171,7 @@ finishQuiz();
 
 
 /* =====================================================
-NEXT
+NEXT QUESTION
 ===================================================== */
 
 function nextQuestion(){
@@ -1756,7 +2180,9 @@ if(gameFinished)return;
 
 if(selectedAnswer===null){
 
-alert("اختار إجابة الأول يا بطل 😏");
+alert(
+"اختار إجابة الأول يا بطل 😏"
+);
 
 return;
 
@@ -1765,7 +2191,9 @@ return;
 stopTimer();
 
 const button=
-document.getElementById("nextButton");
+document.getElementById(
+"nextButton"
+);
 
 button.disabled=true;
 
@@ -1773,11 +2201,16 @@ saveAnswer(false);
 
 currentQuestion++;
 
-if(currentQuestion<questions.length){
+if(
+currentQuestion<
+questions.length
+){
 
 setTimeout(()=>{
 
-if(currentQuestion===5){
+if(
+currentQuestion===5
+){
 
 showProductOffer();
 
@@ -1808,78 +2241,145 @@ stopTimer();
 
 hideAll();
 
-document.getElementById("offerPage")
-.classList.remove("hidden");
+document.getElementById(
+"offerPage"
+).classList.remove(
+"hidden"
+);
 
 offerSelection=null;
 
-document.querySelectorAll(".offer-choice")
-.forEach(button=>{
-button.classList.remove("selected");
-});
+document.querySelectorAll(
+".offer-choice"
+).forEach(
+button=>{
+button.classList.remove(
+"selected"
+);
+}
+);
 
-document.getElementById("continueAfterOffer")
-.disabled=true;
+document.getElementById(
+"continueAfterOffer"
+).disabled=true;
 
-document.getElementById("offerError")
-.classList.add("hidden");
+document.getElementById(
+"offerError"
+).classList.add(
+"hidden"
+);
 
 }
 
-function selectProductOffer(answer){
+function selectProductOffer(
+answer
+){
 
-offerSelection=Boolean(answer);
-productOfferAnswer=offerSelection;
+offerSelection=
+Boolean(answer);
 
-document.querySelectorAll(".offer-choice")
-.forEach(
-button=>button.classList.remove("selected")
+productOfferAnswer=
+offerSelection;
+
+document.querySelectorAll(
+".offer-choice"
+).forEach(
+button=>{
+button.classList.remove(
+"selected"
+);
+}
 );
 
 const buttons=
-document.querySelectorAll(".offer-choice");
+document.querySelectorAll(
+".offer-choice"
+);
 
-if(offerSelection===true){
-buttons[0].classList.add("selected");
+if(
+offerSelection===true
+){
+
+buttons[0].classList.add(
+"selected"
+);
+
 }else{
-buttons[1].classList.add("selected");
+
+buttons[1].classList.add(
+"selected"
+);
+
 }
 
-document.getElementById("continueAfterOffer")
-.disabled=false;
+document.getElementById(
+"continueAfterOffer"
+).disabled=false;
 
 }
+
+
+/* =====================================================
+SAVE PRODUCT OFFER
+===================================================== */
 
 async function continueAfterOffer(){
 
 if(offerSelection===null){
 
-document.getElementById("offerError")
-.classList.remove("hidden");
+document.getElementById(
+"offerError"
+).classList.remove(
+"hidden"
+);
 
 return;
 
 }
+
+const button=
+document.getElementById(
+"continueAfterOffer"
+);
+
+button.disabled=true;
+
+button.textContent=
+"جاري الحفظ...";
 
 if(currentTestId){
 
 try{
 
 await supabaseRequest(
-"/rest/v1/tests?id=eq."+encodeURIComponent(currentTestId),
+"/rest/v1/tests?id=eq."+
+encodeURIComponent(
+currentTestId
+),
 {
 method:"PATCH",
+
 prefer:"return=minimal",
+
 body:JSON.stringify({
-product_offer_answer:productOfferAnswer
+
+product_offer_answer:
+productOfferAnswer
+
 })
+
 }
 );
 
 }catch(error){
 
+/*
+لا نوقف التحدي لو حدثت مشكلة
+في تحديث اختيار المنتج.
+*/
+
 console.error(
-"PRODUCT OFFER ERROR:",
+"PRODUCT OFFER SAVE ERROR:",
 error
 );
 
@@ -1887,13 +2387,18 @@ error
 
 }
 
+button.disabled=false;
+
+button.textContent=
+"متابعة التحدي →";
+
 showQuestion();
 
 }
 
 
 /* =====================================================
-FINISH
+FINISH QUIZ
 ===================================================== */
 
 async function finishQuiz(){
@@ -1910,34 +2415,65 @@ new Date().toISOString();
 const player={
 
 name:playerName,
+
 score:totalScore,
-percentage:totalScore*10,
+
+percentage:
+totalScore*10,
+
 date:completedAt,
+
 answers:playerAnswers
 
 };
 
+/*
+نسخة محلية فقط للإحصائيات على الجهاز.
+*/
+
 savePlayer(player);
+
+
+/*
+التحديث الأساسي في Supabase.
+*/
 
 if(currentTestId){
 
 try{
 
 await supabaseRequest(
-"/rest/v1/tests?id=eq."+encodeURIComponent(currentTestId),
+"/rest/v1/tests?id=eq."+
+encodeURIComponent(
+currentTestId
+),
 {
 method:"PATCH",
+
 prefer:"return=minimal",
+
 body:JSON.stringify({
 
-score:totalScore,
-percentage:totalScore*10,
-product_offer_answer:productOfferAnswer,
-completed_at:completedAt,
-status:"completed",
-answers:playerAnswers
+score:
+totalScore,
+
+percentage:
+totalScore*10,
+
+product_offer_answer:
+productOfferAnswer,
+
+completed_at:
+completedAt,
+
+status:
+"completed",
+
+answers:
+playerAnswers
 
 })
+
 }
 );
 
@@ -1948,11 +2484,19 @@ console.error(
 error
 );
 
-}
+/*
+النتيجة لا تضيع محليًا حتى لو
+حصل خطأ مؤقت في الشبكة.
+*/
 
 }
 
-setTimeout(showResult,250);
+}
+
+setTimeout(
+showResult,
+250
+);
 
 }
 
@@ -1965,59 +2509,77 @@ function showResult(){
 
 hideAll();
 
-document.getElementById("resultPage")
-.classList.remove("hidden");
+document.getElementById(
+"resultPage"
+).classList.remove(
+"hidden"
+);
 
-document.getElementById("resultTitle")
-.textContent=
-"🔥 ممتاز يا "+playerName;
+document.getElementById(
+"resultTitle"
+).textContent=
+"🔥 ممتاز يا "+
+playerName;
 
-document.getElementById("score")
-.textContent=
-totalScore+" / 10";
+document.getElementById(
+"score"
+).textContent=
+totalScore+
+" / 10";
 
 if(totalScore===10){
 
-document.getElementById("resultText")
-.textContent=
+document.getElementById(
+"resultText"
+).textContent=
 "🏆🔥 كسرت نتيجة شهاب! جبت 10 / 10.";
 
 }else if(totalScore===9){
 
-document.getElementById("resultText")
-.textContent=
+document.getElementById(
+"resultText"
+).textContent=
 "⚖️ تعادلت مع شهاب. 9 / 10.";
 
 }else if(totalScore>=7){
 
-document.getElementById("resultText")
-.textContent=
+document.getElementById(
+"resultText"
+).textContent=
 "🔥 نتيجة قوية جدًا، لكن لسه ماكسرتش شهاب.";
 
 }else if(totalScore>=4){
 
-document.getElementById("resultText")
-.textContent=
+document.getElementById(
+"resultText"
+).textContent=
 "نتيجة متوسطة. عندك اختيارات قوية، وبعض الأسئلة قدرت توقعك في الفخ.";
 
 }else{
 
-document.getElementById("resultText")
-.textContent=
+document.getElementById(
+"resultText"
+).textContent=
 "النتيجة مش حكم على ذكائك. الاختبار بيقيس استجاباتك في المواقف دي فقط.";
 
 }
 
 
-/* PRODUCT RESULT */
+/* =====================================================
+PRODUCT RESULT
+===================================================== */
 
 const productResult=
-document.getElementById("productResult");
+document.getElementById(
+"productResult"
+);
 
 if(totalScore>9){
 
 productResult.innerHTML=
-'<strong class="green">🏆 المنتج من حقك مجانًا.</strong>';
+'<strong class="green">'+
+"🏆 المنتج من حقك مجانًا."+
+"</strong>";
 
 }else if(
 totalScore<9 &&
@@ -2035,7 +2597,9 @@ productOfferAnswer===false
 productResult.innerHTML=
 "إنت اخترت تكمل التجربة بدون شراء المنتج.";
 
-}else if(totalScore===9){
+}else if(
+totalScore===9
+){
 
 productResult.innerHTML=
 "⚖️ تعادلت مع شهاب، والمنتج لا يتم اعتباره مكافأة تفوق.";
@@ -2048,15 +2612,21 @@ productResult.innerHTML=
 }
 
 
-/* COMPARISON */
+/* =====================================================
+COMPARISON
+===================================================== */
 
 const comparison=
-document.getElementById("comparison");
+document.getElementById(
+"comparison"
+);
 
 if(totalScore===10){
 
 comparison.innerHTML=
-'<strong class="green">🏆 كسرت نتيجة شهاب!</strong><br><br>'+
+'<strong class="green">'+
+"🏆 كسرت نتيجة شهاب!"+
+"</strong><br><br>"+
 "أنت: 10 / 10<br>"+
 "شهاب: 9 / 10<br><br>"+
 "🎁 المنتج من حقك مجانًا.";
@@ -2064,14 +2634,16 @@ comparison.innerHTML=
 }else if(totalScore===9){
 
 comparison.innerHTML=
-'<strong>⚖️ تعادلت مع شهاب.</strong><br><br>'+
+"<strong>⚖️ تعادلت مع شهاب.</strong><br><br>"+
 "أنت: 9 / 10<br>"+
 "شهاب: 9 / 10";
 
 }else{
 
 comparison.innerHTML=
-'<strong class="red">شهاب ما زال متقدمًا.</strong><br><br>'+
+'<strong class="red">'+
+"شهاب ما زال متقدمًا."+
+"</strong><br><br>"+
 "أنت: "+
 totalScore+
 " / 10<br>"+
@@ -2083,44 +2655,59 @@ totalScore+
 }
 
 
-/* STYLE */
+/* =====================================================
+THINKING STYLE
+===================================================== */
 
-document.getElementById("style")
-.textContent=
+document.getElementById(
+"style"
+).textContent=
 
 totalScore>=9
 ?
 "تفكيرك قوي جدًا في فحص المعنى والافتراضات، وغالبًا لا تكتفي بأول إجابة تبدو صحيحة."
+
 :
+
 totalScore>=7
 ?
 "عندك قدرة جيدة على التفكير التحليلي، لكن بعض الفخاخ قدرت تسحبك للاستنتاج السريع."
+
 :
+
 totalScore>=4
 ?
 "عندك مزيج من التفكير السريع والتحليلي، وتقدر تطور نتيجتك أكثر لو راجعت الافتراضات قبل الحكم."
+
 :
+
 "التحدي أظهر إن بعض الإجابات الأولى عندك تعتمد على الحدس السريع. التمهل وفحص المعلومات قد يغير النتيجة بشكل كبير.";
 
 
-/* LOCAL STATS */
+/* =====================================================
+LOCAL STATS
+===================================================== */
 
-const players=getPlayers();
+const players=
+getPlayers();
 
 const scores=
 players.map(
 player=>Number(player.score)||0
 );
 
-const totalPlayers=players.length;
+const totalPlayers=
+players.length;
 
-const completed=players.length;
+const completed=
+players.length;
 
 const average=
 completed
 ?
 scores.reduce(
-(sum,score)=>sum+score,
+(sum,score)=>
+sum+score,
 0
 )/completed
 :
@@ -2139,39 +2726,51 @@ const sortedScores=
 );
 
 const rank=
-sortedScores.indexOf(totalScore)+1;
+sortedScores.indexOf(
+totalScore
+)+1;
 
-document.getElementById("percentage")
-.textContent=
+document.getElementById(
+"percentage"
+).textContent=
 (totalScore*10)+"%";
 
-document.getElementById("rank")
-.textContent=
+document.getElementById(
+"rank"
+).textContent=
 "#"+rank;
 
-document.getElementById("totalPlayers")
-.textContent=
+document.getElementById(
+"totalPlayers"
+).textContent=
 totalPlayers;
 
-document.getElementById("completed")
-.textContent=
+document.getElementById(
+"completed"
+).textContent=
 completed;
 
-document.getElementById("average")
-.textContent=
-average.toFixed(1)+" / 10";
+document.getElementById(
+"average"
+).textContent=
+average.toFixed(1)+
+" / 10";
 
-document.getElementById("highest")
-.textContent=
-highest+" / 10";
+document.getElementById(
+"highest"
+).textContent=
+highest+
+" / 10";
 
-document.getElementById("progressMessage")
-.textContent=
+document.getElementById(
+"progressMessage"
+).textContent=
 totalScore>average
 ?
 "📈 نتيجتك أعلى من متوسط الاختبارات على هذا الجهاز."
 :
-totalScore===Number(average.toFixed(1))
+totalScore===
+Number(average.toFixed(1))
 ?
 "⚖️ نتيجتك قريبة من متوسط الاختبارات على هذا الجهاز."
 :
@@ -2189,47 +2788,66 @@ REVIEW
 function renderReview(){
 
 const review=
-document.getElementById("review");
+document.getElementById(
+"review"
+);
 
 review.innerHTML="";
 
 playerAnswers.forEach(
 (answer,index)=>{
 
-const q=questions[index];
+const q=
+questions[index];
 
 const card=
 document.createElement("div");
 
-card.className="review-card";
+card.className=
+"review-card";
 
 const playerAnswerText=
 answer.selectedAnswer===null
 ?
 "لم يتم اختيار إجابة — الوقت انتهى."
 :
-q.choices[answer.selectedAnswer];
+q.choices[
+answer.selectedAnswer
+];
 
 const correctAnswerText=
-q.choices[q.correctAnswer];
+q.choices[
+q.correctAnswer
+];
 
 let statusClass="";
 let statusText="";
 
 if(answer.correct){
 
-statusClass="status-correct";
-statusText="✓ إجابة صحيحة";
+statusClass=
+"status-correct";
 
-}else if(answer.timedOut){
+statusText=
+"✓ إجابة صحيحة";
 
-statusClass="status-timeout";
-statusText="⏰ الوقت انتهى";
+}else if(
+answer.timedOut
+){
+
+statusClass=
+"status-timeout";
+
+statusText=
+"⏰ الوقت انتهى";
 
 }else{
 
-statusClass="status-wrong";
-statusText="✕ إجابة غير صحيحة";
+statusClass=
+"status-wrong";
+
+statusText=
+"✕ إجابة غير صحيحة";
 
 }
 
@@ -2277,38 +2895,57 @@ review.appendChild(card);
 RATING
 ===================================================== */
 
-function selectRating(rating){
+function selectRating(
+rating
+){
 
 selectedRating=rating;
 
-document.querySelectorAll(".star")
-.forEach(star=>{
+document.querySelectorAll(
+".star"
+).forEach(
+star=>{
 
 const value=
-Number(star.dataset.rating);
+Number(
+star.dataset.rating
+);
 
 star.classList.toggle(
 "selected",
 value<=rating
 );
 
-});
+}
+);
 
 const texts={
 
-1:"😕 محتاجين نشتغل أكتر على التجربة.",
-2:"🙂 التجربة محتاجة تطوير.",
-3:"👍 تجربة كويسة.",
-4:"🔥 تجربة ممتازة.",
-5:"🏆🔥 ممتاز جدًا! مبسوطين إن التجربة عجبتك."
+1:
+"😕 محتاجين نشتغل أكتر على التجربة.",
+
+2:
+"🙂 التجربة محتاجة تطوير.",
+
+3:
+"👍 تجربة كويسة.",
+
+4:
+"🔥 تجربة ممتازة.",
+
+5:
+"🏆🔥 ممتاز جدًا! مبسوطين إن التجربة عجبتك."
 
 };
 
-document.getElementById("ratingText")
-.textContent=texts[rating];
+document.getElementById(
+"ratingText"
+).textContent=
+texts[rating];
 
-document.getElementById("ratingButton")
-.disabled=false;
+document.getElementById(
+"ratingButton"
+).disabled=false;
 
 }
 
@@ -2319,19 +2956,43 @@ SUBMIT RATING
 
 async function submitRating(){
 
-if(!selectedRating)return;
+if(!selectedRating){
+
+return;
+
+}
+
+const button=
+document.getElementById(
+"ratingButton"
+);
 
 const review=
-document.getElementById("reviewInput")
-.value.trim();
+document.getElementById(
+"reviewInput"
+).value.trim();
+
+button.disabled=true;
+
+button.textContent=
+"جاري إرسال التقييم...";
 
 const ratingData={
 
-test_id:currentTestId,
-player_name:playerName,
-score:totalScore,
-rating:selectedRating,
-comment:review
+test_id:
+currentTestId,
+
+player_name:
+playerName,
+
+score:
+totalScore,
+
+rating:
+selectedRating,
+
+comment:
+review
 
 };
 
@@ -2341,19 +3002,29 @@ await supabaseRequest(
 "/rest/v1/ratings",
 {
 method:"POST",
+
 prefer:"return=minimal",
-body:JSON.stringify(ratingData)
+
+body:
+JSON.stringify(
+ratingData
+)
+
 }
 );
 
-document.getElementById("ratingButton")
-.disabled=true;
+document.getElementById(
+"reviewInput"
+).disabled=true;
 
-document.getElementById("reviewInput")
-.disabled=true;
+document.getElementById(
+"ratingSuccess"
+).classList.remove(
+"hidden"
+);
 
-document.getElementById("ratingSuccess")
-.classList.remove("hidden");
+button.textContent=
+"تم إرسال التقييم ✓";
 
 }catch(error){
 
@@ -2362,9 +3033,17 @@ console.error(
 error
 );
 
+button.disabled=false;
+
+button.textContent=
+"إرسال التقييم ⭐";
+
 alert(
-"حصلت مشكلة في إرسال التقييم: "+
-(error.message || "خطأ غير معروف")
+"حصلت مشكلة في إرسال التقييم:\n"+
+(
+error.message ||
+"خطأ غير معروف"
+)
 );
 
 }
@@ -2379,11 +3058,31 @@ ESCAPE HTML
 function escapeHTML(text){
 
 return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
 
 }
 
@@ -2394,7 +3093,8 @@ WHATSAPP
 
 function contactShehab(){
 
-const phone="201011641423";
+const phone=
+"201011641423";
 
 const message=
 encodeURIComponent(
@@ -2413,30 +3113,51 @@ message,
 
 
 /* =====================================================
-ENTER
+ENTER KEY
 ===================================================== */
 
-document.getElementById("nameInput")
-.addEventListener(
+document.getElementById(
+"nameInput"
+).addEventListener(
 "keydown",
 function(event){
 
 if(event.key==="Enter"){
+
 startGame();
+
 }
 
-});
+}
+);
 
-document.getElementById("agentCodeInput")
-.addEventListener(
+document.getElementById(
+"agentCodeInput"
+).addEventListener(
 "keydown",
 function(event){
 
 if(event.key==="Enter"){
+
 verifyAgent();
+
 }
 
-});
+}
+);
+
+
+/* =====================================================
+INITIAL STATE
+===================================================== */
+
+hideAll();
+
+document.getElementById(
+"home"
+).classList.remove(
+"hidden"
+);
 
 </script>
 
