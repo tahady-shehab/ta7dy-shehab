@@ -266,6 +266,11 @@ background:#173522;
 border:1px solid #2d7044;
 }
 
+.answer-wrong{
+background:#3a2025;
+border:1px solid #7b3d46;
+}
+
 .explanation{
 margin-top:13px;
 background:#191f31;
@@ -298,6 +303,72 @@ color:#ff9ca4;
 .status-timeout{
 background:#342c18;
 color:#ffd875;
+}
+
+.timeout-box{
+background:#342c18;
+border:1px solid #705d29;
+color:#ffd875;
+padding:13px;
+border-radius:14px;
+margin-top:12px;
+line-height:1.7;
+font-size:14px;
+font-weight:bold;
+}
+
+.rating-box{text-align:center;}
+
+.rating-title{
+font-size:21px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.rating-subtitle{
+color:#aeb6c8;
+font-size:15px;
+line-height:1.7;
+}
+
+.stars{
+display:flex;
+justify-content:center;
+gap:6px;
+direction:ltr;
+margin:18px 0;
+}
+
+.star{
+width:auto;
+margin:0;
+padding:4px 5px;
+background:transparent;
+color:#596275;
+font-size:38px;
+line-height:1;
+}
+
+.star.selected,
+.star:hover{
+color:#ffd34d;
+}
+
+.rating-result{
+text-align:center;
+color:#8ee7a1;
+font-weight:bold;
+margin-top:12px;
+}
+
+.thanks-box{
+background:#173522;
+border:1px solid #2d7044;
+border-radius:15px;
+padding:14px;
+margin-top:14px;
+line-height:1.8;
+text-align:center;
 }
 
 .agent-box{
@@ -347,55 +418,7 @@ margin-top:12px;
 font-weight:bold;
 }
 
-.rating-box{text-align:center;}
-
-.rating-title{
-font-size:21px;
-font-weight:bold;
-margin-bottom:8px;
-}
-
-.rating-subtitle{
-color:#aeb6c8;
-font-size:15px;
-line-height:1.7;
-}
-
-.stars{
-display:flex;
-justify-content:center;
-gap:6px;
-direction:ltr;
-margin:18px 0;
-}
-
-.star{
-width:auto;
-margin:0;
-padding:4px 5px;
-background:transparent;
-color:#596275;
-font-size:38px;
-line-height:1;
-}
-
-.star.selected,
-.star:hover{
-color:#ffd34d;
-}
-
-.thanks-box{
-background:#173522;
-border:1px solid #2d7044;
-border-radius:15px;
-padding:14px;
-margin-top:14px;
-line-height:1.8;
-text-align:center;
-}
-
 @media(max-width:450px){
-
 .container{
 padding:9px 7px 30px;
 }
@@ -417,7 +440,6 @@ padding:14px;
 .score{font-size:58px;}
 
 .star{font-size:34px;}
-
 }
 </style>
 </head>
@@ -425,8 +447,6 @@ padding:14px;
 <body>
 
 <div class="container">
-
-<!-- HOME -->
 
 <section id="home" class="card center">
 
@@ -483,8 +503,6 @@ padding:14px;
 </section>
 
 
-<!-- AGENT -->
-
 <section id="agentPage" class="card center hidden">
 
 <h2>🔐 دخول التحدي</h2>
@@ -527,8 +545,6 @@ onclick="verifyAgent()"
 </section>
 
 
-<!-- NAME -->
-
 <section id="namePage" class="card center hidden">
 
 <h2>قبل المواجهة 👀</h2>
@@ -544,7 +560,7 @@ placeholder="اكتب اسمك هنا"
 autocomplete="off"
 >
 
-<div id="startError" class="offer-error hidden"></div>
+<div id="startError" class="timeout-box hidden"></div>
 
 <button
 id="startButton"
@@ -560,8 +576,6 @@ onclick="startGame()"
 
 </section>
 
-
-<!-- QUIZ -->
 
 <section id="quizPage" class="card hidden">
 
@@ -598,15 +612,11 @@ disabled
 </section>
 
 
-<!-- PRODUCT OFFER -->
-
 <section id="offerPage" class="card hidden">
 
 <div class="offer-box">
 
-<div class="offer-title">
-📦 المنتج
-</div>
+<div class="offer-title">📦 المنتج</div>
 
 <p>
 قبل ما تكمل باقي التحدي، لازم تحدد اختيارك بوضوح:
@@ -620,6 +630,7 @@ disabled
 <div id="offerChoices">
 
 <button
+type="button"
 class="offer-choice"
 onclick="selectProductOffer(true)"
 >
@@ -627,6 +638,7 @@ onclick="selectProductOffer(true)"
 </button>
 
 <button
+type="button"
 class="offer-choice"
 onclick="selectProductOffer(false)"
 >
@@ -635,9 +647,7 @@ onclick="selectProductOffer(false)"
 
 </div>
 
-<div id="offerError" class="offer-error hidden">
-لازم تختار أحد الاختيارين علشان تكمل التحدي.
-</div>
+<div id="offerError" class="offer-error hidden"></div>
 
 <button
 id="continueAfterOffer"
@@ -653,8 +663,6 @@ disabled
 </section>
 
 
-<!-- RESULT -->
-
 <section id="resultPage" class="card center hidden">
 
 <div class="logo">🏆</div>
@@ -667,8 +675,6 @@ disabled
 
 <div id="productResult" class="result-box"></div>
 
-
-<!-- RATING -->
 
 <div class="result-box rating-box">
 
@@ -717,8 +723,6 @@ disabled
 </div>
 
 
-<!-- COMPARISON -->
-
 <div class="result-box">
 
 <h3>🔥 مقارنة بشهاب</h3>
@@ -727,8 +731,6 @@ disabled
 
 </div>
 
-
-<!-- STATS -->
 
 <div class="result-box">
 
@@ -773,8 +775,6 @@ disabled
 </div>
 
 
-<!-- STYLE -->
-
 <div class="result-box">
 
 <h3>🧠 أسلوب تفكيرك</h3>
@@ -783,8 +783,6 @@ disabled
 
 </div>
 
-
-<!-- REVIEW -->
 
 <div class="result-box">
 
@@ -848,7 +846,7 @@ const response=await fetch(
 SUPABASE_URL+endpoint,
 {
 ...options,
-headers
+headers:headers
 }
 );
 
@@ -876,11 +874,9 @@ if(data){
 
 if(data.message){
 message=data.message;
-}
-else if(data.error){
+}else if(data.error){
 message=data.error;
-}
-else if(data.hint){
+}else if(data.hint){
 message=data.hint;
 }
 
@@ -1144,7 +1140,7 @@ JSON.stringify(players)
 
 
 /* =====================================================
-UUID
+GENERATE TEST ID
 ===================================================== */
 
 function generateUUID(){
@@ -1578,7 +1574,7 @@ const button=
 document.createElement("button");
 
 button.className="choice";
-
+button.type="button";
 button.textContent=choice;
 
 button.onclick=()=>{
@@ -1658,7 +1654,6 @@ function stopTimer(){
 if(timerInterval!==null){
 
 clearInterval(timerInterval);
-
 timerInterval=null;
 
 }
@@ -1722,7 +1717,9 @@ q.time-remainingSeconds
 });
 
 if(correct){
+
 totalScore++;
+
 }
 
 }
@@ -1819,7 +1816,10 @@ finishQuiz();
 
 /* =====================================================
 PRODUCT OFFER
-IMPORTANT FIX
+IMPORTANT:
+لا يوجد أي اتصال بـ Supabase هنا.
+الاختيار يتحفظ محليًا داخل المتغير فقط.
+وسيتم حفظه مع النتيجة النهائية.
 ===================================================== */
 
 function showProductOffer(){
@@ -1832,6 +1832,7 @@ document.getElementById("offerPage")
 .classList.remove("hidden");
 
 offerSelection=null;
+productOfferAnswer=null;
 
 document.querySelectorAll(".offer-choice")
 .forEach(button=>{
@@ -1846,6 +1847,10 @@ document.getElementById("offerError")
 
 }
 
+
+/* =====================================================
+SELECT PRODUCT OFFER
+===================================================== */
 
 function selectProductOffer(answer){
 
@@ -1874,34 +1879,41 @@ buttons[1].classList.add("selected");
 document.getElementById("continueAfterOffer")
 .disabled=false;
 
+document.getElementById("offerError")
+.classList.add("hidden");
+
 }
 
 
-/*
-IMPORTANT FIX:
-
-هنا لا يوجد أي طلب إلى Supabase.
-
-الاختيار يفضل محفوظًا في:
-productOfferAnswer
-
-وبعد نهاية الاختبار يتم حفظه
-مع النتيجة النهائية.
-*/
+/* =====================================================
+CONTINUE AFTER OFFER
+IMPORTANT:
+مفيش PATCH هنا.
+===================================================== */
 
 function continueAfterOffer(){
 
 if(offerSelection===null){
 
-document.getElementById("offerError")
-.classList.remove("hidden");
+const errorBox=
+document.getElementById("offerError");
+
+errorBox.textContent=
+"لازم تختار أحد الاختيارين علشان تكمل التحدي.";
+
+errorBox.classList.remove("hidden");
 
 return;
 
 }
 
-productOfferAnswer=
-offerSelection;
+/*
+الاختيار محفوظ بالفعل في:
+productOfferAnswer
+
+ومش محتاجين نبعت أي طلب لـ Supabase هنا.
+هنبعته مرة واحدة مع النتيجة النهائية.
+*/
 
 showQuestion();
 
@@ -1909,7 +1921,7 @@ showQuestion();
 
 
 /* =====================================================
-FINISH QUIZ
+FINISH
 ===================================================== */
 
 async function finishQuiz(){
@@ -1933,9 +1945,7 @@ percentage:totalScore*10,
 
 date:completedAt,
 
-answers:playerAnswers,
-
-productOfferAnswer:productOfferAnswer
+answers:playerAnswers
 
 };
 
@@ -1943,7 +1953,11 @@ savePlayer(player);
 
 
 /*
-هنا فقط يتم تحديث الاختبار في Supabase.
+نحفظ كل بيانات الاختبار في تحديث واحد.
+اختيار المنتج:
+true  = موافق على 10 جنيه
+false = بدون شراء
+null  = لم يتم الاختيار
 */
 
 if(currentTestId){
@@ -1951,16 +1965,10 @@ if(currentTestId){
 try{
 
 await supabaseRequest(
-
-"/rest/v1/tests?id=eq."+
-encodeURIComponent(currentTestId),
-
+"/rest/v1/tests?id=eq."+encodeURIComponent(currentTestId),
 {
-
 method:"PATCH",
-
 prefer:"return=minimal",
-
 body:JSON.stringify({
 
 score:totalScore,
@@ -1970,23 +1978,23 @@ percentage:totalScore*10,
 product_offer_answer:
 productOfferAnswer,
 
-completed_at:
-completedAt,
+completed_at:completedAt,
 
 status:"completed",
 
-answers:
-playerAnswers
+answers:playerAnswers
 
 })
-
 }
-
 );
 
 console.log(
-"TEST COMPLETED SUCCESSFULLY:",
-currentTestId
+"TEST SAVED SUCCESSFULLY",
+{
+testId:currentTestId,
+score:totalScore,
+productOfferAnswer:productOfferAnswer
+}
 );
 
 }catch(error){
@@ -2000,10 +2008,7 @@ error
 
 }
 
-setTimeout(
-showResult,
-250
-);
+setTimeout(showResult,250);
 
 }
 
@@ -2034,29 +2039,25 @@ document.getElementById("resultText")
 .textContent=
 "🏆🔥 كسرت نتيجة شهاب! جبت 10 / 10.";
 
-}
-else if(totalScore===9){
+}else if(totalScore===9){
 
 document.getElementById("resultText")
 .textContent=
 "⚖️ تعادلت مع شهاب. 9 / 10.";
 
-}
-else if(totalScore>=7){
+}else if(totalScore>=7){
 
 document.getElementById("resultText")
 .textContent=
 "🔥 نتيجة قوية جدًا، لكن لسه ماكسرتش شهاب.";
 
-}
-else if(totalScore>=4){
+}else if(totalScore>=4){
 
 document.getElementById("resultText")
 .textContent=
 "نتيجة متوسطة. عندك اختيارات قوية، وبعض الأسئلة قدرت توقعك في الفخ.";
 
-}
-else{
+}else{
 
 document.getElementById("resultText")
 .textContent=
@@ -2065,18 +2066,20 @@ document.getElementById("resultText")
 }
 
 
-/* PRODUCT RESULT */
+/* =====================================================
+PRODUCT RESULT
+===================================================== */
 
 const productResult=
 document.getElementById("productResult");
+
 
 if(totalScore>9){
 
 productResult.innerHTML=
 '<strong class="green">🏆 المنتج من حقك مجانًا.</strong>';
 
-}
-else if(
+}else if(
 totalScore<9 &&
 productOfferAnswer===true
 ){
@@ -2084,8 +2087,7 @@ productOfferAnswer===true
 productResult.innerHTML=
 "إنت اخترت الحصول على المنتج مقابل 10 جنيه في حالة عدم التفوق على شهاب.";
 
-}
-else if(
+}else if(
 totalScore<9 &&
 productOfferAnswer===false
 ){
@@ -2093,14 +2095,12 @@ productOfferAnswer===false
 productResult.innerHTML=
 "إنت اخترت تكمل التجربة بدون شراء المنتج.";
 
-}
-else if(totalScore===9){
+}else if(totalScore===9){
 
 productResult.innerHTML=
 "⚖️ تعادلت مع شهاب، والمنتج لا يتم اعتباره مكافأة تفوق.";
 
-}
-else{
+}else{
 
 productResult.innerHTML=
 "تم تسجيل نتيجتك واختيارك أثناء الاختبار.";
@@ -2108,7 +2108,9 @@ productResult.innerHTML=
 }
 
 
-/* COMPARISON */
+/* =====================================================
+COMPARISON
+===================================================== */
 
 const comparison=
 document.getElementById("comparison");
@@ -2121,16 +2123,14 @@ comparison.innerHTML=
 "شهاب: 9 / 10<br><br>"+
 "🎁 المنتج من حقك مجانًا.";
 
-}
-else if(totalScore===9){
+}else if(totalScore===9){
 
 comparison.innerHTML=
 '<strong>⚖️ تعادلت مع شهاب.</strong><br><br>'+
 "أنت: 9 / 10<br>"+
 "شهاب: 9 / 10";
 
-}
-else{
+}else{
 
 comparison.innerHTML=
 '<strong class="red">شهاب ما زال متقدمًا.</strong><br><br>'+
@@ -2145,7 +2145,9 @@ totalScore+
 }
 
 
-/* STYLE */
+/* =====================================================
+STYLE
+===================================================== */
 
 document.getElementById("style")
 .textContent=
@@ -2165,7 +2167,9 @@ totalScore>=4
 "التحدي أظهر إن بعض الإجابات الأولى عندك تعتمد على الحدس السريع. التمهل وفحص المعلومات قد يغير النتيجة بشكل كبير.";
 
 
-/* LOCAL STATS */
+/* =====================================================
+LOCAL STATS
+===================================================== */
 
 const players=getPlayers();
 
@@ -2174,11 +2178,9 @@ players.map(
 player=>Number(player.score)||0
 );
 
-const totalPlayers=
-players.length;
+const totalPlayers=players.length;
 
-const completed=
-players.length;
+const completed=players.length;
 
 const average=
 completed
@@ -2285,14 +2287,12 @@ if(answer.correct){
 statusClass="status-correct";
 statusText="✓ إجابة صحيحة";
 
-}
-else if(answer.timedOut){
+}else if(answer.timedOut){
 
 statusClass="status-timeout";
 statusText="⏰ الوقت انتهى";
 
-}
-else{
+}else{
 
 statusClass="status-wrong";
 statusText="✕ إجابة غير صحيحة";
@@ -2453,15 +2453,10 @@ ESCAPE HTML
 function escapeHTML(text){
 
 return String(text)
-
 .replace(/&/g,"&amp;")
-
 .replace(/</g,"&lt;")
-
 .replace(/>/g,"&gt;")
-
 .replace(/"/g,"&quot;")
-
 .replace(/'/g,"&#039;");
 
 }
@@ -2501,13 +2496,10 @@ document.getElementById("nameInput")
 function(event){
 
 if(event.key==="Enter"){
-
 startGame();
-
 }
 
 });
-
 
 document.getElementById("agentCodeInput")
 .addEventListener(
@@ -2515,9 +2507,7 @@ document.getElementById("agentCodeInput")
 function(event){
 
 if(event.key==="Enter"){
-
 verifyAgent();
-
 }
 
 });
