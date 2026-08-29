@@ -76,6 +76,35 @@ border-radius:30px;
 margin:14px 0;
 }
 
+.jimi-box{
+background:#191f31;
+border:1px solid #596275;
+border-radius:20px;
+padding:18px;
+margin:18px 0;
+text-align:right;
+line-height:1.9;
+}
+
+.jimi-title{
+font-size:20px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.jimi-name{
+color:#aeb6c8;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.jimi-button{
+background:#252d42;
+color:#fff;
+border:1px solid #596275;
+margin-top:8px;
+}
+
 button{
 width:100%;
 border:0;
@@ -428,6 +457,14 @@ text-align:center;
 line-height:1.8;
 }
 
+.voice-note{
+color:#8f99ad;
+font-size:13px;
+line-height:1.7;
+text-align:center;
+margin-top:8px;
+}
+
 @media(max-width:450px){
 
 .container{
@@ -471,6 +508,45 @@ padding:14px;
 دي مواجهة مع طريقة تفكيرك.
 </p>
 
+<div class="jimi-box">
+
+<div class="jimi-title">
+🎙️ أنا جيمي
+</div>
+
+<div class="jimi-name">
+أداة الذكاء الاصطناعي الموجودة داخل تجربة تحدي شهاب
+</div>
+
+<div>
+هكون معاك في التجربة، أوضحلك الفكرة،
+وأساعدك تفهم نتيجتك وطريقة تفكيرك بشكل أبسط.
+</div>
+
+<button
+class="jimi-button"
+onclick="speakJimi('intro')"
+>
+🔊 اسمع جيمي
+</button>
+
+</div>
+
+<div class="intro-box">
+
+<strong>نسخة تجريبية من التطبيق</strong><br><br>
+
+إحنا في المرحلة الأولى من تجربة فكرة التطبيق
+على أرض الواقع.
+
+الهدف إننا نثبت إن فكرة بسيطة بإمكانيات بسيطة
+ممكن تكبر مع الوقت وتتحول لتجربة مفيدة فعلًا.
+
+إنت مش مجرد شخص بيعمل اختبار؛
+إنت جزء من التجربة اللي بنبني بيها المشروع.
+
+</div>
+
 <div class="intro-box">
 
 <strong>فكرة التحدي ببساطة:</strong><br>
@@ -480,8 +556,8 @@ padding:14px;
 
 <br><br>
 
-إحنا بنحاول نبني المشروع ده بإمكانيات بسيطة،
-والتجربة دي جزء من اختبار الفكرة على أرض الواقع.
+كل تجربة وكل رأي بيساعدنا نعرف
+إيه اللي محتاج يتطور وإزاي نخلي التطبيق أفضل.
 
 </div>
 
@@ -489,20 +565,45 @@ padding:14px;
 
 🎁 <strong>المنتج:</strong>
 
+<br><br>
+
+في المرحلة التجريبية، المنتج اللي بنقدمه
+هو <strong>شوكولاتة</strong>.
+
 <br>
 
 لو جبت نتيجة أعلى من شهاب،
-هتاخد المنتج <strong>مجانًا</strong> كمكافأة.
+هتاخد الشوكولاتة <strong>مجانًا</strong> كمكافأة.
 
-<br>
+<br><br>
 
 ولو شهاب تفوق عليك،
-تقدر تحصل على المنتج مقابل <strong>10 جنيه</strong>.
+ولو كنت وافقت على الحصول على المنتج،
+تقدر تحصل على الشوكولاتة مقابل <strong>10 جنيه</strong>.
 
 <br><br>
 
 ولو مش حابب تحصل على المنتج،
 تقدر تكمل التجربة بدون شراءه.
+
+</div>
+
+<div class="intro-box">
+
+<strong>💡 ليه المنتج بـ10 جنيه؟</strong><br><br>
+
+إحنا مش بنقول إن الـ10 جنيه هي قيمة التطبيق نفسه.
+
+الـ10 جنيه مقابل منتج فعلي هتاخده،
+وفي نفس الوقت بتساعدنا نختبر فكرة المشروع
+ونشوف هل نقدر نعمل دوران أسرع ونطوّر التجربة.
+
+<br><br>
+
+حتى لو المنتج بسيط في البداية،
+الفكرة إننا نبدأ من الصفر،
+ونثبت إن مشروع صغير بإمكانيات بسيطة
+ممكن يكبر خطوة بخطوة.
 
 </div>
 
@@ -530,6 +631,10 @@ padding:14px;
 <button class="primary" onclick="showAgentPage()">
 ابدأ التحدي 🧠
 </button>
+
+<p class="voice-note">
+🎙️ جيمي هيظهر لك صوتيًا أثناء التجربة.
+</p>
 
 </section>
 
@@ -653,10 +758,31 @@ disabled
 
 <section id="offerPage" class="card hidden">
 
+<div class="jimi-box">
+
+<div class="jimi-title">
+🎙️ جيمي عنده توضيح سريع
+</div>
+
+<div>
+قبل ما تكمل، خليني أوضحلك حاجة مهمة:
+الشوكولاتة دي منتج فعلي، والـ10 جنيه مقابل المنتج
+لو اخترت إنك تاخده في حالة عدم التفوق على شهاب.
+</div>
+
+<button
+class="jimi-button"
+onclick="speakJimi('product')"
+>
+🔊 اسمع جيمي
+</button>
+
+</div>
+
 <div class="offer-box">
 
 <div class="offer-title">
-📦 المنتج
+🍫 المنتج
 </div>
 
 <p>
@@ -664,7 +790,8 @@ disabled
 </p>
 
 <p>
-لو شهاب تفوق عليك في النهاية، هل توافق على الحصول على المنتج مقابل
+لو شهاب تفوق عليك في النهاية،
+هل توافق على الحصول على الشوكولاتة مقابل
 <strong>10 جنيه</strong>؟
 </p>
 
@@ -674,7 +801,7 @@ disabled
 class="offer-choice"
 onclick="selectProductOffer(true)"
 >
-أيوه، موافق أخد المنتج بـ10 جنيه لو خسرت
+أيوه، موافق أخد الشوكولاتة بـ10 جنيه لو خسرت
 </button>
 
 <button
@@ -717,6 +844,30 @@ disabled
 <div id="score" class="score"></div>
 
 <p id="resultText" class="text"></p>
+
+<div class="jimi-box">
+
+<div class="jimi-title">
+🎙️ جيمي
+</div>
+
+<div id="jimiResultText">
+جاري تجهيز تعليق جيمي على نتيجتك...
+</div>
+
+<button
+id="jimiResultButton"
+class="jimi-button"
+onclick="speakJimi('result')"
+>
+🔊 اسمع جيمي
+</button>
+
+<p class="voice-note">
+لو الصوت ما بدأش تلقائيًا، دوس على الزر.
+</p>
+
+</div>
 
 <div id="saveStatus" class="save-box">
 جاري حفظ نتيجة الاختبار...
@@ -915,13 +1066,9 @@ const text=await response.text();
 let data=null;
 
 try{
-
 data=text ? JSON.parse(text) : null;
-
 }catch(error){
-
 data=text;
-
 }
 
 if(!response.ok){
@@ -1161,43 +1308,208 @@ VARIABLES
 ===================================================== */
 
 let currentQuestion=0;
-
 let totalScore=0;
-
 let playerName="";
-
 let selectedAnswer=null;
-
 let remainingSeconds=0;
-
 let timerInterval=null;
-
 let playerAnswers=[];
-
 let audioContext=null;
-
 let gameFinished=false;
-
 let selectedRating=0;
-
 let agentId=null;
-
 let agentCode="";
+let currentTestId=null;
+let productOfferAnswer=null;
+let offerSelection=null;
+let startedAt=null;
+
+
+/* =====================================================
+JIMI VOICE
+===================================================== */
+
+let speechVoices=[];
+let jimiVoice=null;
+
 
 /*
-مهم:
-لم نعد نحتاج currentTestId لسجل بدأ ثم تحديثه.
-
-سننشئ سجل واحد فقط عند اكتمال الاختبار.
+نبحث عن صوت عربي مصري أولًا.
+لو غير موجود، نستخدم أي صوت عربي.
+ولو مفيش، نستخدم الصوت الافتراضي.
 */
 
-let currentTestId=null;
+function loadJimiVoices(){
 
-let productOfferAnswer=null;
+if(!("speechSynthesis" in window)){
+return;
+}
 
-let offerSelection=null;
+speechVoices=
+window.speechSynthesis.getVoices() || [];
 
-let startedAt=null;
+const egyptian=
+speechVoices.find(
+voice=>
+voice.lang &&
+voice.lang.toLowerCase()==="ar-eg"
+);
+
+const arabic=
+speechVoices.find(
+voice=>
+voice.lang &&
+voice.lang.toLowerCase().startsWith("ar")
+);
+
+jimiVoice=egyptian || arabic || null;
+
+}
+
+if("speechSynthesis" in window){
+
+loadJimiVoices();
+
+window.speechSynthesis.onvoiceschanged=
+loadJimiVoices;
+
+}
+
+
+const jimiTexts={
+
+intro:
+"أهلاً بيك. أنا جيمي، أداة الذكاء الاصطناعي الموجودة داخل تجربة تحدي شهاب. إحنا بنجرب فكرة تطبيق جديدة بإمكانيات بسيطة، وعايزين نعرف هل التجربة دي ممكن تكون مفيدة فعلًا. خد التحدي ببساطة، ركز، وفي الآخر هتشوف نتيجتك ورأيك هيساعدنا نطوّر المشروع.",
+
+product:
+"خليني أوضح لك حاجة بسرعة. الشوكولاتة دي منتج فعلي، والـ10 جنيه مقابل الشوكولاتة لو اخترت إنك تاخدها في حالة إن شهاب تفوق عليك. ولو مش عايز المنتج، تقدر تكمل التجربة من غير شراء. إحنا في مرحلة تجريبية وبنحاول نبدأ من حاجة بسيطة ونكبرها خطوة خطوة.",
+
+resultStrong:
+"مبروك. أنت قدرت تتفوق على نتيجة شهاب. النتيجة دي جزء من تجربة أكبر، والأهم بالنسبة لنا إنك جربت الفكرة وقلت لنا رأيك.",
+
+resultTie:
+"تعادلت مع شهاب. النتيجة متساوية، وده معناه إنك وصلت لنفس المستوى الموجود حاليًا في التحدي. دلوقتي رأيك في التجربة مهم جدًا بالنسبة لنا.",
+
+resultGood:
+"نتيجتك كويسة جدًا، لكن شهاب لسه متقدم عليك. المهم إن النتيجة دي مش حكم على ذكائك، دي نتيجة اختبار محدد. شوف إجاباتك، واقرأ التفسيرات، وقول لنا رأيك في التجربة.",
+
+resultNormal:
+"النتيجة ظهرت. التحدي ده مش حكم على ذكائك، هو مجرد تجربة لقياس طريقة تعاملك مع مجموعة من الأسئلة والمواقف. راجع إجاباتك وشوف إيه اللي وقّعك في الفخ.",
+
+resultLow:
+"النتيجة مش حكم على ذكائك خالص. الاختبار بيقيس استجاباتك في المواقف دي فقط. راجع الإجابات والتفسيرات، وممكن تكتشف إن بعض الإجابات الأولى كانت محتاجة شوية تمهل."
+};
+
+
+function stopJimi(){
+
+try{
+
+if("speechSynthesis" in window){
+
+window.speechSynthesis.cancel();
+
+}
+
+}catch(error){}
+
+}
+
+
+function speakText(text){
+
+if(!("speechSynthesis" in window)){
+
+return false;
+
+}
+
+try{
+
+stopJimi();
+
+const utterance=
+new SpeechSynthesisUtterance(text);
+
+utterance.lang=
+jimiVoice
+?
+jimiVoice.lang
+:
+"ar-EG";
+
+utterance.rate=0.88;
+utterance.pitch=0.95;
+utterance.volume=1;
+
+if(jimiVoice){
+
+utterance.voice=jimiVoice;
+
+}
+
+window.speechSynthesis.speak(utterance);
+
+return true;
+
+}catch(error){
+
+console.error("JIMI VOICE ERROR:",error);
+
+return false;
+
+}
+
+}
+
+
+function speakJimi(type){
+
+let text="";
+
+if(type==="intro"){
+
+text=jimiTexts.intro;
+
+}
+else if(type==="product"){
+
+text=jimiTexts.product;
+
+}
+else if(type==="result"){
+
+if(totalScore===10){
+
+text=jimiTexts.resultStrong;
+
+}
+else if(totalScore===9){
+
+text=jimiTexts.resultTie;
+
+}
+else if(totalScore>=7){
+
+text=jimiTexts.resultGood;
+
+}
+else if(totalScore>=4){
+
+text=jimiTexts.resultNormal;
+
+}
+else{
+
+text=jimiTexts.resultLow;
+
+}
+
+}
+
+return speakText(text);
+
+}
 
 
 /* =====================================================
@@ -1313,6 +1625,8 @@ document.getElementById(id)
 
 function showAgentPage(){
 
+stopJimi();
+
 hideAll();
 
 document.getElementById("agentPage")
@@ -1340,6 +1654,7 @@ document.getElementById("nameInput")
 function goHome(){
 
 stopTimer();
+stopJimi();
 
 hideAll();
 
@@ -1434,7 +1749,7 @@ button.textContent="تأكيد الكود";
 
 
 /* =====================================================
-AUDIO
+AUDIO BEEP
 ===================================================== */
 
 function initAudio(){
@@ -1570,11 +1885,6 @@ gameFinished=false;
 productOfferAnswer=null;
 
 offerSelection=null;
-
-/*
-ننشئ ID محلي للنتيجة النهائية.
-لن يتم إرسال سجل tests الآن.
-*/
 
 currentTestId=generateUUID();
 
@@ -1766,7 +2076,7 @@ document.getElementById("nextButton")
 
 
 /* =====================================================
-SAVE ANSWER IN MEMORY
+SAVE ANSWER
 ===================================================== */
 
 function saveAnswer(timedOut=false){
@@ -1925,6 +2235,17 @@ document.getElementById("continueAfterOffer")
 document.getElementById("offerError")
 .classList.add("hidden");
 
+/*
+نحاول تشغيل رسالة جيمي عند الانتقال
+بعد تفاعل المستخدم مع الصفحة.
+*/
+
+setTimeout(()=>{
+
+speakJimi("product");
+
+},250);
+
 }
 
 
@@ -1957,16 +2278,6 @@ document.getElementById("continueAfterOffer")
 
 }
 
-
-/*
-مهم جدًا:
-
-هنا لا يوجد UPDATE في Supabase.
-
-الاختيار بيتحفظ في الذاكرة أثناء الاختبار،
-وبعد نهاية الاختبار كله بيتحفظ مع باقي البيانات
-في INSERT واحد.
-*/
 
 function continueAfterOffer(){
 
@@ -2052,6 +2363,8 @@ gameFinished=true;
 
 stopTimer();
 
+stopJimi();
+
 const completedAt=
 new Date().toISOString();
 
@@ -2071,22 +2384,9 @@ productOfferAnswer:productOfferAnswer
 
 };
 
-/*
-الحفظ المحلي أولًا
-علشان النتيجة تفضل موجودة حتى لو النت قطع.
-*/
-
 savePlayer(player);
 
-/*
-نظهر النتيجة فورًا.
-*/
-
 showResult();
-
-/*
-ثم نحفظ النتيجة النهائية في Supabase.
-*/
 
 try{
 
@@ -2135,11 +2435,16 @@ document.getElementById("score")
 .textContent=
 totalScore+" / 10";
 
+let jimiResult="";
+
 if(totalScore===10){
 
 document.getElementById("resultText")
 .textContent=
 "🏆🔥 كسرت نتيجة شهاب! جبت 10 / 10.";
+
+jimiResult=
+"مبروك. أنت قدرت تتفوق على نتيجة شهاب. النتيجة دي جزء من تجربة أكبر، والأهم بالنسبة لنا إنك جربت الفكرة وقلت لنا رأيك.";
 
 }else if(totalScore===9){
 
@@ -2147,11 +2452,17 @@ document.getElementById("resultText")
 .textContent=
 "⚖️ تعادلت مع شهاب. 9 / 10.";
 
+jimiResult=
+"تعادلت مع شهاب. النتيجة متساوية، وده معناه إنك وصلت لنفس المستوى الموجود حاليًا في التحدي. دلوقتي رأيك في التجربة مهم جدًا بالنسبة لنا.";
+
 }else if(totalScore>=7){
 
 document.getElementById("resultText")
 .textContent=
 "🔥 نتيجة قوية جدًا، لكن لسه ماكسرتش شهاب.";
+
+jimiResult=
+"نتيجتك كويسة جدًا، لكن شهاب لسه متقدم عليك. المهم إن النتيجة دي مش حكم على ذكائك، دي نتيجة اختبار محدد. شوف إجاباتك وقول لنا رأيك في التجربة.";
 
 }else if(totalScore>=4){
 
@@ -2159,13 +2470,33 @@ document.getElementById("resultText")
 .textContent=
 "نتيجة متوسطة. عندك اختيارات قوية، وبعض الأسئلة قدرت توقعك في الفخ.";
 
+jimiResult=
+"النتيجة ظهرت. التحدي ده مش حكم على ذكائك، هو مجرد تجربة لقياس طريقة تعاملك مع مجموعة من الأسئلة والمواقف. راجع إجاباتك وشوف إيه اللي وقّعك في الفخ.";
+
 }else{
 
 document.getElementById("resultText")
 .textContent=
 "النتيجة مش حكم على ذكائك. الاختبار بيقيس استجاباتك في المواقف دي فقط.";
 
+jimiResult=
+"النتيجة مش حكم على ذكائك خالص. الاختبار بيقيس استجاباتك في المواقف دي فقط. راجع الإجابات والتفسيرات، وممكن تكتشف إن بعض الإجابات الأولى كانت محتاجة شوية تمهل.";
+
 }
+
+document.getElementById("jimiResultText")
+.textContent=jimiResult;
+
+/*
+نحاول تشغيل جيمي تلقائيًا.
+لو المتصفح منع التشغيل، الزر يظل موجودًا.
+*/
+
+setTimeout(()=>{
+
+speakText(jimiResult);
+
+},350);
 
 
 /* PRODUCT */
@@ -2184,7 +2515,7 @@ productOfferAnswer===true
 ){
 
 productResult.innerHTML=
-"إنت اخترت الحصول على المنتج مقابل 10 جنيه في حالة عدم التفوق على شهاب.";
+"إنت اخترت الحصول على الشوكولاتة مقابل 10 جنيه في حالة عدم التفوق على شهاب.";
 
 }else if(
 totalScore<9 &&
@@ -2635,7 +2966,21 @@ verifyAgent();
 
 });
 
+
+/*
+تحديث الأصوات عند تحميل المتصفح.
+*/
+
+if("speechSynthesis" in window){
+
+setTimeout(
+loadJimiVoices,
+300
+);
+
+}
+
 </script>
 
 </body>
-</html>
+  </html>
