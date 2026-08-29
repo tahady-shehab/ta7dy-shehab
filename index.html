@@ -14,12 +14,12 @@ body {
   font-family: Arial, Tahoma, sans-serif;
   min-height: 100vh;
   background-image: url('https://i.postimg.cc/2SnhLC0x/file-00000000d1548243a68234e912473536.png');
-  background-size: 75% auto;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-blend-mode: soft-light;
   background-color: #080b14;
+  background-blend-mode: overlay;
   color: #fff;
 }
 .container {
@@ -28,11 +28,12 @@ body {
   padding: 14px 10px 40px;
 }
 .card {
-  background: #111625;
-  border: 1px solid #293248;
+  background: rgba(17, 22, 37, 0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(41, 50, 72, 0.6);
   border-radius: 25px;
   padding: 26px 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
 }
 .center {
   text-align: center;
@@ -69,7 +70,7 @@ body {
   line-height: 1.9;
 }
 .intro-box {
-  background: #191f31;
+  background: rgba(25, 31, 49, 0.9);
   border: 1px solid #30394f;
   border-radius: 18px;
   padding: 17px;
@@ -81,7 +82,7 @@ body {
   color: #fff;
 }
 .reward-box {
-  background: #222a3d;
+  background: rgba(34, 42, 61, 0.9);
   border-radius: 18px;
   padding: 17px;
   margin: 16px 0;
@@ -95,7 +96,7 @@ body {
   margin: 14px 0;
 }
 .jimi-box {
-  background: #191f31;
+  background: rgba(25, 31, 49, 0.9);
   border: 1px solid #596275;
   border-radius: 20px;
   padding: 18px;
@@ -147,7 +148,7 @@ button:disabled {
 input,
 textarea {
   width: 100%;
-  background: #080b14;
+  background: rgba(8, 11, 20, 0.9);
   border: 1px solid #30394f;
   border-radius: 16px;
   color: #fff;
@@ -218,7 +219,7 @@ textarea {
   margin: 12px 0;
 }
 .result-box {
-  background: #191f31;
+  background: rgba(25, 31, 49, 0.9);
   border-radius: 18px;
   padding: 18px;
   margin-top: 16px;
@@ -232,7 +233,7 @@ textarea {
   margin-top: 12px;
 }
 .stat {
-  background: #080b14;
+  background: rgba(8, 11, 20, 0.9);
   border: 1px solid #30394f;
   border-radius: 16px;
   padding: 15px;
@@ -254,7 +255,7 @@ textarea {
   color: #ff8d8d;
 }
 .review-card {
-  background: #080b14;
+  background: rgba(8, 11, 20, 0.9);
   border: 1px solid #30394f;
   border-radius: 18px;
   padding: 17px;
@@ -377,7 +378,7 @@ textarea {
   text-align: center;
 }
 .agent-box {
-  background: #191f31;
+  background: rgba(25, 31, 49, 0.9);
   border: 1px solid #30394f;
   border-radius: 18px;
   padding: 17px;
@@ -385,7 +386,7 @@ textarea {
   text-align: right;
 }
 .offer-box {
-  background: #191f31;
+  background: rgba(25, 31, 49, 0.9);
   border: 2px solid #596275;
   border-radius: 20px;
   padding: 22px;
@@ -418,7 +419,7 @@ textarea {
   font-weight: bold;
 }
 .save-box {
-  background: #191f31;
+  background: rgba(25, 31, 49, 0.9);
   border: 1px solid #30394f;
   border-radius: 18px;
   padding: 18px;
