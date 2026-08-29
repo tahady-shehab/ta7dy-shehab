@@ -12,9 +12,15 @@
 body {
   margin: 0;
   font-family: Arial, Tahoma, sans-serif;
-  background: #080b14;
-  color: #fff;
   min-height: 100vh;
+  background-image: url('https://i.postimg.cc/2SnhLC0x/file-00000000d1548243a68234e912473536.png');
+  background-size: 75% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-blend-mode: soft-light;
+  background-color: #080b14;
+  color: #fff;
 }
 .container {
   max-width: 720px;
@@ -709,7 +715,7 @@ async function supabaseRequest(endpoint, options = {}) {
 }
 
 /* =====================================================
-   QUESTIONS (نفس الأسئلة المعدّلة)
+   QUESTIONS
 ====================================================== */
 const questions = [
   {
@@ -785,7 +791,7 @@ const questions = [
 ];
 
 /* =====================================================
-   GAME LOGIC (نفس المنطق السابق مع التعديلات المطلوبة)
+   GAME LOGIC
 ====================================================== */
 let currentQuestion = 0;
 let totalScore = 0;
@@ -1262,4 +1268,4 @@ document.getElementById("nameInput").addEventListener("keydown", function(e) { i
 document.getElementById("agentCodeInput").addEventListener("keydown", function(e) { if (e.key === "Enter") verifyAgent(); });
 </script>
 </body>
-                                                                                                         </html>
+</html>
