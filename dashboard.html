@@ -7,130 +7,256 @@
 <title>لوحة تحكم تحدي شهاب</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
 body{
-margin:0;
-font-family:Arial,Tahoma,sans-serif;
-background:#080b14;
-color:#fff;
+  margin:0;
+  font-family:Arial,Tahoma,sans-serif;
+  background:#080b14;
+  color:#fff;
 }
 
 .container{
-max-width:900px;
-margin:auto;
-padding:20px 12px 50px;
+  max-width:1100px;
+  margin:auto;
+  padding:20px 12px 50px;
 }
 
 .card{
-background:#111625;
-border:1px solid #293248;
-border-radius:22px;
-padding:20px;
-margin-bottom:16px;
+  background:#111625;
+  border:1px solid #293248;
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:16px;
 }
 
-h1,h2{margin-top:0}
+h1,h2,h3{
+  margin-top:0;
+}
 
 .text{
-color:#aeb6c8;
-line-height:1.8;
+  color:#aeb6c8;
+  line-height:1.8;
 }
 
 input,button{
-width:100%;
-padding:14px;
-border-radius:14px;
-border:1px solid #30394f;
-font-size:16px;
-font-family:inherit;
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid #30394f;
+  font-size:16px;
+  font-family:inherit;
 }
 
 input{
-background:#080b14;
-color:#fff;
-margin:8px 0;
+  background:#080b14;
+  color:#fff;
+  margin:8px 0;
 }
 
 button{
-background:#fff;
-color:#080b14;
-font-weight:bold;
-cursor:pointer;
-margin-top:8px;
+  background:#fff;
+  color:#080b14;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:8px;
 }
 
-.hidden{display:none!important}
+button:active{
+  transform:scale(.99);
+}
+
+.hidden{
+  display:none!important;
+}
 
 .stats{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
 }
 
 .stat{
-background:#080b14;
-border:1px solid #30394f;
-border-radius:16px;
-padding:18px;
-text-align:center;
+  background:#080b14;
+  border:1px solid #30394f;
+  border-radius:16px;
+  padding:18px;
+  text-align:center;
 }
 
 .stat strong{
-display:block;
-font-size:28px;
-margin-bottom:6px;
+  display:block;
+  font-size:28px;
+  margin-bottom:6px;
 }
 
 .stat span{
-color:#8f99ad;
-font-size:14px;
+  color:#8f99ad;
+  font-size:14px;
 }
 
 .table-wrap{
-overflow-x:auto;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
 }
 
 table{
-width:100%;
-border-collapse:collapse;
-min-width:600px;
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
 }
 
 th,td{
-padding:12px;
-border-bottom:1px solid #30394f;
-text-align:center;
+  padding:12px;
+  border-bottom:1px solid #30394f;
+  text-align:center;
+  vertical-align:middle;
 }
 
 th{
-color:#aeb6c8;
+  color:#aeb6c8;
+  background:#191f31;
+  white-space:nowrap;
 }
 
-.success{color:#8ee7a1}
-.warning{color:#ffd875}
-.danger{color:#ff8d8d}
+td{
+  line-height:1.6;
+}
+
+.success{
+  color:#8ee7a1;
+}
+
+.warning{
+  color:#ffd875;
+}
+
+.danger{
+  color:#ff8d8d;
+}
 
 .rating-stars{
-font-size:20px;
-white-space:nowrap;
+  font-size:20px;
+  white-space:nowrap;
+  letter-spacing:1px;
 }
 
 .comment-cell{
-max-width:280px;
-white-space:normal;
-line-height:1.7;
-color:#c6ccda;
+  min-width:220px;
+  max-width:360px;
+  white-space:normal;
+  line-height:1.8;
+  color:#c6ccda;
 }
 
-@media(max-width:500px){
-.stats{
-grid-template-columns:1fr 1fr;
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
+  white-space:nowrap;
 }
 
-.stat strong{
-font-size:23px;
+.badge-paid{
+  background:#3a2025;
+  color:#ff9ca4;
 }
+
+.badge-free{
+  background:#173522;
+  color:#8ee7a1;
+}
+
+.badge-offer{
+  background:#342c18;
+  color:#ffd875;
+}
+
+.badge-none{
+  background:#252d42;
+  color:#aeb6c8;
+}
+
+.rating-summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.rating-summary-box{
+  background:#080b14;
+  border:1px solid #30394f;
+  border-radius:16px;
+  padding:16px;
+  text-align:center;
+}
+
+.rating-summary-box strong{
+  display:block;
+  font-size:26px;
+  margin-bottom:5px;
+}
+
+.rating-summary-box span{
+  color:#8f99ad;
+  font-size:13px;
+}
+
+.section-note{
+  background:#191f31;
+  border:1px solid #30394f;
+  border-radius:14px;
+  padding:12px;
+  color:#aeb6c8;
+  line-height:1.8;
+  margin-bottom:14px;
+}
+
+.empty{
+  color:#8f99ad;
+  padding:20px;
+}
+
+@media(max-width:700px){
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .rating-summary{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:450px){
+
+  .container{
+    padding:12px 7px 30px;
+  }
+
+  .card{
+    padding:16px 12px;
+    border-radius:19px;
+  }
+
+  .stat{
+    padding:14px 8px;
+  }
+
+  .stat strong{
+    font-size:23px;
+  }
+
+  .stat span{
+    font-size:12px;
+  }
+
 }
 </style>
 </head>
@@ -139,195 +265,312 @@ font-size:23px;
 
 <div class="container">
 
+<!-- =====================================================
+     LOGIN
+====================================================== -->
+
 <div id="loginCard" class="card">
 
-<h1>🔐 لوحة تحكم تحدي شهاب</h1>
+  <h1>🔐 لوحة تحكم تحدي شهاب</h1>
 
-<p class="text">
-سجل الدخول بحساب الإدارة.
-</p>
+  <p class="text">
+    سجل الدخول بحساب الإدارة.
+  </p>
 
-<input
-id="email"
-type="email"
-placeholder="الإيميل"
-autocomplete="email"
->
+  <input
+    id="email"
+    type="email"
+    placeholder="الإيميل"
+    autocomplete="email"
+  >
 
-<input
-id="password"
-type="password"
-placeholder="الباسورد"
-autocomplete="current-password"
->
+  <input
+    id="password"
+    type="password"
+    placeholder="الباسورد"
+    autocomplete="current-password"
+  >
 
-<button onclick="login()">
-دخول لوحة التحكم
-</button>
+  <button onclick="login()">
+    دخول لوحة التحكم
+  </button>
 
-<p id="loginMessage" class="danger"></p>
+  <p id="loginMessage" class="danger"></p>
 
 </div>
+
+
+<!-- =====================================================
+     DASHBOARD
+====================================================== -->
 
 <div id="dashboard" class="hidden">
 
-<div class="card">
+  <!-- HEADER -->
 
-<h1>📊 لوحة تحكم تحدي شهاب</h1>
+  <div class="card">
 
-<p id="welcome" class="text"></p>
+    <h1>📊 لوحة تحكم تحدي شهاب</h1>
 
-<button onclick="loadDashboard()">
-🔄 تحديث البيانات
-</button>
+    <p id="welcome" class="text"></p>
 
-<button onclick="logout()">
-تسجيل الخروج
-</button>
+    <button onclick="loadDashboard()">
+      🔄 تحديث البيانات
+    </button>
+
+    <button onclick="logout()">
+      تسجيل الخروج
+    </button>
+
+  </div>
+
+
+  <!-- =====================================================
+       GENERAL STATS
+  ====================================================== -->
+
+  <div class="card">
+
+    <h2>📈 إحصائيات عامة</h2>
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong id="total">0</strong>
+        <span>إجمالي الاختبارات</span>
+      </div>
+
+      <div class="stat">
+        <strong id="today">0</strong>
+        <span>اختبارات اليوم</span>
+      </div>
+
+      <div class="stat">
+        <strong id="completed">0</strong>
+        <span>اختبارات مكتملة</span>
+      </div>
+
+      <div class="stat">
+        <strong id="started">0</strong>
+        <span>اختبارات بدأت</span>
+      </div>
+
+      <div class="stat">
+        <strong id="paid">0</strong>
+        <span>مقرمشات بـ10 جنيه</span>
+      </div>
+
+      <div class="stat">
+        <strong id="free">0</strong>
+        <span>مقرمشات مجانًا</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       RATINGS GENERAL STATS
+  ====================================================== -->
+
+  <div class="card">
+
+    <h2>⭐ إحصائيات استطلاع العملاء</h2>
+
+    <div class="rating-summary">
+
+      <div class="rating-summary-box">
+        <strong id="totalRatings">0</strong>
+        <span>إجمالي التقييمات</span>
+      </div>
+
+      <div class="rating-summary-box">
+        <strong id="averageRating">0.0</strong>
+        <span>متوسط التقييم</span>
+      </div>
+
+      <div class="rating-summary-box">
+        <strong id="fiveStars">0</strong>
+        <span>تقييمات 5 نجوم</span>
+      </div>
+
+      <div class="rating-summary-box">
+        <strong id="fourStars">0</strong>
+        <span>تقييمات 4 نجوم</span>
+      </div>
+
+      <div class="rating-summary-box">
+        <strong id="threeStars">0</strong>
+        <span>تقييمات 3 نجوم</span>
+      </div>
+
+      <div class="rating-summary-box">
+        <strong id="lowRatings">0</strong>
+        <span>تقييمات 1–2 نجمة</span>
+      </div>
+
+    </div>
+
+    <div class="section-note">
+      💡 هنا هتلاقي كل استطلاعات العملاء المسجلة من الموقع:
+      <strong>التقييم بالنجوم + التعليق + نتيجة الاختبار + المندوبة + التاريخ.</strong>
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       AGENTS
+  ====================================================== -->
+
+  <div class="card">
+
+    <h2>👩‍💼 إحصائيات المندوبات</h2>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>الكود</th>
+            <th>الاسم</th>
+            <th>كل الاختبارات</th>
+            <th>اختبارات اليوم</th>
+            <th>مقرمشات بـ10 جنيه</th>
+            <th>مقرمشات مجانًا</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="agentsTable">
+
+          <tr>
+            <td colspan="6">
+              جاري التحميل...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       TESTS
+  ====================================================== -->
+
+  <div class="card">
+
+    <h2>🧪 آخر الاختبارات</h2>
+
+    <div class="section-note">
+      آخر 100 اختبار مسجل في النظام، من الأحدث إلى الأقدم.
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>الاسم</th>
+            <th>المندوبة</th>
+            <th>النتيجة</th>
+            <th>اختيار العرض</th>
+            <th>النتيجة النهائية للمنتج</th>
+            <th>الحالة</th>
+            <th>التاريخ</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="testsTable">
+
+          <tr>
+            <td colspan="7">
+              جاري التحميل...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       CUSTOMER SURVEY
+  ====================================================== -->
+
+  <div class="card">
+
+    <h2>⭐ استطلاعات وتعليقات العملاء</h2>
+
+    <div class="section-note">
+
+      كل تقييم يتم إرساله من صفحة النتيجة في الموقع يظهر هنا.
+      <br>
+      التقييم = من 1 إلى 5 نجوم.
+      <br>
+      والتعليق يظهر كاملًا مع نتيجة العميل والمندوبة المرتبطة بالاختبار.
+
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>العميل</th>
+            <th>التقييم</th>
+            <th>التعليق</th>
+            <th>النتيجة</th>
+            <th>المندوبة</th>
+            <th>التاريخ</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="ratingsTable">
+
+          <tr>
+            <td colspan="6">
+              جاري التحميل...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
 
 </div>
 
-<div class="card">
-
-<h2>📈 إحصائيات عامة</h2>
-
-<div class="stats">
-
-<div class="stat">
-<strong id="total">0</strong>
-<span>إجمالي الاختبارات</span>
 </div>
 
-<div class="stat">
-<strong id="today">0</strong>
-<span>اختبارات اليوم</span>
-</div>
-
-<div class="stat">
-<strong id="paid">0</strong>
-<span>اختاروا المنتج بـ10 جنيه</span>
-</div>
-
-<div class="stat">
-<strong id="free">0</strong>
-<span>كملوا بدون شراء</span>
-</div>
-
-<div class="stat">
-<strong id="completed">0</strong>
-<span>اختبارات مكتملة</span>
-</div>
-
-<div class="stat">
-<strong id="started">0</strong>
-<span>اختبارات بدأت</span>
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>👩‍💼 إحصائيات المندوبات</h2>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>الكود</th>
-<th>الاسم</th>
-<th>كل الاختبارات</th>
-<th>اختبارات اليوم</th>
-<th>مدفوع</th>
-<th>مجاني</th>
-</tr>
-</thead>
-
-<tbody id="agentsTable">
-<tr>
-<td colspan="6">جاري التحميل...</td>
-</tr>
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>🧪 آخر الاختبارات</h2>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>الاسم</th>
-<th>المندوبة</th>
-<th>النتيجة</th>
-<th>المنتج</th>
-<th>الحالة</th>
-<th>التاريخ</th>
-</tr>
-</thead>
-
-<tbody id="testsTable">
-<tr>
-<td colspan="6">جاري التحميل...</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<!-- ================= RATINGS ================= -->
-
-<div class="card">
-
-<h2>⭐ تقييمات وتعليقات العملاء</h2>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>العميل</th>
-<th>التقييم</th>
-<th>التعليق</th>
-<th>النتيجة</th>
-<th>المندوبة</th>
-<th>التاريخ</th>
-</tr>
-</thead>
-
-<tbody id="ratingsTable">
-<tr>
-<td colspan="6">جاري التحميل...</td>
-</tr>
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
 
 <script>
+
+/* =====================================================
+   SUPABASE
+====================================================== */
 
 const SUPABASE_URL =
 "https://buqgmkqtdyrnwwkswgiz.supabase.co";
@@ -335,632 +578,1256 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_o4RI813xC3WH4YAphxEqxQ_23OM1CiT";
 
+
+/* =====================================================
+   SUPABASE REQUEST
+====================================================== */
+
 async function request(endpoint,options={}){
 
-const response =
-await fetch(
-SUPABASE_URL+endpoint,
-{
-...options,
-headers:{
-"Content-Type":"application/json",
-"apikey":SUPABASE_KEY,
-"Authorization":
-"Bearer "+SUPABASE_KEY,
-...(options.headers||{})
+  const response =
+    await fetch(
+      SUPABASE_URL + endpoint,
+      {
+        ...options,
+
+        headers:{
+          "Content-Type":
+            "application/json",
+
+          "apikey":
+            SUPABASE_KEY,
+
+          "Authorization":
+            "Bearer " + SUPABASE_KEY,
+
+          ...(options.headers || {})
+        }
+      }
+    );
+
+
+  const text =
+    await response.text();
+
+
+  let data = null;
+
+
+  try{
+
+    data =
+      text
+        ? JSON.parse(text)
+        : null;
+
+  }catch{
+
+    data = text;
+
+  }
+
+
+  if(!response.ok){
+
+    let message =
+      "Supabase error";
+
+
+    if(
+      data &&
+      typeof data === "object"
+    ){
+
+      message =
+        data.message ||
+        data.error_description ||
+        data.hint ||
+        data.error ||
+        message;
+
+    }
+
+
+    throw new Error(message);
+
+  }
+
+
+  return data;
+
 }
-}
-);
 
-const text=await response.text();
 
-let data=null;
-
-try{
-data=text?JSON.parse(text):null;
-}catch{
-data=text;
-}
-
-if(!response.ok){
-
-throw new Error(
-typeof data==="object" &&
-data &&
-data.message
-?
-data.message
-:
-"Supabase error"
-);
-
-}
-
-return data;
-
-}
+/* =====================================================
+   LOGIN
+====================================================== */
 
 async function login(){
 
-const email=
-document.getElementById("email")
-.value.trim();
+  const email =
+    document
+      .getElementById("email")
+      .value
+      .trim();
 
-const password=
-document.getElementById("password")
-.value;
 
-const message=
-document.getElementById("loginMessage");
+  const password =
+    document
+      .getElementById("password")
+      .value;
 
-message.textContent="";
 
-if(!email||!password){
+  const message =
+    document
+      .getElementById("loginMessage");
 
-message.textContent=
-"اكتب الإيميل والباسورد.";
 
-return;
+  message.textContent = "";
+
+
+  if(!email || !password){
+
+    message.textContent =
+      "اكتب الإيميل والباسورد.";
+
+    return;
+
+  }
+
+
+  try{
+
+    const response =
+      await fetch(
+        SUPABASE_URL +
+        "/auth/v1/token?grant_type=password",
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json",
+
+            "apikey":
+              SUPABASE_KEY
+          },
+
+          body:
+            JSON.stringify({
+              email:email,
+              password:password
+            })
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        data.error_description ||
+        data.msg ||
+        "بيانات الدخول غير صحيحة."
+      );
+
+    }
+
+
+    const accessToken =
+      data.access_token;
+
+
+    const user =
+      data.user;
+
+
+    /* التحقق من أن المستخدم Admin */
+
+    const admin =
+      await request(
+        "/rest/v1/admins?id=eq." +
+        encodeURIComponent(user.id) +
+        "&select=id",
+        {
+          headers:{
+            "Authorization":
+              "Bearer " + accessToken
+          }
+        }
+      );
+
+
+    if(
+      !Array.isArray(admin) ||
+      admin.length === 0
+    ){
+
+      throw new Error(
+        "الحساب ده مش مسجل كمسؤول."
+      );
+
+    }
+
+
+    localStorage.setItem(
+      "admin_access_token",
+      accessToken
+    );
+
+
+    localStorage.setItem(
+      "admin_user",
+      JSON.stringify(user)
+    );
+
+
+    document
+      .getElementById("loginCard")
+      .classList
+      .add("hidden");
+
+
+    document
+      .getElementById("dashboard")
+      .classList
+      .remove("hidden");
+
+
+    document
+      .getElementById("welcome")
+      .textContent =
+        "تم تسجيل الدخول بنجاح.";
+
+
+    await loadDashboard();
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    message.textContent =
+      error.message ||
+      "حصلت مشكلة أثناء تسجيل الدخول.";
+
+  }
 
 }
 
-try{
 
-const response=
-await fetch(
-SUPABASE_URL+
-"/auth/v1/token?grant_type=password",
-{
-method:"POST",
-headers:{
-"Content-Type":
-"application/json",
-"apikey":
-SUPABASE_KEY
-},
-body:JSON.stringify({
-email:email,
-password:password
-})
-}
-);
-
-const data=await response.json();
-
-if(!response.ok){
-
-throw new Error(
-data.error_description||
-data.msg||
-"بيانات الدخول غير صحيحة."
-);
-
-}
-
-const accessToken=
-data.access_token;
-
-const user=
-data.user;
-
-const admin=
-await request(
-"/rest/v1/admins?id=eq."+
-encodeURIComponent(user.id)+
-"&select=id",
-{
-headers:{
-"Authorization":
-"Bearer "+accessToken
-}
-}
-);
-
-if(!Array.isArray(admin)||admin.length===0){
-
-throw new Error(
-"الحساب ده مش مسجل كمسؤول."
-);
-
-}
-
-localStorage.setItem(
-"admin_access_token",
-accessToken
-);
-
-localStorage.setItem(
-"admin_user",
-JSON.stringify(user)
-);
-
-document
-.getElementById("loginCard")
-.classList.add("hidden");
-
-document
-.getElementById("dashboard")
-.classList.remove("hidden");
-
-document
-.getElementById("welcome")
-.textContent=
-"تم تسجيل الدخول بنجاح.";
-
-await loadDashboard();
-
-}catch(error){
-
-console.error(error);
-
-message.textContent=
-error.message||
-"حصلت مشكلة أثناء تسجيل الدخول.";
-
-}
-
-}
+/* =====================================================
+   AUTH HEADERS
+====================================================== */
 
 function authHeaders(){
 
-const token=
-localStorage.getItem(
-"admin_access_token"
-);
+  const token =
+    localStorage.getItem(
+      "admin_access_token"
+    );
 
-return{
-"Authorization":
-"Bearer "+token
-};
+
+  return{
+
+    "Authorization":
+      "Bearer " + token
+
+  };
 
 }
+
+
+/* =====================================================
+   LOGOUT
+====================================================== */
 
 function logout(){
 
-localStorage.removeItem(
-"admin_access_token"
-);
+  localStorage.removeItem(
+    "admin_access_token"
+  );
 
-localStorage.removeItem(
-"admin_user"
-);
+  localStorage.removeItem(
+    "admin_user"
+  );
 
-location.reload();
+  location.reload();
 
 }
+
+
+/* =====================================================
+   DATE
+====================================================== */
 
 function isToday(dateString){
 
-if(!dateString)return false;
+  if(!dateString){
+    return false;
+  }
 
-const date=
-new Date(dateString);
 
-const now=
-new Date();
+  const date =
+    new Date(dateString);
 
-return(
-date.getFullYear()===
-now.getFullYear() &&
-date.getMonth()===
-now.getMonth() &&
-date.getDate()===
-now.getDate()
-);
+
+  const now =
+    new Date();
+
+
+  return(
+    date.getFullYear() ===
+      now.getFullYear() &&
+
+    date.getMonth() ===
+      now.getMonth() &&
+
+    date.getDate() ===
+      now.getDate()
+  );
 
 }
+
+
+/* =====================================================
+   PRODUCT RESULT
+====================================================== */
+
+function getProductResult(test){
+
+  /*
+    لو لم يدخل عرض المقرمشات
+    لا يوجد منتج.
+  */
+
+  if(
+    test.product_offer_answer === false
+  ){
+
+    return{
+      text:"بدون عرض",
+      className:"badge-none"
+    };
+
+  }
+
+
+  /*
+    دخل العرض + 10/10
+    = مكافأة نقدية والمقرمشات ليست مدفوعة.
+  */
+
+  if(
+    Number(test.score) === 10
+  ){
+
+    return{
+      text:"50 جنيه مكافأة",
+      className:"badge-free"
+    };
+
+  }
+
+
+  /*
+    دخل العرض + 9/10
+    = المقرمشات مجانًا.
+  */
+
+  if(
+    Number(test.score) === 9
+  ){
+
+    return{
+      text:"مقرمشات مجانًا",
+      className:"badge-free"
+    };
+
+  }
+
+
+  /*
+    دخل العرض + 8 أو أقل
+    = المقرمشات بـ10 جنيه.
+  */
+
+  if(
+    Number(test.score) <= 8
+  ){
+
+    return{
+      text:"مقرمشات بـ10 جنيه",
+      className:"badge-paid"
+    };
+
+  }
+
+
+  return{
+    text:"-",
+    className:"badge-none"
+  };
+
+}
+
+
+/* =====================================================
+   LOAD DASHBOARD
+====================================================== */
 
 async function loadDashboard(){
 
-try{
+  try{
 
-const headers=
-authHeaders();
+    const headers =
+      authHeaders();
 
-const tests=
-await request(
-"/rest/v1/tests?select=id,agent_id,player_name,score,product_offer_answer,status,started_at,completed_at&order=started_at.desc",
-{
-headers
+
+    /* =================================================
+       TESTS
+    ================================================== */
+
+    const tests =
+      await request(
+        "/rest/v1/tests" +
+        "?select=" +
+        "id," +
+        "agent_id," +
+        "player_name," +
+        "score," +
+        "percentage," +
+        "product_offer_answer," +
+        "status," +
+        "started_at," +
+        "completed_at" +
+        "&order=started_at.desc" +
+        "&limit=100",
+        {
+          headers
+        }
+      );
+
+
+    /* =================================================
+       AGENTS
+    ================================================== */
+
+    const agents =
+      await request(
+        "/rest/v1/agents" +
+        "?select=id,code,name,active",
+        {
+          headers
+        }
+      );
+
+
+    /* ترتيب المندوبات */
+
+    agents.sort((a,b)=>{
+
+      const numA =
+        parseInt(
+          (a.name || "")
+            .match(/\d+/)?.[0] ||
+          "999999",
+          10
+        );
+
+
+      const numB =
+        parseInt(
+          (b.name || "")
+            .match(/\d+/)?.[0] ||
+          "999999",
+          10
+        );
+
+
+      return numA - numB;
+
+    });
+
+
+    /* =================================================
+       RATINGS
+    ================================================== */
+
+    const ratings =
+      await request(
+        "/rest/v1/ratings" +
+        "?select=" +
+        "test_id," +
+        "player_name," +
+        "score," +
+        "rating," +
+        "comment" +
+        "&order=test_id.desc",
+        {
+          headers
+        }
+      );
+
+
+    /* =================================================
+       GENERAL STATS
+    ================================================== */
+
+    const total =
+      tests.length;
+
+
+    const todayTests =
+      tests.filter(
+        test =>
+          isToday(test.started_at)
+      );
+
+
+    const completed =
+      tests.filter(
+        test =>
+          test.status === "completed"
+      );
+
+
+    const started =
+      tests.filter(
+        test =>
+          test.status === "started"
+      );
+
+
+    /*
+      الدفع الحقيقي:
+      اختار العرض + النتيجة 8 أو أقل
+    */
+
+    const paid =
+      tests.filter(
+        test =>
+          test.product_offer_answer === true &&
+          Number(test.score) <= 8
+      );
+
+
+    /*
+      المجاني:
+      9/10 أو 10/10 مع اختيار العرض
+    */
+
+    const free =
+      tests.filter(
+        test =>
+          test.product_offer_answer === true &&
+          Number(test.score) >= 9
+      );
+
+
+    document
+      .getElementById("total")
+      .textContent =
+        total;
+
+
+    document
+      .getElementById("today")
+      .textContent =
+        todayTests.length;
+
+
+    document
+      .getElementById("completed")
+      .textContent =
+        completed.length;
+
+
+    document
+      .getElementById("started")
+      .textContent =
+        started.length;
+
+
+    document
+      .getElementById("paid")
+      .textContent =
+        paid.length;
+
+
+    document
+      .getElementById("free")
+      .textContent =
+        free.length;
+
+
+    /* =================================================
+       RATINGS STATS
+    ================================================== */
+
+    const ratingNumbers =
+      ratings
+        .map(
+          item =>
+            Number(item.rating) || 0
+        )
+        .filter(
+          value =>
+            value >= 1 &&
+            value <= 5
+        );
+
+
+    const totalRatings =
+      ratingNumbers.length;
+
+
+    const ratingSum =
+      ratingNumbers.reduce(
+        (sum,value)=>
+          sum + value,
+        0
+      );
+
+
+    const averageRating =
+      totalRatings
+        ? ratingSum / totalRatings
+        : 0;
+
+
+    const fiveStars =
+      ratingNumbers.filter(
+        value => value === 5
+      ).length;
+
+
+    const fourStars =
+      ratingNumbers.filter(
+        value => value === 4
+      ).length;
+
+
+    const threeStars =
+      ratingNumbers.filter(
+        value => value === 3
+      ).length;
+
+
+    const lowRatings =
+      ratingNumbers.filter(
+        value => value <= 2
+      ).length;
+
+
+    document
+      .getElementById("totalRatings")
+      .textContent =
+        totalRatings;
+
+
+    document
+      .getElementById("averageRating")
+      .textContent =
+        averageRating.toFixed(1);
+
+
+    document
+      .getElementById("fiveStars")
+      .textContent =
+        fiveStars;
+
+
+    document
+      .getElementById("fourStars")
+      .textContent =
+        fourStars;
+
+
+    document
+      .getElementById("threeStars")
+      .textContent =
+        threeStars;
+
+
+    document
+      .getElementById("lowRatings")
+      .textContent =
+        lowRatings;
+
+
+    /* =================================================
+       MAPS
+    ================================================== */
+
+    const agentMap = {};
+
+
+    agents.forEach(agent=>{
+
+      agentMap[agent.id] =
+        agent;
+
+    });
+
+
+    const testMap = {};
+
+
+    tests.forEach(test=>{
+
+      testMap[test.id] =
+        test;
+
+    });
+
+
+    /* =================================================
+       AGENTS TABLE
+    ================================================== */
+
+    const agentsBody =
+      document.getElementById(
+        "agentsTable"
+      );
+
+
+    agentsBody.innerHTML = "";
+
+
+    if(!agents.length){
+
+      agentsBody.innerHTML = `
+        <tr>
+          <td colspan="6" class="empty">
+            لا توجد مندوبات مسجلة.
+          </td>
+        </tr>
+      `;
+
+    }else{
+
+      agents.forEach(agent=>{
+
+        const agentTests =
+          tests.filter(
+            test =>
+              test.agent_id ===
+              agent.id
+          );
+
+
+        const todayAgent =
+          agentTests.filter(
+            test =>
+              isToday(test.started_at)
+          );
+
+
+        const agentPaid =
+          agentTests.filter(
+            test =>
+              test.product_offer_answer === true &&
+              Number(test.score) <= 8
+          );
+
+
+        const agentFree =
+          agentTests.filter(
+            test =>
+              test.product_offer_answer === true &&
+              Number(test.score) >= 9
+          );
+
+
+        const tr =
+          document.createElement("tr");
+
+
+        tr.innerHTML = `
+
+          <td>
+            ${escapeHTML(agent.code || "")}
+          </td>
+
+          <td>
+            ${escapeHTML(agent.name || "")}
+          </td>
+
+          <td>
+            ${agentTests.length}
+          </td>
+
+          <td>
+            ${todayAgent.length}
+          </td>
+
+          <td class="success">
+            ${agentPaid.length}
+          </td>
+
+          <td>
+            ${agentFree.length}
+          </td>
+
+        `;
+
+
+        agentsBody.appendChild(tr);
+
+      });
+
+    }
+
+
+    /* =================================================
+       TESTS TABLE
+    ================================================== */
+
+    const testsBody =
+      document.getElementById(
+        "testsTable"
+      );
+
+
+    testsBody.innerHTML = "";
+
+
+    if(!tests.length){
+
+      testsBody.innerHTML = `
+        <tr>
+          <td colspan="7" class="empty">
+            لا توجد اختبارات حتى الآن.
+          </td>
+        </tr>
+      `;
+
+    }else{
+
+      tests.forEach(test=>{
+
+        const agent =
+          agentMap[test.agent_id];
+
+
+        const productResult =
+          getProductResult(test);
+
+
+        let offerText =
+          "";
+
+
+        let offerClass =
+          "badge-none";
+
+
+        if(
+          test.product_offer_answer === true
+        ){
+
+          offerText =
+            "دخل العرض";
+
+          offerClass =
+            "badge-offer";
+
+        }
+
+
+        else if(
+          test.product_offer_answer === false
+        ){
+
+          offerText =
+            "بدون العرض";
+
+          offerClass =
+            "badge-none";
+
+        }
+
+
+        else{
+
+          offerText =
+            "-";
+
+        }
+
+
+        const tr =
+          document.createElement("tr");
+
+
+        tr.innerHTML = `
+
+          <td>
+            ${escapeHTML(
+              test.player_name || ""
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              agent?.name ||
+              agent?.code ||
+              "بدون مندوبة"
+            )}
+          </td>
+
+          <td>
+            <strong>
+              ${test.score ?? "-"} / 10
+            </strong>
+          </td>
+
+          <td>
+            <span class="badge ${offerClass}">
+              ${offerText}
+            </span>
+          </td>
+
+          <td>
+            <span class="badge ${productResult.className}">
+              ${productResult.text}
+            </span>
+          </td>
+
+          <td>
+            ${escapeHTML(
+              test.status || "-"
+            )}
+          </td>
+
+          <td>
+            ${formatDate(
+              test.started_at
+            )}
+          </td>
+
+        `;
+
+
+        testsBody.appendChild(tr);
+
+      });
+
+    }
+
+
+    /* =================================================
+       RATINGS TABLE
+    ================================================== */
+
+    const ratingsBody =
+      document.getElementById(
+        "ratingsTable"
+      );
+
+
+    ratingsBody.innerHTML = "";
+
+
+    if(
+      !Array.isArray(ratings) ||
+      ratings.length === 0
+    ){
+
+      ratingsBody.innerHTML = `
+        <tr>
+          <td colspan="6" class="empty">
+            لا توجد استطلاعات أو تعليقات حتى الآن.
+          </td>
+        </tr>
+      `;
+
+    }else{
+
+      ratings.forEach(item=>{
+
+        const test =
+          testMap[item.test_id];
+
+
+        const agent =
+          test
+            ? agentMap[test.agent_id]
+            : null;
+
+
+        const score =
+          test
+            ? (test.score ?? "-") +
+              " / 10"
+            : (item.score ?? "-") +
+              " / 10";
+
+
+        const ratingNumber =
+          Number(item.rating) || 0;
+
+
+        const stars =
+          "★".repeat(
+            Math.min(
+              5,
+              Math.max(
+                0,
+                ratingNumber
+              )
+            )
+          ) +
+          "☆".repeat(
+            Math.max(
+              0,
+              5 - ratingNumber
+            )
+          );
+
+
+        const tr =
+          document.createElement("tr");
+
+
+        tr.innerHTML = `
+
+          <td>
+            ${escapeHTML(
+              item.player_name ||
+              test?.player_name ||
+              ""
+            )}
+          </td>
+
+          <td class="rating-stars">
+            ${stars}
+          </td>
+
+          <td class="comment-cell">
+            ${escapeHTML(
+              item.comment || "—"
+            )}
+          </td>
+
+          <td>
+            ${escapeHTML(score)}
+          </td>
+
+          <td>
+            ${escapeHTML(
+              agent?.name ||
+              agent?.code ||
+              "بدون مندوبة"
+            )}
+          </td>
+
+          <td>
+            ${formatDate(
+              test?.completed_at ||
+              test?.started_at
+            )}
+          </td>
+
+        `;
+
+
+        ratingsBody.appendChild(tr);
+
+      });
+
+    }
+
+
+  }catch(error){
+
+    console.error(
+      "DASHBOARD ERROR:",
+      error
+    );
+
+
+    alert(
+      "حصلت مشكلة في تحميل البيانات.\n\n" +
+      (
+        error.message ||
+        "تأكد إنك مسجل الدخول وإن صلاحيات Supabase صحيحة."
+      )
+    );
+
+  }
+
 }
-);
 
-const agents=
-await request(
-"/rest/v1/agents?select=id,code,name,active",
-{
-headers
-}
-);
 
-/* ترتيب المندوبات حسب رقم المندوبة: 1، 2، 3... 20 */
-agents.sort((a,b)=>{
-
-const numA=
-parseInt(
-(a.name||"").match(/\d+/)?.[0]||"999999",
-10
-);
-
-const numB=
-parseInt(
-(b.name||"").match(/\d+/)?.[0]||"999999",
-10
-);
-
-return numA-numB;
-
-});
-
-/* ================= RATINGS ================= */
-
-const ratings=
-await request(
-"/rest/v1/ratings?select=test_id,player_name,score,rating,comment&order=test_id.desc",
-{
-headers
-}
-);
-
-const total=
-tests.length;
-
-const todayTests=
-tests.filter(
-test=>isToday(test.started_at)
-);
-
-const paid=
-tests.filter(
-test=>test.product_offer_answer===true
-);
-
-const free=
-tests.filter(
-test=>test.product_offer_answer===false
-);
-
-const completed=
-tests.filter(
-test=>test.status==="completed"
-);
-
-document
-.getElementById("total")
-.textContent=total;
-
-document
-.getElementById("today")
-.textContent=
-todayTests.length;
-
-document
-.getElementById("paid")
-.textContent=
-paid.length;
-
-document
-.getElementById("free")
-.textContent=
-free.length;
-
-document
-.getElementById("completed")
-.textContent=
-completed.length;
-
-document
-.getElementById("started")
-.textContent=
-tests.filter(
-test=>test.status==="started"
-).length;
-
-const agentMap={};
-
-agents.forEach(agent=>{
-
-agentMap[agent.id]=agent;
-
-});
-
-const testMap={};
-
-tests.forEach(test=>{
-
-testMap[test.id]=test;
-
-});
-
-const tbody=
-document.getElementById(
-"agentsTable"
-);
-
-tbody.innerHTML="";
-
-agents.forEach(agent=>{
-
-const agentTests=
-tests.filter(
-test=>test.agent_id===agent.id
-);
-
-const todayAgent=
-agentTests.filter(
-test=>isToday(test.started_at)
-);
-
-const agentPaid=
-agentTests.filter(
-test=>test.product_offer_answer===true
-);
-
-const agentFree=
-agentTests.filter(
-test=>test.product_offer_answer===false
-);
-
-const tr=
-document.createElement("tr");
-
-tr.innerHTML=`
-
-<td>${escapeHTML(agent.code||"")}</td>
-
-<td>${escapeHTML(agent.name||"")}</td>
-
-<td>${agentTests.length}</td>
-
-<td>${todayAgent.length}</td>
-
-<td class="success">${agentPaid.length}</td>
-
-<td>${agentFree.length}</td>
-
-`;
-
-tbody.appendChild(tr);
-
-});
-
-/* ================= TESTS ================= */
-
-const testsBody=
-document.getElementById(
-"testsTable"
-);
-
-testsBody.innerHTML="";
-
-tests
-.slice(0,50)
-.forEach(test=>{
-
-const agent=
-agentMap[test.agent_id];
-
-const product=
-test.product_offer_answer===true
-?
-"مدفوع"
-:
-test.product_offer_answer===false
-?
-"مجاني"
-:
-"-";
-
-const tr=
-document.createElement("tr");
-
-tr.innerHTML=`
-
-<td>
-${escapeHTML(test.player_name||"")}
-</td>
-
-<td>
-${escapeHTML(agent?.code||"بدون مندوبة")}
-</td>
-
-<td>
-${test.score??"-"} / 10
-</td>
-
-<td>
-${product}
-</td>
-
-<td>
-${escapeHTML(test.status||"")}
-</td>
-
-<td>
-${formatDate(test.started_at)}
-</td>
-
-`;
-
-testsBody.appendChild(tr);
-
-});
-
-/* ================= RATINGS TABLE ================= */
-
-const ratingsBody=
-document.getElementById(
-"ratingsTable"
-);
-
-ratingsBody.innerHTML="";
-
-if(!Array.isArray(ratings)||ratings.length===0){
-
-ratingsBody.innerHTML=`
-<tr>
-<td colspan="6">
-لا توجد تقييمات أو تعليقات حتى الآن.
-</td>
-</tr>
-`;
-
-}else{
-
-ratings.forEach(item=>{
-
-const test=
-testMap[item.test_id];
-
-const agent=
-test
-?
-agentMap[test.agent_id]
-:
-null;
-
-const score=
-test
-?
-(test.score ?? "-") + " / 10"
-:
-(item.score ?? "-") + " / 10";
-
-const ratingNumber=
-Number(item.rating)||0;
-
-const stars=
-"★".repeat(ratingNumber)+
-"☆".repeat(Math.max(0,5-ratingNumber));
-
-const tr=
-document.createElement("tr");
-
-tr.innerHTML=`
-
-<td>
-${escapeHTML(
-item.player_name||
-test?.player_name||
-""
-)}
-</td>
-
-<td class="rating-stars">
-${stars}
-</td>
-
-<td class="comment-cell">
-${escapeHTML(item.comment||"—")}
-</td>
-
-<td>
-${score}
-</td>
-
-<td>
-${escapeHTML(
-agent?.name||
-agent?.code||
-"بدون مندوبة"
-)}
-</td>
-
-<td>
-${formatDate(
-test?.completed_at||
-test?.started_at
-)}
-</td>
-
-`;
-
-ratingsBody.appendChild(tr);
-
-});
-
-}
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"حصلت مشكلة في تحميل البيانات. تأكد إنك مسجل الدخول."
-);
-
-}
-
-}
+/* =====================================================
+   FORMAT DATE
+====================================================== */
 
 function formatDate(dateString){
 
-if(!dateString)return"-";
+  if(!dateString){
+    return "-";
+  }
 
-return new Date(dateString)
-.toLocaleString(
-"ar-EG",
-{
-dateStyle:"short",
-timeStyle:"short"
-}
-);
+
+  const date =
+    new Date(dateString);
+
+
+  if(
+    Number.isNaN(
+      date.getTime()
+    )
+  ){
+
+    return "-";
+
+  }
+
+
+  return date.toLocaleString(
+    "ar-EG",
+    {
+      dateStyle:"short",
+      timeStyle:"short"
+    }
+  );
 
 }
+
+
+/* =====================================================
+   ESCAPE HTML
+====================================================== */
 
 function escapeHTML(value){
 
-return String(value??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+  return String(value ?? "")
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
+
+
+/* =====================================================
+   AUTO LOGIN
+====================================================== */
 
 window.addEventListener(
-"load",
-async()=>{
+  "load",
+  async()=>{
 
-const token=
-localStorage.getItem(
-"admin_access_token"
+    const token =
+      localStorage.getItem(
+        "admin_access_token"
+      );
+
+
+    if(!token){
+      return;
+    }
+
+
+    try{
+
+      const user =
+        JSON.parse(
+          localStorage.getItem(
+            "admin_user"
+          )
+        );
+
+
+      /*
+        نتأكد إن المستخدم ما زال Admin
+      */
+
+      const admin =
+        await request(
+          "/rest/v1/admins?id=eq." +
+          encodeURIComponent(user.id) +
+          "&select=id",
+          {
+            headers:{
+              "Authorization":
+                "Bearer " + token
+            }
+          }
+        );
+
+
+      if(
+        !Array.isArray(admin) ||
+        admin.length === 0
+      ){
+
+        logout();
+
+        return;
+
+      }
+
+
+      document
+        .getElementById("loginCard")
+        .classList
+        .add("hidden");
+
+
+      document
+        .getElementById("dashboard")
+        .classList
+        .remove("hidden");
+
+
+      document
+        .getElementById("welcome")
+        .textContent =
+          "أهلًا يا شهاب 👋";
+
+
+      await loadDashboard();
+
+
+    }catch(error){
+
+      console.error(error);
+
+      logout();
+
+    }
+
+  }
 );
-
-if(!token)return;
-
-try{
-
-const user=
-JSON.parse(
-localStorage.getItem(
-"admin_user"
-)
-);
-
-document
-.getElementById("loginCard")
-.classList.add("hidden");
-
-document
-.getElementById("dashboard")
-.classList.remove("hidden");
-
-document
-.getElementById("welcome")
-.textContent=
-"أهلًا يا شهاب 👋";
-
-await loadDashboard();
-
-}catch{
-
-logout();
-
-}
-
-});
 
 </script>
 
