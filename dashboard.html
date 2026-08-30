@@ -111,6 +111,18 @@ color:#aeb6c8;
 .warning{color:#ffd875}
 .danger{color:#ff8d8d}
 
+.rating-stars{
+font-size:20px;
+white-space:nowrap;
+}
+
+.comment-cell{
+max-width:280px;
+white-space:normal;
+line-height:1.7;
+color:#c6ccda;
+}
+
 @media(max-width:500px){
 .stats{
 grid-template-columns:1fr 1fr;
@@ -270,6 +282,39 @@ autocomplete="current-password"
 <td colspan="6">جاري التحميل...</td>
 </tr>
 
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ================= RATINGS ================= -->
+
+<div class="card">
+
+<h2>⭐ تقييمات وتعليقات العملاء</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>العميل</th>
+<th>التقييم</th>
+<th>التعليق</th>
+<th>النتيجة</th>
+<th>المندوبة</th>
+<th>التاريخ</th>
+</tr>
+</thead>
+
+<tbody id="ratingsTable">
+<tr>
+<td colspan="6">جاري التحميل...</td>
+</tr>
 </tbody>
 
 </table>
@@ -528,6 +573,16 @@ headers
 }
 );
 
+/* ================= RATINGS ================= */
+
+const ratings=
+await request(
+"/rest/v1/ratings?select=test_id,player_name,score,rating,comment&order=test_id.desc",
+{
+headers
+}
+);
+
 const total=
 tests.length;
 
@@ -590,6 +645,14 @@ agentMap[agent.id]=agent;
 
 });
 
+const testMap={};
+
+tests.forEach(test=>{
+
+testMap[test.id]=test;
+
+});
+
 const tbody=
 document.getElementById(
 "agentsTable"
@@ -641,6 +704,8 @@ tr.innerHTML=`
 tbody.appendChild(tr);
 
 });
+
+/* ================= TESTS ================= */
 
 const testsBody=
 document.getElementById(
@@ -701,6 +766,101 @@ ${formatDate(test.started_at)}
 testsBody.appendChild(tr);
 
 });
+
+/* ================= RATINGS TABLE ================= */
+
+const ratingsBody=
+document.getElementById(
+"ratingsTable"
+);
+
+ratingsBody.innerHTML="";
+
+if(!Array.isArray(ratings)||ratings.length===0){
+
+ratingsBody.innerHTML=`
+<tr>
+<td colspan="6">
+لا توجد تقييمات أو تعليقات حتى الآن.
+</td>
+</tr>
+`;
+
+}else{
+
+ratings.forEach(item=>{
+
+const test=
+testMap[item.test_id];
+
+const agent=
+test
+?
+agentMap[test.agent_id]
+:
+null;
+
+const score=
+test
+?
+(test.score ?? "-") + " / 10"
+:
+(item.score ?? "-") + " / 10";
+
+const ratingNumber=
+Number(item.rating)||0;
+
+const stars=
+"★".repeat(ratingNumber)+
+"☆".repeat(Math.max(0,5-ratingNumber));
+
+const tr=
+document.createElement("tr");
+
+tr.innerHTML=`
+
+<td>
+${escapeHTML(
+item.player_name||
+test?.player_name||
+""
+)}
+</td>
+
+<td class="rating-stars">
+${stars}
+</td>
+
+<td class="comment-cell">
+${escapeHTML(item.comment||"—")}
+</td>
+
+<td>
+${score}
+</td>
+
+<td>
+${escapeHTML(
+agent?.name||
+agent?.code||
+"بدون مندوبة"
+)}
+</td>
+
+<td>
+${formatDate(
+test?.completed_at||
+test?.started_at
+)}
+</td>
+
+`;
+
+ratingsBody.appendChild(tr);
+
+});
+
+}
 
 }catch(error){
 
