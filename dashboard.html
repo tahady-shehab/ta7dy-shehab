@@ -7,6 +7,7 @@
 <title>لوحة تحكم تحدي شهاب</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
@@ -181,6 +182,21 @@ td{
   color:#aeb6c8;
 }
 
+.badge-yes{
+  background:#173522;
+  color:#8ee7a1;
+}
+
+.badge-no{
+  background:#3a2025;
+  color:#ff9ca4;
+}
+
+.badge-unknown{
+  background:#252d42;
+  color:#aeb6c8;
+}
+
 .rating-summary{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -203,6 +219,32 @@ td{
 }
 
 .rating-summary-box span{
+  color:#8f99ad;
+  font-size:13px;
+}
+
+.app-summary{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.app-summary-box{
+  background:#080b14;
+  border:1px solid #30394f;
+  border-radius:16px;
+  padding:16px;
+  text-align:center;
+}
+
+.app-summary-box strong{
+  display:block;
+  font-size:26px;
+  margin-bottom:5px;
+}
+
+.app-summary-box span{
   color:#8f99ad;
   font-size:13px;
 }
@@ -232,6 +274,10 @@ td{
     grid-template-columns:1fr 1fr;
   }
 
+  .app-summary{
+    grid-template-columns:1fr 1fr;
+  }
+
 }
 
 @media(max-width:450px){
@@ -257,7 +303,16 @@ td{
     font-size:12px;
   }
 
+  .app-summary-box{
+    padding:13px 8px;
+  }
+
+  .app-summary-box strong{
+    font-size:22px;
+  }
+
 }
+
 </style>
 </head>
 
@@ -371,6 +426,92 @@ td{
 
 
   <!-- =====================================================
+       APP DEVELOPMENT SURVEY
+  ====================================================== -->
+
+  <div class="card">
+
+    <h2>📱 استطلاع تطوير التطبيق</h2>
+
+    <div class="section-note">
+
+      هنا بنقيس رأي العملاء في الخطوة الجاية للمشروع:
+      <strong>
+        هل نكمل ونطور التطبيق وننزله على Google Play،
+        ولا التطبيق لسه محتاج تطوير أكتر؟
+      </strong>
+
+      <br><br>
+
+      البيانات دي مأخوذة من:
+      <strong>app_interest</strong>
+      و
+      <strong>improvement_comment</strong>
+      داخل جدول الاختبارات.
+
+    </div>
+
+
+    <div class="app-summary">
+
+      <div class="app-summary-box">
+        <strong id="appSurveyTotal">0</strong>
+        <span>إجمالي المشاركين</span>
+      </div>
+
+      <div class="app-summary-box">
+        <strong id="appYes">0</strong>
+        <span>نكمل ونطور</span>
+      </div>
+
+      <div class="app-summary-box">
+        <strong id="appNo">0</strong>
+        <span>محتاج تطوير أكتر</span>
+      </div>
+
+      <div class="app-summary-box">
+        <strong id="appYesPercent">0%</strong>
+        <span>نسبة التأييد</span>
+      </div>
+
+    </div>
+
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>العميل</th>
+            <th>رأي العميل</th>
+            <th>ملاحظات التطوير</th>
+            <th>النتيجة</th>
+            <th>المندوبة</th>
+            <th>التاريخ</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="appSurveyTable">
+
+          <tr>
+            <td colspan="6">
+              جاري التحميل...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
        RATINGS GENERAL STATS
   ====================================================== -->
 
@@ -413,8 +554,7 @@ td{
     </div>
 
     <div class="section-note">
-      💡 هنا هتلاقي كل استطلاعات العملاء المسجلة من الموقع:
-      <strong>التقييم بالنجوم + التعليق + نتيجة الاختبار + المندوبة + التاريخ.</strong>
+      💡 هنا هتلاقي تقييم العملاء بالنجوم والتعليقات ونتيجة الاختبار والمندوبة والتاريخ.
     </div>
 
   </div>
@@ -510,7 +650,7 @@ td{
 
 
   <!-- =====================================================
-       CUSTOMER SURVEY
+       CUSTOMER RATINGS
   ====================================================== -->
 
   <div class="card">
@@ -745,8 +885,6 @@ async function login(){
       data.user;
 
 
-    /* التحقق من أن المستخدم Admin */
-
     const admin =
       await request(
         "/rest/v1/admins?id=eq." +
@@ -900,11 +1038,6 @@ function isToday(dateString){
 
 function getProductResult(test){
 
-  /*
-    لو لم يدخل عرض المقرمشات
-    لا يوجد منتج.
-  */
-
   if(
     test.product_offer_answer === false
   ){
@@ -916,11 +1049,6 @@ function getProductResult(test){
 
   }
 
-
-  /*
-    دخل العرض + 10/10
-    = مكافأة نقدية والمقرمشات ليست مدفوعة.
-  */
 
   if(
     Number(test.score) === 10
@@ -934,11 +1062,6 @@ function getProductResult(test){
   }
 
 
-  /*
-    دخل العرض + 9/10
-    = المقرمشات مجانًا.
-  */
-
   if(
     Number(test.score) === 9
   ){
@@ -950,11 +1073,6 @@ function getProductResult(test){
 
   }
 
-
-  /*
-    دخل العرض + 8 أو أقل
-    = المقرمشات بـ10 جنيه.
-  */
 
   if(
     Number(test.score) <= 8
@@ -971,6 +1089,99 @@ function getProductResult(test){
   return{
     text:"-",
     className:"badge-none"
+  };
+
+}
+
+
+/* =====================================================
+   APP SURVEY NORMALIZATION
+====================================================== */
+
+function normalizeAppInterest(value){
+
+  if(
+    value === null ||
+    value === undefined
+  ){
+
+    return{
+      type:"unknown",
+      text:"لم يجب"
+    };
+
+  }
+
+
+  const v =
+    String(value)
+      .trim()
+      .toLowerCase();
+
+
+  /*
+    إجابات تعتبر موافقة:
+  */
+
+  if(
+    v === "yes" ||
+    v === "true" ||
+    v === "1" ||
+    v === "نعم" ||
+    v === "اه" ||
+    v === "أه" ||
+    v === "ايوه" ||
+    v === "أيوه" ||
+    v === "أيوة" ||
+    v === "نكمل" ||
+    v.includes("نكمل") ||
+    v.includes("نطور") ||
+    v.includes("جوجل بلاي") ||
+    v.includes("google play")
+  ){
+
+    return{
+      type:"yes",
+      text:"نكمل ونطور وننزل Google Play"
+    };
+
+  }
+
+
+  /*
+    إجابات تعتبر عدم موافقة / تحتاج تطوير:
+  */
+
+  if(
+    v === "no" ||
+    v === "false" ||
+    v === "0" ||
+    v === "لا" ||
+    v === "لأ" ||
+    v === "لازم تطوير" ||
+    v.includes("محتاج تطوير") ||
+    v.includes("تطوير أكتر") ||
+    v.includes("تطوير اكثر") ||
+    v.includes("لسه") ||
+    v.includes("لسة")
+  ){
+
+    return{
+      type:"no",
+      text:"التطبيق محتاج تطوير أكتر"
+    };
+
+  }
+
+
+  /*
+    لو القيمة مختلفة عن المتوقع
+    نعرض القيمة الأصلية بدل ما نخمن.
+  */
+
+  return{
+    type:"unknown",
+    text:String(value)
   };
 
 }
@@ -1004,7 +1215,9 @@ async function loadDashboard(){
         "product_offer_answer," +
         "status," +
         "started_at," +
-        "completed_at" +
+        "completed_at," +
+        "app_interest," +
+        "improvement_comment" +
         "&order=started_at.desc" +
         "&limit=100",
         {
@@ -1026,8 +1239,6 @@ async function loadDashboard(){
         }
       );
 
-
-    /* ترتيب المندوبات */
 
     agents.sort((a,b)=>{
 
@@ -1103,11 +1314,6 @@ async function loadDashboard(){
       );
 
 
-    /*
-      الدفع الحقيقي:
-      اختار العرض + النتيجة 8 أو أقل
-    */
-
     const paid =
       tests.filter(
         test =>
@@ -1115,11 +1321,6 @@ async function loadDashboard(){
           Number(test.score) <= 8
       );
 
-
-    /*
-      المجاني:
-      9/10 أو 10/10 مع اختيار العرض
-    */
 
     const free =
       tests.filter(
@@ -1163,6 +1364,79 @@ async function loadDashboard(){
       .getElementById("free")
       .textContent =
         free.length;
+
+
+    /* =================================================
+       APP SURVEY STATS
+    ================================================== */
+
+    const appSurvey =
+      tests.filter(
+        test =>
+          test.app_interest !== null &&
+          test.app_interest !== undefined &&
+          String(test.app_interest).trim() !== ""
+      );
+
+
+    let appYes = 0;
+    let appNo = 0;
+
+
+    appSurvey.forEach(test=>{
+
+      const result =
+        normalizeAppInterest(
+          test.app_interest
+        );
+
+
+      if(result.type === "yes"){
+        appYes++;
+      }
+
+
+      if(result.type === "no"){
+        appNo++;
+      }
+
+    });
+
+
+    const appSurveyTotal =
+      appSurvey.length;
+
+
+    const appYesPercent =
+      appSurveyTotal
+        ? Math.round(
+            (appYes / appSurveyTotal) * 100
+          )
+        : 0;
+
+
+    document
+      .getElementById("appSurveyTotal")
+      .textContent =
+        appSurveyTotal;
+
+
+    document
+      .getElementById("appYes")
+      .textContent =
+        appYes;
+
+
+    document
+      .getElementById("appNo")
+      .textContent =
+        appNo;
+
+
+    document
+      .getElementById("appYesPercent")
+      .textContent =
+        appYesPercent + "%";
 
 
     /* =================================================
@@ -1439,7 +1713,6 @@ async function loadDashboard(){
 
         }
 
-
         else if(
           test.product_offer_answer === false
         ){
@@ -1451,7 +1724,6 @@ async function loadDashboard(){
             "badge-none";
 
         }
-
 
         else{
 
@@ -1515,6 +1787,123 @@ async function loadDashboard(){
 
 
         testsBody.appendChild(tr);
+
+      });
+
+    }
+
+
+    /* =================================================
+       APP SURVEY TABLE
+    ================================================== */
+
+    const appSurveyBody =
+      document.getElementById(
+        "appSurveyTable"
+      );
+
+
+    appSurveyBody.innerHTML = "";
+
+
+    if(
+      !appSurvey.length
+    ){
+
+      appSurveyBody.innerHTML = `
+        <tr>
+          <td colspan="6" class="empty">
+            لا توجد إجابات على استطلاع تطوير التطبيق حتى الآن.
+          </td>
+        </tr>
+      `;
+
+    }else{
+
+      appSurvey.forEach(test=>{
+
+        const agent =
+          agentMap[test.agent_id];
+
+
+        const answer =
+          normalizeAppInterest(
+            test.app_interest
+          );
+
+
+        let badgeClass =
+          "badge-unknown";
+
+
+        if(answer.type === "yes"){
+          badgeClass = "badge-yes";
+        }
+
+
+        if(answer.type === "no"){
+          badgeClass = "badge-no";
+        }
+
+
+        const improvement =
+          test.improvement_comment &&
+          String(
+            test.improvement_comment
+          ).trim()
+            ? test.improvement_comment
+            : "—";
+
+
+        const tr =
+          document.createElement("tr");
+
+
+        tr.innerHTML = `
+
+          <td>
+            ${escapeHTML(
+              test.player_name || ""
+            )}
+          </td>
+
+          <td>
+
+            <span class="badge ${badgeClass}">
+              ${escapeHTML(answer.text)}
+            </span>
+
+          </td>
+
+          <td class="comment-cell">
+            ${escapeHTML(improvement)}
+          </td>
+
+          <td>
+            <strong>
+              ${test.score ?? "-"} / 10
+            </strong>
+          </td>
+
+          <td>
+            ${escapeHTML(
+              agent?.name ||
+              agent?.code ||
+              "بدون مندوبة"
+            )}
+          </td>
+
+          <td>
+            ${formatDate(
+              test.completed_at ||
+              test.started_at
+            )}
+          </td>
+
+        `;
+
+
+        appSurveyBody.appendChild(tr);
 
       });
 
@@ -1767,9 +2156,14 @@ window.addEventListener(
         );
 
 
-      /*
-        نتأكد إن المستخدم ما زال Admin
-      */
+      if(!user || !user.id){
+
+        logout();
+
+        return;
+
+      }
+
 
       const admin =
         await request(
