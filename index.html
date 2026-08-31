@@ -1,62 +1,3721 @@
-أيوه، الكود فيه 10 أسئلة بالترتيب ده:
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-1. الكرات الثلاثة 🔴🔵🟢
-كرة حمراء أثقل من الزرقاء، والزرقاء أخف من الخضراء، والخضراء أثقل من الحمراء.
-السؤال: أي الكرات هي الأخف؟
+<meta name="google-site-verification" content="-v8Jh9eafpdfh1dVVW265H523gAKtdVmNFkejMTh7kA" />
+
+<title>تحدي شهاب – شهاب Innovation</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Tahoma, sans-serif;
+  min-height: 100vh;
+  background-image: url('https://i.postimg.cc/2SnhLC0x/file-00000000d1548243a68234e912473536.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #080b14;
+  background-blend-mode: overlay;
+  color: #fff;
+}
+
+.container {
+  max-width: 720px;
+  margin: auto;
+  padding: 14px 10px 40px;
+}
+
+.card {
+  background: rgba(17, 22, 37, 0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(41, 50, 72, 0.6);
+  border-radius: 25px;
+  padding: 26px 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.center {
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.logo-sub {
+  font-size: 13px;
+  color: #aeb6c8;
+  display: block;
+  margin-top: 2px;
+}
+
+.text {
+  color: #aeb6c8;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.intro-box {
+  background: rgba(25, 31, 49, 0.9);
+  border: 1px solid #30394f;
+  border-radius: 18px;
+  padding: 17px;
+  margin: 20px 0;
+  line-height: 1.9;
+  text-align: right;
+}
+
+.intro-box strong {
+  color: #fff;
+}
+
+.reward-box {
+  background: rgba(34, 42, 61, 0.9);
+  border-radius: 18px;
+  padding: 17px;
+  margin: 16px 0;
+  line-height: 1.9;
+  text-align: right;
+}
+
+.reward-main {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.reward-line {
+  padding: 10px 12px;
+  background: rgba(8, 11, 20, 0.45);
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+.badge {
+  display: inline-block;
+  background: #222a3d;
+  padding: 9px 15px;
+  border-radius: 30px;
+  margin: 14px 0;
+}
+
+button {
+  width: 100%;
+  border: 0;
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: 0.15s;
+  font-family: inherit;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.primary {
+  background: #fff;
+  color: #080b14;
+}
+
+.secondary {
+  background: #252d42;
+  color: #fff;
+}
+
+.whatsapp {
+  background: #25D366;
+  color: #fff;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+input,
+textarea {
+  width: 100%;
+  background: rgba(8, 11, 20, 0.9);
+  border: 1px solid #30394f;
+  border-radius: 16px;
+  color: #fff;
+  padding: 15px;
+  font-size: 17px;
+  outline: none;
+  margin-top: 10px;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: #aeb6c8;
+  margin-bottom: 14px;
+}
+
+.remaining {
+  background: #191f31;
+  padding: 9px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  direction: ltr;
+  min-width: 76px;
+  text-align: center;
+}
+
+.timer-danger {
+  color: #ff7777 !important;
+  animation: pulse 0.8s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.question {
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+
+.choice {
+  background: #191f31;
+  border: 2px solid #30394f;
+  color: #fff;
+  text-align: right;
+  line-height: 1.7;
+}
+
+.choice.selected {
+  background: #252d42;
+  border-color: #fff;
+}
+
+.timer-note {
+  text-align: center;
+  color: #8f99ad;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 14px;
+}
+
+.score {
+  font-size: 68px;
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+.result-box {
+  background: rgba(25, 31, 49, 0.9);
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 16px;
+  line-height: 1.9;
+  text-align: right;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.stat {
+  background: rgba(8, 11, 20, 0.9);
+  border: 1px solid #30394f;
+  border-radius: 16px;
+  padding: 15px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.stat span {
+  font-size: 13px;
+  color: #8f99ad;
+}
+
+.green {
+  color: #8ee7a1;
+}
+
+.red {
+  color: #ff8d8d;
+}
+
+.review-card {
+  background: rgba(8, 11, 20, 0.9);
+  border: 1px solid #30394f;
+  border-radius: 18px;
+  padding: 17px;
+  margin-top: 14px;
+}
+
+.review-number {
+  color: #8f99ad;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.review-question {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.answer-line {
+  padding: 11px 13px;
+  border-radius: 12px;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+
+.answer-player {
+  background: #191f31;
+}
+
+.answer-correct {
+  background: #173522;
+  border: 1px solid #2d7044;
+}
+
+.answer-wrong {
+  background: #3a2025;
+  border: 1px solid #7b3d46;
+}
+
+.explanation {
+  margin-top: 13px;
+  background: #191f31;
+  padding: 13px;
+  border-radius: 13px;
+  color: #c6ccda;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.status-correct {
+  background: #173522;
+  color: #8ee7a1;
+}
+
+.status-wrong {
+  background: #3a2025;
+  color: #ff9ca4;
+}
+
+.status-timeout {
+  background: #342c18;
+  color: #ffd875;
+}
+
+.timeout-box {
+  background: #342c18;
+  border: 1px solid #705d29;
+  color: #ffd875;
+  padding: 13px;
+  border-radius: 14px;
+  margin-top: 12px;
+  line-height: 1.7;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.rating-box {
+  text-align: center;
+}
+
+.rating-title {
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.rating-subtitle {
+  color: #aeb6c8;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  direction: ltr;
+  margin: 18px 0;
+}
+
+.star {
+  width: auto;
+  margin: 0;
+  padding: 4px 5px;
+  background: transparent;
+  color: #596275;
+  font-size: 38px;
+  line-height: 1;
+}
+
+.star.selected,
+.star:hover {
+  color: #ffd34d;
+}
+
+.rating-result {
+  text-align: center;
+  color: #8ee7a1;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.thanks-box {
+  background: #173522;
+  border: 1px solid #2d7044;
+  border-radius: 15px;
+  padding: 14px;
+  margin-top: 14px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* ================= NEW SURVEY ================= */
+
+.survey-box {
+  background: rgba(25, 31, 49, 0.9);
+  border: 2px solid #30394f;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 18px;
+  text-align: right;
+}
+
+.survey-title {
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.survey-subtitle {
+  color: #aeb6c8;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.survey-option {
+  background: #191f31;
+  border: 2px solid #30394f;
+  color: #fff;
+  text-align: right;
+  line-height: 1.7;
+}
+
+.survey-option.selected {
+  background: #252d42;
+  border-color: #fff;
+}
+
+.survey-feedback {
+  margin-top: 14px;
+}
+
+.survey-success {
+  background: #173522;
+  border: 1px solid #2d7044;
+  color: #8ee7a1;
+  border-radius: 15px;
+  padding: 14px;
+  margin-top: 14px;
+  line-height: 1.8;
+  text-align: center;
+  font-weight: bold;
+}
+
+.agent-box {
+  background: rgba(25, 31, 49, 0.9);
+  border: 1px solid #30394f;
+  border-radius: 18px;
+  padding: 17px;
+  margin: 18px 0;
+  text-align: right;
+}
+
+.offer-box {
+  background: rgba(25, 31, 49, 0.9);
+  border: 2px solid #596275;
+  border-radius: 20px;
+  padding: 22px;
+  margin-top: 18px;
+  line-height: 1.9;
+  text-align: right;
+}
+
+.offer-title {
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.offer-choice {
+  background: #252d42;
+  border: 2px solid #30394f;
+  color: #fff;
+  text-align: right;
+}
+
+.offer-choice.selected {
+  border-color: #fff;
+  background: #30394f;
+}
+
+.offer-error {
+  background: #3a2025;
+  border: 1px solid #7b3d46;
+  color: #ffb0b7;
+  padding: 12px;
+  border-radius: 14px;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.confirm-box {
+  background: rgba(25, 31, 49, 0.9);
+  border: 2px solid #596275;
+  border-radius: 20px;
+  padding: 22px;
+  margin-top: 18px;
+  line-height: 1.9;
+  text-align: right;
+}
+
+.confirm-choice {
+  background: #191f31;
+  border: 1px solid #30394f;
+  border-radius: 16px;
+  padding: 15px;
+  margin: 16px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.save-box {
+  background: rgba(25, 31, 49, 0.9);
+  border: 1px solid #30394f;
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 18px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0 10px;
+  font-size: 13px;
+  color: #596275;
+  border-top: 1px solid #293248;
+  margin-top: 30px;
+}
+
+.footer img {
+  height: 26px;
+  width: auto;
+  margin-bottom: 6px;
+}
+
+.footer span {
+  display: block;
+}
+
+@media (max-width: 450px) {
+
+  .container {
+    padding: 9px 7px 30px;
+  }
+
+  .card {
+    padding: 21px 14px;
+    border-radius: 21px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .logo-text {
+    font-size: 19px;
+  }
+
+  .question {
+    font-size: 19px;
+  }
+
+  .choice {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .score {
+    font-size: 58px;
+  }
+
+  .star {
+    font-size: 34px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="card center">
+
+  <div class="logo">
+
+    <img
+      src="https://i.postimg.cc/2SnhLC0x/file-00000000d1548243a68234e912473536.png"
+      alt="شهاب Innovation"
+    />
+
+    <div>
+      <span class="logo-text">شهاب Innovation</span>
+      <span class="logo-sub">🧠 تحدي شهاب — أول مشروع لنا</span>
+    </div>
+
+  </div>
+
+  <p class="text" style="margin-top:6px;">
+    10 أسئلة منطقية.<br />
+    محتاجة تركيز… ومستوى التحدي مش سهل. 👀
+  </p>
+
+  <div class="intro-box">
+
+    <strong>🎯 الفكرة ببساطة</strong><br /><br />
+
+    هتدخل تجربة قصيرة مكونة من <strong>10 أسئلة</strong>،
+    وكل سؤال محتاج تفكير وتركيز قبل ما تختار إجابتك.<br /><br />
+
+    قبل بداية التحدي هتحدد إذا كنت حابب تدخل
+    <strong>عرض المقرمشات والجوائز</strong>،
+    وبعدها هنأكد اختيارك مرة تانية قبل إكمال التجربة.
+
+  </div>
+
+  <div class="reward-box">
+
+    <div class="reward-main">🏆 الجوائز</div>
+
+    <div class="reward-line">
+      🔥 <strong>10 / 10</strong><br />
+      مكافأة <strong>50 جنيه نقدًا</strong> على ذكائك وعبقريتك.
+    </div>
+
+    <div class="reward-line">
+      ⭐ <strong>9 / 10</strong><br />
+      تاخد <strong>المقرمشات مجانًا</strong>.
+    </div>
+
+    <div class="reward-line">
+      📦 <strong>8 / 10 أو أقل</strong><br />
+      تقدر تاخد <strong>المقرمشات مقابل 10 جنيه</strong>.
+    </div>
+
+  </div>
+
+  <div class="intro-box">
+
+    <strong>💡 تحدي شهاب</strong><br /><br />
+
+    «تحدي شهاب» هو <strong>أول مشروع لشهاب Innovation</strong>،
+    وإحنا بنجرب الفكرة على أرض الواقع ونطوّرها خطوة بخطوة.
+
+  </div>
+
+  <div class="badge">
+    🔥 أعلى نتيجة حاليًا: 9 / 10
+  </div>
+
+  <p class="text">
+
+    لو شايف إنك تقدر تجيب 10 من 10…
+    <br />
+
+    <strong style="color:#fff;">
+      ورّينا. 😏
+    </strong>
+
+  </p>
+
+  <button
+    class="primary"
+    onclick="showAgentPage()"
+  >
+    ابدأ التحدي 🧠🔥
+  </button>
+
+</section>
 
 
-2. المجرم الهارب والأسود 🦁
-3 غرف: غاز سام، نيران مشتعلة، وأسود جائعة لم تأكل منذ 3 سنوات.
-السؤال: أي غرفة يدخلها لينجو؟
+<!-- ================= AGENT ================= -->
+
+<section id="agentPage" class="card center hidden">
+
+  <h2>🔐 دخول التحدي</h2>
+
+  <p class="text">
+    التحدي متاح من خلال كود المندوب.<br />
+    اكتب الكود اللي استلمته علشان تبدأ.
+  </p>
+
+  <div class="agent-box">
+
+    <strong>كود المندوب</strong>
+
+    <input
+      id="agentCodeInput"
+      maxlength="6"
+      inputmode="numeric"
+      pattern="[0-9]{6}"
+      placeholder="••••••"
+      autocomplete="off"
+      style="direction:ltr;text-align:center;"
+    />
+
+    <div
+      id="agentError"
+      class="offer-error hidden"
+    ></div>
+
+    <button
+      id="agentButton"
+      class="primary"
+      onclick="verifyAgent()"
+    >
+      تأكيد الكود
+    </button>
+
+  </div>
+
+  <button
+    class="secondary"
+    onclick="goHome()"
+  >
+    رجوع
+  </button>
+
+</section>
 
 
-3. المصافحات 🤝
-5 أشخاص، كل شخص صافح كل شخص آخر مرة واحدة.
-السؤال: كام مصافحة تمت؟
+<!-- ================= NAME ================= -->
+
+<section id="namePage" class="card center hidden">
+
+  <h2>جاهز؟ 👀</h2>
+
+  <p class="text">
+    اكتب اسمك علشان نبدأ التحدي.
+  </p>
+
+  <input
+    id="nameInput"
+    maxlength="30"
+    placeholder="اكتب اسمك هنا"
+    autocomplete="off"
+  />
+
+  <div
+    id="startError"
+    class="timeout-box hidden"
+  ></div>
+
+  <button
+    id="startButton"
+    class="primary"
+    onclick="startGame()"
+  >
+    ابدأ التحدي 🚀
+  </button>
+
+  <button
+    class="secondary"
+    onclick="showAgentPage()"
+  >
+    رجوع
+  </button>
+
+</section>
 
 
-4. الرقم المجهول 🔢
-رقم ×2، ثم +10، ثم −7، ثم ×3 = 99.
-السؤال: ما الرقم؟
+<!-- ================= INITIAL OFFER ================= -->
+
+<section
+  id="initialOfferPage"
+  class="card center hidden"
+>
+
+  <div class="offer-box">
+
+    <div class="offer-title">
+      🥨 اختيارك قبل التحدي
+    </div>
+
+    <p>
+      قبل ما تبدأ، عندك اختيار بسيط هيحدد إذا كنت داخل
+      <strong>عرض المقرمشات والجوائز</strong>
+      أو هتخوض التحدي بدون العرض.
+    </p>
+
+    <p>
+      لو اخترت الدخول في العرض:
+    </p>
+
+    <div class="reward-line">
+
+      🏆 <strong>10 / 10</strong><br />
+
+      مكافأة
+      <strong>50 جنيه نقدًا</strong>
+      على ذكائك وعبقريتك.
+
+    </div>
+
+    <div class="reward-line">
+
+      ⭐ <strong>9 / 10</strong><br />
+
+      <strong>المقرمشات مجانًا.</strong>
+
+    </div>
+
+    <div class="reward-line">
+
+      🥨 <strong>8 / 10 أو أقل</strong><br />
+
+      <strong>المقرمشات مقابل 10 جنيه.</strong>
+
+    </div>
+
+    <p>
+
+      أما لو اخترت تكمل بدون العرض،
+      فهتخوض التحدي فقط
+      <strong>بدون مكافأة أو منتج</strong>.
+
+    </p>
+
+    <div
+      id="initialOfferError"
+      class="offer-error hidden"
+    >
+      لازم تختار أحد الاختيارين علشان تبدأ التحدي.
+    </div>
+
+    <button
+      class="offer-choice"
+      onclick="selectInitialOffer(true)"
+    >
+      🥨 أيوه، موافق أدخل عرض المقرمشات والجوائز
+    </button>
+
+    <button
+      class="offer-choice"
+      onclick="selectInitialOffer(false)"
+    >
+      ❌ لا، هخوض التحدي بدون العرض
+    </button>
+
+    <button
+      id="initialOfferContinue"
+      class="primary"
+      onclick="continueFromInitialOffer()"
+      disabled
+    >
+      تأكيد الاختيار وبدء التحدي →
+    </button>
+
+  </div>
+
+</section>
 
 
-5. الجوارب 🧦
-10 حمراء و10 زرقاء في خزانة مظلمة.
-السؤال: أقل عدد جوارب تسحبها لتضمن وجود جوربين من نفس اللون؟
+<!-- ================= QUIZ ================= -->
+
+<section
+  id="quizPage"
+  class="card hidden"
+>
+
+  <div class="progress">
+
+    <span id="progress">
+      السؤال 1 من 10
+    </span>
+
+    <span
+      id="remaining"
+      class="remaining"
+    >
+      01:00
+    </span>
+
+  </div>
+
+  <div
+    id="question"
+    class="question"
+  ></div>
+
+  <div id="choices"></div>
+
+  <button
+    id="nextButton"
+    class="primary"
+    onclick="nextQuestion()"
+    disabled
+  >
+    التالي →
+  </button>
+
+  <p class="timer-note">
+
+    🔔 آخر 10 ثواني فيها تنبيه صوتي.<br />
+
+    ⏳ لو الوقت خلص، السؤال ينتقل تلقائيًا.
+
+  </p>
+
+</section>
 
 
-6. عمر الأب والابن 👨‍👦
-الأب 30 سنة والابن 3 سنوات.
-السؤال: بعد كام سنة يصبح الأب 4 أضعاف عمر ابنه؟
+<!-- ================= CONFIRMATION ================= -->
+
+<section
+  id="confirmationPage"
+  class="card center hidden"
+>
+
+  <div class="confirm-box">
+
+    <div class="offer-title">
+      🔔 تأكيد اختيارك
+    </div>
+
+    <div id="confirmationContent"></div>
+
+    <button
+      class="primary"
+      onclick="confirmOfferAndContinue()"
+    >
+      ✅ أؤكد اختياري وأكمل التحدي
+    </button>
+
+  </div>
+
+</section>
 
 
-7. النسبة المئوية والمعادلة 🧮
-60% من 50 + 14 − 8 = نصف العدد س.
-السؤال: ما قيمة س؟
+<!-- ================= RESULT ================= -->
+
+<section
+  id="resultPage"
+  class="card center hidden"
+>
+
+  <div
+    class="logo"
+    style="justify-content:center;"
+  >
+
+    <img
+      src="https://i.postimg.cc/2SnhLC0x/file-00000000d1548243a68234e912473536.png"
+      alt="شهاب Innovation"
+      style="height:40px;"
+    />
+
+    <span
+      class="logo-text"
+      style="font-size:20px;"
+    >
+      🏆
+    </span>
+
+  </div>
+
+  <h2 id="resultTitle"></h2>
+
+  <div
+    id="score"
+    class="score"
+  ></div>
+
+  <p
+    id="resultText"
+    class="text"
+  ></p>
+
+  <div
+    id="saveStatus"
+    class="save-box"
+  >
+    جاري حفظ نتيجة الاختبار...
+  </div>
+
+  <div
+    id="productResult"
+    class="result-box"
+  ></div>
 
 
-8. السباق والزمن 🏃
-أحمد وصل قبل خالد بـ3 دقائق، وخالد قبل علي بـ5 دقائق. أحمد وصل 5:00.
-السؤال: علي وصل الساعة كام؟
+  <!-- ================= RATING ================= -->
+
+  <div class="result-box rating-box">
+
+    <div class="rating-title">
+      ⭐ رأيك في تجربة تحدي شهاب
+    </div>
+
+    <div class="rating-subtitle">
+
+      تقييمك بيساعدنا نعرف إيه اللي عجبك
+      وإيه اللي محتاج يتطور.
+
+    </div>
+
+    <div class="stars">
+
+      <button
+        class="star"
+        data-rating="1"
+        onclick="selectRating(1)"
+      >★</button>
+
+      <button
+        class="star"
+        data-rating="2"
+        onclick="selectRating(2)"
+      >★</button>
+
+      <button
+        class="star"
+        data-rating="3"
+        onclick="selectRating(3)"
+      >★</button>
+
+      <button
+        class="star"
+        data-rating="4"
+        onclick="selectRating(4)"
+      >★</button>
+
+      <button
+        class="star"
+        data-rating="5"
+        onclick="selectRating(5)"
+      >★</button>
+
+    </div>
+
+    <div id="ratingText">
+      اختار تقييمك من 1 إلى 5 نجوم.
+    </div>
+
+    <button
+      id="ratingButton"
+      class="primary"
+      onclick="submitRating()"
+      disabled
+    >
+      إرسال التقييم ⭐
+    </button>
+
+    <div
+      id="ratingSuccess"
+      class="thanks-box hidden"
+    >
+      ❤️ شكرًا ليك.<br />
+      تقييمك ورأيك بيساعدونا نطوّر المشروع.
+    </div>
+
+  </div>
 
 
-9. الفندق والدب 🐻
-3 أبواب: جدار خرساني، بحيرة تماسيح، وغرفة بها دب جائع لم يأكل منذ سنة.
-السؤال: أي باب تختار للخروج بأمان؟
+  <!-- ================= APP SURVEY ================= -->
+
+  <div
+    id="appSurveyBox"
+    class="survey-box hidden"
+  >
+
+    <div class="survey-title">
+      🚀 سؤال مهم لينا
+    </div>
+
+    <div class="survey-subtitle">
+
+      بعد ما جربت تحدي شهاب،
+      تحب نشوفه بيتطور لإبليكيشن حقيقي على Google Play?
+
+    </div>
+
+    <button
+      id="surveyYesButton"
+      class="survey-option"
+      onclick="selectAppSurvey('yes')"
+    >
+      🚀 أيوه، كملوا وطوّروه لأبليكيشن حقيقي
+    </button>
+
+    <button
+      id="surveyNoButton"
+      class="survey-option"
+      onclick="selectAppSurvey('no')"
+    >
+      💡 لأ، عندي اقتراحات وتطورات ممكن تخليه أحسن
+    </button>
+
+    <div
+      id="surveyFeedback"
+      class="survey-feedback hidden"
+    >
+
+      <div
+        class="survey-subtitle"
+        style="margin-top:12px;"
+      >
+        إيه التطورات أو الأفكار اللي شايف إنها
+        تخلي تحدي شهاب أحسن؟
+      </div>
+
+      <textarea
+        id="surveyComment"
+        maxlength="1000"
+        placeholder="اكتب اقتراحك هنا..."
+      ></textarea>
+
+    </div>
+
+    <button
+      id="surveySubmitButton"
+      class="primary"
+      onclick="submitAppSurvey()"
+      disabled
+    >
+      إرسال رأيي 🚀
+    </button>
+
+    <div
+      id="surveySuccess"
+      class="survey-success hidden"
+    >
+      ❤️ شكرًا ليك!<br />
+      رأيك مهم جدًا بالنسبة لنا وهيساعدنا نحدد
+      الخطوة الجاية لتحدي شهاب.
+    </div>
+
+  </div>
 
 
-10. مقارنة عمليتين حسابيتين ⚖️
-نصف 80 + ثلث 90
-مقابل: ربع 40 + ثلث 60 + 60% من 50
-السؤال: أيهما أكبر؟
+  <!-- ================= COMPARISON ================= -->
+
+  <div class="result-box">
+
+    <h3>🔥 مقارنة بشهاب</h3>
+
+    <div id="comparison"></div>
+
+  </div>
 
 
+  <!-- ================= STATS ================= -->
 
-ملاحظة مهمة جدًا: في الكود فيه خطأ في السؤالين 3 و6 في correctAnswer:
+  <div class="result-box">
 
-السؤال 3 الإجابة الصحيحة هي أ) 10، والكود كاتب correctAnswer: 0 → ده صحيح.
+    <h3>📊 نتيجتك</h3>
 
-السؤال 6 الإجابة الصحيحة هي د) 6 سنوات، والكود كاتب correctAnswer: 3 → صحيح.
+    <div class="stat-grid">
+
+      <div class="stat">
+
+        <strong id="percentage">-</strong>
+
+        <span>نسبتك</span>
+
+      </div>
+
+      <div class="stat">
+
+        <strong id="rank">-</strong>
+
+        <span>ترتيبك المحلي</span>
+
+      </div>
+
+      <div class="stat">
+
+        <strong id="totalPlayers">-</strong>
+
+        <span>اختبارات هذا الجهاز</span>
+
+      </div>
+
+      <div class="stat">
+
+        <strong id="average">-</strong>
+
+        <span>متوسط هذا الجهاز</span>
+
+      </div>
+
+      <div class="stat">
+
+        <strong id="highest">-</strong>
+
+        <span>أعلى نتيجة هذا الجهاز</span>
+
+      </div>
+
+      <div class="stat">
+
+        <strong id="completed">-</strong>
+
+        <span>اختبارات مكتملة</span>
+
+      </div>
+
+    </div>
+
+    <p
+      id="progressMessage"
+      class="green"
+    ></p>
+
+  </div>
 
 
-يعني الأسئلة العشرة الموجودة حاليًا هي دول بالضبط.
+  <!-- ================= STYLE ================= -->
+
+  <div class="result-box">
+
+    <h3>🧠 أسلوب تفكيرك</h3>
+
+    <div id="style"></div>
+
+  </div>
+
+
+  <!-- ================= REVIEW ================= -->
+
+  <div class="result-box">
+
+    <h3>📋 مراجعة إجاباتك</h3>
+
+    <p class="text">
+
+      شوف إجابتك، والإجابة الصحيحة،
+      والتفسير المنطقي لكل سؤال.
+
+    </p>
+
+    <div id="review"></div>
+
+  </div>
+
+
+  <button
+    class="primary"
+    onclick="location.reload()"
+  >
+    تحدي شهاب مرة أخرى 🔥
+  </button>
+
+  <button
+    class="whatsapp"
+    onclick="contactShehab()"
+  >
+    📱 تواصل مع شهاب على واتساب
+  </button>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <div class="footer">
+
+    <img
+      src="https://i.postimg.cc/2SnhLC0x/file-00000000d1548243a68234e912473536.png"
+      alt="شهاب Innovation"
+    />
+
+    <span>
+      © 2025 شهاب Innovation — Ideas • Innovation • Impact
+    </span>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+====================================================== */
+
+const SUPABASE_URL =
+  "https://buqgmkqtdyrnwwkswgiz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_o4RI813xC3WH4YAphxEqxQ_23OM1CiT";
+
+
+async function supabaseRequest(endpoint, options = {}) {
+
+  const headers = {
+    "Content-Type": "application/json",
+    "apikey": SUPABASE_PUBLISHABLE_KEY,
+    "Authorization":
+      "Bearer " + SUPABASE_PUBLISHABLE_KEY
+  };
+
+  if (options.prefer) {
+    headers["Prefer"] = options.prefer;
+  }
+
+  if (options.headers) {
+    Object.assign(
+      headers,
+      options.headers
+    );
+  }
+
+  const response =
+    await fetch(
+      SUPABASE_URL + endpoint,
+      {
+        ...options,
+        headers
+      }
+    );
+
+  const text =
+    await response.text();
+
+  let data = null;
+
+  try {
+
+    data =
+      text
+        ? JSON.parse(text)
+        : null;
+
+  } catch (e) {
+
+    data = text;
+
+  }
+
+  if (!response.ok) {
+
+    console.error(
+      "SUPABASE ERROR:",
+      response.status,
+      data
+    );
+
+    let message =
+      "Supabase error " +
+      response.status;
+
+    if (data) {
+
+      if (data.message) {
+        message = data.message;
+      }
+
+      else if (data.error) {
+        message = data.error;
+      }
+
+      else if (data.hint) {
+        message = data.hint;
+      }
+
+    }
+
+    throw new Error(message);
+
+  }
+
+  return data;
+
+}
+
+
+/* =====================================================
+   QUESTIONS
+====================================================== */
+
+const questions = [
+  {
+    question: "في مسابقة، حصلت على كرة حمراء، وكرة زرقاء، وكرة خضراء. إذا كانت الكرة الحمراء أثقل من الكرة الزرقاء، والكرة الزرقاء أخف من الكرة الخضراء، والكرة الخضراء أثقل من الكرة الحمراء. أي الكرات هي الأخف؟",
+    time: 60,
+    correctAnswer: 1,
+    choices: [
+      "أ) الكرة الحمراء",
+      "ب) الكرة الزرقاء",
+      "ج) الكرة الخضراء",
+      "د) لا يمكن تحديدها من المعطيات"
+    ],
+    explanation: "المعطيات: الأحمر > الأزرق، والأزرق < الأخضر، والأخضر > الأحمر. إذن الأخضر هو الأثقل، والأزرق هو الأخف. العلاقة واضحة ومنطقية ويتم حلها بالاستنتاج الرياضي المباشر."
+  },
+  {
+    question: "مجرم هارب من السجن، أمامه 3 غرف ليدخل إحداها للاختباء. الأولى مليئة بغاز سام، والثانية نيران مشتعلة، والثالثة أسود جائعة لم تأكل منذ 3 سنوات. أي غرفة يدخلها لينجو فورًا؟",
+    time: 45,
+    correctAnswer: 3,
+    choices: [
+      "أ) الغرفة الأولى",
+      "ب) الغرفة الثانية",
+      "ج) الغرفة الثالثة",
+      "د) لن ينجو من أي غرفة"
+    ],
+    explanation: "المجرم سيدخل الغرفة الثالثة (الأسود). لأن الأسود التي لم تأكل منذ 3 سنوات تكون قد ماتت جوعًا منذ زمن طويل. الخدعة أن العقل يفترض أنها جائعة ومفترسة، وينسى الوقت."
+  },
+  {
+    question: "في غرفة يوجد 5 أشخاص، صافح كل شخص من الأشخاص الخمسة جميع الأشخاص الآخرين مرة واحدة فقط. كم عدد المصافحات التي تمت؟",
+    time: 75,
+    correctAnswer: 0,
+    choices: [
+      "أ) 10",
+      "ب) 20",
+      "ج) 15",
+      "د) 25"
+    ],
+    explanation: "أول شخص يصافح 4 أشخاص. الثاني يصافح 3 (لأنه صافح الأول). الثالث يصافح 2، والرابع يصافح 1. المجموع: 4+3+2+1 = 10 مصافحات."
+  },
+  {
+    question: "أنا رقم. إذا ضربتني في 2 ثم أضفت إلي 10، ثم أنقصت مني 7، ثم ضربتني في 3، سأصبح 99. ما هو الرقم؟",
+    time: 60,
+    correctAnswer: 0,
+    choices: [
+      "أ) 15",
+      "ب) 12",
+      "ج) 18",
+      "د) 10"
+    ],
+    explanation: "المعادلة: ((الرقم × 2) + 10 - 7) × 3 = 99. نقسم على 3: (الرقم × 2) + 3 = 33. إذن الرقم × 2 = 30، والرقم هو 15."
+  },
+  {
+    question: "في خزانة ملابس مظلمة يوجد 10 جوارب حمراء و10 جوارب زرقاء. ما هو أقل عدد من الجوارب يجب سحبه لتضمن وجود جوربين من نفس اللون؟",
+    time: 45,
+    correctAnswer: 0,
+    choices: [
+      "أ) 3 جوارب",
+      "ب) 11 جوربًا",
+      "ج) 20 جوربًا",
+      "د) 4 جوارب"
+    ],
+    explanation: "مبدأ برج الحمام: أسوأ احتمال هو سحب جورب أحمر ثم جورب أزرق. الجورب الثالث مهما كان لونه سيُشكل زوجًا متماثلًا. إذن تحتاج 3 جوارب فقط لتضمن زوجًا."
+  },
+  {
+    question: "أب عمره 30 سنة وابنه عمره 3 سنوات. بعد كم سنة يصبح عمر الأب أربعة أمثال عمر ابنه؟",
+    time: 60,
+    correctAnswer: 3,
+    choices: [
+      "أ) 3 سنوات",
+      "ب) 4 سنوات",
+      "ج) 9 سنوات",
+      "د) 6 سنوات"
+    ],
+    explanation: "المعادلة: (30 + س) = 4 × (3 + س). الحل: 30 + س = 12 + 4س. إذن 3س = 18، س = 6 سنوات. بعد 6 سنوات سيصبح الأب 36 والابن 9، و9 × 4 = 36."
+  },
+  {
+    question: "إذا كان 60% من العدد 50 + 14 - 8 = نصف العدد س. ما هو العدد س؟",
+    time: 60,
+    correctAnswer: 1,
+    choices: [
+      "أ) 60",
+      "ب) 72",
+      "ج) 68",
+      "د) 74"
+    ],
+    explanation: "60% من 50 = 30. إذن 30 + 14 - 8 = 36. نص العدد س = 36، إذن س = 72. المعادلة: 0.6 × 50 + 14 - 8 = 0.5 × س. الحل: س = 72."
+  },
+  {
+    question: "في سباق جري، أحمد وصل قبل خالد بثلاث دقائق، وخالد وصل قبل علي بخمس دقائق. إذا وصل أحمد في الساعة 5:00، ففي أي ساعة وصل علي؟",
+    time: 60,
+    correctAnswer: 1,
+    choices: [
+      "أ) 5:03",
+      "ب) 5:08",
+      "ج) 5:05",
+      "د) 5:15"
+    ],
+    explanation: "أحمد وصل الساعة 5:00. خالد وصل بعده بثلاث دقائق (5:03). علي وصل بعد خالد بخمس دقائق (5:08). الحل بسيط ومنطقي، لكنه يختبر التركيز والترتيب الزمني بدلاً من الحسابات المعقدة."
+  },
+  {
+    question: "في فندق، يوجد 3 أبواب. الباب الأول يفتح على جدار خرساني، والثاني يفتح على بحيرة مليئة بالتماسيح، والثالث يفتح على غرفة بها دب جائع لم يأكل منذ سنة. إذا استيقظت فجأة في الفندق ولم تكن تعرف أين أنت، أي باب يجب أن تختار للخروج بأمان؟",
+    time: 60,
+    correctAnswer: 3,
+    choices: [
+      "أ) الباب الأول",
+      "ب) الباب الثاني",
+      "ج) الباب الثالث",
+      "د) لا يمكن الخروج من أي باب"
+    ],
+    explanation: "الخدعة هنا في كلمة «جائع لم يأكل منذ سنة». الدب الذي لم يأكل منذ سنة يكون قد مات من الجوع منذ زمن طويل، وبالتالي الغرفة الثالثة آمنة تماماً. هذا سؤال تعتمد إجابته على قراءة التفاصيل بدقة، وليس على أي حسابات."
+  },
+  {
+    question: "أيهما أكبر: نصف العدد 80 + ثلث العدد 90، أم ربع العدد 40 + ثلث العدد 60 + 60% من العدد 50؟",
+    time: 90,
+    correctAnswer: 0,
+    choices: [
+      "أ) نصف العدد 80 + ثلث العدد 90",
+      "ب) ربع العدد 40 + ثلث العدد 60 + 60% من العدد 50",
+      "ج) كلاهما متساويان",
+      "د) لا يمكن المقارنة بينهما"
+    ],
+    explanation: "الجانب الأول: نصف 80 (40) + ثلث 90 (30) = 70. الجانب الثاني: ربع 40 (10) + ثلث 60 (20) + 60% من 50 (30) = 60. إذن الجانب الأول أكبر."
+  }
+];
+
+
+/* =====================================================
+   GAME STATE
+====================================================== */
+
+let currentQuestion = 0;
+let totalScore = 0;
+let playerName = "";
+let selectedAnswer = null;
+let remainingSeconds = 0;
+let timerInterval = null;
+let playerAnswers = [];
+let audioContext = null;
+let gameFinished = false;
+
+let selectedRating = 0;
+
+let agentId = null;
+let currentTestId = null;
+
+let productOfferAnswer = null;
+let offerSelection = null;
+let startedAt = null;
+
+let initialOfferSelection = null;
+let offerConfirmed = false;
+
+
+/* ================= NEW SURVEY STATE ================= */
+
+let appSurveySelection = null;
+
+
+/* =====================================================
+   LOCAL PLAYERS
+====================================================== */
+
+function getPlayers() {
+
+  try {
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(
+          "shehab_challenge_players"
+        )
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  } catch (e) {
+
+    return [];
+
+  }
+
+}
+
+
+function savePlayer(p) {
+
+  const players =
+    getPlayers();
+
+  players.push(p);
+
+  localStorage.setItem(
+    "shehab_challenge_players",
+    JSON.stringify(players)
+  );
+
+}
+
+
+/* =====================================================
+   UUID
+====================================================== */
+
+function generateUUID() {
+
+  if (
+    window.crypto &&
+    typeof window.crypto.randomUUID ===
+      "function"
+  ) {
+
+    return window.crypto.randomUUID();
+
+  }
+
+  if (
+    window.crypto &&
+    typeof window.crypto.getRandomValues ===
+      "function"
+  ) {
+
+    const bytes =
+      new Uint8Array(16);
+
+    window.crypto.getRandomValues(
+      bytes
+    );
+
+    bytes[6] =
+      (bytes[6] & 0x0f) | 0x40;
+
+    bytes[8] =
+      (bytes[8] & 0x3f) | 0x80;
+
+    const hex =
+      Array.from(bytes)
+        .map(
+          b =>
+            b
+              .toString(16)
+              .padStart(2, "0")
+        )
+        .join("");
+
+    return (
+      hex.substring(0,8) + "-" +
+      hex.substring(8,12) + "-" +
+      hex.substring(12,16) + "-" +
+      hex.substring(16,20) + "-" +
+      hex.substring(20)
+    );
+
+  }
+
+  throw new Error(
+    "المتصفح لا يدعم إنشاء رقم الاختبار."
+  );
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+====================================================== */
+
+function hideAll() {
+
+  [
+    "home",
+    "agentPage",
+    "namePage",
+    "initialOfferPage",
+    "quizPage",
+    "confirmationPage",
+    "resultPage"
+  ].forEach(id => {
+
+    document
+      .getElementById(id)
+      .classList
+      .add("hidden");
+
+  });
+
+}
+
+
+function showAgentPage() {
+
+  hideAll();
+
+  document
+    .getElementById("agentPage")
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById("agentCodeInput")
+    .focus();
+
+}
+
+
+function showName() {
+
+  hideAll();
+
+  document
+    .getElementById("namePage")
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById("nameInput")
+    .focus();
+
+}
+
+
+function goHome() {
+
+  stopTimer();
+
+  hideAll();
+
+  document
+    .getElementById("home")
+    .classList
+    .remove("hidden");
+
+}
+
+
+/* =====================================================
+   AGENT
+====================================================== */
+
+async function verifyAgent() {
+
+  const input =
+    document.getElementById(
+      "agentCodeInput"
+    );
+
+  const errorBox =
+    document.getElementById(
+      "agentError"
+    );
+
+  const button =
+    document.getElementById(
+      "agentButton"
+    );
+
+  const code =
+    input.value.trim();
+
+  errorBox.classList.add(
+    "hidden"
+  );
+
+  if (!/^\d{6}$/.test(code)) {
+
+    errorBox.textContent =
+      "كود المندوب لازم يكون 6 أرقام.";
+
+    errorBox.classList.remove(
+      "hidden"
+    );
+
+    return;
+
+  }
+
+  button.disabled = true;
+
+  button.textContent =
+    "جاري التحقق...";
+
+  try {
+
+    const agents =
+      await supabaseRequest(
+        "/rest/v1/agents?select=id,code,name,active&code=eq." +
+        encodeURIComponent(code) +
+        "&active=eq.true",
+        {
+          method: "GET",
+          prefer:
+            "return=representation"
+        }
+      );
+
+    if (
+      !Array.isArray(agents) ||
+      agents.length === 0
+    ) {
+
+      throw new Error(
+        "الكود غير موجود أو غير مفعل."
+      );
+
+    }
+
+    agentId =
+      agents[0].id;
+
+    showName();
+
+  } catch (error) {
+
+    console.error(error);
+
+    errorBox.textContent =
+      error.message ||
+      "الكود غير صحيح أو حصلت مشكلة في الاتصال.";
+
+    errorBox.classList.remove(
+      "hidden"
+    );
+
+  } finally {
+
+    button.disabled = false;
+
+    button.textContent =
+      "تأكيد الكود";
+
+  }
+
+}
+
+
+/* =====================================================
+   AUDIO
+====================================================== */
+
+function initAudio() {
+
+  try {
+
+    if (!audioContext) {
+
+      audioContext =
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+
+    }
+
+    if (
+      audioContext.state ===
+      "suspended"
+    ) {
+
+      audioContext.resume();
+
+    }
+
+  } catch (e) {}
+
+}
+
+
+function beep() {
+
+  try {
+
+    if (!audioContext) return;
+
+    const osc =
+      audioContext.createOscillator();
+
+    const gain =
+      audioContext.createGain();
+
+    osc.type = "sine";
+
+    osc.frequency.value =
+      850;
+
+    gain.gain.setValueAtTime(
+      0.001,
+      audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.18,
+      audioContext.currentTime + 0.02
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      audioContext.currentTime + 0.18
+    );
+
+    osc.connect(gain);
+
+    gain.connect(
+      audioContext.destination
+    );
+
+    osc.start();
+
+    osc.stop(
+      audioContext.currentTime + 0.2
+    );
+
+  } catch (e) {}
+
+}
+
+
+/* =====================================================
+   START
+====================================================== */
+
+function startGame() {
+
+  if (!agentId) {
+
+    showAgentPage();
+
+    return;
+
+  }
+
+  const input =
+    document.getElementById(
+      "nameInput"
+    );
+
+  const errorBox =
+    document.getElementById(
+      "startError"
+    );
+
+  const button =
+    document.getElementById(
+      "startButton"
+    );
+
+  const name =
+    input.value.trim();
+
+  errorBox.classList.add(
+    "hidden"
+  );
+
+  if (!name) {
+
+    errorBox.textContent =
+      "اكتب اسمك الأول.";
+
+    errorBox.classList.remove(
+      "hidden"
+    );
+
+    input.focus();
+
+    return;
+
+  }
+
+  initAudio();
+
+  button.disabled = true;
+
+  button.textContent =
+    "جاري تجهيز التحدي...";
+
+  playerName =
+    name;
+
+  currentQuestion = 0;
+
+  totalScore = 0;
+
+  selectedAnswer = null;
+
+  playerAnswers = [];
+
+  gameFinished = false;
+
+  productOfferAnswer = null;
+
+  offerSelection = null;
+
+  initialOfferSelection = null;
+
+  offerConfirmed = false;
+
+  appSurveySelection = null;
+
+  currentTestId =
+    generateUUID();
+
+  startedAt =
+    new Date().toISOString();
+
+  hideAll();
+
+  document
+    .getElementById(
+      "initialOfferPage"
+    )
+    .classList
+    .remove("hidden");
+
+  button.disabled = false;
+
+  button.textContent =
+    "ابدأ التحدي 🚀";
+
+}
+
+
+/* =====================================================
+   INITIAL OFFER
+====================================================== */
+
+function selectInitialOffer(
+  answer
+) {
+
+  initialOfferSelection =
+    Boolean(answer);
+
+  productOfferAnswer =
+    initialOfferSelection;
+
+  document
+    .querySelectorAll(
+      "#initialOfferPage .offer-choice"
+    )
+    .forEach(
+      b =>
+        b.classList.remove(
+          "selected"
+        )
+    );
+
+  const buttons =
+    document.querySelectorAll(
+      "#initialOfferPage .offer-choice"
+    );
+
+  if (
+    initialOfferSelection === true
+  ) {
+
+    buttons[0].classList.add(
+      "selected"
+    );
+
+  } else {
+
+    buttons[1].classList.add(
+      "selected"
+    );
+
+  }
+
+  document
+    .getElementById(
+      "initialOfferError"
+    )
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById(
+      "initialOfferContinue"
+    )
+    .disabled = false;
+
+}
+
+
+function continueFromInitialOffer() {
+
+  if (
+    initialOfferSelection === null
+  ) {
+
+    document
+      .getElementById(
+        "initialOfferError"
+      )
+      .classList
+      .remove("hidden");
+
+    return;
+
+  }
+
+  productOfferAnswer =
+    initialOfferSelection;
+
+  offerSelection =
+    initialOfferSelection;
+
+  offerConfirmed = false;
+
+  showQuestion();
+
+}
+
+
+/* =====================================================
+   QUESTION
+====================================================== */
+
+function showQuestion() {
+
+  stopTimer();
+
+  if (
+    currentQuestion >=
+    questions.length
+  ) {
+
+    finishQuiz();
+
+    return;
+
+  }
+
+  hideAll();
+
+  document
+    .getElementById("quizPage")
+    .classList
+    .remove("hidden");
+
+  const q =
+    questions[currentQuestion];
+
+  document
+    .getElementById("progress")
+    .textContent =
+      "السؤال " +
+      (currentQuestion + 1) +
+      " من " +
+      questions.length;
+
+  document
+    .getElementById("question")
+    .textContent =
+      q.question;
+
+  selectedAnswer = null;
+
+  const nextButton =
+    document.getElementById(
+      "nextButton"
+    );
+
+  nextButton.disabled = true;
+
+  nextButton.textContent =
+    currentQuestion ===
+    questions.length - 1
+      ? "إنهاء التحدي 🏆"
+      : "التالي →";
+
+  const choices =
+    document.getElementById(
+      "choices"
+    );
+
+  choices.innerHTML = "";
+
+  q.choices.forEach(
+    (choice, index) => {
+
+      const btn =
+        document.createElement(
+          "button"
+        );
+
+      btn.className =
+        "choice";
+
+      btn.textContent =
+        choice;
+
+      btn.onclick = () => {
+
+        selectChoice(
+          btn,
+          index
+        );
+
+      };
+
+      choices.appendChild(btn);
+
+    }
+  );
+
+  remainingSeconds =
+    q.time;
+
+  updateTimer();
+
+  timerInterval =
+    setInterval(() => {
+
+      if (
+        remainingSeconds > 0
+      ) {
+
+        remainingSeconds--;
+
+        updateTimer();
+
+        if (
+          remainingSeconds <= 10 &&
+          remainingSeconds > 0
+        ) {
+
+          beep();
+
+        }
+
+      }
+
+      if (
+        remainingSeconds <= 0
+      ) {
+
+        stopTimer();
+
+        handleTimeout();
+
+      }
+
+    }, 1000);
+
+}
+
+
+/* =====================================================
+   TIMER
+====================================================== */
+
+function updateTimer() {
+
+  const timer =
+    document.getElementById(
+      "remaining"
+    );
+
+  const minutes =
+    Math.floor(
+      remainingSeconds / 60
+    );
+
+  const seconds =
+    remainingSeconds % 60;
+
+  timer.textContent =
+    String(minutes)
+      .padStart(2, "0") +
+    ":" +
+    String(seconds)
+      .padStart(2, "0");
+
+  timer.classList.toggle(
+    "timer-danger",
+    remainingSeconds <= 10
+  );
+
+}
+
+
+function stopTimer() {
+
+  if (timerInterval) {
+
+    clearInterval(
+      timerInterval
+    );
+
+    timerInterval = null;
+
+  }
+
+}
+
+
+/* =====================================================
+   ANSWERS
+====================================================== */
+
+function selectChoice(
+  button,
+  index
+) {
+
+  if (
+    gameFinished ||
+    remainingSeconds <= 0
+  ) {
+
+    return;
+
+  }
+
+  document
+    .querySelectorAll(".choice")
+    .forEach(
+      b =>
+        b.classList.remove(
+          "selected"
+        )
+    );
+
+  button.classList.add(
+    "selected"
+  );
+
+  selectedAnswer =
+    index;
+
+  document
+    .getElementById(
+      "nextButton"
+    )
+    .disabled = false;
+
+}
+
+
+function saveAnswer(
+  timedOut = false
+) {
+
+  const q =
+    questions[currentQuestion];
+
+  const correct =
+    (
+      selectedAnswer !== null &&
+      selectedAnswer ===
+      q.correctAnswer
+    );
+
+  playerAnswers.push({
+
+    question:
+      currentQuestion + 1,
+
+    selectedAnswer:
+      selectedAnswer,
+
+    correctAnswer:
+      q.correctAnswer,
+
+    correct:
+      correct,
+
+    timedOut:
+      timedOut,
+
+    timeUsed:
+      Math.max(
+        0,
+        q.time -
+        remainingSeconds
+      )
+
+  });
+
+  if (correct) {
+
+    totalScore++;
+
+  }
+
+}
+
+
+function handleTimeout() {
+
+  if (gameFinished) {
+    return;
+  }
+
+  saveAnswer(true);
+
+  currentQuestion++;
+
+  setTimeout(() => {
+
+    if (
+      currentQuestion <
+      questions.length
+    ) {
+
+      if (
+        currentQuestion === 5
+      ) {
+
+        showConfirmation();
+
+      } else {
+
+        showQuestion();
+
+      }
+
+    } else {
+
+      finishQuiz();
+
+    }
+
+  }, 500);
+
+}
+
+
+function nextQuestion() {
+
+  if (gameFinished) {
+    return;
+  }
+
+  if (
+    selectedAnswer === null
+  ) {
+
+    alert(
+      "اختار إجابة الأول."
+    );
+
+    return;
+
+  }
+
+  stopTimer();
+
+  const btn =
+    document.getElementById(
+      "nextButton"
+    );
+
+  btn.disabled = true;
+
+  saveAnswer(false);
+
+  currentQuestion++;
+
+  if (
+    currentQuestion <
+    questions.length
+  ) {
+
+    setTimeout(() => {
+
+      if (
+        currentQuestion === 5
+      ) {
+
+        showConfirmation();
+
+      } else {
+
+        showQuestion();
+
+      }
+
+    }, 180);
+
+  } else {
+
+    finishQuiz();
+
+  }
+
+}
+
+
+/* =====================================================
+   MID CONFIRMATION
+====================================================== */
+
+function showConfirmation() {
+
+  stopTimer();
+
+  hideAll();
+
+  const page =
+    document.getElementById(
+      "confirmationPage"
+    );
+
+  const content =
+    document.getElementById(
+      "confirmationContent"
+    );
+
+  if (
+    initialOfferSelection === true
+  ) {
+
+    content.innerHTML = `
+
+      <p>
+        في بداية التحدي اخترت:
+      </p>
+
+      <div class="confirm-choice">
+        🥨 أيوه، موافق أدخل عرض المقرمشات والجوائز
+      </div>
+
+      <p>
+        وحابين نتأكد من اختيارك قبل ما تكمل باقي التحدي.
+      </p>
+
+      <div class="reward-line">
+        🏆 <strong>10 / 10</strong><br />
+        مكافأة <strong>50 جنيه نقدًا</strong>
+        على ذكائك وعبقريتك.
+      </div>
+
+      <div class="reward-line">
+        ⭐ <strong>9 / 10</strong><br />
+        <strong>المقرمشات مجانًا.</strong>
+      </div>
+
+      <div class="reward-line">
+        🥨 <strong>8 / 10 أو أقل</strong><br />
+        <strong>المقرمشات مقابل 10 جنيه.</strong>
+      </div>
+
+      <p>
+        لو ده اختيارك، أكد علشان تكمل التحدي.
+      </p>
+
+    `;
+
+  } else {
+
+    content.innerHTML = `
+
+      <p>
+        في بداية التحدي اخترت:
+      </p>
+
+      <div class="confirm-choice">
+        ❌ لا، هخوض التحدي بدون العرض
+      </div>
+
+      <p>
+        وحابين نتأكد من اختيارك قبل ما تكمل باقي التحدي.
+      </p>
+
+      <div class="timeout-box">
+        بتأكيدك، هتكمل التحدي بدون أي مكافأة
+        أو مقرمشات، مهما كانت نتيجتك.
+      </div>
+
+      <p>
+        لو ده اختيارك، أكد علشان تكمل التحدي.
+      </p>
+
+    `;
+
+  }
+
+  page.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+function confirmOfferAndContinue() {
+
+  offerConfirmed = true;
+
+  showQuestion();
+
+}
+
+
+/* =====================================================
+   SAVE FINAL TEST
+====================================================== */
+
+async function saveFinalTest() {
+
+  const completedAt =
+    new Date().toISOString();
+
+  const testData = {
+
+    id:
+      currentTestId,
+
+    agent_id:
+      agentId,
+
+    player_name:
+      playerName,
+
+    score:
+      totalScore,
+
+    percentage:
+      totalScore * 10,
+
+    product_offer_answer:
+      productOfferAnswer,
+
+    started_at:
+      startedAt,
+
+    completed_at:
+      completedAt,
+
+    status:
+      "completed",
+
+    answers:
+      playerAnswers
+
+  };
+
+  await supabaseRequest(
+    "/rest/v1/tests",
+    {
+      method: "POST",
+
+      prefer:
+        "return=minimal",
+
+      body:
+        JSON.stringify(
+          testData
+        )
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   FINISH
+====================================================== */
+
+async function finishQuiz() {
+
+  if (gameFinished) {
+    return;
+  }
+
+  gameFinished = true;
+
+  stopTimer();
+
+  const completedAt =
+    new Date().toISOString();
+
+  const player = {
+
+    name:
+      playerName,
+
+    score:
+      totalScore,
+
+    percentage:
+      totalScore * 10,
+
+    date:
+      completedAt,
+
+    answers:
+      playerAnswers,
+
+    productOfferAnswer:
+      productOfferAnswer
+
+  };
+
+  savePlayer(player);
+
+  showResult();
+
+  try {
+
+    await saveFinalTest();
+
+    document
+      .getElementById(
+        "saveStatus"
+      )
+      .innerHTML =
+        '<span class="green">✅ تم حفظ نتيجة الاختبار في لوحة التحكم بنجاح.</span>';
+
+  } catch (error) {
+
+    console.error(
+      "FINAL SAVE ERROR:",
+      error
+    );
+
+    document
+      .getElementById(
+        "saveStatus"
+      )
+      .innerHTML =
+        '<span class="red">⚠️ النتيجة ظهرت عندك، لكن حصلت مشكلة في إرسالها إلى لوحة التحكم.</span><br><small>' +
+        escapeHTML(
+          error.message ||
+          "خطأ غير معروف"
+        ) +
+        "</small>";
+
+  }
+
+}
+
+
+/* =====================================================
+   RESULT
+====================================================== */
+
+function showResult() {
+
+  hideAll();
+
+  document
+    .getElementById(
+      "resultPage"
+    )
+    .classList
+    .remove("hidden");
+
+  document
+    .getElementById(
+      "resultTitle"
+    )
+    .textContent =
+      "🔥 ممتاز يا " +
+      playerName;
+
+  document
+    .getElementById(
+      "score"
+    )
+    .textContent =
+      totalScore +
+      " / 10";
+
+
+  /* RESULT TEXT */
+
+  if (
+    initialOfferSelection === false
+  ) {
+
+    document
+      .getElementById(
+        "resultText"
+      )
+      .textContent =
+        "🔥 خلصت التحدي! نتيجتك هي " +
+        totalScore +
+        " / 10. إنت اخترت من البداية تخوض التجربة بدون العرض.";
+
+  }
+
+  else if (
+    totalScore === 10
+  ) {
+
+    document
+      .getElementById(
+        "resultText"
+      )
+      .textContent =
+        "🏆🔥 عبقرية! جبت 10 / 10 وكسبت 50 جنيه مكافأة على ذكائك.";
+
+  }
+
+  else if (
+    totalScore === 9
+  ) {
+
+    document
+      .getElementById(
+        "resultText"
+      )
+      .textContent =
+        "⭐ ممتاز! جبت 9 / 10 وتعادلت مع شهاب، والمقرمشات من حقك مجانًا.";
+
+  }
+
+  else if (
+    totalScore >= 7
+  ) {
+
+    document
+      .getElementById(
+        "resultText"
+      )
+      .textContent =
+        "🔥 نتيجة قوية جدًا، لكن لسه ماوصلتش لنتيجة شهاب.";
+
+  }
+
+  else if (
+    totalScore >= 4
+  ) {
+
+    document
+      .getElementById(
+        "resultText"
+      )
+      .textContent =
+        "نتيجة متوسطة. بعض الأسئلة قدرت توقعك في الفخ.";
+
+  }
+
+  else {
+
+    document
+      .getElementById(
+        "resultText"
+      )
+      .textContent =
+        "النتيجة مش حكم على ذكائك. دي مجرد نتيجة لتجربتك في الأسئلة دي.";
+
+  }
+
+
+  /* PRODUCT / PRIZE */
+
+  const productResult =
+    document.getElementById(
+      "productResult"
+    );
+
+
+  if (
+    initialOfferSelection === false
+  ) {
+
+    productResult.innerHTML =
+      '<strong>📌 اختيارك كان خوض التحدي بدون العرض.</strong><br><br>' +
+      "بالتالي لا توجد مكافأة أو مقرمشات ضمن هذا المسار.";
+
+  }
+
+  else if (
+    totalScore === 10
+  ) {
+
+    productResult.innerHTML =
+      '<strong class="green">🏆 مبروك! كسبت 50 جنيه مكافأة.</strong><br><br>' +
+      "أثبت إنك عبقري في التحدي وحققت أعلى نتيجة ممكنة.";
+
+  }
+
+  else if (
+    totalScore === 9
+  ) {
+
+    productResult.innerHTML =
+      '<strong class="green">⭐ مبروك! المقرمشات مجانًا.</strong><br><br>' +
+      "حققت 9 / 10 وتعادلت مع شهاب.";
+
+  }
+
+  else {
+
+    productResult.innerHTML =
+      "نتيجتك 8 / 10 أو أقل.<br><br>" +
+      "🥨 إنت مؤهل للحصول على <strong>المقرمشات مقابل 10 جنيه</strong>.";
+
+  }
+
+
+  /* COMPARISON */
+
+  const comparison =
+    document.getElementById(
+      "comparison"
+    );
+
+
+  if (
+    totalScore === 10
+  ) {
+
+    comparison.innerHTML =
+      '<strong class="green">🏆 كسرت نتيجة شهاب!</strong><br><br>' +
+      "أنت: 10 / 10<br>" +
+      "شهاب: 9 / 10<br><br>" +
+      (
+        initialOfferSelection === true
+          ? "💰 مكافأتك: 50 جنيه."
+          : "📌 أنت اخترت خوض التحدي بدون العرض، لذلك لا توجد مكافأة."
+      );
+
+  }
+
+  else if (
+    totalScore === 9
+  ) {
+
+    comparison.innerHTML =
+      "<strong>⚖️ تعادلت مع شهاب.</strong><br><br>" +
+      "أنت: 9 / 10<br>" +
+      "شهاب: 9 / 10<br><br>" +
+      (
+        initialOfferSelection === true
+          ? "🥨 المقرمشات مجانًا."
+          : "📌 أنت اخترت خوض التحدي بدون العرض، لذلك لا توجد مقرمشات."
+      );
+
+  }
+
+  else {
+
+    comparison.innerHTML =
+      '<strong class="red">شهاب ما زال متقدمًا.</strong><br><br>' +
+      "أنت: " +
+      totalScore +
+      " / 10<br>" +
+      "شهاب: 9 / 10<br><br>" +
+      "الفارق: " +
+      (9 - totalScore) +
+      " نقطة.";
+
+  }
+
+
+  /* THINKING STYLE */
+
+  document
+    .getElementById(
+      "style"
+    )
+    .textContent =
+
+    totalScore >= 9
+
+      ? "تفكيرك قوي جدًا في فحص المعنى والافتراضات، وغالبًا لا تكتفي بأول إجابة تبدو صحيحة."
+
+      : totalScore >= 7
+
+      ? "عندك قدرة جيدة على التفكير التحليلي، لكن بعض الفخاخ قدرت تسحبك للاستنتاج السريع."
+
+      : totalScore >= 4
+
+      ? "عندك مزيج من التفكير السريع والتحليلي، وتقدر تطور نتيجتك أكتر لو راجعت الافتراضات قبل الحكم."
+
+      : "التحدي أظهر إن بعض الإجابات الأولى عندك تعتمد على الحدس السريع. التمهل وفحص المعلومات قد يغير النتيجة بشكل كبير.";
+
+
+  /* STATS */
+
+  const players =
+    getPlayers();
+
+  const scores =
+    players.map(
+      p =>
+        Number(p.score) || 0
+    );
+
+  const totalPlayers =
+    players.length;
+
+  const completed =
+    players.length;
+
+  const average =
+    completed
+      ? scores.reduce(
+          (s, v) => s + v,
+          0
+        ) / completed
+      : totalScore;
+
+  const highest =
+    completed
+      ? Math.max(...scores)
+      : totalScore;
+
+  const sortedScores =
+    [...scores].sort(
+      (a, b) => b - a
+    );
+
+  const rank =
+    sortedScores.indexOf(
+      totalScore
+    ) + 1;
+
+
+  document
+    .getElementById(
+      "percentage"
+    )
+    .textContent =
+      totalScore * 10 +
+      "%";
+
+  document
+    .getElementById(
+      "rank"
+    )
+    .textContent =
+      "#" + rank;
+
+  document
+    .getElementById(
+      "totalPlayers"
+    )
+    .textContent =
+      totalPlayers;
+
+  document
+    .getElementById(
+      "completed"
+    )
+    .textContent =
+      completed;
+
+  document
+    .getElementById(
+      "average"
+    )
+    .textContent =
+      average.toFixed(1) +
+      " / 10";
+
+  document
+    .getElementById(
+      "highest"
+    )
+    .textContent =
+      highest +
+      " / 10";
+
+
+  document
+    .getElementById(
+      "progressMessage"
+    )
+    .textContent =
+
+    totalScore > average
+
+      ? "📈 نتيجتك أعلى من متوسط الاختبارات على هذا الجهاز."
+
+      : totalScore ===
+        Number(
+          average.toFixed(1)
+        )
+
+      ? "⚖️ نتيجتك قريبة من متوسط الاختبارات على هذا الجهاز."
+
+      : "📊 عندك مساحة كويسة للتحسن.";
+
+
+  renderReview();
+
+}
+
+
+/* =====================================================
+   REVIEW
+====================================================== */
+
+function renderReview() {
+
+  const review =
+    document.getElementById(
+      "review"
+    );
+
+  review.innerHTML = "";
+
+  playerAnswers.forEach(
+    (answer, index) => {
+
+      const q =
+        questions[index];
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+      card.className =
+        "review-card";
+
+      const playerAnswerText =
+        answer.selectedAnswer === null
+          ? "لم يتم اختيار إجابة — الوقت انتهى."
+          : q.choices[
+              answer.selectedAnswer
+            ];
+
+      const correctAnswerText =
+        q.choices[
+          q.correctAnswer
+        ];
+
+      let statusClass = "";
+      let statusText = "";
+
+      if (
+        answer.correct
+      ) {
+
+        statusClass =
+          "status-correct";
+
+        statusText =
+          "✓ إجابة صحيحة";
+
+      }
+
+      else if (
+        answer.timedOut
+      ) {
+
+        statusClass =
+          "status-timeout";
+
+        statusText =
+          "⏰ الوقت انتهى";
+
+      }
+
+      else {
+
+        statusClass =
+          "status-wrong";
+
+        statusText =
+          "✕ إجابة غير صحيحة";
+
+      }
+
+
+      card.innerHTML = `
+
+        <div class="review-number">
+          السؤال ${index + 1} من 10
+        </div>
+
+        <div class="review-question">
+          ${escapeHTML(q.question)}
+        </div>
+
+        <div class="answer-line answer-player">
+          <strong>إجابتك:</strong><br>
+          ${escapeHTML(playerAnswerText)}
+        </div>
+
+        <div class="answer-line answer-correct">
+          <strong>الإجابة الصحيحة:</strong><br>
+          ${escapeHTML(correctAnswerText)}
+        </div>
+
+        <div>
+          <span class="status-badge ${statusClass}">
+            ${statusText}
+          </span>
+        </div>
+
+        <div class="explanation">
+          <strong>🧠 التفسير المنطقي:</strong><br>
+          ${escapeHTML(q.explanation)}
+        </div>
+
+      `;
+
+      review.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   RATING
+====================================================== */
+
+function selectRating(
+  rating
+) {
+
+  if (
+    document
+      .getElementById(
+        "ratingSuccess"
+      )
+      .classList
+      .contains("hidden") === false
+  ) {
+
+    return;
+
+  }
+
+  selectedRating =
+    rating;
+
+  document
+    .querySelectorAll(".star")
+    .forEach(star => {
+
+      const val =
+        Number(
+          star.dataset.rating
+        );
+
+      star.classList.toggle(
+        "selected",
+        val <= rating
+      );
+
+    });
+
+
+  const texts = {
+
+    1:
+      "😕 محتاجين نشتغل أكتر على التجربة.",
+
+    2:
+      "🙂 التجربة محتاجة تطوير.",
+
+    3:
+      "👍 تجربة كويسة.",
+
+    4:
+      "🔥 تجربة ممتازة.",
+
+    5:
+      "🏆🔥 ممتاز جدًا! مبسوطين إن التجربة عجبتك."
+
+  };
+
+
+  document
+    .getElementById(
+      "ratingText"
+    )
+    .textContent =
+      texts[rating];
+
+  document
+    .getElementById(
+      "ratingButton"
+    )
+    .disabled = false;
+
+}
+
+
+/* =====================================================
+   SUBMIT RATING
+====================================================== */
+
+async function submitRating() {
+
+  if (!selectedRating) {
+    return;
+  }
+
+  const button =
+    document.getElementById(
+      "ratingButton"
+    );
+
+  button.disabled = true;
+
+  button.textContent =
+    "جاري إرسال التقييم...";
+
+
+  const ratingData = {
+
+    test_id:
+      currentTestId,
+
+    player_name:
+      playerName,
+
+    score:
+      totalScore,
+
+    rating:
+      selectedRating,
+
+    comment:
+      "تقييم النجوم: " +
+      selectedRating +
+      "/5"
+
+  };
+
+
+  try {
+
+    await supabaseRequest(
+      "/rest/v1/ratings",
+      {
+        method: "POST",
+
+        prefer:
+          "return=minimal",
+
+        body:
+          JSON.stringify(
+            ratingData
+          )
+      }
+    );
+
+
+    document
+      .querySelectorAll(
+        ".star"
+      )
+      .forEach(
+        star =>
+          star.disabled = true
+      );
+
+    document
+      .getElementById(
+        "ratingSuccess"
+      )
+      .classList
+      .remove("hidden");
+
+    button.textContent =
+      "تم إرسال التقييم ✓";
+
+
+    /* إظهار استطلاع التطبيق */
+
+    setTimeout(() => {
+
+      document
+        .getElementById(
+          "appSurveyBox"
+        )
+        .classList
+        .remove("hidden");
+
+    }, 250);
+
+
+  } catch (error) {
+
+    console.error(
+      "RATING ERROR:",
+      error
+    );
+
+    button.disabled = false;
+
+    button.textContent =
+      "إرسال التقييم ⭐";
+
+    alert(
+      "حصلت مشكلة في إرسال التقييم: " +
+      (
+        error.message ||
+        "خطأ غير معروف"
+      )
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   APP SURVEY
+====================================================== */
+
+function selectAppSurvey(
+  answer
+) {
+
+  appSurveySelection =
+    answer;
+
+  document
+    .querySelectorAll(
+      ".survey-option"
+    )
+    .forEach(
+      button =>
+        button.classList.remove(
+          "selected"
+        )
+    );
+
+
+  if (answer === "yes") {
+
+    document
+      .getElementById(
+        "surveyYesButton"
+      )
+      .classList
+      .add("selected");
+
+    document
+      .getElementById(
+        "surveyFeedback"
+      )
+      .classList
+      .add("hidden");
+
+  }
+
+
+  if (answer === "no") {
+
+    document
+      .getElementById(
+        "surveyNoButton"
+      )
+      .classList
+      .add("selected");
+
+    document
+      .getElementById(
+        "surveyFeedback"
+      )
+      .classList
+      .remove("hidden");
+
+  }
+
+
+  document
+    .getElementById(
+      "surveySubmitButton"
+    )
+    .disabled = false;
+
+}
+
+
+/* =====================================================
+   SUBMIT APP SURVEY
+====================================================== */
+
+async function submitAppSurvey() {
+
+  if (!appSurveySelection) {
+    return;
+  }
+
+  const button =
+    document.getElementById(
+      "surveySubmitButton"
+    );
+
+  const feedback =
+    document
+      .getElementById(
+        "surveyComment"
+      )
+      .value
+      .trim();
+
+
+  if (
+    appSurveySelection === "no" &&
+    !feedback
+  ) {
+
+    document
+      .getElementById(
+        "surveyComment"
+      )
+      .focus();
+
+    alert(
+      "اكتب اقتراحك أو التطور اللي شايفه مهم لينا."
+    );
+
+    return;
+
+  }
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "جاري حفظ رأيك...";
+
+
+  const surveyAnswer =
+    appSurveySelection === "yes"
+      ? "نعم، نكمل ونطور وننزل Google Play"
+      : "لا، التطبيق محتاج تطوير أكتر";
+
+
+  try {
+
+    /* تعديل مهم: نقوم بتحديث جدول الاختبارات (tests) مباشرة */
+    await supabaseRequest(
+      "/rest/v1/tests?id=eq." + encodeURIComponent(currentTestId),
+      {
+        method: "PATCH",
+        prefer: "return=minimal",
+        body: JSON.stringify({
+          app_interest: surveyAnswer,
+          improvement_comment: feedback
+        })
+      }
+    );
+
+
+    document
+      .getElementById(
+        "surveyYesButton"
+      )
+      .disabled = true;
+
+    document
+      .getElementById(
+        "surveyNoButton"
+      )
+      .disabled = true;
+
+    document
+      .getElementById(
+        "surveyComment"
+      )
+      .disabled = true;
+
+    button.textContent =
+      "تم إرسال رأيك ✓";
+
+    document
+      .getElementById(
+        "surveySuccess"
+      )
+      .classList
+      .remove("hidden");
+
+
+  } catch (error) {
+
+    console.error(
+      "SURVEY UPDATE ERROR:",
+      error
+    );
+
+    button.disabled = false;
+
+    button.textContent =
+      "إرسال رأيي 🚀";
+
+    alert(
+      "حصلت مشكلة في حفظ رأيك. حاول مرة تانية."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   HELPERS
+====================================================== */
+
+function escapeHTML(text) {
+
+  return String(text)
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+====================================================== */
+
+function contactShehab() {
+
+  const phone =
+    "201011641423";
+
+  const message =
+    encodeURIComponent(
+      "السلام عليكم يا شهاب، جربت تحدي شهاب وعاوز أعرف تفسير الإجابات المنطقية للاختبار."
+    );
+
+  window.open(
+    "https://wa.me/" +
+    phone +
+    "?text=" +
+    message,
+    "_blank"
+  );
+
+}
+
+
+/* =====================================================
+   ENTER KEYS
+====================================================== */
+
+document
+  .getElementById(
+    "nameInput"
+  )
+  .addEventListener(
+    "keydown",
+    function(e) {
+
+      if (
+        e.key === "Enter"
+      ) {
+
+        startGame();
+
+      }
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "agentCodeInput"
+  )
+  .addEventListener(
+    "keydown",
+    function(e) {
+
+      if (
+        e.key === "Enter"
+      ) {
+
+        verifyAgent();
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
