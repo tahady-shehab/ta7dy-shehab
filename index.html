@@ -3541,63 +3541,24 @@ async function submitAppSurvey() {
 
   const surveyAnswer =
     appSurveySelection === "yes"
-      ? "🚀 المستخدم اختار: نعم، نطوّر تحدي شهاب لإبليكيشن حقيقي على Google Play."
-      : "💡 المستخدم اختار: لا، لديه اقتراحات وتطورات.";
-
-
-  const finalComment =
-    surveyAnswer +
-    (
-      feedback
-        ? "\n\nاقتراح المستخدم:\n" +
-          feedback
-        : ""
-    );
-
-
-  const ratingData = {
-
-    test_id:
-      currentTestId,
-
-    player_name:
-      playerName,
-
-    score:
-      totalScore,
-
-    rating:
-      selectedRating,
-
-    comment:
-      finalComment
-
-  };
+      ? "نعم، نكمل ونطور وننزل Google Play"
+      : "لا، التطبيق محتاج تطوير أكتر";
 
 
   try {
 
-    /* نحاول أولًا تحديث نفس تقييم النجوم بدل إنشاء تقييم جديد. */
-
-    const updateResult =
-      await supabaseRequest(
-        "/rest/v1/ratings?test_id=eq." +
-        encodeURIComponent(
-          currentTestId
-        ),
-        {
-          method: "PATCH",
-
-          prefer:
-            "return=minimal",
-
-          body:
-            JSON.stringify({
-              comment:
-                finalComment
-            })
-        }
-      );
+    /* نحن نقوم بتحديث جدول الاختبارات (tests) مباشرة */
+    await supabaseRequest(
+      "/rest/v1/tests?id=eq." + encodeURIComponent(currentTestId),
+      {
+        method: "PATCH",
+        prefer: "return=minimal",
+        body: JSON.stringify({
+          app_interest: surveyAnswer,
+          improvement_comment: feedback
+        })
+      }
+    );
 
 
     document
@@ -3636,72 +3597,14 @@ async function submitAppSurvey() {
       error
     );
 
-    /* لو التحديث فشل، نحاول إنشاء سجل جديد كحل احتياطي. */
+    button.disabled = false;
 
-    try {
+    button.textContent =
+      "إرسال رأيي 🚀";
 
-      await supabaseRequest(
-        "/rest/v1/ratings",
-        {
-          method: "POST",
-
-          prefer:
-            "return=minimal",
-
-          body:
-            JSON.stringify(
-              ratingData
-            )
-        }
-      );
-
-
-      document
-        .getElementById(
-          "surveyYesButton"
-        )
-        .disabled = true;
-
-      document
-        .getElementById(
-          "surveyNoButton"
-        )
-        .disabled = true;
-
-      document
-        .getElementById(
-          "surveyComment"
-        )
-        .disabled = true;
-
-      button.textContent =
-        "تم إرسال رأيك ✓";
-
-      document
-        .getElementById(
-          "surveySuccess"
-        )
-        .classList
-        .remove("hidden");
-
-
-    } catch (fallbackError) {
-
-      console.error(
-        "SURVEY FALLBACK ERROR:",
-        fallbackError
-      );
-
-      button.disabled = false;
-
-      button.textContent =
-        "إرسال رأيي 🚀";
-
-      alert(
-        "حصلت مشكلة في حفظ رأيك. حاول مرة تانية."
-      );
-
-    }
+    alert(
+      "حصلت مشكلة في حفظ رأيك. حاول مرة تانية."
+    );
 
   }
 
@@ -3815,4 +3718,4 @@ document
 </script>
 
 </body>
-</html>
+  </html>
